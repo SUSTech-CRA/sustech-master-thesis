@@ -2770,6 +2770,24 @@
   \vskip 6bp%
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
+\newenvironment{statementcopyright}{%
+  \ctexset{
+    section = {
+      format    += \centering,
+      numbering = false,
+    },
+    subsection = {
+      format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
+      numbering  = false,
+      aftertitle = \ifthu@language@chinese ：\else :\fi,
+    },
+  }%
+  \ifthu@degree@bachelor
+    \ifthu@language@english
+      \sffamily\fontsize{15bp}{20bp}\selectfont,
+    \fi
+  \fi
+}{}
 \newenvironment{resume}{%
   \@mainmatterfalse
   \thu@chapter*{\thu@resume@name}%
