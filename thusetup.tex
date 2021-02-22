@@ -1,0 +1,162 @@
+% !TeX root = ./thuthesis-example.tex
+
+% 论文基本信息配置
+
+\thusetup{
+  %******************************
+  % 注意：
+  %   1. 配置里面不要出现空行
+  %   2. 不需要的配置信息可以删除
+  %   3. 建议先阅读文档中所有关于选项的说明
+  %******************************
+  %
+  % 输出格式
+  %   选择打印版（print）或用于提交的电子版（electronic），前者会插入空白页以便直接双面打印
+  %
+  output = print,
+  %
+  % 标题
+  %   可使用“\\”命令手动控制换行
+  %
+  title  = {清华大学学位论文 \LaTeX{} 模板\\使用示例文档 v\version},
+  title* = {An Introduction to \LaTeX{} Thesis Template of Tsinghua
+            University v\version},
+  %
+  % 学位
+  %   1. 学术型
+  %      - 中文
+  %        需注明所属的学科门类，例如：
+  %        哲学、经济学、法学、教育学、文学、历史学、理学、工学、农学、医学、
+  %        军事学、管理学、艺术学
+  %      - 英文
+  %        博士：Doctor of Philosophy
+  %        硕士：
+  %          哲学、文学、历史学、法学、教育学、艺术学门类，公共管理学科
+  %          填写“Master of Arts“，其它填写“Master of Science”
+  %   2. 专业型
+  %      直接填写专业学位的名称，例如：
+  %      教育博士、工程硕士等
+  %      Doctor of Education, Master of Engineering
+  %   3. 本科生不需要填写
+  %
+  degree-name  = {工学硕士},
+  degree-name* = {Master of Science},
+  %
+  % 培养单位
+  %   填写所属院系的全名
+  %
+  department = {计算机科学与技术系},
+  %
+  % 学科
+  %   1. 学术型学位
+  %      获得一级学科授权的学科填写一级学科名称，其他填写二级学科名称
+  %   2. 工程硕士
+  %      工程领域名称
+  %   3. 其他专业型学位
+  %      不填写此项
+  %   4. 本科生填写专业名称，第二学位论文需标注“（第二学位）”
+  %
+  discipline  = {计算机科学与技术},
+  discipline* = {Computer Science and Technology},
+  %
+  % 姓名
+  %
+  author  = {薛瑞尼},
+  author* = {Xue Ruini},
+  %
+  % 指导教师
+  %   中文姓名和职称之间以英文逗号“,”分开，下同
+  %
+  supervisor  = {郑纬民, 教授},
+  supervisor* = {Professor Zheng Weimin},
+  %
+  % 副指导教师
+  %
+  associate-supervisor  = {陈文光, 教授},
+  associate-supervisor* = {Professor Chen Wenguang},
+  %
+  % 联合指导教师
+  %
+  % joint-supervisor  = {某某某, 教授},
+  % joint-supervisor* = {Professor Mou Moumou},
+  %
+  % 日期
+  %   使用 ISO 格式；默认为当前时间
+  %
+  % date = {2019-07-07},
+  %
+  % 是否在中文封面后的空白页生成书脊（默认 false）
+  %
+  include-spine = false,
+  %
+  % 密级和年限
+  %   秘密, 机密, 绝密
+  %
+  % secret-level = {秘密},
+  % secret-year  = {10},
+  %
+  % 博士后专有部分
+  %
+  % clc                = {分类号},
+  % udc                = {UDC},
+  % id                 = {编号},
+  % discipline-level-1 = {计算机科学与技术},  % 流动站（一级学科）名称
+  % discipline-level-2 = {系统结构},          % 专业（二级学科）名称
+  % start-date         = {2011-07-01},        % 研究工作起始时间
+}
+
+% 载入所需的宏包
+
+% 可以使用 nomencl 生成符号和缩略语说明
+% \usepackage{nomencl}
+% \makenomenclature
+
+% 表格加脚注
+\usepackage{threeparttable}
+
+% 表格中支持跨行
+\usepackage{multirow}
+
+% 固定宽度的表格。放在 hyperref 之前的话，tabularx 里的 footnote 显示不出来。
+% \usepackage{tabularx}
+
+% 跨页表格
+% \usepackage{longtable}
+
+% 量和单位
+\usepackage{siunitx}
+
+% 定理类环境宏包
+\usepackage{amsthm}
+% 也可以使用 ntheorem
+% \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
+
+% 参考文献使用 BibTeX + natbib 宏包
+% 顺序编码制
+\usepackage[sort]{natbib}
+\bibliographystyle{thuthesis-numeric}
+
+% 著者-出版年制
+% \usepackage{natbib}
+% \bibliographystyle{thuthesis-author-year}
+
+% 本科生参考文献的著录格式
+% \usepackage[sort]{natbib}
+% \bibliographystyle{thuthesis-bachelor}
+
+% 参考文献使用 BibLaTeX 宏包
+% \usepackage[backend=biber,style=thuthesis-numeric]{biblatex}
+% \usepackage[backend=biber,style=thuthesis-author-year]{biblatex}
+% \usepackage[backend=biber,style=apa]{biblatex}
+% \usepackage[backend=biber,style=mla-new]{biblatex}
+% 声明 BibLaTeX 的数据库
+% \addbibresource{ref/refs.bib}
+
+% 定义所有的图片文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+% 数学命令
+\newcommand\dif{\mathop{}\!\mathrm{d}}  % 微分符号
+
+% hyperref 宏包在最后调用
+\usepackage{hyperref}

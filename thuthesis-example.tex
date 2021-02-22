@@ -1,0 +1,89 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = en_US
+
+\documentclass[degree=master]{thuthesis}
+  % 学位 degree:
+  %   doctor | master | bachelor | postdoc
+  % 学位类型 degree-type:
+  %   academic（默认）| professional
+
+
+% 论文基本配置，加载宏包等全局配置
+\input{thusetup}
+
+
+\begin{document}
+
+% 封面
+\maketitle
+
+% 学位论文指导小组、公开评阅人和答辩委员会名单
+\input{data/committee}
+
+% 使用授权的说明
+\copyrightpage
+% 将签字扫描后授权文件 scan-copyright.pdf 替换原始页面
+% \copyrightpage[file=scan-copyright.pdf]
+
+\frontmatter
+\input{data/abstract}
+
+% 目录
+\tableofcontents
+
+% 插图和附表清单
+\listoffiguresandtables  % 插图和附表清单
+% \listoffigures           % 插图清单
+% \listoftables            % 附表清单
+
+% 符号对照表
+\input{data/denotation}
+
+
+% 正文部分
+\mainmatter
+\input{data/chap01}
+\input{data/chap02}
+\input{data/chap03}
+\input{data/chap04}
+
+
+% 其他部分
+\backmatter
+
+% 参考文献
+\bibliography{ref/refs}  % 参考文献使用 BibTeX 编译
+% \printbibliography       % 参考文献使用 BibLaTeX 编译
+
+% 附录
+\appendix
+\input{data/appendix}
+% \input{data/appendix-survey}       % 本科生：外文资料的调研阅读报告
+% \input{data/appendix-translation}  % 本科生：外文资料的书面翻译
+
+% 致谢
+\input{data/acknowledgements}
+
+% 声明
+\statement
+% 生成的声明页是否要插入页眉和页脚（默认 empty）
+% 仅在需要进行电子签名时，才需要打开这一选项
+% 插入的扫描声明页总是会生成页眉（研究生）和页脚，不受这一选项影响
+% \statement[page-style=plain]
+% 将签字扫描后的声明文件 scan-statement.pdf 替换原始页面
+% \statement[file=scan-statement.pdf]
+
+% 个人简历、在学期间完成的相关学术成果
+\input{data/resume}
+
+% 指导教师/指导小组学术评语
+\input{data/comments}
+
+% 答辩委员会决议书
+\input{data/resolution}
+
+% 本科生的综合论文训练记录表（扫描版）
+% \record{file=scan-record.pdf}
+
+\end{document}

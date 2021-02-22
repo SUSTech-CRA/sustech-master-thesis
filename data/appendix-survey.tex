@@ -1,0 +1,72 @@
+% !TeX root = ../thuthesis-example.tex
+
+\begin{survey}
+\label{cha:survey}
+
+\title{Title of the Survey}
+\maketitle
+
+
+\tableofcontents
+
+
+本科生的外文资料调研阅读报告。
+
+
+\section{Figures and Tables}
+
+\subsection{Figures}
+
+An example figure in appendix (Figure~\ref{fig:appendix-survey-figure}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\linewidth]{example-image-a.pdf}
+  \caption{Example figure in appendix}
+  \label{fig:appendix-survey-figure}
+\end{figure}
+
+
+\subsection{Tables}
+
+An example table in appendix (Table~\ref{tab:appendix-survey-table}).
+
+\begin{table}
+  \centering
+  \caption{Example table in appendix}
+  \begin{tabular}{ll}
+    \toprule
+    File name       & Description                                         \\
+    \midrule
+    thuthesis.dtx   & The source file including documentaion and comments \\
+    thuthesis.cls   & The template file                                   \\
+    thuthesis-*.bst & BibTeX styles                                       \\
+    thuthesis-*.bbx & BibLaTeX styles for bibliographies                  \\
+    thuthesis-*.cbx & BibLaTeX styles for citations                       \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:appendix-survey-table}
+\end{table}
+
+
+\section{Equations}
+
+An example equation in appendix (Equation~\eqref{eq:appendix-survey-equation}).
+\begin{equation}
+  \frac{1}{2 \symup{\pi} \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \label{eq:appendix-survey-equation}
+\end{equation}
+
+
+\section{Citations}
+
+Example citations in appendix.
+\cite{abrahams99tex}
+\cite{salomon1995advanced}
+\cite{abrahams99tex,salomon1995advanced}
+
+
+\bibliographystyle{unsrtnat}
+\bibliography{ref/appendix}
+
+\end{survey}
