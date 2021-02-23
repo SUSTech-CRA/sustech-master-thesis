@@ -13,7 +13,7 @@
   % 输出格式
   %   选择打印版（print）或用于提交的电子版（electronic），前者会插入空白页以便直接双面打印
   %
-  output = print,
+  output = electronic,
   %
   % 标题
   %   可使用“\\”命令手动控制换行
@@ -39,10 +39,10 @@
   %      Doctor of Education, Master of Engineering
   %   3. 本科生不需要填写
   %
-  degree-level = {硕士},
-  gongsuo = false, % 如果为工程硕士是true，其他为 false
-  degree-name  = {工学硕士},
-  degree-name* = {Master of Science},
+  degree-level = {硕士}, % 【中文】学位等级：可选硕士，博士
+  gongsuo = false, % 是否为工程硕士：是则填 true，学术硕士或其他为 false。
+  degree-name  = {工学硕士}, % 【中文】获得学位全名
+  degree-name* = {Master of Science}, % 【英文】获得学位全名
   %
   % 培养单位
   %   填写所属院系的全名
@@ -55,9 +55,6 @@
   %      获得一级学科授权的学科填写一级学科名称，其他填写二级学科名称
   %   2. 工程硕士
   %      工程领域名称
-  %   3. 其他专业型学位
-  %      不填写此项
-  %   4. 本科生填写专业名称，第二学位论文需标注“（第二学位）”
   %
   discipline  = {计算机科学与工程},
   discipline* = {Computer Science and Engineering},
@@ -106,7 +103,14 @@
   % discipline-level-1 = {计算机科学与技术},  % 流动站（一级学科）名称
   % discipline-level-2 = {系统结构},          % 专业（二级学科）名称
   % start-date         = {2011-07-01},        % 研究工作起始时间
+  %
+  % 密级
+  %   秘密, 机密, 绝密
+  %
   statesecrets={公开},
+  %
+  % 国内图书分类号，国际图书分类号
+  %
   natclassifiedindex={TM301.2},
   intclassifiedindex={62-5},
 }
