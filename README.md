@@ -15,11 +15,24 @@
 
 ## 模板结构
 
+### 文档内容
 * `thusetup.tex` 示例文档基本配置（论文标题、作者等元数据）
+* `thuthesis-example.tex` 示例文档主文件
 * `thuthesis-example.tex` 示例文档主文件
 * `data/` 示例文档章节具体内容
 * `figures/` 示例文档图片路径
 * `ref/` 示例文档参考文献目录
+
+### 样式控制
+* `thuthesis.cls` 模板类文件
+* `thuthesis-*.bst` BIBTEX 参考文献表样式文件
+* `thuthesis-*.bbx` BibLaTeX 参考文献表样式文件
+* `thuthesis-*.cbx` BibLaTeX 参考文献引用样式文件
+
+### 编译脚本
+* `Makefile` Makefile
+* `latexmkrc` latexmk 配置文件
+* `README.md` Readme
 
 ## 致谢
 本模板基于清华大学模板 [ThuThesis v7.1](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
