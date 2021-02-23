@@ -13,6 +13,12 @@
 * `make cleanall`  删除示例文件的中间文件和 thuthesis-example.pdf；
 * `make distclean` 删除示例文件和模板的所有中间文件和 PDF。
 
+### 编译前的建议
+
+在撰写论文时，我们不推荐使用原有的 `thuthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
+
+需要注意，如果更改了主文件的名称，则需要修改 `Makefile` 顶端的 `THESIS` 变量定义；或修改 `build.bat` 和 `clean.bat` 中 `latexmk` 命令后的参数。
+
 ## 模板结构
 
 ### 文档内容
