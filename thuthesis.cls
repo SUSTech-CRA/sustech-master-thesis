@@ -1419,6 +1419,18 @@
   joint-supervisor* = {
     name = joint@supervisor@en,
   },
+  degree-level = {
+    default = {博士},
+    name    = degree@level,
+  },
+  gongsuo = {
+    default = false,
+    name    = gongsuo,
+  },
+  degree-name = {
+    default = {工学博士},
+    name    = degree@name,
+  },
   degree-name = {
     default = {工学博士},
     name    = degree@name,
@@ -1429,6 +1441,10 @@
   },
   department = {
     default = {计算机科学与技术系},
+  },
+  department* = {
+    default = {Computer Science and Technology},
+    name    = department@en,
   },
   discipline = {
     % default = {计算机科学与技术},
@@ -1466,6 +1482,15 @@
       true,
     },
     default = false,
+  },
+  statesecrets = {
+    name = statesecrets,
+  },
+  natclassifiedindex = {
+    name = natclassifiedindex,
+  },
+  intclassifiedindex = {
+    name = intclassifiedindex,
   },
 }
 \newcommand\thu@format@date[2]{%
@@ -1539,9 +1564,9 @@
   \pagenumbering{Alph}%
   \thu@pdfbookmark{-1}{\thu@title}%
   \thu@titlepage
-  \ifthu@include@spine@true
-    \thu@spine
-  \fi
+  % \ifthu@include@spine@true
+  %   \thu@spine
+  % \fi
   \ifthu@degree@graduate
     \cleardoublepage
     \thu@titlepage@en
@@ -1549,52 +1574,161 @@
   \clearpage
 }
 \newcommand\thu@titlepage{%
-  \thusetup{language = chinese}%
-  \ifthu@degree@graduate
-    \ifthu@degree@type@academic
-      \thu@titlepage@graduate@academic
-    \else
-      \ifx\thu@discipline\@empty
-        \thu@titlepage@graduate@professional
-      \else
-        \thu@titlepage@graduate@academic
-      \fi
-    \fi
-  \else
-    \ifthu@degree@bachelor
-      \thu@titlepage@bachelor
-    \else
-      \ifthu@degree@postdoc
-        \thu@cover@postdoc
-        \cleardoublepage
-        \thu@titlepage@postdoc
-      \fi
-    \fi
-  \fi
-  \thu@reset@main@language
+  % \thusetup{language = chinese}%
+  % \ifthu@degree@graduate
+  %   \ifthu@degree@type@academic
+  %     \thu@titlepage@graduate@academic
+  %   \else
+  %     \ifx\thu@discipline\@empty
+  %       \thu@titlepage@graduate@professional
+  %     \else
+  %       \thu@titlepage@graduate@academic
+  %     \fi
+  %   \fi
+  % \else
+  %   \ifthu@degree@bachelor
+  %     \thu@titlepage@bachelor
+  %   \else
+  %     \ifthu@degree@postdoc
+  %       \thu@cover@postdoc
+  %       \cleardoublepage
+  %       \thu@titlepage@postdoc
+  %     \fi
+  %   \fi
+  % \fi
+  % \thu@reset@main@language
+  \thu@titlepage@graduate@simple
 }
-\newcommand\thu@titlepage@graduate@academic{%
+\def\thu@schoolid{14325}
+\def\zhuanye{\if\thu@gongsuo 工程领域 \else 学科专业 \fi}
+\newcommand\thu@titlepage@graduate@simple{%
   \newgeometry{
-    top     = 2cm,
-    bottom  = 6cm,
-    hmargin = 3.5cm,
+    top     = 3cm,
+    bottom  = 3cm,
+    hmargin = 3cm,
   }%
   \thispagestyle{empty}%
-  \null\vskip 0.2cm%
-  \begingroup
-    \centering
-    \parbox[t][2cm][t]{\textwidth}{%
-      \hskip -0.69cm%
-      \thu@titlepage@secret
-    }\par
-    \vskip 1.5cm%
-    {\thu@titlepage@title}%
-    \vskip 0.85cm%
-    \thu@titlepage@degree
-    \vfill
-    \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
-    \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
-  \endgroup
+  \begin{center}
+    \begin{spacing}{1.25}
+    {\songti \xiaosi
+    \begin{tabular}{@{}r@{：}l@{}}
+      国内图书分类号 & \thu@natclassifiedindex\\
+      国际图书分类号 & \thu@intclassifiedindex
+    \end{tabular}\hfill
+    \begin{tabular}{@{}r@{：}l@{}}
+      学校代码 & \thu@schoolid\\
+      密级 & \thu@statesecrets
+    \end{tabular}}
+    \end{spacing}
+    
+    \vspace{3.5cm}
+    {\songti \xiaoer \textbf{\thu@degree@name 学位论文}}
+    
+    \vspace{1.5cm}
+    \begin{spacing}{1.25}
+    {\heiti \erhao \thu@title}
+    \end{spacing}
+    
+    \vspace{5.5cm}
+    \begin{spacing}{1.5}
+      {\sihao%
+      \begin{tabular}{@{}r@{：}l@{}}
+        \makebox[6em][s]{\heiti {\thu@degree@level 研究生}} & \thu@author\\
+        \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
+        \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@name\\
+        \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
+        \makebox[6em][s]{\heiti {答辩日期}} & \thu@date\\
+        \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
+        \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
+      \end{tabular}}
+    \end{spacing}
+    
+  \end{center}
+  % \null\vskip 0.2cm%
+  % \begingroup
+  %   \centering
+  %   \parbox[t][2cm][t]{\textwidth}{%
+  %     \hskip -0.69cm%
+  %     \thu@titlepage@secret
+  %   }\par
+  %   \vskip 1.5cm%
+  %   {\thu@titlepage@title}%
+  %   \vskip 0.85cm%
+  %   \thu@titlepage@degree
+  %   \vfill
+  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
+  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
+  % \endgroup
+  \clearpage
+  \restoregeometry
+}
+\newcommand\thu@titlepage@graduate@simple@en{%
+  \newgeometry{
+    top     = 3cm,
+    bottom  = 3cm,
+    hmargin = 3cm,
+  }%
+  \thispagestyle{empty}%
+  % \begin{spacing}{1.25}
+    {\xiaosi
+      \noindent
+      Classified Index: \thu@natclassifiedindex\\
+      U.D.C: \thu@intclassifiedindex
+    }
+  % \end{spacing}
+  
+  \begin{center}
+    % \begin{spacing}{1.25}
+    % {\xiaosi
+    
+    %   Classified Index & \thu@natclassifiedindex\\
+    %   U.D.C & \thu@intclassifiedindex
+    % }
+    % \end{spacing}
+    
+    \vspace{3.5cm}
+    {\xiaoer Dissertation for the\ \thu@degree@name@en}
+    
+    \vspace{1.5cm}
+    \parbox[t]{23em}{
+      \centering
+      \begin{spacing}{1.25}
+        {\erhao \textbf{\thu@title@en}}
+        \end{spacing}
+      }
+    \par
+    
+    
+    \vspace{5.5cm}
+    \begin{spacing}{1.5}
+      {\sihao%
+      \begin{tabular}{@{}ll@{}}
+        \textbf{Candidate:} & \thu@author@en\\
+        \textbf{Supervisor:} & \thu@supervisor@en\\
+        \textbf{Academic Degree Applied for:} & \thu@degree@name@en\\
+        \textbf{Speciality:} & \thu@discipline@en\\
+        \textbf{Date of Defence:} & \thu@date\\
+        \textbf{Affiliation:} & \thu@department@en\\
+        \textbf{Degree-Conferring-Institution:} & Southern University of Science and Technology
+      \end{tabular}}
+    \end{spacing}
+    
+  \end{center}
+  % \null\vskip 0.2cm%
+  % \begingroup
+  %   \centering
+  %   \parbox[t][2cm][t]{\textwidth}{%
+  %     \hskip -0.69cm%
+  %     \thu@titlepage@secret
+  %   }\par
+  %   \vskip 1.5cm%
+  %   {\thu@titlepage@title}%
+  %   \vskip 0.85cm%
+  %   \thu@titlepage@degree
+  %   \vfill
+  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
+  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
+  % \endgroup
   \clearpage
   \restoregeometry
 }
@@ -1728,18 +1862,19 @@
   \endgroup
 }
 \newcommand{\thu@titlepage@en}{%
-  \newgeometry{
-    top     = 5.5cm,
-    bottom  = 5cm,
-    hmargin = 3.6cm,
-  }%
-  \thispagestyle{empty}%
-  \thusetup{language = english}%
-  \ifthu@degree@type@academic
-    \thu@titlepage@en@graduate@academic
-  \else
-    \thu@titlepage@en@graduate@professional
-  \fi
+  % \newgeometry{
+  %   top     = 5.5cm,
+  %   bottom  = 5cm,
+  %   hmargin = 3.6cm,
+  % }%
+  % \thispagestyle{empty}%
+  % \thusetup{language = english}%
+  % \ifthu@degree@type@academic
+  %   \thu@titlepage@en@graduate@academic
+  % \else
+  %   \thu@titlepage@en@graduate@professional
+  % \fi
+  \thu@titlepage@graduate@simple@en
   \thu@reset@main@language
   \clearpage
   \restoregeometry

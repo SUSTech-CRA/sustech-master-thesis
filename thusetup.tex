@@ -39,6 +39,8 @@
   %      Doctor of Education, Master of Engineering
   %   3. 本科生不需要填写
   %
+  degree-level = {硕士},
+  gongsuo = false, % 如果为工程硕士是true，其他为 false
   degree-name  = {工学硕士},
   degree-name* = {Master of Science},
   %
@@ -46,6 +48,7 @@
   %   填写所属院系的全名
   %
   department = {计算机科学与技术系},
+  department* = {Computer Science and Technology},
   %
   % 学科
   %   1. 学术型学位
@@ -56,19 +59,19 @@
   %      不填写此项
   %   4. 本科生填写专业名称，第二学位论文需标注“（第二学位）”
   %
-  discipline  = {计算机科学与技术},
-  discipline* = {Computer Science and Technology},
+  discipline  = {计算机科学与工程},
+  discipline* = {Computer Science and Engineering},
   %
   % 姓名
   %
-  author  = {薛瑞尼},
-  author* = {Xue Ruini},
+  author  = {李子强},
+  author* = {Li Ziqiang},
   %
   % 指导教师
   %   中文姓名和职称之间以英文逗号“,”分开，下同
   %
-  supervisor  = {郑纬民, 教授},
-  supervisor* = {Professor Zheng Weimin},
+  supervisor  = {陈馨慧, 助理教授},
+  supervisor* = {Professor ShinHwei Tan},
   %
   % 副指导教师
   %
@@ -103,6 +106,9 @@
   % discipline-level-1 = {计算机科学与技术},  % 流动站（一级学科）名称
   % discipline-level-2 = {系统结构},          % 专业（二级学科）名称
   % start-date         = {2011-07-01},        % 研究工作起始时间
+  statesecrets={公开},
+  natclassifiedindex={TM301.2},
+  intclassifiedindex={62-5},
 }
 
 % 载入所需的宏包
@@ -160,3 +166,5 @@
 
 % hyperref 宏包在最后调用
 \usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{setspace}
