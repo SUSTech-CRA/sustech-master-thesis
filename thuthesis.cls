@@ -1419,26 +1419,34 @@
   joint-supervisor* = {
     name = joint@supervisor@en,
   },
-  degree-level = {
-    default = {博士},
-    name    = degree@level,
+  % degree-level = {
+  %   default = {博士},
+  %   name    = degree@level,
+  % },
+  % degree-level* = {
+  %   default = {博士},
+  %   name    = degree@level,
+  % },
+  degree-domain = {
+    default = {工学},
+    name    = degree@domain,
+  },
+  degree-domain* = {
+    default = {Engnerring},
+    name    = degree@domain@en,
   },
   gongsuo = {
     default = false,
     name    = gongsuo,
   },
-  degree-name = {
-    default = {工学博士},
-    name    = degree@name,
-  },
-  degree-name = {
-    default = {工学博士},
-    name    = degree@name,
-  },
-  degree-name* = {
-    default = {Doctor of Philosophy},
-    name    = degree@name@en,
-  },
+  % degree-name = {
+  %   default = {工学博士},
+  %   name    = degree@name,
+  % },
+  % degree-name* = {
+  %   default = {Doctor of Philosophy},
+  %   name    = degree@name@en,
+  % },
   department = {
     default = {计算机科学与技术系},
   },
@@ -1601,6 +1609,29 @@
 }
 \def\thu@schoolid{14325}
 \def\zhuanye{\if\thu@gongsuo 工程领域 \else 学科专业 \fi}
+\def\degree@level{%
+  \ifthu@degree@master%
+    硕士%
+  \else%
+    博士%
+  \fi%
+}
+\def\degree@level@en@adj{%
+  \ifthu@degree@master%
+    Master%
+  \else%
+    Doctoral%
+  \fi%
+}
+\def\degree@level@en@noun{%
+  \ifthu@degree@master%
+    Master%
+  \else%
+    Doctor%
+  \fi%
+}
+\def\thu@subject{\thu@degree@domain \degree@level 学位论文}
+\def\thu@subject@en{Dissertation for the \degree@level@en@adj \ Degree in \thu@degree@domain@en}
 \newcommand\thu@titlepage@graduate@simple{%
   \newgeometry{
     top     = 3cm,
@@ -1622,7 +1653,7 @@
     \end{spacing}
     
     \vspace{3.5cm}
-    {\songti \xiaoer \textbf{\thu@degree@name 学位论文}}
+    {\songti \xiaoer \textbf{\thu@subject}}
     
     \vspace{1.5cm}
     \begin{spacing}{1.25}
@@ -1633,9 +1664,9 @@
     \begin{spacing}{1.5}
       {\sihao%
       \begin{tabular}{@{}r@{：}l@{}}
-        \makebox[6em][s]{\heiti {\thu@degree@level 研究生}} & \thu@author\\
+        \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
-        \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@name\\
+        \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
         \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
         \makebox[6em][s]{\heiti {答辩日期}} & \thu@date\\
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
@@ -1687,7 +1718,7 @@
     % \end{spacing}
     
     \vspace{3.5cm}
-    {\xiaoer Dissertation for the\ \thu@degree@name@en}
+    {\xiaoer \thu@subject@en}
     
     \vspace{1.5cm}
     \parbox[t]{23em}{
@@ -1705,7 +1736,7 @@
       \begin{tabular}{@{}ll@{}}
         \textbf{Candidate:} & \thu@author@en\\
         \textbf{Supervisor:} & \thu@supervisor@en\\
-        \textbf{Academic Degree Applied for:} & \thu@degree@name@en\\
+        \textbf{Academic Degree Applied for:} & \degree@level@en@noun \ of \thu@degree@domain@en\\
         \textbf{Speciality:} & \thu@discipline@en\\
         \textbf{Date of Defence:} & \thu@date\\
         \textbf{Affiliation:} & \thu@department@en\\
@@ -3039,14 +3070,14 @@
       \hypersetup{
         pdftitle    = \thu@title,
         pdfauthor   = \thu@author,
-        pdfsubject  = \thu@degree@name,
+        pdfsubject  = \thu@subject,
         pdfkeywords = \thu@keywords,
       }%
     \else
       \hypersetup{
         pdftitle    = \thu@title@en,
         pdfauthor   = \thu@author@en,
-        pdfsubject  = \thu@degree@name@en,
+        pdfsubject  = \thu@subject@en,
         pdfkeywords = \thu@keywords@en,
       }%
     \fi
