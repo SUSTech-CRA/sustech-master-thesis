@@ -2945,7 +2945,6 @@
     subsection = {
       format     = \sffamily\fontsize{15bp}{20bp}\selectfont,
       numbering  = false,
-      aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%
   \ifthu@degree@bachelor
@@ -2966,7 +2965,7 @@
       format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
       number  = （\chinese{subsection}）,
       aftername = \hspace{0pt},
-      aftertitle = \ifthu@language@chinese ：\else :\fi,
+      % aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%
   \ifthu@degree@bachelor
