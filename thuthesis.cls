@@ -2943,7 +2943,7 @@
       numbering = false,
     },
     subsection = {
-      format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
+      format     = \sffamily\fontsize{15bp}{20bp}\selectfont,
       numbering  = false,
       aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
@@ -2964,7 +2964,8 @@
     },
     subsection = {
       format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
-      numbering  = false,
+      number  = （\chinese{subsection}）,
+      aftername = \hspace{0pt},
       aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%

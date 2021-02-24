@@ -14,13 +14,13 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all clean cleanall thesis viewthesis
+.PHONY: all clean cleanall thesis viewthesis FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
 all: thesis
 
-$(THESIS).pdf:
+$(THESIS).pdf: FORCE_MAKE
 	$(LATEXMK) $(THESIS)
 
 viewthesis: thesis
