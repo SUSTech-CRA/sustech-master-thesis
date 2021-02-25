@@ -717,7 +717,13 @@
   \providecommand\kaishu{\CJKfamily{zhkai}}
 \fi
 \newcommand\thu@load@cjk@font{%
+  \setCJKfamilyfont{FZXBSJ}[Path = "fonts/"]{FZXBSJ.otf}%
+  \setCJKfamilyfont{SourceHanSansCN}[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
+  \setCJKfamilyfont{SourceHanSerifCN}[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
   \@nameuse{thu@load@cjk@font@\thu@cjk@font}%
+  \providecommand{\fzxbiaosong}{\CJKfamily{FZXBSJ}}
+  \providecommand{\siyuanheiti}{\CJKfamily{SourceHanSansCN}}
+  \providecommand{\siyuansongti}{\CJKfamily{SourceHanSerifCN}}
 }
 \thu@load@cjk@font
 \thu@option@hook{cjk-font}{\thu@load@cjk@font}
@@ -1552,6 +1558,7 @@
   \thu@name@title@format{\thu@@name}{\thu@@title}%
 }
 \renewcommand\maketitle{%
+  \thu@coverpage
   \cleardoublepage
   \pagenumbering{Alph}%
   \thu@pdfbookmark{-1}{\thu@title}%
@@ -1564,6 +1571,36 @@
     \thu@titlepage@en
   \fi
   \clearpage
+}
+
+\newcommand\thu@coverpage{%
+  \newgeometry{
+    top     = 6cm,
+    bottom  = 6cm,
+    hmargin = 4cm,
+  }%
+  \thispagestyle{empty}%
+  \begin{center}
+    {\fzxbiaosong \fontsize{24}{24} \textbf{\degree@level 学位论文}}
+    \vspace{2cm}
+
+    {\siyuanheiti \fontsize{22}{22} \thu@title}
+    \vspace{1em}
+
+    {\fontsize{18}{18} \textbf{\thu@title@en}}
+    \vspace{4cm}
+
+    \begin{spacing}{1.5}
+      {\siyuansongti \fontsize{18}{18}%
+      \begin{tabular}{@{}r@{：}l@{}}
+        \makebox[6em][s]{研究生} & \thu@author\\
+        \makebox[6em][s]{指导教师} & \thu@supervisor\\
+      \end{tabular}}
+    \end{spacing}
+    
+    \vspace{3.5cm}
+    {\fontsize{18}{18} \thu@titlepage@date }
+  \end{center}
 }
 \newcommand\thu@titlepage{%
   % \thusetup{language = chinese}%
@@ -1652,7 +1689,7 @@
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
         \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
         \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
-        \makebox[6em][s]{\heiti {答辩日期}} & \thu@date\\
+        \makebox[6em][s]{\heiti {答辩日期}} & \thu@format@date{\thu@date@zh@digit@short}{\thu@date}\\
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
@@ -1722,7 +1759,7 @@
         \textbf{Supervisor:} & \thu@supervisor@en\\
         \textbf{Academic Degree Applied for:} & \degree@level@en@noun \ of \thu@degree@domain@en\\
         \textbf{Speciality:} & \thu@discipline@en\\
-        \textbf{Date of Defence:} & \thu@date\\
+        \textbf{Date of Defence:} & \thu@format@date{\thu@date@en@short}{\thu@date}\\
         \textbf{Affiliation:} & \thu@department@en\\
         \textbf{Degree-Conferring-Institution:} & Southern University of Science and Technology
       \end{tabular}}
