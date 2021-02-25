@@ -1419,14 +1419,6 @@
   joint-supervisor* = {
     name = joint@supervisor@en,
   },
-  % degree-level = {
-  %   default = {博士},
-  %   name    = degree@level,
-  % },
-  % degree-level* = {
-  %   default = {博士},
-  %   name    = degree@level,
-  % },
   degree-domain = {
     default = {工学},
     name    = degree@domain,
@@ -1439,14 +1431,6 @@
     default = false,
     name    = gongsuo,
   },
-  % degree-name = {
-  %   default = {工学博士},
-  %   name    = degree@name,
-  % },
-  % degree-name* = {
-  %   default = {Doctor of Philosophy},
-  %   name    = degree@name@en,
-  % },
   department = {
     default = {计算机科学与技术系},
   },
