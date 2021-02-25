@@ -1306,11 +1306,11 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 \renewcommand\tableofcontents{%
-  \ifthu@degree@graduate
-    \thu@chapter*{\contentsname}%
-  \else
+  % \ifthu@degree@graduate
+  %   \thu@chapter*{\contentsname}%
+  % \else
     \thu@chapter*[]{\contentsname}%
-  \fi
+  % \fi
   \@starttoc{toc}%
 }
 \thu@define@key{
