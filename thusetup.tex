@@ -130,12 +130,6 @@
 % 表格中支持跨行
 \usepackage{multirow}
 
-% 固定宽度的表格。放在 hyperref 之前的话，tabularx 里的 footnote 显示不出来。
-% \usepackage{tabularx}
-
-% 跨页表格
-% \usepackage{longtable}
-
 % 量和单位
 \usepackage{siunitx}
 
@@ -175,3 +169,9 @@
 \usepackage{hyperref}
 \usepackage{ragged2e}
 \usepackage{setspace}
+
+% 固定宽度的表格。放在 hyperref 之前的话，tabularx 里的 footnote 显示不出来。
+\usepackage{tabularx}
+
+% 跨页表格，必须在 hyperref 之后使用否则会报错。
+\usepackage{longtable}
