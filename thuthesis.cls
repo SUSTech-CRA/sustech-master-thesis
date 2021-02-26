@@ -56,7 +56,7 @@
 }
 \hyphenation{Thu-Thesis}
 \def\thuthesis{ThuThesis}
-\def\version{7.1.0}
+\def\version{1.0.0}
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
@@ -1197,40 +1197,40 @@
   subparagraph/afterindent = true,
 }
 \newcommand\thu@set@section@format{%
-  \ifthu@degree@bachelor
-    \ctexset{%
-      chapter = {
-        format     = \centering\sffamily\fontsize{15bp}{20bp}\selectfont,
-        beforeskip = 30bp,
-        afterskip  = 20bp,
-      },
-      section = {
-        format     = \sffamily\fontsize{14bp}{18bp}\selectfont,
-        beforeskip = 25bp,
-        afterskip  = 12bp,
-      },
-      subsection = {
-        format     = \sffamily\fontsize{13bp}{15bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
-      },
-      subsubsection = {
-        format     = \sffamily\fontsize{12bp}{14bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
-      },
-    }%
-    \ifthu@main@language@chinese
-      \ctexset{chapter/number = \thechapter}%
-    \else
-      \ctexset{chapter/number = \thu@english@number{chapter}}%
-    \fi
-  \else
+  % \ifthu@degree@bachelor
+  %   \ctexset{%
+  %     chapter = {
+  %       format     = \centering\sffamily\fontsize{15bp}{20bp}\selectfont,
+  %       beforeskip = 30bp,
+  %       afterskip  = 20bp,
+  %     },
+  %     section = {
+  %       format     = \sffamily\fontsize{14bp}{18bp}\selectfont,
+  %       beforeskip = 25bp,
+  %       afterskip  = 12bp,
+  %     },
+  %     subsection = {
+  %       format     = \sffamily\fontsize{13bp}{15bp}\selectfont,
+  %       beforeskip = 12bp,
+  %       afterskip  = 6bp,
+  %     },
+  %     subsubsection = {
+  %       format     = \sffamily\fontsize{12bp}{14bp}\selectfont,
+  %       beforeskip = 12bp,
+  %       afterskip  = 6bp,
+  %     },
+  %   }%
+  %   \ifthu@main@language@chinese
+  %     \ctexset{chapter/number = \thechapter}%
+  %   \else
+  %     \ctexset{chapter/number = \thu@english@number{chapter}}%
+  %   \fi
+  % \else
     \ctexset{%
       chapter = {
         format     = \centering\sffamily\sanhao,
-        beforeskip = 27bp,
-        afterskip  = 27bp,
+        beforeskip = 24bp,
+        afterskip  = 18bp,
       },
       section = {
         format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
@@ -1248,7 +1248,7 @@
         afterskip  = 6bp,
       },
     }%
-  \fi
+  % \fi
 }
 \thu@set@section@format
 \thu@option@hook{degree}{\thu@set@section@format}
