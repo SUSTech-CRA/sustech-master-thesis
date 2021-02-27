@@ -826,6 +826,7 @@
         \def\contentsname{目\quad 录}%
         \def\thu@denotation@name{符号和缩略语说明}%
         \def\thu@resume@name{个人简历、在学期间完成的相关学术成果}%
+        \def\thu@statement@name{独创性声明和学位论文使用权限的声明}%
       \else  % degree = postdoc
         \def\contentsname{目\qquad 次}%
         \def\thu@denotation@name{符号表}%
@@ -835,7 +836,7 @@
   \else
     \ifthu@main@language@english
       \ctexset{
-        chapter/name   = \chaptername\space,
+        chapter/name   = CHAPTER\space,
       }%
       \def\indexname{Index}%
       \ifthu@degree@bachelor
@@ -851,17 +852,18 @@
         \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
         \def\thu@resume@name{PUBLICATIONS}%
       \else
-        \def\contentsname{Contents}%
+        \def\contentsname{TABLE OF CONTENTS}%
         \def\listfigurename{List of Figures}%
         \def\listtablename{List of Tables}%
         \def\thu@list@figure@table@name{List of Figures and Tables}%
         \def\thu@list@algorithm@name{List of Algorithms}%
         \def\listequationname{List of Equations}%
         \def\thu@denotation@name{Nomenclature}%
-        \def\bibname{Bibliography}%
-        \def\appendixname{Appendix}%
-        \def\thu@acknowledgements@name{Acknowledgements}%
-        \def\thu@resume@name{Resume and Academic Achievements}%
+        \def\bibname{REFERENCES}%
+        \def\appendixname{APPENDIX}%
+        \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
+        \def\thu@resume@name{RESUME AND ACADEMIC ACHIEVEMENTS}%
+        \def\thu@statement@name{STATEMENT OF ORIGINALITY AND THE USE OF AUTHORIZATION}%
       \fi
     \fi
   \fi
@@ -1168,7 +1170,7 @@
   \newcommand{\thu@abstract@name@en}{ABSTRACT}
 \else
   \newcommand{\thu@abstract@name}{摘\quad 要}
-  \newcommand{\thu@abstract@name@en}{Abstract}
+  \newcommand{\thu@abstract@name@en}{ABSTRACT}
 \fi
 \ctexset{%
   chapter = {
@@ -1248,7 +1250,14 @@
         afterskip  = 6bp,
       },
     }%
+    \ifthu@main@language@english
+      \ctexset{%
+      chapter = {
+        format     += \bfseries,
+      }}
+    \fi
   % \fi
+
 }
 \thu@set@section@format
 \thu@option@hook{degree}{\thu@set@section@format}
@@ -1575,20 +1584,25 @@
 
 \newcommand\thu@coverpage{%
   \newgeometry{
-    top     = 6cm,
-    bottom  = 6cm,
-    hmargin = 4cm,
+    top     = 5cm,
+    bottom  = 3cm,
+    hmargin = 3cm,
   }%
   \thispagestyle{empty}%
   \begin{center}
     {\fzxbiaosong \fontsize{24}{24} \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    {\siyuanheiti \fontsize{22}{22} \thu@title}
+    \begin{spacing}{1.5}
+      {\siyuanheiti \fontsize{22}{22} \thu@title}
+    \end{spacing}
     \vspace{1em}
 
-    {\fontsize{18}{18} \textbf{\thu@title@en}}
-    \vspace{4cm}
+
+    \begin{spacing}{1.5}
+      {\fontsize{22}{22} \textbf{\thu@title@en}}
+    \end{spacing}
+    \vfill
 
     \begin{spacing}{1.5}
       {\siyuansongti \fontsize{18}{18}%
@@ -1598,7 +1612,7 @@
       \end{tabular}}
     \end{spacing}
     
-    \vspace{3.5cm}
+    \vspace{2cm}
     {\fontsize{18}{18} \thu@titlepage@date }
   \end{center}
 }
@@ -1652,7 +1666,7 @@
   \fi%
 }
 \def\thu@subject{\thu@degree@domain \degree@level 学位论文}
-\def\thu@subject@en{Dissertation for the \degree@level@en@adj \ Degree in \thu@degree@domain@en}
+\def\thu@subject@en{Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en}
 \newcommand\thu@titlepage@graduate@simple{%
   \newgeometry{
     top     = 3cm,
@@ -2958,6 +2972,7 @@
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
 \newenvironment{statementcopyright}{%
+  \thu@chapter*{\thu@statement@name}%
   \ctexset{
     section = {
       format    += \centering,
@@ -2989,6 +3004,12 @@
       % aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%
+  \ifthu@main@language@english
+    \ctexset{%
+    subsection = {
+      numbering = false,
+    }}
+  \fi
   \ifthu@degree@bachelor
     \ifthu@language@english
       \sffamily\fontsize{15bp}{20bp}\selectfont,
