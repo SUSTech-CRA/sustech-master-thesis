@@ -13,6 +13,10 @@
 * `make cleanall`  删除示例文件的中间文件和 thuthesis-example.pdf；
 * `make distclean` 删除示例文件和模板的所有中间文件和 PDF。
 
+### 使用 LaTex 在线编辑器
+* 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTex`
+* 使用 南科大[ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTex`，并在主文档的头部 `\documentclass[degree=master,language=english,fontset=windows]` 设置 `fontset` 参数 为 `windows`.
+
 ### 编译前的建议
 
 在撰写论文时，我们不推荐使用原有的 `thuthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
@@ -39,6 +43,11 @@
 * `Makefile` Makefile
 * `latexmkrc` latexmk 配置文件
 * `README.md` Readme
+
+## 反馈与QA
+
+1. 南科大LaTex学习交流群：119667812
+2. 提交 GitHub Issue
 
 ## 致谢
 本模板基于清华大学模板 [ThuThesis v7.1](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
