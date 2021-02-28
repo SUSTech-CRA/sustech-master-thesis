@@ -23,6 +23,8 @@
 
 需要注意，如果更改了主文件的名称，则需要修改 `Makefile` 顶端的 `THESIS` 变量定义；或修改 `build.bat` 和 `clean.bat` 中 `latexmk` 命令后的参数。
 
+提交正式版本时，建议在 Windows 下编译或设置 `fontset` 参数 为 `windows`，以保证字体正确。
+
 ## 模板结构
 
 ### 文档内容
