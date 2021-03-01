@@ -1254,7 +1254,17 @@
       \ctexset{%
       chapter = {
         format     += \bfseries,
-      }}
+      },
+      section = {
+        format     += \bfseries,
+      },
+      subsection = {
+        format     += \bfseries,
+      },
+      subsubsection = {
+        format     += \bfseries,
+      },
+      }
     \fi
   % \fi
 
@@ -1695,7 +1705,7 @@
     {\heiti \erhao \thu@title}
     \end{spacing}
     
-    \vspace{5.5cm}
+    \vfill
     \begin{spacing}{1.5}
       {\sihao%
       \begin{tabular}{@{}r@{：}l@{}}
@@ -1708,6 +1718,7 @@
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
     \end{spacing}
+    \vspace{1.5cm}
     
   \end{center}
   % \null\vskip 0.2cm%
@@ -1756,7 +1767,7 @@
     {\xiaoer \thu@subject@en}
     
     \vspace{1.5cm}
-    \parbox[t]{23em}{
+    \parbox[t]{30em}{
       \centering
       \begin{spacing}{1.25}
         {\erhao \textbf{\thu@title@en}}
@@ -1765,7 +1776,7 @@
     \par
     
     
-    \vspace{5.5cm}
+    \vfill
     \begin{spacing}{1.5}
       {\sihao%
       \begin{tabular}{@{}ll@{}}
@@ -1778,6 +1789,7 @@
         \textbf{Degree-Conferring-Institution:} & Southern University of Science and Technology
       \end{tabular}}
     \end{spacing}
+    \vspace{1.5cm}
     
   \end{center}
   % \null\vskip 0.2cm%
