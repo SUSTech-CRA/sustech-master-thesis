@@ -21,6 +21,10 @@ Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 ### 使用 LaTex 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTex`
 * 使用 南科大[ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTex`，并在主文档的头部 `\documentclass[degree=master,language=english,fontset=windows]` 设置 `fontset` 参数 为 `windows`.
+* 在线预览样例文章：
+  * [Overleaf](https://www.overleaf.com/): [https://www.overleaf.com/read/dmkfydkmbbwh](https://www.overleaf.com/read/dmkfydkmbbwh)
+  * 南科大[ShareLaTex](https://sharelatex.cra.moe/): [https://sharelatex.sustcra.com/read/bxzyxckdzqqy](https://sharelatex.sustcra.com/read/bxzyxckdzqqy)
+
 
 ### 编译前的建议
 
