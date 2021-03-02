@@ -39,7 +39,6 @@ Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 ### 文档内容
 * `thusetup.tex` 示例文档基本配置（论文标题、作者等元数据）
 * `thuthesis-example.tex` 示例文档主文件
-* `thuthesis-example.tex` 示例文档主文件
 * `data/` 示例文档章节具体内容
 * `figures/` 示例文档图片路径
 * `ref/` 示例文档参考文献目录
