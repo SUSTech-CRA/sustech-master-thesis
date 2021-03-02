@@ -1,5 +1,10 @@
 # 南方科技大学研究生毕业论文模板
 
+## 仓库
+GitHub：https://gitee.com/liziwl/sustech-master-thesis
+
+Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
+
 ## 使用
 ### Windows 中编译
 1. `build.bat` 构建PDF文件；
