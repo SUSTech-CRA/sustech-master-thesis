@@ -128,7 +128,7 @@
       doctor,
       postdoc,
     },
-    default = doctor,
+    default = master,
   },
   degree-type = {
     choices = {
