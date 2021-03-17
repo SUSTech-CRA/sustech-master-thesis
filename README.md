@@ -1,7 +1,7 @@
 # 南方科技大学研究生毕业论文模板
 
 ## 仓库
-GitHub：https://gitee.com/liziwl/sustech-master-thesis
+GitHub：https://github.com/liziwl/sustech-master-thesis
 
 Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 
