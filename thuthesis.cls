@@ -1741,7 +1741,11 @@
 }
 
 \def\thu@info@item@simple#1#2{%
-  \textbf{#1} & \begin{tabular}{@{}l@{}}#2\end{tabular}
+  \textbf{#1} & %
+  {
+    \linespread{1}\selectfont%
+    \begin{tabular}[t]{@{}l@{}}#2\end{tabular}%
+  }
 }%
 
 \newcommand\thu@titlepage@graduate@simple@en{%
