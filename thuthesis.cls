@@ -5,11 +5,11 @@
 %% The original source files were:
 %%
 %% thuthesis.dtx  (with options: `cls')
-%% 
+%%
 %% This is a generated file.
-%% 
+%%
 %% Copyright (C) 2005-2020 by Ruini Xue <xueruini@gmail.com>
-%% 
+%%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -17,10 +17,10 @@
 %%   http://www.latex-project.org/lppl.txt
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2005/12/01 or later.
-%% 
+%%
 %% To produce the documentation run the original source files ending with `.dtx'
 %% through LaTeX.
-%% 
+%%
 \NeedsTeXFormat{LaTeX2e}[2017/04/15]
 \ProvidesClass{thuthesis}
 [2020/10/14 7.1.0 Tsinghua University Thesis Template]
@@ -1621,7 +1621,7 @@
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
       \end{tabular}}
     \end{spacing}
-    
+
     \vspace{2cm}
     {\fontsize{18}{18} \thu@titlepage@date }
   \end{center}
@@ -1696,15 +1696,15 @@
       密级 & \thu@statesecrets
     \end{tabular}}
     \end{spacing}
-    
+
     \vspace{3.5cm}
     {\songti \xiaoer \textbf{\thu@subject}}
-    
+
     \vspace{1.5cm}
     \begin{spacing}{1.25}
     {\heiti \erhao \thu@title}
     \end{spacing}
-    
+
     \vfill
     \begin{spacing}{1.5}
       {\sihao%
@@ -1719,7 +1719,7 @@
       \end{tabular}}
     \end{spacing}
     \vspace{1.5cm}
-    
+
   \end{center}
   % \null\vskip 0.2cm%
   % \begingroup
@@ -1739,6 +1739,11 @@
   \clearpage
   \restoregeometry
 }
+
+\def\thu@info@item@simple#1#2{%
+  \textbf{#1} & \begin{tabular}{@{}l@{}}#2\end{tabular}
+}%
+
 \newcommand\thu@titlepage@graduate@simple@en{%
   \newgeometry{
     top     = 3cm,
@@ -1753,19 +1758,19 @@
       U.D.C: \thu@intclassifiedindex
     }
   % \end{spacing}
-  
+
   \begin{center}
     % \begin{spacing}{1.25}
     % {\xiaosi
-    
+
     %   Classified Index & \thu@natclassifiedindex\\
     %   U.D.C & \thu@intclassifiedindex
     % }
     % \end{spacing}
-    
+
     \vspace{3.5cm}
     {\xiaoer \thu@subject@en}
-    
+
     \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
@@ -1774,23 +1779,22 @@
         \end{spacing}
       }
     \par
-    
-    
+
     \vfill
     \begin{spacing}{1.5}
       {\sihao%
-      \begin{tabular}{@{}ll@{}}
-        \textbf{Candidate:} & \thu@author@en\\
-        \textbf{Supervisor:} & \thu@supervisor@en\\
-        \textbf{Academic Degree Applied for:} & \degree@level@en@noun \ of \thu@degree@domain@en\\
-        \textbf{Speciality:} & \thu@discipline@en\\
-        \textbf{Date of Defence:} & \thu@format@date{\thu@date@en@short}{\thu@date}\\
-        \textbf{Affiliation:} & \thu@department@en\\
-        \textbf{Degree-Conferring-Institution:} & Southern University of Science and Technology
+      \begin{tabular}{@{}m{0.44\textwidth}m{0.56\textwidth}@{}}
+        \thu@info@item@simple{Candidate:}{\thu@author@en}\\
+        \thu@info@item@simple{Supervisor:}{\thu@supervisor@en}\\
+        \thu@info@item@simple{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
+        \thu@info@item@simple{Speciality:}{\thu@discipline@en}\\
+        \thu@info@item@simple{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@date}}\\
+        \thu@info@item@simple{Affiliation:}{\thu@department@en}\\
+        \thu@info@item@simple{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
       \end{tabular}}
     \end{spacing}
     \vspace{1.5cm}
-    
+
   \end{center}
   % \null\vskip 0.2cm%
   % \begingroup
