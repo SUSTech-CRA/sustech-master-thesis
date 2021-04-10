@@ -1,1 +1,1 @@
-Initial release.
+修复封面超长英文系名导致的overbox问题。
