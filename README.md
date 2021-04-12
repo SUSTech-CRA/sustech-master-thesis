@@ -20,7 +20,7 @@ Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 
 ### 使用 LaTex 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTex`
-* 使用 南科大[ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTex`，并在主文档的头部 `\documentclass[degree=master,language=english,fontset=windows]` 设置 `fontset` 参数 为 `windows`.
+* 使用 南科大[ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTex`，并在主文档的头部 `\documentclass[degree=master,language=english,fontset=fandol]` 设置 `fontset` 参数 为 `fandol`.
 * 在线预览样例文章：
   * [Overleaf](https://www.overleaf.com/): [https://www.overleaf.com/read/dmkfydkmbbwh](https://www.overleaf.com/read/dmkfydkmbbwh)
   * 南科大[ShareLaTex](https://sharelatex.cra.moe/): [https://sharelatex.sustcra.com/read/bxzyxckdzqqy](https://sharelatex.sustcra.com/read/bxzyxckdzqqy)
@@ -28,11 +28,9 @@ Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 
 ### 编译前的建议
 
-在撰写论文时，我们不推荐使用原有的 `thuthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
-
-需要注意，如果更改了主文件的名称，则需要修改 `Makefile` 顶端的 `THESIS` 变量定义；或修改 `build.bat` 和 `clean.bat` 中 `latexmk` 命令后的参数。
-
-提交正式版本时，建议在 Windows 下编译或设置 `fontset` 参数 为 `windows`，以保证字体正确。
+1. 在撰写论文时，我们不推荐使用原有的 `thuthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
+2. 需要注意，如果更改了主文件的名称，则需要修改 `Makefile` 顶端的 `THESIS` 变量定义；或修改 `build.bat` 和 `clean.bat` 中 `latexmk` 命令后的参数。
+3. ⚠️ 提交最终正式版本时，建议在 Windows 下本地编译且设置 `fontset` 参数 为 `windows`，以保证字体正确。
 
 ## 模板结构
 
