@@ -56,7 +56,7 @@
 }
 \hyphenation{Thu-Thesis}
 \def\thuthesis{ThuThesis}
-\def\version{1.0.0}
+\def\version{1.1.0}
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
@@ -720,6 +720,8 @@
   \setCJKfamilyfont{FZXBSJ}[Path = "fonts/"]{FZXBSJ.otf}%
   \setCJKfamilyfont{SourceHanSansCN}[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
   \setCJKfamilyfont{SourceHanSerifCN}[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
+  \newfontfamily\siyuanheiti@en[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
+  \newfontfamily\siyuansongti@en[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
   \@nameuse{thu@load@cjk@font@\thu@cjk@font}%
   \providecommand{\fzxbiaosong}{\CJKfamily{FZXBSJ}}
   \providecommand{\siyuanheiti}{\CJKfamily{SourceHanSansCN}}
@@ -1604,7 +1606,7 @@
     \vspace{2cm}
 
     \begin{spacing}{1.5}
-      {\siyuanheiti \fontsize{22}{22} \thu@title}
+      {\fontsize{22}{22} \siyuanheiti@en \siyuanheiti \thu@title}
     \end{spacing}
     \vspace{1em}
 
@@ -1615,7 +1617,7 @@
     \vfill
 
     \begin{spacing}{1.5}
-      {\siyuansongti \fontsize{18}{18}%
+      {\fontsize{18}{18} \siyuansongti@en \siyuansongti %
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
@@ -1702,7 +1704,7 @@
 
     \vspace{1.5cm}
     \begin{spacing}{1.25}
-    {\heiti \erhao \thu@title}
+      \erhao \heiti \sffamily \thu@title
     \end{spacing}
 
     \vfill
