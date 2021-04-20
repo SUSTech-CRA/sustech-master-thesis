@@ -1606,7 +1606,7 @@
     \vspace{2cm}
 
     \begin{spacing}{1.5}
-      {\fontsize{22}{22} \siyuanheiti@en \siyuanheiti \thu@title}
+      {\fontsize{22}{22} \rmfamily \siyuanheiti \thu@title}
     \end{spacing}
     \vspace{1em}
 
@@ -1704,7 +1704,7 @@
 
     \vspace{1.5cm}
     \begin{spacing}{1.25}
-      \erhao \heiti \sffamily \thu@title
+      \erhao \heiti \thu@title
     \end{spacing}
 
     \vfill
