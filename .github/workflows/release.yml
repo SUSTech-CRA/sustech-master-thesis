@@ -31,6 +31,8 @@ jobs:
             ### Changelog
 
             {commits}
+
+            {range}
       # - name: Update major tag
       #   run: |
       #     MAJOR=$(echo ${{ github.event.inputs.Version }} | sed 's/\..*//')
