@@ -5,6 +5,8 @@ GitHub：https://github.com/liziwl/sustech-master-thesis
 
 Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 
+Mirrors of SUSTech: https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/
+
 ## 使用
 ### Windows 中编译
 1. `build.bat` 构建PDF文件；
