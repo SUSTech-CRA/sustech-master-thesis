@@ -48,5 +48,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: 'sustech-thesis.zip'
+          asset_name: sustech-thesis-${{ github.event.inputs.Version }}.zip
           tag: ${{ github.event.inputs.Version }}
           overwrite: true
