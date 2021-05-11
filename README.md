@@ -1,5 +1,10 @@
 # 南方科技大学研究生毕业论文模板
 
+[![Actions Status](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml/badge.svg)](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml)
+[![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
+[![GitHub commits](https://img.shields.io/github/commits-since/SUSTech-CRA/sustech-master-thesis/latest)](https://github.com/SUSTech-CRA/sustech-master-thesis/commits/master)
+[![GitHub release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)
+
 ## 仓库
 GitHub：https://github.com/liziwl/sustech-master-thesis
 
