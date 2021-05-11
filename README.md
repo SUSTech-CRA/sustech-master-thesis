@@ -13,12 +13,13 @@ Mirrors of SUSTech: https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/su
 2. `clean.bat` 清理编译时生成的中间文件。
 
 ### 使用 Makefile 编译
-* `make thesis`    生成论文；
+* `make thesis`     生成论文；
 * `make viewthesis` 生成论文，编译完成开启预览；
-* `make all`       生成论文，与 `make thesis` 等效；
-* `make clean`     删除示例文件的中间文件（不含 thuthesis-example.pdf）；
-* `make cleanall`  删除示例文件的中间文件和 thuthesis-example.pdf；
-* `make distclean` 删除示例文件和模板的所有中间文件和 PDF。
+* `make all`        生成论文，与 `make thesis` 等效；
+* `make clean`      删除示例文件的中间文件（不含 thuthesis-example.pdf）；
+* `make cleanall`   删除示例文件的中间文件和 thuthesis-example.pdf；
+* `make distclean`  删除示例文件和模板的所有中间文件和 PDF；
+* `make wordcount`  论文字数统计。
 
 ### 使用 LaTex 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTex`
