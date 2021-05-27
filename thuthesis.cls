@@ -1173,6 +1173,10 @@
 \else
   \newcommand{\thu@abstract@name}{摘\quad 要}
   \newcommand{\thu@abstract@name@en}{Abstract}
+  %%%%%% 此处为南科大特色格式
+  \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
+  \renewcommand*{\thetable}{\thechapter-\arabic{table}}
+  \renewcommand*{\thesubfigure}{\alph{subfigure})}
 \fi
 \ctexset{%
   chapter = {
