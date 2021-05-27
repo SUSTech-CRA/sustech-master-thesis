@@ -2994,7 +2994,8 @@
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
 \newenvironment{statementcopyright}{%
-  \thu@chapter*{\thu@statement@name}%
+  \chapter*{\thu@statement@name}%
+  \markboth{\thu@statement@name}{}%
   \ctexset{
     section = {
       format    += \centering,
