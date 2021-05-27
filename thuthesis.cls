@@ -1451,11 +1451,15 @@
     name    = degree@domain,
   },
   degree-domain* = {
-    default = {Engnerring},
+    default = {Engineering},
     name    = degree@domain@en,
   },
   gongsuo = {
     default = false,
+    choices = {
+      false,
+      true,
+    },
     name    = gongsuo,
   },
   department = {
@@ -1655,7 +1659,20 @@
   \thu@titlepage@graduate@simple
 }
 \def\thu@schoolid{14325}
-\def\zhuanye{\if\thu@gongsuo 工程领域 \else 学科专业 \fi}
+\def\flagtrue{true}
+\def\zhuanye{%
+  \ifx\flagtrue\thu@gongsuo%
+    工程领域%
+  \else%
+    学科专业%
+  \fi%
+}
+\def\zhuanye@en{%
+  \ifx\flagtrue\thu@gongsuo Engineering Field%
+  \else%
+  Speciality%
+  \fi%
+}
 \def\degree@level{%
   \ifthu@degree@master%
     硕士%
@@ -1678,7 +1695,13 @@
   \fi%
 }
 \def\thu@subject{\thu@degree@domain \degree@level 学位论文}
-\def\thu@subject@en{Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en}
+\def\thu@subject@en{%
+\ifx\flagtrue\thu@gongsuo%
+Thesis for the professional degree of \degree@level@en@noun \ of \thu@degree@domain@en%
+\else%
+Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
+\fi%
+}
 \newcommand\thu@titlepage@graduate@simple{%
   \newgeometry{
     top     = 3cm,
@@ -1775,7 +1798,7 @@
     % \end{spacing}
 
     \vspace{3.5cm}
-    {\xiaoer \thu@subject@en}
+    \mbox{\xiaoer \thu@subject@en}
 
     \vspace{1.5cm}
     \parbox[t]{30em}{
@@ -1793,7 +1816,7 @@
         \thu@info@item@simple{Candidate:}{\thu@author@en}\\
         \thu@info@item@simple{Supervisor:}{\thu@supervisor@en}\\
         \thu@info@item@simple{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
-        \thu@info@item@simple{Speciality:}{\thu@discipline@en}\\
+        \thu@info@item@simple{\zhuanye@en:}{\thu@discipline@en}\\
         \thu@info@item@simple{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@date}}\\
         \thu@info@item@simple{Affiliation:}{\thu@department@en}\\
         \thu@info@item@simple{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
