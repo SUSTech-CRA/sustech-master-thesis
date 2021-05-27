@@ -1169,10 +1169,10 @@
 }
 \ifthu@degree@bachelor
   \newcommand{\thu@abstract@name}{中文摘要}
-  \newcommand{\thu@abstract@name@en}{ABSTRACT}
+  \newcommand{\thu@abstract@name@en}{Abstract}
 \else
   \newcommand{\thu@abstract@name}{摘\quad 要}
-  \newcommand{\thu@abstract@name@en}{ABSTRACT}
+  \newcommand{\thu@abstract@name@en}{Abstract}
 \fi
 \ctexset{%
   chapter = {
