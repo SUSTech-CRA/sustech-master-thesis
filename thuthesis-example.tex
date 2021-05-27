@@ -2,7 +2,7 @@
 % !TeX program = xelatex
 % !TeX spellcheck = en_US
 
-\documentclass[degree=master,language=english]{thuthesis}
+\documentclass[degree=master,language=chinese]{thuthesis}
   % 学位 degree:
   %   master（默认） | doctor
   % 语言 language:
@@ -17,6 +17,9 @@
 
 % 封面
 \maketitle
+
+% 学位论文公开评阅人和答辩委员会名单
+\input{data/committee}
 
 \frontmatter
 \input{data/abstract}
@@ -59,8 +62,8 @@
 \input{data/acknowledgements}
 
 %独创性声明和学位论文使用权限的声明
-% \input{data/statement} % 中文声明
-\input{data/statement_en} % 英文声明
+\input{data/statement} % 中文声明
+% \input{data/statement_en} % 英文声明
 
 % 个人简历、在学期间完成的相关学术成果
 \input{data/resume}
