@@ -20,3 +20,17 @@ jobs:
         with:
           name: PDF
           path: thuthesis-example.pdf
+
+      - name: cp artifact
+        run: |
+          mkdir ./public
+          cp thuthesis-example.pdf ./public
+
+      - name: Deploy PDF
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: latest
+          force_orphan: true
