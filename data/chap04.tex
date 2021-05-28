@@ -8,19 +8,17 @@
 
 \section{顺序编码制}
 
-在顺序编码制下，默认的 \cs{cite} 命令同 \cs{citep} 一样，序号置于方括号中，
-引文页码会放在括号外。
-统一处引用的连续序号会自动用短横线连接。
+依学校样式规定，一般使用 \cs{cite}，即序号置于方括号中，引文页码会放在括号外。统一处引用的连续序号会自动用短横线连接。
+
+如多次引用同一文献，可能需要标注页码，例如：引用第二页\cite[2]{zhangkun1994}，引用第五页\cite[5]{zhangkun1994}。
 
 \thusetup{
   cite-style = super,
 }
 \begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
-  \verb|\cite{zhangkun1994}|               & \cite{zhangkun1994}               \\
-  \verb|\citet{zhangkun1994}|              & \citet{zhangkun1994}              \\
-  \verb|\citep{zhangkun1994}|              & \citep{zhangkun1994}              \\
-  \verb|\cite[42]{zhangkun1994}|           & \cite[42]{zhangkun1994}           \\
-  \verb|\cite{zhangkun1994,zhukezhen1973}| & \cite{zhangkun1994,zhukezhen1973} \\
+  \verb|\cite{zhangkun1994}|               & \cite{zhangkun1994}   {\kaishu 不带页码的上标引用}            \\
+  \verb|\cite[42]{zhangkun1994}|           & \cite[42]{zhangkun1994} {\kaishu 手动带页码的上标引用}          \\
+  \verb|\cite{zhangkun1994,zhukezhen1973}| & \cite{zhangkun1994,zhukezhen1973}  {\kaishu 一次多篇文献的上标引用}  \\
 \end{tabular}
 
 注意，引文参考文献的每条都要在正文中标注
