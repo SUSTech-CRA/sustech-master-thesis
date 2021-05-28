@@ -25,7 +25,7 @@ jobs:
       - uses: fregante/release-with-changelog@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          exclude: true
+          exclude: '^meta|^document|^lint|^refactor|readme|dependencies|注释|文档|ci|CI|README'
           commit-template: '- {title} ← {hash}'
           template: |
             ### Changelog
