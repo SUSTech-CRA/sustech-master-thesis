@@ -1176,7 +1176,7 @@
   %%%%%% 此处为南科大特色格式
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
-  \renewcommand*{\thesubfigure}{\alph{subfigure})}
+  \renewcommand*{\thesubfigure}{\space\alph{subfigure})}
 \fi
 \ctexset{%
   chapter = {
