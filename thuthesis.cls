@@ -1172,7 +1172,12 @@
   \newcommand{\thu@abstract@name@en}{Abstract}
 \else
   \newcommand{\thu@abstract@name}{摘\quad 要}
-  \newcommand{\thu@abstract@name@en}{Abstract}
+  \ifthu@language@chinese
+    \newcommand{\thu@abstract@name@en}{Abstract}
+  \else
+    % 仅仅英文为主要语言的摘要需要大写
+    \newcommand{\thu@abstract@name@en}{ABSTRACT}
+  \fi
   %%%%%% 此处为南科大特色格式
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
