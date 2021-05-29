@@ -828,7 +828,7 @@
         \def\contentsname{目\quad 录}%
         \def\thu@denotation@name{符号和缩略语说明}%
         \def\thu@resume@name{个人简历、在学期间完成的相关学术成果}%
-        \def\thu@statement@name{独创性声明和学位论文使用权限的声明}%
+        \def\thu@statement@name{南方科技大学学位论文原创性声明和使用授权说明}%
       \else  % degree = postdoc
         \def\contentsname{目\qquad 次}%
         \def\thu@denotation@name{符号表}%
@@ -865,7 +865,7 @@
         \def\appendixname{APPENDIX}%
         \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
         \def\thu@resume@name{RESUME AND ACADEMIC ACHIEVEMENTS}%
-        \def\thu@statement@name{STATEMENT OF ORIGINALITY AND THE USE OF AUTHORIZATION}%
+        \def\thu@statement@name{DECLARATION OF ORIGINALITY AND AUTHORIZATION OF THESIS}%
       \fi
     \fi
   \fi
