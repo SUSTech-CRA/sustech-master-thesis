@@ -4,13 +4,13 @@
 %%
 %% The original source files were:
 %%
-%% gbt7714.dtx  (with options: `thu,2015,numerical')
+%% gbt7714.dtx  (with options: `2015,thu,numerical')
 %% -------------------------------------------------------------------
-%% GB/T 7714-2015 BibTeX Style
+%% GB/T 7714—2015 BibTeX Style
 %% https://github.com/CTeX-org/gbt7714-bibtex-style
-%% Version: 2020/06/08 v2.0.2
+%% Version: 2021/04/03 v2.1.1
 %% -------------------------------------------------------------------
-%% Copyright (C) 2016-2020 by Zeping Lee <zepinglee AT gmail.com>
+%% Copyright (C) 2016—2021 by Zeping Lee <zepinglee AT gmail.com>
 %% -------------------------------------------------------------------
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -18,7 +18,7 @@
 %% The latest version of this license is in
 %%    https://www.latex-project.org/lppl.txt
 %% and version 1.3c or later is part of all distributions of LaTeX
-%% version 2005/12/01 or later.
+%% version 2008 or later.
 %% -------------------------------------------------------------------
 INTEGERS {
   citation.et.al.min
@@ -41,6 +41,7 @@ INTEGERS {
   italic.journal
   bold.journal.volume
   show.missing.address.publisher
+  space.before.pages
   only.start.page
   show.urldate
   show.url
@@ -72,6 +73,7 @@ FUNCTION {load.config}
   #0 'italic.journal :=
   #0 'bold.journal.volume :=
   #0 'show.missing.address.publisher :=
+  #1 'space.before.pages :=
   #0 'only.start.page :=
   #1 'show.urldate :=
   #1 'show.url :=
@@ -188,9 +190,16 @@ FUNCTION {citation.et.al}
 
 FUNCTION {bbl.colon} { ": " }
 
+FUNCTION {bbl.pages.colon}
+{ space.before.pages
+    { ": " }
+    { ":\allowbreak " }
+  if$
+}
+
 FUNCTION {bbl.wide.space} { "\quad " }
 
-FUNCTION {bbl.slash} { "// " }
+FUNCTION {bbl.slash} { "//\allowbreak " }
 
 FUNCTION {bbl.sine.loco}
 { entry.lang lang.zh =
@@ -229,6 +238,22 @@ FUNCTION {or}
 {   { pop$ #1 }
     'skip$
   if$
+}
+
+STRINGS { x y }
+
+FUNCTION {contains}
+{ 'y :=
+  'x :=
+  y text.length$ 'len :=
+  x text.length$ len - #1 + 'charptr :=
+    { charptr #0 >
+      x charptr len substring$ y = not
+      and
+    }
+    { charptr #1 - 'charptr := }
+  while$
+  charptr #0 >
 }
 
 STRINGS { s t }
@@ -694,17 +719,13 @@ FUNCTION {output.bibitem}
   "\bibitem[" write$
   label ")" *
   make.full.names duplicate$ short.list =
-     { pop$ }
-     { * }
-  if$
-  's :=
-  s text.length$ 'charptr :=
-    { charptr #0 > s charptr #1 substring$ "[" = not and }
-    { charptr #1 - 'charptr := }
-  while$
-  charptr #0 >
-    { "{" s * "}" * }
-    { s }
+    { pop$ }
+    { duplicate$ "]" contains
+        { "{" swap$ * "}" * }
+        'skip$
+      if$
+      *
+    }
   if$
   "]{" * write$
   cite$ write$
@@ -1022,9 +1043,10 @@ FUNCTION {format.mark}
       if$
       'entry.mark :=
       space.before.mark
-        { " [" entry.mark * "]" * }
-        { "[" entry.mark * "]" * }
+        { " " }
+        { "\allowbreak" }
       if$
+      "[" * entry.mark * "]" *
     }
     { "" }
   if$
@@ -1166,21 +1188,6 @@ FUNCTION {extract.after.dash}
   if$
 }
 
-FUNCTION {contains.dash}
-{ duplicate$ empty$
-    { pop$ #0 }
-    { 's :=
-        { s empty$ not
-          s #1 #1 substring$ "-" = not
-          and
-        }
-        { s #2 global.max$ substring$ 's := }
-      while$
-      s empty$ not
-    }
-  if$
-}
-
 FUNCTION {extract.before.slash}
 { duplicate$ empty$
     { pop$ "" }
@@ -1221,23 +1228,6 @@ FUNCTION {extract.after.slash}
         { charptr #1 + 'charptr := }
       while$
       s charptr global.max$ substring$
-    }
-  if$
-}
-
-FUNCTION {contains.slash}
-{ duplicate$ empty$
-    { pop$ #0 }
-    { 's :=
-        { s empty$ not
-          s #1 #1 substring$ "-" = not
-          and
-          s #1 #1 substring$ "/" = not
-          and
-        }
-        { s #2 global.max$ substring$ 's := }
-      while$
-      s empty$ not
     }
   if$
 }
@@ -1357,7 +1347,7 @@ FUNCTION {format.journal.volume}
 
 FUNCTION {format.journal.number}
 { number empty$ not
-    { "\penalty0 (" number * ")" * }
+    { "\allowbreak (" number * ")" * }
     { "" }
   if$
 }
@@ -1365,9 +1355,7 @@ FUNCTION {format.journal.number}
 FUNCTION {format.journal.pages}
 { pages empty$
     { "" }
-    { ": "
-      format.extracted.pages *
-    }
+    { format.extracted.pages }
   if$
 }
 
@@ -1381,7 +1369,7 @@ FUNCTION {format.periodical.year.volume.number}
     'skip$
   if$
   number empty$ not
-    { "\penalty0 (" * number extract.before.dash * ")" * }
+    { "\allowbreak (" * number extract.before.dash * ")" * }
     'skip$
   if$
   "--" *
@@ -1397,7 +1385,7 @@ FUNCTION {format.periodical.year.volume.number}
         'skip$
       if$
       number empty$ not
-        { "\penalty0 (" * number extract.after.dash * ")" * }
+        { "\allowbreak (" * number extract.after.dash * ")" * }
         'skip$
       if$
     }
@@ -1649,7 +1637,7 @@ FUNCTION {monograph}
     { format.year "year" output.check }
     'skip$
   if$
-  format.pages bbl.colon output.after
+  format.pages bbl.pages.colon output.after
   format.urldate "" output.after
   output.url
   output.doi
@@ -1690,7 +1678,7 @@ FUNCTION {incollection}
     { format.year "year" output.check }
     'skip$
   if$
-  format.extracted.pages bbl.colon output.after
+  format.extracted.pages bbl.pages.colon output.after
   format.urldate "" output.after
   output.url
   output.doi
@@ -1763,7 +1751,7 @@ FUNCTION {article}
   if$
   format.journal.volume output
   format.journal.number "" output.after
-  format.journal.pages "" output.after
+  format.journal.pages bbl.pages.colon output.after
   format.urldate "" output.after
   output.url
   output.doi
@@ -1831,7 +1819,7 @@ FUNCTION {electronic}
     }
     'skip$
   if$
-  format.pages bbl.colon output.after
+  format.pages bbl.pages.colon output.after
   format.editdate "" output.after
   format.urldate "" output.after
   output.url
@@ -1882,7 +1870,7 @@ FUNCTION {preprint}
     { format.year "year" output.check }
     'skip$
   if$
-  format.pages bbl.colon output.after
+  format.pages bbl.pages.colon output.after
   format.urldate "" output.after
   output.url
   new.block
@@ -2204,13 +2192,20 @@ FUNCTION {calc.short.authors}
 
 FUNCTION {calc.label}
 { calc.short.authors
-  short.list
+  short.list "]" contains
+    { "{" short.list * "}" * }
+    { short.list }
+  if$
   "("
   *
   format.year duplicate$ empty$
   short.list key field.or.null = or
      { pop$ "" }
      'skip$
+  if$
+  duplicate$ "]" contains
+    { "{" swap$ * "}" * }
+    'skip$
   if$
   *
   'label :=
