@@ -56,7 +56,7 @@
 }
 \hyphenation{Thu-Thesis}
 \def\thuthesis{ThuThesis}
-\def\version{1.1.4}
+\def\version{1.1.6}
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
