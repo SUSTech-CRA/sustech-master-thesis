@@ -1488,6 +1488,10 @@
   date = {
     default = {\the\year-\two@digits{\month}-\two@digits{\day}},
   },
+  defense-date = {
+    name    = defense@date,
+    default = {\the\year-\two@digits{\month}-\two@digits{\day}},
+  },
   clc,
   udc,
   id,
@@ -1747,7 +1751,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
         \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
         \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
-        \makebox[6em][s]{\heiti {答辩日期}} & \thu@format@date{\thu@date@zh@digit@short}{\thu@date}\\
+        \makebox[6em][s]{\heiti {答辩日期}} & \thu@format@date{\thu@date@zh@digit@short}{\thu@defense@date}\\
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
@@ -1826,7 +1830,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \thu@info@item@simple{Supervisor:}{\thu@supervisor@en}\\
         \thu@info@item@simple{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
         \thu@info@item@simple{\zhuanye@en:}{\thu@discipline@en}\\
-        \thu@info@item@simple{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@date}}\\
+        \thu@info@item@simple{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
         \thu@info@item@simple{Affiliation:}{\thu@department@en}\\
         \thu@info@item@simple{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
       \end{tabular}}
