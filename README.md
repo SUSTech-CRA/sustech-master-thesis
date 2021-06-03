@@ -12,7 +12,7 @@ Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
 
 Mirrors of SUSTech: https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/
 
-**预览最新样例** [latest 分支](https://github.com/SUSTech-CRA/sustech-master-thesis/blob/latest/thuthesis-example.pdf)
+**预览最新样例** [latest 分支](https://github.com/SUSTech-CRA/sustech-master-thesis/tree/latest)
 
 ## 使用
 ### Windows 中编译
