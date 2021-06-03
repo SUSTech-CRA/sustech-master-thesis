@@ -14,11 +14,14 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all clean cleanall thesis viewthesis wordcount FORCE_MAKE
+.PHONY: all clean cleanall thesis viewthesis wordcount test FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
 all: thesis
+
+test:
+	bash test/test.sh
 
 $(THESIS).pdf: FORCE_MAKE
 	$(LATEXMK) $(THESIS)
