@@ -1,19 +1,22 @@
 name: Sync to gitee
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: '0 */3 * * *'
+    # 每隔3小时运行一次同步
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    
+
     - name: Push to gitee
       run: |
         mkdir -p /tmp/tmp_push
         cd /tmp/tmp_push
-        git clone https://github.com/liziwl/sustech-master-thesis.git this_repo
+        git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
         cd this_repo
-        git remote set-url origin "https://${GITEE_USER}:${GITEE_PERSONAL_TOKEN}@${REPO_URL}"
-        git push -u -f origin master
+        git push --force --mirror "https://${GITEE_USER}:${GITEE_PERSONAL_TOKEN}@${REPO_URL}"
       env:
         GITEE_USER: ${{ secrets.GITEE_USER }}
         GITEE_PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
