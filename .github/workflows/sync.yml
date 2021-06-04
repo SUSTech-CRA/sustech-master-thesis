@@ -10,17 +10,17 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Push to gitee
-      run: |
-        mkdir -p /tmp/tmp_push
-        cd /tmp/tmp_push
-        git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
-        cd this_repo
-        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
-      env:
-        USER: ${{ secrets.GITEE_USER }}
-        PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
-        REPO_URL: "gitee.com/liziwl/sustech-master-thesis.git"
+    # - name: Push to gitee
+    #   run: |
+    #     mkdir -p /tmp/tmp_push
+    #     cd /tmp/tmp_push
+    #     git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
+    #     cd this_repo
+    #     git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+    #   env:
+    #     USER: ${{ secrets.GITEE_USER }}
+    #     PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
+    #     REPO_URL: "gitee.com/liziwl/sustech-master-thesis.git"
 
     - name: Push to sustech-git
       run: |

@@ -8,9 +8,9 @@
 ## 仓库
 GitHub：https://github.com/liziwl/sustech-master-thesis
 
-Gitee镜像：https://gitee.com/liziwl/sustech-master-thesis
+SUSTech-Git （代码仓库的镜像）：https://mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis
 
-Mirrors of SUSTech: https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/
+SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/
 
 **预览最新样例** [latest 分支](https://github.com/SUSTech-CRA/sustech-master-thesis/tree/latest)
 
