@@ -1,4 +1,4 @@
-name: Sync to gitee
+name: Sync to other git service
 on:
   push:
   schedule:
