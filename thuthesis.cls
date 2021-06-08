@@ -829,6 +829,7 @@
         \def\thu@denotation@name{符号和缩略语说明}%
         \def\thu@resume@name{个人简历、在学期间完成的相关学术成果}%
         \def\thu@statement@name{南方科技大学学位论文原创性声明和使用授权说明}%
+        \def\thu@statement@toc@name{南方科技大学学位论文原创性声明和使用授权说明}%
       \else  % degree = postdoc
         \def\contentsname{目\qquad 次}%
         \def\thu@denotation@name{符号表}%
@@ -866,6 +867,7 @@
         \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
         \def\thu@resume@name{RESUME AND ACADEMIC ACHIEVEMENTS}%
         \def\thu@statement@name{DECLARATION OF ORIGINALITY AND AUTHORIZATION OF THESIS}%
+        \def\thu@statement@toc@name{DECLARATION OF ORIGINALITY AND AUTHORIZATION OF THESIS, SOUTHERN UNIVERSITY OF SCIENCE AND TECHNOLOGY}%
       \fi
     \fi
   \fi
@@ -3030,7 +3032,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
 \newenvironment{statementcopyright}{%
-  \chapter*{\thu@statement@name}%
+  \thu@chapter*{\thu@statement@toc@name}%
   \markboth{\thu@statement@name}{}%
   \ctexset{
     section = {
