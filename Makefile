@@ -31,6 +31,7 @@ viewthesis: thesis
 
 clean:
 	$(LATEXMK) -c $(THESIS)
+	-@$(RM) -rf public-test
 	-@$(RM) -rf *~ main-survey.* main-translation.* _markdown_thuthesis* thuthesis.markdown.*
 
 cleanall: clean
