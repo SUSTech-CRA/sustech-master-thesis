@@ -2413,11 +2413,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \null\par
   \ifthu@degree@graduate
     \noindent
-    \textsf{关键词：}%
+    % leftmargin 4 个字符的宽度
+    \begin{description}[font=\normalfont,labelsep=0pt,leftmargin=4em]
+      \item[\textsf{关键词：}] \thu@clist@use{\thu@keywords}{；}%
+    \end{description}
   \else
     \textbf{关键词：}%
+    \thu@clist@use{\thu@keywords}{；}%
   \fi
-  \thu@clist@use{\thu@keywords}{；}%
   \ifthu@degree@bachelor
     \cleardoublepage
   \fi
@@ -2439,8 +2442,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \ifthu@degree@graduate
     \noindent
   \fi
-  \textbf{Keywords:}\space
-  \thu@clist@use{\thu@keywords@en}{; }%
+  % leftmargin 5 个字符的宽度 （10个英文字符）
+  \begin{description}[font=\normalfont,labelsep=0pt,leftmargin=5em]
+    \item[\textbf{Keywords:}\space] \thu@clist@use{\thu@keywords@en}{; }%
+  \end{description}
   \ifthu@degree@graduate
     \vspace*{\stretch{1}}%
   \fi
