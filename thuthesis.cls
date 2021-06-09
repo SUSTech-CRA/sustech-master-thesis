@@ -1621,22 +1621,22 @@
   }%
   \thispagestyle{empty}%
   \begin{center}
-    {\fzxbiaosong \fontsize{24bp}{24bp} \textbf{\degree@level 学位论文}}
+    {\fzxbiaosong \fontsize{24bp}{31.2bp} \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    \begin{spacing}{1.5}
-      {\fontsize{22bp}{22bp} \rmfamily \siyuanheiti \thu@title}
+    \begin{spacing}{1.25}
+      {\fontsize{22bp}{28.6bp} \rmfamily \siyuanheiti \thu@title}
     \end{spacing}
     \vspace{1em}
 
 
-    \begin{spacing}{1.5}
-      {\fontsize{22bp}{22bp} \textbf{\thu@title@en}}
+    \begin{spacing}{1.25}
+      {\fontsize{22bp}{28.6bp} \textbf{\thu@title@en}}
     \end{spacing}
     \vfill
 
     \begin{spacing}{1.5}
-      {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti %
+      {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
@@ -1644,7 +1644,7 @@
     \end{spacing}
 
     \vspace{2cm}
-    {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
+    {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
   \end{center}
 }
 \newcommand\thu@titlepage{%
