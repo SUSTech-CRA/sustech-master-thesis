@@ -15,7 +15,7 @@ on:
         required: true
 
 jobs:
-  Release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,3 +51,34 @@ jobs:
           asset_name: sustech-thesis-${{ github.event.inputs.Version }}.zip
           tag: ${{ github.event.inputs.Version }}
           overwrite: true
+
+  sync:
+    runs-on: ubuntu-latest
+    name: Sync to other git service
+    if: always()
+    needs: release
+    steps:
+
+    # - name: Push to gitee
+    #   run: |
+    #     mkdir -p /tmp/tmp_push
+    #     cd /tmp/tmp_push
+    #     git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
+    #     cd this_repo
+    #     git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+    #   env:
+    #     USER: ${{ secrets.GITEE_USER }}
+    #     PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
+    #     REPO_URL: "gitee.com/liziwl/sustech-master-thesis.git"
+
+    - name: Push to sustech-git
+      run: |
+        mkdir -p /tmp/tmp_push2
+        cd /tmp/tmp_push2
+        git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
+        cd this_repo
+        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+      env:
+        USER: project_160_bot
+        PERSONAL_TOKEN: ${{ secrets.GITLAB_PERSONAL_TOKEN }}
+        REPO_URL: "mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis.git"
