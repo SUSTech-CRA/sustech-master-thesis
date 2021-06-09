@@ -1644,7 +1644,7 @@
     \end{spacing}
 
     \vspace{2cm}
-    {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@simple}
+    {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
   \end{center}
 }
 \newcommand\thu@titlepage{%
@@ -1671,7 +1671,7 @@
   %   \fi
   % \fi
   % \thu@reset@main@language
-  \thu@titlepage@graduate@simple
+  \thu@titlepage@graduate@sustech
 }
 \def\thu@schoolid{14325}
 \def\flagtrue{true}
@@ -1717,7 +1717,7 @@ Thesis for the professional degree of \degree@level@en@noun \ of \thu@degree@dom
 Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \fi%
 }
-\newcommand\thu@titlepage@graduate@simple{%
+\newcommand\thu@titlepage@graduate@sustech{%
   \newgeometry{
     top     = 3cm,
     bottom  = 3cm,
@@ -1780,7 +1780,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \restoregeometry
 }
 
-\def\thu@info@item@simple#1#2{%
+\def\thu@info@item@sustech#1#2{%
   \textbf{#1} & %
   {
     \linespread{1}\selectfont%
@@ -1788,7 +1788,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   }
 }%
 
-\newcommand\thu@titlepage@graduate@simple@en{%
+\newcommand\thu@titlepage@graduate@sustech@en{%
   \newgeometry{
     top     = 3cm,
     bottom  = 3cm,
@@ -1828,13 +1828,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \begin{spacing}{1.5}
       {\sihao%
       \begin{tabular}{@{}m{0.44\textwidth}m{0.56\textwidth}@{}}
-        \thu@info@item@simple{Candidate:}{\thu@author@en}\\
-        \thu@info@item@simple{Supervisor:}{\thu@supervisor@en}\\
-        \thu@info@item@simple{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
-        \thu@info@item@simple{\zhuanye@en:}{\thu@discipline@en}\\
-        \thu@info@item@simple{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
-        \thu@info@item@simple{Affiliation:}{\thu@department@en}\\
-        \thu@info@item@simple{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
+        \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
+        \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
+        \thu@info@item@sustech{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
+        \thu@info@item@sustech{\zhuanye@en:}{\thu@discipline@en}\\
+        \thu@info@item@sustech{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
+        \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
+        \thu@info@item@sustech{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
       \end{tabular}}
     \end{spacing}
     \vspace{1.5cm}
@@ -1981,7 +1981,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \thu@info@item{联合指导教师}{\thu@name@title}{\thu@joint@supervisor}%
   }\par
 }
-\newcommand\thu@titlepage@date@simple{%
+\newcommand\thu@titlepage@date@sustech{%
   \begingroup
     \def\CJKglue{\hskip 1bp}%
     \thu@format@date{\thu@date@zh@short}{\thu@date}\par
@@ -2006,7 +2006,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   % \else
   %   \thu@titlepage@en@graduate@professional
   % \fi
-  \thu@titlepage@graduate@simple@en
+  \thu@titlepage@graduate@sustech@en
   \thu@reset@main@language
   \clearpage
   \restoregeometry
