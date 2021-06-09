@@ -717,7 +717,7 @@
   \providecommand\kaishu{\CJKfamily{zhkai}}
 \fi
 \newcommand\thu@load@cjk@font{%
-  \setCJKfamilyfont{FZXBSJ}[Path = "fonts/"]{FZXBSJ.otf}%
+  \setCJKfamilyfont{FZXBSJ}[Path = "fonts/",AutoFakeBold]{FZXBSJ.otf}%
   \setCJKfamilyfont{SourceHanSansCN}[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
   \setCJKfamilyfont{SourceHanSerifCN}[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
   \newfontfamily\siyuanheiti@en[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
