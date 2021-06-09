@@ -14,6 +14,12 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 
 **预览最新样例** [latest 分支](https://github.com/SUSTech-CRA/sustech-master-thesis/tree/latest)
 
+## 反馈与QA
+
+1. 南科大LaTex学习交流群：119667812
+2. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
+3. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
+
 ## 使用
 ### Windows 中编译
 1. `build.bat` 构建PDF文件；
@@ -58,11 +64,6 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 * `Makefile` Makefile
 * `latexmkrc` latexmk 配置文件
 * `README.md` Readme
-
-## 反馈与QA
-
-1. 南科大LaTex学习交流群：119667812
-2. 提交 GitHub Issue
 
 ## 致谢
 
