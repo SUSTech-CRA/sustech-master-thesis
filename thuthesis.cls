@@ -1644,7 +1644,7 @@
     \end{spacing}
 
     \vspace{2cm}
-    {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti \thu@titlepage@date}
+    {\fontsize{18bp}{18bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@simple}
   \end{center}
 }
 \newcommand\thu@titlepage{%
@@ -1980,6 +1980,12 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \thu@info@item{副指导教师}{\thu@name@title}{\thu@associate@supervisor}%
     \thu@info@item{联合指导教师}{\thu@name@title}{\thu@joint@supervisor}%
   }\par
+}
+\newcommand\thu@titlepage@date@simple{%
+  \begingroup
+    \def\CJKglue{\hskip 1bp}%
+    \thu@format@date{\thu@date@zh@short}{\thu@date}\par
+  \endgroup
 }
 \newcommand\thu@titlepage@date{%
   \begingroup
