@@ -106,16 +106,15 @@
 % 也可以使用 ntheorem
 % \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 
-% % 暂不建议使用 BibTeX + natbib，因为不能控制多篇文献压缩样式
-% % 参考文献使用 BibTeX + natbib 宏包
-% % 顺序编码制
-% \usepackage[sort]{natbib}
-% \bibliographystyle{thuthesis-numeric}
+% 参考文献使用 BibTeX + natbib 宏包
+% 顺序编码制
+\usepackage[sort]{natbib}
+\bibliographystyle{thuthesis-numeric}
 
-% 参考文献使用 BibLaTeX 宏包
-\usepackage[backend=biber,style=thuthesis-numeric]{biblatex}
-% 声明 BibLaTeX 的数据库
-\addbibresource{ref/refs.bib}
+% % 参考文献使用 BibLaTeX 宏包
+% \usepackage[backend=biber,style=thuthesis-numeric]{biblatex}
+% % 声明 BibLaTeX 的数据库
+% \addbibresource{ref/refs.bib}
 
 % 定义所有的图片文件在 figures 子目录下
 \graphicspath{{figures/}}
