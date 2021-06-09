@@ -1644,7 +1644,7 @@
     \end{spacing}
 
     \vspace{2cm}
-    {\fontsize{18}{18} \thu@titlepage@date }
+    {\fontsize{18}{18} \siyuansongti@en \siyuansongti \thu@titlepage@date}
   \end{center}
 }
 \newcommand\thu@titlepage{%
