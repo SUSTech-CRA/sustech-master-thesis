@@ -16,7 +16,13 @@ jobs:
             apk add make
             make test
 
-      - name: Deploy PDF
+      - name: Publish PDF as actions assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF
+          path: public-test/thuthesis-example*.pdf
+
+      - name: Deploy PDF to latest branch
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
         with:
