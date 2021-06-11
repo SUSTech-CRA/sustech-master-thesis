@@ -1,7 +1,7 @@
-# Makefile for ThuThesis
+# Makefile for sustechthesis
 
 PACKAGE = thuthesis
-THESIS  = thuthesis-example
+THESIS  = sustechthesis-example
 
 
 LATEXMK = latexmk

@@ -29,8 +29,8 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 * `make thesis`     生成论文；
 * `make viewthesis` 生成论文，编译完成开启预览；
 * `make all`        生成论文，与 `make thesis` 等效；
-* `make clean`      删除示例文件的中间文件（不含 thuthesis-example.pdf）；
-* `make cleanall`   删除示例文件的中间文件和 thuthesis-example.pdf；
+* `make clean`      删除示例文件的中间文件（不含 sustechthesis-example.pdf）；
+* `make cleanall`   删除示例文件的中间文件和 sustechthesis-example.pdf；
 * `make distclean`  删除示例文件和模板的所有中间文件和 PDF；
 * `make wordcount`  论文字数统计。
 
@@ -41,7 +41,7 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 
 ### 编译前的建议
 
-1. 在撰写论文时，我们不推荐使用原有的 `thuthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
+1. 在撰写论文时，我们不推荐使用原有的 `sustechthesis-example.tex` 这一名称。建议将其复制一份，改为其他的名字(如 `thesis.tex` 或者 `main.tex`)。需要注意，如果使用了来 自 `data` 目录中的 `tex` 文件，则重命名主文件后，其顶端的 `!TeX root` 选项也需要相应修改。
 2. 需要注意，如果更改了主文件的名称，则需要修改 `Makefile` 顶端的 `THESIS` 变量定义；或修改 `build.bat` 和 `clean.bat` 中 `latexmk` 命令后的参数。
 3. ⚠️ 提交最终正式版本时，建议在 Windows 下本地编译且设置 `fontset` 参数 为 `windows`，以保证字体正确。
 
@@ -49,7 +49,7 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 
 ### 文档内容
 * `thusetup.tex` 示例文档基本配置（论文标题、作者等元数据）
-* `thuthesis-example.tex` 示例文档主文件
+* `sustechthesis-example.tex` 示例文档主文件
 * `data/` 示例文档章节具体内容
 * `figures/` 示例文档图片路径
 * `ref/` 示例文档参考文献目录
