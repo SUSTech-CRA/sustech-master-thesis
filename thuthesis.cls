@@ -1129,46 +1129,72 @@
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
-\patchcmd\@floatboxreset{%
-  \normalsize
-}{%
-  \fontsize{11bp}{14.3bp}\selectfont
-  \renewcommand\arraystretch{1.4}%
-}{}{\thu@patch@error{\@floatboxreset}}
-\ifthu@degree@bachelor
-  \AtBeginDocument{% delay the check until all packages are loaded
-    \g@addto@macro\appendix{\renewcommand*{\thefigure}{\thechapter-\arabic{figure}}}
-    \g@addto@macro\appendix{\renewcommand*{\thetable}{\thechapter-\arabic{table}}}
-  }
-\fi
-\newcommand\thu@caption@font{}
-\newcommand\thu@set@caption@font{%
+% \ifthu@degree@bachelor
+%   \AtBeginDocument{% delay the check until all packages are loaded
+%     \g@addto@macro\appendix{\renewcommand*{\thefigure}{\thechapter-\arabic{figure}}}
+%     \g@addto@macro\appendix{\renewcommand*{\thetable}{\thechapter-\arabic{table}}}
+%   }
+% \fi
+\DeclareCaptionFont{thu}{%
   \ifthu@degree@bachelor
-    \renewcommand\thu@caption@font{\fontsize{11bp}{15bp}\selectfont}%
+    \fontsize{11bp}{15bp}\selectfont
   \else
-    \renewcommand\thu@caption@font{\fontsize{11bp}{14.3bp}\selectfont}%
+    \ifthu@language@chinese
+      \fontsize{11bp}{14.3bp}\selectfont
+    \else
+      \fontsize{11bp}{12.65bp}\selectfont
+    \fi
   \fi
 }
-\thu@set@caption@font
-\thu@option@hook{degree}{\thu@set@caption@font}
-\DeclareCaptionFont{thu}{\thu@caption@font}
 \captionsetup{
-  format         = hang,
   font           = thu,
   labelsep       = quad,
-  aboveskip      = 6bp,
-  belowskip      = 6bp,
+  skip           = 6bp,
   figureposition = bottom,
   tableposition  = top,
 }
 \captionsetup[sub]{font=thu}
-\renewcommand{\thesubfigure}{(\alph{subfigure})}
-\renewcommand{\thesubtable}{(\alph{subtable})}
+
+\newcommand\thu@set@table@font{
+  \ifthu@language@chinese
+    \def\thu@table@font{%
+      \fontsize{11bp}{14.3bp}\selectfont
+      \renewcommand\arraystretch{1.42}%
+    }%
+  \else
+    \def\thu@table@font{%
+      \fontsize{11bp}{12.65bp}\selectfont
+      \renewcommand\arraystretch{1.47}%
+    }%
+  \fi
+}
+\thu@set@table@font
+\thu@option@hook{language}{\thu@set@table@font}
+\patchcmd\@floatboxreset{%
+  \normalsize
+}{%
+  \thu@table@font
+}{}{\thu@patch@error{\@floatboxreset}}
+
+
+% longtable 同样设定
+\AtEndOfPackageFile*{longtable}{
+  \AtBeginEnvironment{longtable}{%
+    \thu@table@font
+  }
+}
+
+% 三线表线的磅数
 \heavyrulewidth=1.5bp
 \lightrulewidth=1bp
+
 \AtEndOfPackageFile*{threeparttable}{
+  \AtBeginEnvironment{threeparttable}{%
+    \thu@table@font
+  }
   \g@addto@macro\TPT@defaults{\wuhao}
 }
+
 \ifthu@degree@bachelor
   \newcommand{\thu@abstract@name}{中文摘要}
   \newcommand{\thu@abstract@name@en}{Abstract}
@@ -1182,8 +1208,9 @@
   \fi
   %%%%%% 此处为南科大特色格式
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
-  \renewcommand*{\thetable}{\thechapter-\arabic{table}}
   \renewcommand*{\thesubfigure}{\space\alph{subfigure})}
+  \renewcommand*{\thetable}{\thechapter-\arabic{table}}
+  \renewcommand*{\thesubtable}{\space\alph{subtable})}
 \fi
 \ctexset{%
   chapter = {
@@ -3203,12 +3230,6 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \let\nomname\thu@denotation@name
   \def\thenomenclature{\begin{denotation}[\nom@tempdim]}
   \def\endthenomenclature{\end{denotation}}
-}
-\AtEndOfPackageFile*{longtable}{
-  \pretocmd\LT@array{%
-    \fontsize{11bp}{14.3bp}\selectfont
-    \renewcommand\arraystretch{1.4}%
-  }{}{\thu@patch@error{\LT@array}}
 }
 \AtEndOfPackageFile*{siunitx}{%
   \sisetup{
