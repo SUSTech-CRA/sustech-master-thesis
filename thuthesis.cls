@@ -1155,6 +1155,13 @@
 }
 \captionsetup[sub]{font=thu}
 
+% 研究生要求表单元格中的文字采用 11pt 宋体字，单倍行距。段前空 3 磅，段后空 3 磅。
+% 对于中文，\cs{arraystretch} 需要调整为 $1 + 6 / (11 \times 1.3) \approx 1.42$。
+% 对于英文，\cs{arraystretch} 需要调整为 $1 + 6 / (11 \times 1.15) \approx 1.47$。
+%
+% 注意不能简单地把行距设为 $\SI{11}{pt} \times 1.3 + \SI{6}{pt} = \SI{20.3}{pt}$，
+% 这会导致含有多行文字的单元格中行距有误。
+
 \newcommand\thu@set@table@font{
   \ifthu@language@chinese
     \def\thu@table@font{%
