@@ -289,6 +289,10 @@
 \thu@package@conflict{unicode-math}{eucal}
 \thu@package@conflict{unicode-math}{eufrak}
 \thu@package@conflict{unicode-math}{mathrsfs}
+% 禁止导入 setspace 包
+\AtBeginOfPackageFile*{setspace}{
+  \thu@error{The "setspace" package is incompatible with table environment, which will make invalidate the float format}
+}
 \geometry{
   paper          = a4paper,  % 210 * 297mm
   marginparwidth = 2cm,
@@ -1658,24 +1662,20 @@
     {\fzxbiaosong \fontsize{24bp}{31.2bp} \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    \begin{spacing}{1.25}
-      {\fontsize{22bp}{28.6bp} \rmfamily \siyuanheiti \thu@title}
-    \end{spacing}
+    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title}
     \vspace{1em}
 
-
-    \begin{spacing}{1.25}
-      {\fontsize{22bp}{28.6bp} \textbf{\thu@title@en}}
-    \end{spacing}
+    % 18 bp*1.3默认行距比例*1.25行距 = 29.25
+    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en}}
     \vfill
 
-    \begin{spacing}{1.5}
       {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
+      \renewcommand\arraystretch{1.25}
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
       \end{tabular}}
-    \end{spacing}
 
     \vspace{2cm}
     {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
@@ -1759,8 +1759,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   }%
   \thispagestyle{empty}%
   \begin{center}
-    \begin{spacing}{1.25}
     {\songti \xiaosi
+    \renewcommand\arraystretch{1.25}
     \begin{tabular}{@{}r@{：}l@{}}
       国内图书分类号 & \thu@natclassifiedindex\\
       国际图书分类号 & \thu@intclassifiedindex
@@ -1769,19 +1769,17 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       学校代码 & \thu@schoolid\\
       密级 & \thu@statesecrets
     \end{tabular}}
-    \end{spacing}
 
     \vspace{3.5cm}
     {\songti \xiaoer \textbf{\thu@subject}}
 
     \vspace{1.5cm}
-    \begin{spacing}{1.25}
-      \erhao \heiti \thu@title
-    \end{spacing}
+    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title}
 
     \vfill
-    \begin{spacing}{1.5}
       {\sihao%
+      \renewcommand\arraystretch{1.5}
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
@@ -1791,25 +1789,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
-    \end{spacing}
     \vspace{1.5cm}
 
   \end{center}
-  % \null\vskip 0.2cm%
-  % \begingroup
-  %   \centering
-  %   \parbox[t][2cm][t]{\textwidth}{%
-  %     \hskip -0.69cm%
-  %     \thu@titlepage@secret
-  %   }\par
-  %   \vskip 1.5cm%
-  %   {\thu@titlepage@title}%
-  %   \vskip 0.85cm%
-  %   \thu@titlepage@degree
-  %   \vfill
-  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
-  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
-  % \endgroup
+
   \clearpage
   \restoregeometry
 }
@@ -1817,8 +1800,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \def\thu@info@item@sustech#1#2{%
   \textbf{#1} & %
   {
-    \linespread{1}\selectfont%
-    \begin{tabular}[t]{@{}l@{}}#2\end{tabular}%
+    \renewcommand\arraystretch{1.15}%
+    \begin{tabular}{@{}l@{}}#2\end{tabular}%
   }
 }%
 
@@ -1829,22 +1812,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     hmargin = 3cm,
   }%
   \thispagestyle{empty}%
-  % \begin{spacing}{1.25}
-    {\xiaosi
-      \noindent
+  {\noindent \xiaosi
+    \renewcommand\arraystretch{1.25}
+    \begin{tabular}{@{}l@{}}
       Classified Index: \thu@natclassifiedindex\\
       U.D.C: \thu@intclassifiedindex
-    }
-  % \end{spacing}
+    \end{tabular}}
 
   \begin{center}
-    % \begin{spacing}{1.25}
-    % {\xiaosi
-
-    %   Classified Index & \thu@natclassifiedindex\\
-    %   U.D.C & \thu@intclassifiedindex
-    % }
-    % \end{spacing}
 
     \vspace{3.5cm}
     \mbox{\xiaoer \thu@subject@en}
@@ -1852,16 +1827,16 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
-      \begin{spacing}{1.25}
-        {\erhao \textbf{\thu@title@en}}
-        \end{spacing}
+      % 24 bp*1.15默认行距比例*1.25行距 = 34.5
+      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en}}
       }
     \par
 
     \vfill
-    \begin{spacing}{1.5}
       {\sihao%
-      \begin{tabular}{@{}m{0.44\textwidth}m{0.56\textwidth}@{}}
+      \renewcommand\arraystretch{1.3}
+      % 手动调整使得视觉接近
+      \begin{tabular}{@{}m{0.44\textwidth}m{0.44\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
         \thu@info@item@sustech{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
@@ -1870,25 +1845,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
         \thu@info@item@sustech{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
       \end{tabular}}
-    \end{spacing}
     \vspace{1.5cm}
 
   \end{center}
-  % \null\vskip 0.2cm%
-  % \begingroup
-  %   \centering
-  %   \parbox[t][2cm][t]{\textwidth}{%
-  %     \hskip -0.69cm%
-  %     \thu@titlepage@secret
-  %   }\par
-  %   \vskip 1.5cm%
-  %   {\thu@titlepage@title}%
-  %   \vskip 0.85cm%
-  %   \thu@titlepage@degree
-  %   \vfill
-  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
-  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
-  % \endgroup
+
   \clearpage
   \restoregeometry
 }
