@@ -1825,7 +1825,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \def\thu@info@item@sustech#1#2{%
   \textbf{#1} & %
   {
-    \renewcommand\arraystretch{1.15}%
+    \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
     \begin{tabular}{@{}l@{}}#2\end{tabular}%
   }
 }%
