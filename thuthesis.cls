@@ -1663,11 +1663,11 @@
     \vspace{2cm}
 
     % 24 bp*1.3默认行距比例*1.25行距 = 39
-    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title}
+    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title \\}
     \vspace{1em}
 
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
-    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en}}
+    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en \\} }
     \vfill
 
       {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
@@ -1775,7 +1775,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
     \vspace{1.5cm}
     % 24 bp*1.3默认行距比例*1.25行距 = 39
-    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title}
+    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title \\}
 
     \vfill
       {\sihao%
@@ -1828,7 +1828,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \parbox[t]{30em}{
       \centering
       % 24 bp*1.15默认行距比例*1.25行距 = 34.5
-      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en}}
+      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en \\}}
       }
     \par
 
