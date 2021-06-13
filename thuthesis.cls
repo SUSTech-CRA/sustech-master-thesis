@@ -1469,6 +1469,13 @@
     default = {Title},
     name    = title@en,
   },
+  subtitle = {
+    default = {},
+  },
+  subtitle* = {
+    default = {},
+    name    = subtitle@en,
+  },
   author = {
     default = {姓名},
   },
@@ -1663,11 +1670,23 @@
     \vspace{2cm}
 
     % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 20 bp*1.3默认行距比例*1.25行距 = 32.5
     {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title \\}
+    \ifx\thu@subtitle\empty
+      \relax%
+    \else
+      {\fontsize{20bp}{32.5bp} \rmfamily \siyuanheiti \thu@subtitle \\}
+    \fi
     \vspace{1em}
 
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
+    % 16 bp*1.3默认行距比例*1.25行距 = 26
     {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en \\} }
+    \ifx\thu@subtitle@en\empty
+      \relax%
+    \else
+      {\fontsize{16bp}{26bp}\selectfont \textbf{\thu@subtitle@en \\} }
+    \fi
     \vfill
 
       {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
@@ -1775,7 +1794,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
     \vspace{1.5cm}
     % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 18 bp*1.3默认行距比例*1.25行距 = 29.25
     {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title \\}
+    \ifx\thu@subtitle\empty
+      \relax%
+    \else
+      {\fontsize{18bp}{29.25bp}\selectfont \heiti \thu@subtitle \\}
+    \fi
 
     \vfill
       {\sihao%
@@ -1828,7 +1853,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \parbox[t]{30em}{
       \centering
       % 24 bp*1.15默认行距比例*1.25行距 = 34.5
+      % 18 bp*1.15默认行距比例*1.25行距 = 25.875
       {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en \\}}
+      \ifx\thu@subtitle@en\empty
+        \relax%
+      \else
+        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\thu@subtitle@en \\}}
+      \fi
       }
     \par
 
