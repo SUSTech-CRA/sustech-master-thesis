@@ -1691,7 +1691,7 @@
 
       {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
       \renewcommand\arraystretch{1.25}
-      \begin{tabular}{@{}r@{：}l@{}}
+      \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
       \end{tabular}}
@@ -1805,7 +1805,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vfill
       {\sihao%
       \renewcommand\arraystretch{1.5}
-      \begin{tabular}{@{}r@{：}l@{}}
+      \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
         \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
         \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
