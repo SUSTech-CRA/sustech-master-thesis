@@ -289,6 +289,10 @@
 \thu@package@conflict{unicode-math}{eucal}
 \thu@package@conflict{unicode-math}{eufrak}
 \thu@package@conflict{unicode-math}{mathrsfs}
+% 禁止导入 setspace 包
+\AtBeginOfPackageFile*{setspace}{
+  \thu@error{The "setspace" package is incompatible with table environment, which will make invalidate the float format}
+}
 \geometry{
   paper          = a4paper,  % 210 * 297mm
   marginparwidth = 2cm,
@@ -1129,46 +1133,79 @@
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
-\patchcmd\@floatboxreset{%
-  \normalsize
-}{%
-  \fontsize{11bp}{14.3bp}\selectfont
-  \renewcommand\arraystretch{1.4}%
-}{}{\thu@patch@error{\@floatboxreset}}
-\ifthu@degree@bachelor
-  \AtBeginDocument{% delay the check until all packages are loaded
-    \g@addto@macro\appendix{\renewcommand*{\thefigure}{\thechapter-\arabic{figure}}}
-    \g@addto@macro\appendix{\renewcommand*{\thetable}{\thechapter-\arabic{table}}}
-  }
-\fi
-\newcommand\thu@caption@font{}
-\newcommand\thu@set@caption@font{%
+% \ifthu@degree@bachelor
+%   \AtBeginDocument{% delay the check until all packages are loaded
+%     \g@addto@macro\appendix{\renewcommand*{\thefigure}{\thechapter-\arabic{figure}}}
+%     \g@addto@macro\appendix{\renewcommand*{\thetable}{\thechapter-\arabic{table}}}
+%   }
+% \fi
+\DeclareCaptionFont{thu}{%
   \ifthu@degree@bachelor
-    \renewcommand\thu@caption@font{\fontsize{11bp}{15bp}\selectfont}%
+    \fontsize{11bp}{15bp}\selectfont
   \else
-    \renewcommand\thu@caption@font{\fontsize{11bp}{14.3bp}\selectfont}%
+    \ifthu@language@chinese
+      \fontsize{11bp}{14.3bp}\selectfont
+    \else
+      \fontsize{11bp}{12.65bp}\selectfont
+    \fi
   \fi
 }
-\thu@set@caption@font
-\thu@option@hook{degree}{\thu@set@caption@font}
-\DeclareCaptionFont{thu}{\thu@caption@font}
 \captionsetup{
-  format         = hang,
   font           = thu,
   labelsep       = quad,
-  aboveskip      = 6bp,
-  belowskip      = 6bp,
+  skip           = 6bp,
   figureposition = bottom,
   tableposition  = top,
 }
 \captionsetup[sub]{font=thu}
-\renewcommand{\thesubfigure}{(\alph{subfigure})}
-\renewcommand{\thesubtable}{(\alph{subtable})}
+
+% 研究生要求表单元格中的文字采用 11pt 宋体字，单倍行距。段前空 3 磅，段后空 3 磅。
+% 对于中文，\cs{arraystretch} 需要调整为 $1 + 6 / (11 \times 1.3) \approx 1.42$。
+% 对于英文，\cs{arraystretch} 需要调整为 $1 + 6 / (11 \times 1.15) \approx 1.47$。
+%
+% 注意不能简单地把行距设为 $\SI{11}{pt} \times 1.3 + \SI{6}{pt} = \SI{20.3}{pt}$，
+% 这会导致含有多行文字的单元格中行距有误。
+
+\newcommand\thu@set@table@font{
+  \ifthu@language@chinese
+    \def\thu@table@font{%
+      \fontsize{11bp}{14.3bp}\selectfont
+      \renewcommand\arraystretch{1.42}%
+    }%
+  \else
+    \def\thu@table@font{%
+      \fontsize{11bp}{12.65bp}\selectfont
+      \renewcommand\arraystretch{1.47}%
+    }%
+  \fi
+}
+\thu@set@table@font
+\thu@option@hook{language}{\thu@set@table@font}
+\patchcmd\@floatboxreset{%
+  \normalsize
+}{%
+  \thu@table@font
+}{}{\thu@patch@error{\@floatboxreset}}
+
+
+% longtable 同样设定
+\AtEndOfPackageFile*{longtable}{
+  \AtBeginEnvironment{longtable}{%
+    \thu@table@font
+  }
+}
+
+% 三线表线的磅数
 \heavyrulewidth=1.5bp
 \lightrulewidth=1bp
+
 \AtEndOfPackageFile*{threeparttable}{
+  \AtBeginEnvironment{threeparttable}{%
+    \thu@table@font
+  }
   \g@addto@macro\TPT@defaults{\wuhao}
 }
+
 \ifthu@degree@bachelor
   \newcommand{\thu@abstract@name}{中文摘要}
   \newcommand{\thu@abstract@name@en}{Abstract}
@@ -1182,8 +1219,9 @@
   \fi
   %%%%%% 此处为南科大特色格式
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
-  \renewcommand*{\thetable}{\thechapter-\arabic{table}}
   \renewcommand*{\thesubfigure}{\space\alph{subfigure})}
+  \renewcommand*{\thetable}{\thechapter-\arabic{table}}
+  \renewcommand*{\thesubtable}{\space\alph{subtable})}
 \fi
 \ctexset{%
   chapter = {
@@ -1431,6 +1469,13 @@
     default = {Title},
     name    = title@en,
   },
+  subtitle = {
+    default = {},
+  },
+  subtitle* = {
+    default = {},
+    name    = subtitle@en,
+  },
   author = {
     default = {姓名},
   },
@@ -1624,24 +1669,32 @@
     {\fzxbiaosong \fontsize{24bp}{31.2bp} \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    \begin{spacing}{1.25}
-      {\fontsize{22bp}{28.6bp} \rmfamily \siyuanheiti \thu@title}
-    \end{spacing}
+    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 20 bp*1.3默认行距比例*1.25行距 = 32.5
+    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title \\}
+    \ifx\thu@subtitle\empty
+      \relax%
+    \else
+      {\fontsize{20bp}{32.5bp} \rmfamily \siyuanheiti \thu@subtitle \\}
+    \fi
     \vspace{1em}
 
-
-    \begin{spacing}{1.25}
-      {\fontsize{22bp}{28.6bp} \textbf{\thu@title@en}}
-    \end{spacing}
+    % 18 bp*1.3默认行距比例*1.25行距 = 29.25
+    % 16 bp*1.3默认行距比例*1.25行距 = 26
+    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en \\} }
+    \ifx\thu@subtitle@en\empty
+      \relax%
+    \else
+      {\fontsize{16bp}{26bp}\selectfont \textbf{\thu@subtitle@en \\} }
+    \fi
     \vfill
 
-    \begin{spacing}{1.5}
       {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
+      \renewcommand\arraystretch{1.25}
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
         \makebox[6em][s]{指导教师} & \thu@supervisor\\
       \end{tabular}}
-    \end{spacing}
 
     \vspace{2cm}
     {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
@@ -1725,8 +1778,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   }%
   \thispagestyle{empty}%
   \begin{center}
-    \begin{spacing}{1.25}
     {\songti \xiaosi
+    \renewcommand\arraystretch{1.25}
     \begin{tabular}{@{}r@{：}l@{}}
       国内图书分类号 & \thu@natclassifiedindex\\
       国际图书分类号 & \thu@intclassifiedindex
@@ -1735,19 +1788,23 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       学校代码 & \thu@schoolid\\
       密级 & \thu@statesecrets
     \end{tabular}}
-    \end{spacing}
 
     \vspace{3.5cm}
     {\songti \xiaoer \textbf{\thu@subject}}
 
     \vspace{1.5cm}
-    \begin{spacing}{1.25}
-      \erhao \heiti \thu@title
-    \end{spacing}
+    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 18 bp*1.3默认行距比例*1.25行距 = 29.25
+    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title \\}
+    \ifx\thu@subtitle\empty
+      \relax%
+    \else
+      {\fontsize{18bp}{29.25bp}\selectfont \heiti \thu@subtitle \\}
+    \fi
 
     \vfill
-    \begin{spacing}{1.5}
       {\sihao%
+      \renewcommand\arraystretch{1.5}
       \begin{tabular}{@{}r@{：}l@{}}
         \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
@@ -1757,25 +1814,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
-    \end{spacing}
     \vspace{1.5cm}
 
   \end{center}
-  % \null\vskip 0.2cm%
-  % \begingroup
-  %   \centering
-  %   \parbox[t][2cm][t]{\textwidth}{%
-  %     \hskip -0.69cm%
-  %     \thu@titlepage@secret
-  %   }\par
-  %   \vskip 1.5cm%
-  %   {\thu@titlepage@title}%
-  %   \vskip 0.85cm%
-  %   \thu@titlepage@degree
-  %   \vfill
-  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
-  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
-  % \endgroup
+
   \clearpage
   \restoregeometry
 }
@@ -1783,8 +1825,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \def\thu@info@item@sustech#1#2{%
   \textbf{#1} & %
   {
-    \linespread{1}\selectfont%
-    \begin{tabular}[t]{@{}l@{}}#2\end{tabular}%
+    \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
+    \begin{tabular}{@{}l@{}}#2\end{tabular}%
   }
 }%
 
@@ -1795,22 +1837,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     hmargin = 3cm,
   }%
   \thispagestyle{empty}%
-  % \begin{spacing}{1.25}
-    {\xiaosi
-      \noindent
+  {\noindent \xiaosi
+    \renewcommand\arraystretch{1.25}
+    \begin{tabular}{@{}l@{}}
       Classified Index: \thu@natclassifiedindex\\
       U.D.C: \thu@intclassifiedindex
-    }
-  % \end{spacing}
+    \end{tabular}}
 
   \begin{center}
-    % \begin{spacing}{1.25}
-    % {\xiaosi
-
-    %   Classified Index & \thu@natclassifiedindex\\
-    %   U.D.C & \thu@intclassifiedindex
-    % }
-    % \end{spacing}
 
     \vspace{3.5cm}
     \mbox{\xiaoer \thu@subject@en}
@@ -1818,16 +1852,22 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
-      \begin{spacing}{1.25}
-        {\erhao \textbf{\thu@title@en}}
-        \end{spacing}
+      % 24 bp*1.15默认行距比例*1.25行距 = 34.5
+      % 18 bp*1.15默认行距比例*1.25行距 = 25.875
+      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en \\}}
+      \ifx\thu@subtitle@en\empty
+        \relax%
+      \else
+        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\thu@subtitle@en \\}}
+      \fi
       }
     \par
 
     \vfill
-    \begin{spacing}{1.5}
       {\sihao%
-      \begin{tabular}{@{}m{0.44\textwidth}m{0.56\textwidth}@{}}
+      \renewcommand\arraystretch{1.3}
+      % 手动调整使得视觉接近
+      \begin{tabular}{@{}m{0.44\textwidth}m{0.44\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
         \thu@info@item@sustech{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
@@ -1836,25 +1876,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
         \thu@info@item@sustech{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
       \end{tabular}}
-    \end{spacing}
     \vspace{1.5cm}
 
   \end{center}
-  % \null\vskip 0.2cm%
-  % \begingroup
-  %   \centering
-  %   \parbox[t][2cm][t]{\textwidth}{%
-  %     \hskip -0.69cm%
-  %     \thu@titlepage@secret
-  %   }\par
-  %   \vskip 1.5cm%
-  %   {\thu@titlepage@title}%
-  %   \vskip 0.85cm%
-  %   \thu@titlepage@degree
-  %   \vfill
-  %   \parbox[t][7.25cm][t]{\textwidth}{\centering\thu@titlepage@info}\par
-  %   \parbox[t][1.03cm][t]{\textwidth}{\centering\thu@titlepage@date}\par
-  % \endgroup
+
   \clearpage
   \restoregeometry
 }
@@ -3203,12 +3228,6 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \let\nomname\thu@denotation@name
   \def\thenomenclature{\begin{denotation}[\nom@tempdim]}
   \def\endthenomenclature{\end{denotation}}
-}
-\AtEndOfPackageFile*{longtable}{
-  \pretocmd\LT@array{%
-    \fontsize{11bp}{14.3bp}\selectfont
-    \renewcommand\arraystretch{1.4}%
-  }{}{\thu@patch@error{\LT@array}}
 }
 \AtEndOfPackageFile*{siunitx}{%
   \sisetup{

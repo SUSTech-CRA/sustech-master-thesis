@@ -1,1 +1,1 @@
-latexmk thuthesis-example
+latexmk sustechthesis-example
