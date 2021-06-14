@@ -2447,11 +2447,20 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
   \end{statementcopr}
 }
-\newcommand{\statementcopyright}{
-  \ifthu@main@language@chinese
-    \thu@statementcopyright@sustech@chinese
+\newcommand{\statementcopyright}[1][]{
+  \def\thu@@tmp{#1}%
+  \ifx\thu@@tmp\@empty
+    \ifthu@main@language@chinese
+      \thu@statementcopyright@sustech@chinese
+    \else
+      \thu@statementcopyright@sustech@english
+    \fi
   \else
-    \thu@statementcopyright@sustech@english
+    \includepdf[pagecommand={%
+      \thu@phantomsection
+      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
+      \thispagestyle{empty}%
+    }]{#1}%
   \fi
 }
 \newcommand{\thu@authorization@frontdate}{%
