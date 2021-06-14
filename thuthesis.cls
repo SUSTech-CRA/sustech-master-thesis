@@ -806,9 +806,6 @@
 }
 \newcommand\thu@set@chapter@names{%
   \ifthu@main@language@chinese
-    \ctexset{
-      chapter/name   = {第,章},
-    }%
     \def\bibname{参考文献}%
     \def\appendixname{附录}%
     \def\indexname{索引}%
@@ -842,9 +839,6 @@
     \fi
   \else
     \ifthu@main@language@english
-      \ctexset{
-        chapter/name   = CHAPTER\space,
-      }%
       \def\indexname{Index}%
       \ifthu@degree@bachelor
         \def\contentsname{CONTENTS}%
@@ -1228,8 +1222,8 @@
     nameformat   = {},
     numberformat = {},
     titleformat  = {},
-    aftername    = \quad,
     fixskip      = true,
+    aftername    = \quad,
     afterindent  = true,
     lofskip      = 0pt,
     lotskip      = 0pt,
@@ -1279,44 +1273,63 @@
   %     \ctexset{chapter/number = \thu@english@number{chapter}}%
   %   \fi
   % \else
+  \ifthu@main@language@chinese
     \ctexset{%
       chapter = {
-        format     = \centering\sffamily\sanhao,
-        beforeskip = 24bp,
-        afterskip  = 18bp,
+        format      = \centering\sffamily\sanhao,
+        nameformat  = {},
+        titleformat = {},
+        name        = {第,章},
       },
       section = {
         format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
-        beforeskip = 24bp,
-        afterskip  = 6bp,
       },
       subsection = {
         format     = \sffamily\fontsize{13bp}{20bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
       },
       subsubsection = {
         format     = \sffamily\fontsize{12bp}{20bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
       },
     }%
-    \ifthu@main@language@english
-      \ctexset{%
+  \else
+    \ctexset{%
       chapter = {
-        format     += \bfseries,
+        format      = \centering\sffamily\bfseries\fontsize{16bp}{20bp}\selectfont,
+        nameformat  = \MakeUppercase,
+        titleformat = \MakeUppercase,
+        name        = \chaptername\space,
       },
       section = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{14bp}{20bp}\selectfont,
       },
       subsection = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{13bp}{20bp}\selectfont,
       },
       subsubsection = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{12bp}{20bp}\selectfont,
       },
-      }
-    \fi
+    }%
+  \fi
+  \ctexset{%
+    % chapter 的数值为手动调整
+    chapter = {
+      beforeskip = 32bp,
+      afterskip  = 36bp,
+      number     = \thechapter,
+    },
+    section = {
+      beforeskip = 24bp,
+      afterskip  = 6bp,
+    },
+    subsection = {
+      beforeskip = 12bp,
+      afterskip  = 6bp,
+    },
+    subsubsection = {
+      beforeskip = 12bp,
+      afterskip  = 6bp,
+    },
+  }%
   % \fi
 
 }
@@ -2333,6 +2346,123 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \fi
   \fi
 }
+% 南科大原创声明
+\newcommand{\sustech@authorsign}{
+  \vspace*{1em}
+  \ifthu@main@language@chinese
+    \begingroup
+      \centering
+      \normalsize
+      \vspace{1em}
+      \begin{tabular}{llll}
+      作者签名： & \hspace{4cm} & 日期： &  \hspace{4cm}
+      \end{tabular}
+    \endgroup
+  \else
+    \begingroup
+      \centering
+      \normalsize
+      \begin{tabular}{llll}
+      Signature: & \hspace{4cm} & Date: &  \hspace{4cm}
+      \end{tabular}
+    \endgroup
+  \fi
+}
+\newcommand{\sustech@authorsupervisorsign}{
+  \vspace*{1em}
+  \ifthu@main@language@chinese
+    \begingroup
+      \centering
+      \normalsize
+      \renewcommand\arraystretch{2}%
+      \begin{tabular}{llll}
+      作者签名： & \hspace{4cm} & 日期： &  \hspace{4cm}\\
+      指导教师签名： & \hspace{4cm} & 日期： &  \hspace{4cm}
+      \end{tabular}
+    \endgroup
+  \else
+    \begingroup
+      \centering
+      \normalsize
+      \begin{tabular}{llll}
+      Signature of Author: & \hspace{4cm} & Date: &  \hspace{4cm}\\
+      Signature of Supervisor: & \hspace{4cm} & Date: &  \hspace{4cm}
+      \end{tabular}
+    \endgroup
+  \fi
+}
+\newcommand{\thu@statementcopyright@sustech@chinese}{
+  \begin{statementcopr}
+    \section*{南方科技大学学位论文原创性声明}
+    \vspace{1em}
+
+      本人郑重声明：所提交的学位论文是本人在导师指导下独立进行研究工作所取得的成果。除了特别加以标注和致谢的内容外，论文中不包含他人已发表或撰写过的研究成果。对本人的研究做出重要贡献的个人和集体，均已在文中作了明确的说明。本声明的法律结果由本人承担。
+
+    \sustech@authorsign
+
+    \vspace{1em}
+    \section*{南方科技大学学位论文使用授权书}
+    \vspace{1em}
+
+      本人完全了解南方科技大学有关收集、保留、使用学位论文的规定，即：
+
+      \begin{enumerate}[wide]
+        \item 按学校规定提交学位论文的电子版本。
+        \item 学校有权保留并向国家有关部门或机构送交学位论文的电子版，允许论文被查阅。
+        \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
+          \begin{enumerate}[wide,label={(\arabic*)}]
+            \item 在本论文提交当年，同意在校园网内提供查询及前十六页浏览服务。
+            \item 在本论文提交 $\mdlgwhtsquare$ 当年/ $\mdlgwhtsquare$ 一年以后，同意向全社会公开论文全文的在线浏览和下载。
+          \end{enumerate}
+        \item 保密的学位论文在解密后适用本授权书。
+      \end{enumerate}
+
+    \sustech@authorsupervisorsign
+
+  \end{statementcopr}
+}
+\newcommand{\thu@statementcopyright@sustech@english}{
+  \begin{statementcopr}
+    \section*{Declaration of Originality of Thesis}
+
+      I hereby declare that this thesis is my own original work under the guidance of my supervisor. It does not contain any research results that others have published or written. All sources I quoted in the thesis are indicated in references or have been indicated or acknowledged. I shall bear the legal liabilities of the above statement.
+
+    \sustech@authorsign
+
+    \section*{Declaration of Authorization of Thesis}
+
+      I fully understand the regulations regarding the collection, retention and use of thesis of Southern University of Science and Technology.
+      \begin{enumerate}[wide]
+        \item Submit the electronic version of thesis as required by the University.
+        \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
+        \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
+        \begin{enumerate}[wide,label={\arabic*)}]
+          \item I agree that once submitted, the thesis can be retrieved online and the first 16 pages can be viewed within the campus network.
+          \item I agree that $\mdlgwhtsquare$ upon submission $\mdlgwhtsquare$ 12 months after submission, the full text of the thesis can be viewed and downloaded by the public.
+        \end{enumerate}
+        \item This authorization applies to decrypted confidential thesis.
+      \end{enumerate}
+
+    \sustech@authorsupervisorsign
+
+  \end{statementcopr}
+}
+\newcommand{\statementcopyright}[1][]{
+  \def\thu@@tmp{#1}%
+  \ifx\thu@@tmp\@empty
+    \ifthu@main@language@chinese
+      \thu@statementcopyright@sustech@chinese
+    \else
+      \thu@statementcopyright@sustech@english
+    \fi
+  \else
+    \includepdf[pagecommand={%
+      \thu@phantomsection
+      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
+      \thispagestyle{empty}%
+    }]{#1}%
+  \fi
+}
 \newcommand{\thu@authorization@frontdate}{%
   日\ifthu@degree@bachelor\hspace{1em}\else\hspace{2em}\fi 期：}
 \newcommand\thu@copyright@page@graduate{%
@@ -3067,7 +3197,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \vskip 6bp%
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
-\newenvironment{statementcopyright}{%
+\newenvironment{statementcopr}{%
   \thu@chapter*{\thu@statement@toc@name}%
   \markboth{\thu@statement@name}{}%
   \ctexset{
