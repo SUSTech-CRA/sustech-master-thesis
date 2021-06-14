@@ -806,9 +806,6 @@
 }
 \newcommand\thu@set@chapter@names{%
   \ifthu@main@language@chinese
-    \ctexset{
-      chapter/name   = {第,章},
-    }%
     \def\bibname{参考文献}%
     \def\appendixname{附录}%
     \def\indexname{索引}%
@@ -842,9 +839,6 @@
     \fi
   \else
     \ifthu@main@language@english
-      \ctexset{
-        chapter/name   = CHAPTER\space,
-      }%
       \def\indexname{Index}%
       \ifthu@degree@bachelor
         \def\contentsname{CONTENTS}%
@@ -1228,8 +1222,8 @@
     nameformat   = {},
     numberformat = {},
     titleformat  = {},
-    aftername    = \quad,
     fixskip      = true,
+    aftername    = \quad,
     afterindent  = true,
     lofskip      = 0pt,
     lotskip      = 0pt,
@@ -1279,44 +1273,63 @@
   %     \ctexset{chapter/number = \thu@english@number{chapter}}%
   %   \fi
   % \else
+  \ifthu@main@language@chinese
     \ctexset{%
       chapter = {
-        format     = \centering\sffamily\sanhao,
-        beforeskip = 24bp,
-        afterskip  = 18bp,
+        format      = \centering\sffamily\sanhao,
+        nameformat  = {},
+        titleformat = {},
+        name        = {第,章},
       },
       section = {
         format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
-        beforeskip = 24bp,
-        afterskip  = 6bp,
       },
       subsection = {
         format     = \sffamily\fontsize{13bp}{20bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
       },
       subsubsection = {
         format     = \sffamily\fontsize{12bp}{20bp}\selectfont,
-        beforeskip = 12bp,
-        afterskip  = 6bp,
       },
     }%
-    \ifthu@main@language@english
-      \ctexset{%
+  \else
+    \ctexset{%
       chapter = {
-        format     += \bfseries,
+        format      = \centering\sffamily\bfseries\fontsize{16bp}{20bp}\selectfont,
+        nameformat  = \MakeUppercase,
+        titleformat = \MakeUppercase,
+        name        = \chaptername\space,
       },
       section = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{14bp}{20bp}\selectfont,
       },
       subsection = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{13bp}{20bp}\selectfont,
       },
       subsubsection = {
-        format     += \bfseries,
+        format     = \sffamily\bfseries\fontsize{12bp}{20bp}\selectfont,
       },
-      }
-    \fi
+    }%
+  \fi
+  \ctexset{%
+    % chapter 的数值为手动调整
+    chapter = {
+      beforeskip = 32bp,
+      afterskip  = 36bp,
+      number     = \thechapter,
+    },
+    section = {
+      beforeskip = 24bp,
+      afterskip  = 6bp,
+    },
+    subsection = {
+      beforeskip = 12bp,
+      afterskip  = 6bp,
+    },
+    subsubsection = {
+      beforeskip = 12bp,
+      afterskip  = 6bp,
+    },
+  }%
   % \fi
 
 }
