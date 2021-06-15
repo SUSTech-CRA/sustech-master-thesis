@@ -16,7 +16,7 @@ SUSTech 镜像站（GitHub Releases 的镜像）: https://mirrors.sustech.edu.cn
 
 ## 反馈与QA
 
-1. 南科大LaTex学习交流群：119667812
+1. 南科大LaTeX学习交流群：119667812
 2. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
 3. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
 

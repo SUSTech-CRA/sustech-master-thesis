@@ -1694,11 +1694,11 @@
 
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
     % 16 bp*1.3默认行距比例*1.25行距 = 26
-    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\thu@title@en \\} }
+    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\} }
     \ifx\thu@subtitle@en\empty
       \relax%
     \else
-      {\fontsize{16bp}{26bp}\selectfont \textbf{\thu@subtitle@en \\} }
+      {\fontsize{16bp}{26bp}\selectfont \textbf{\MakeUppercase{\thu@subtitle@en} \\} }
     \fi
     \vfill
 
@@ -1867,11 +1867,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \centering
       % 24 bp*1.15默认行距比例*1.25行距 = 34.5
       % 18 bp*1.15默认行距比例*1.25行距 = 25.875
-      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\thu@title@en \\}}
+      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
       \ifx\thu@subtitle@en\empty
         \relax%
       \else
-        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\thu@subtitle@en \\}}
+        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\MakeUppercase{\thu@subtitle@en} \\}}
       \fi
       }
     \par
