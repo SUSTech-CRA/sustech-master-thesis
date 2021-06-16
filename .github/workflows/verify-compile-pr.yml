@@ -18,5 +18,5 @@ jobs:
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
         with:
-          name: PDF
+          name: Example-PDFs
           path: public-test/sustechthesis-example*.pdf
