@@ -438,7 +438,7 @@
 % \end{latex}
 %
 % \subsubsection{院系名称}
-% 院系名称，可以在名称超长可以使用换行|\\|。
+% 院系名称，名称超长时可以使用换行|\\|。
 % \begin{latex}
 %   \thusetup{
 %     department = {系名全称},
@@ -533,16 +533,6 @@
 %   \end{committee}
 % \end{latex}
 %
-% \subsubsection{原创性声明与授权说明}
-% \myentry{原创性声明与授权说明}
-% \DescribeMacro{\statementcopyright}
-% 可选参数为扫描得到的 PDF 文件名，例如：
-% \begin{latex}
-%   生成未签名的声明
-%   \statementcopyright
-%   % 将签字扫描后授权文件 scan-statement.pdf 替换原始页面
-%   \statementcopyright[scan-statement.pdf]
-% \end{latex}
 %
 % \subsubsection{摘要}
 % \myentry{摘要正文}
@@ -597,20 +587,6 @@
 % 算法索引 & \cs{listofalgorithms} \\
 %          & \cs{listofalgorithms*}\\\bottomrule
 % \end{longtable}
-%
-% \DescribeOption{toc-chapter-style}
-% 本科生《写作指南》关于目录章标题要求“目录从第 1 章开始，每章标题用黑体小四号字”，
-% 所以其中的西文和数字默认使用 Arial 字体，跟正文的章标题一致。
-% 但是论文样例\footnote{
-%   \url{http://www.law.tsinghua.edu.cn/publish/law/7024/2012/20120216153516317135347/20120216153516317135347_.html}
-% }的目录章标题的西文和数字却使用了 Times。
-% 如果审查老师这样要求，需要在生成目录前设置
-% \begin{latex}
-%   \thusetup{
-%     toc-chapter-style = times,
-%   }
-% \end{latex}
-% 该选项只对本科生有效。
 %
 % \LaTeX{} 默认支持插图和表格索引，是通过 \cs{caption} 命令完成的，因此它们必须出
 % 现在浮动环境中，否则不被计数。
@@ -713,7 +689,7 @@
 %
 % \subsubsection{定理环境}
 % \label{sec:theorem}
-% \thuthesis{} 定义了常用的数学环境：
+% \sustechthesis{} 定义了常用的数学环境：
 %
 % \begin{center}
 % \begin{tabular}{*{7}{l}}\toprule
@@ -764,7 +740,7 @@
 % \subsubsection{引用方式}
 % \label{sec:citestyle}
 % 模板支持两种引用方式，分别为理工科常用的“顺序编码制”和文科常用
-% 的“著者-出版年制”。
+% 的“著者-出版年制”，对于\textbf{南方科技大学的毕业生使用“顺序编码制”即可}。
 % 使用者在设置参考文献表的格式
 % （\cs{bibliographystyle}，见第~\ref{sec:bibliography} 节）时，
 % 正文中引用文献的标注会自动调整为对应的格式。
@@ -776,15 +752,15 @@
 % \DescribeMacro{\inlinecite}
 % 顺序编码制的参考文献引用分为两种模式：
 % \begin{enumerate}
-%   \item 上标模式，比如“同样的工作有很多\textsuperscript{[1-2]}……”；
-%   \item 正文模式，比如“文 [3] 中详细说明了……”。
+%   \item 上标模式（super），比如“同样的工作有很多\textsuperscript{[1-2]}……”；
+%   \item 正文模式（inline），比如“文 [3] 中详细说明了……”。
 % \end{enumerate}
 %
 % \DescribeOption{cite-style}
 % 用户可以将引用标注的格式设为正文模式：
 % \begin{latex}
 %   \thusetup{
-%     cite-style = inline,
+%     cite-style = inline, % 手动设置正文模式
 %   }
 % \end{latex}
 % 也可以使用 \cs{inlinecite}\marg{key} 临时使用正文模式的引用标注。
@@ -862,43 +838,6 @@
 % 而且 \cs{addbibresource} 必须在导言区设置。
 % 输出参考文献表应使用 \cs{printbibliography} 命令。
 %
-% 本科生要求的中文参考文献格式严格遵从 GB/T 7714—2015，
-% 附录中调研报告的英文参考文献可以自行选择合适的风格。
-% 但是 biblatex 不支持同一文档中使用不同的格式，
-% 所以只能使用 \hologo{BibTeX}：
-% \begin{latex}
-%   % 本科生参考文献的著录格式
-%   \usepackage[sort]{natbib}
-%   \bibliographystyle{thuthesis-bachelor}
-% \end{latex}
-% 调研报告的参考文献需要选择与 \pkg{natbib} 兼容的样式。
-%
-% 本科生外文系要求使用 APA 或 MLA。
-% APA 的 BibTeX 样式由 \pkg{apacite} 宏包提供，需要在导言区调用：
-% \begin{latex}
-%   \usepackage[natbibapa]{apacite}
-%   \bibliographystyle{apacite}
-% \end{latex}
-% 其中 \option{natbibapa} 会调用 \pkg{natbib} 来处理引用，
-% 这也是宏包推荐的用法。
-% 注意目前的 \pkg{apacite} 只支持到 APA 第 6 版。
-% 更推荐使用已经更新到 APA 第 7 版的 \pkg{biblatex-apa}：
-% \begin{latex}
-%   \usepackage[style=apa]{biblatex}
-%   \addbibresource{refs-apa.bib}
-% \end{latex}
-% 注意，如果参考文献中引用了中文文献的话，这两种方法都不能正确调整格式，
-% 需要手动进行修改 \file{.bbl} 文件的内容，
-% 这时 BibTeX 比 biblatex 更简单些。
-%
-% BibTeX 没有用于 MLA 的样式，所以对于 MLA 只能使用 biblatex:
-% \begin{latex}
-%   \usepackage[style=mla-new]{biblatex}
-%   \addbibresource{refs-apa.bib}
-% \end{latex}
-% 注意这里 \option{mla-new} 对应于 MLA 第 8 版的格式，
-% \option{mla} 是第 7 版的。
-%
 % \subsubsection{致谢}
 %
 % \DescribeEnv{acknowledgements}
@@ -907,28 +846,20 @@
 % \begin{latex}
 %   \begin{acknowledgements}
 %     …
-%     还要特别感谢 \thuthesis{} 节省了论文排版时间！
+%     还要特别感谢 \sustechthesis{} 节省了论文排版时间！
 %   \end{acknowledgements}
 % \end{latex}
 %
-% \subsubsection{声明}
-% \DescribeMacro{\statement}
-% 如果使用声明扫描页，将可选参数指定为扫描后的 PDF 文件名，例如：
-%
+% \subsubsection{原创性声明与授权说明}
+% \myentry{原创性声明与授权说明}
+% \DescribeMacro{\statementcopyright}
+% 可选参数为扫描得到的 PDF 文件名，例如：
 % \begin{latex}
-%   \statement[file=scan-statement.pdf]
+%   生成未签名的声明
+%   \statementcopyright
+%   % 将签字扫描后授权文件 scan-statement.pdf 替换原始页面
+%   \statementcopyright[scan-statement.pdf]
 % \end{latex}
-%
-% 由于打印版和电子版有空白页的差别，声明的页码可能不同。
-% 所以编译声明页时默认不加页眉和页脚（\texttt{page-style=empty}），
-% 在签字后插入扫描页时再补上页眉和页脚，防止页码冲突。
-%
-% 如果需要编译时也加页码（如直接对电子版进行签名而不是插入扫描页），
-% 可以使用在 \cs{statement} 命令设置
-% \begin{latex}
-%   \statement[page-style=plain]
-% \end{latex}
-% 注意，插入扫描页总是会加页码，不受该选项控制。
 %
 % \subsubsection{附录}
 %
@@ -949,50 +880,10 @@
 %   \thusetup{toc-depth=0}  % 目录只出现章标题
 % \end{latex}
 %
-% \DescribeEnv{survey}
-% \DescribeEnv{translation}
-% 本科生《写作指南》要求附录 A 为外文资料的调研阅读报告或书面翻译，二者择一。
-% 调研报告（或书面翻译）的题目和参考文献是独立于论文的，相当一篇独立的小文章，
-% 所以模板相应定义了 \env{survey} 和 \env{translation}。在这两个环境内部可以
-% 像论文正文一样使用标题和参考文献的命令，但不会影响外部。
-% 但是需要使用 \hologo{BibTeX} 对 \file{*-survey.aux} 或者
-% \file{*-translation.aux} 进行编译，才能生成参考文献（见 \ref{sec:xelatex} 节）。
-% 如果使用 \texttt{latexmk}，则无需额外处理。
-%
-% 同时，阅读报告默认切换书写语言为英语，书面翻译默认切换为中文。
-% 如有需要，可以通过 \cs{thusetup} 的 \option{language} 参数再次更改。
-%
-% \begin{latex}
-%   \begin{survey}
-%     \title{...}
-%     \maketitle
-%     \tableofcontents
-%     ... \cite{...} % 报告内容及其引用
-%     \bibliographystyle{...}
-%     \bibliography{...} % 报告的参考文献
-%   \end{survey}
-% \end{latex}
-%
-% “书面翻译对应的原文索引”区别于译文的参考文献，需要使用 \env{translation-index}
-% 环境，另外需要使用 \hologo{BibTeX} 编译 \file{*-index.aux}，\texttt{latexmk} 同样会自动处理。
-%
-% \begin{latex}
-%   \begin{translation}
-%     ... \cite{...} % 书面翻译内容及其引用
-%     \bibliographystyle{...}
-%     \bibliography{...}  % 书面翻译的参考文献
-%     \begin{translation-index}
-%       \nocite{...}
-%       \bibliographystyle{...}
-%       \bibliography{...}  % 书面翻译对应的原文索引
-%     \end{translation-index}
-%   \end{translation}
-% \end{latex}
 %
 % \subsubsection{个人简历、在学期间完成的相关学术成果}
 % \DescribeEnv{resume}
 % 研究生的标题为为“个人简历、在学期间完成的相关学术成果”，
-% 本科生的标题为“在学期间参加课题的研究成果”或“PUBLICATIONS”。
 %
 % \DescribeEnv{achievements}
 % 本章的其他标题同样使用 \cs{section*}，\cs{subsection*} 等命令生成，
@@ -1019,57 +910,12 @@
 %   \end{resume}
 % \end{latex}
 %
-% \subsubsection{综合论文训练记录表}
-% \DescribeMacro{\record}
-% 本科生需要在最后附上综合论文训练记录表，可以用如下命令：
-%
-% \begin{latex}
-%   \record{file=scan-record.pdf}
-% \end{latex}
-%
-%
-% \subsection{书脊}
-% \DescribeMacro{\spine}
-% \DescribeOption{spine-font}
-% \DescribeOption{spine-title}
-% \DescribeOption{spine-author}
-% 生成装订的书脊，为竖排格式。内容默认使用论文的标题和作者。
-% 可以设置 \option{spine-title} 和 \option{spine-author} 来修改。
-%
-% 书脊字体默认为三号字，同研究生的示例一致。
-% 本科生要求字体大小根据论文的薄厚而定，可以使用 \option{spine-font} 设置字号。
-% \begin{latex}
-%   \thusetup{
-%     spine-font   = {\Huge},
-%     spine-title  = {书脊的标题},
-%     spine-author = {书脊的作者姓名},
-%   }
-% \end{latex}
-%
-% 由于 Fandol 字体在 \XeTeX 中的竖排存在一些问题，如果书脊使用的字体是 Fandol 仿宋
-%（\option{fontset} 为 \texttt{fandol} 或者 \texttt{ubuntu} 时），则它\textbf{必须作为独立文件生成}，
-% 否则可能导致后续内容文字方向错乱的问题。
-%
-% \DescribeOption{include-spine}
-% 一些院系要求把书脊插进论文里，需要在 \cs{maketitle} 前设置。
-% \begin{latex}
-%   \thusetup{
-%     include-spine = true,
-%   }
-% \end{latex}
-% 打开此选项后，书籍会出现在中文封面后面的第一个空白页。如果有英文封面，则在英文封面之前。
-% 如果需要书籍出现在其他位置，请手工使用 \cs{spine} 生成，不要使用此命令。
-%
-% 在使用 Fandol 仿宋时，如果打开 \option{include-spine} 选项，
-% 模板将使用 \cs{write18} 来生成独立的 \file{spine.tex}，并调用 \XeLaTeX 进行排版后插入论文中。
-% 在这种情况下，请确保编译时打开了 shell escape 功能，或者在论文目录下放置编译完成的 \file{spine.pdf}，
-% 否则编译将因为无法正常生成书脊而失败。
 %
 % \section{致谢}
 % \label{sec:thanks}
-% 感谢这些年来一直陪伴 \thuthesis{} 成长的新老同学！
+% 感谢这些年来一直陪伴 \sustechthesis{} 成长的新老同学！
 %
-% 欢迎各位到 \href{http://github.com/tuna/thuthesis/}{\thuthesis{} GitHub 主页}贡献！
+% 欢迎各位到 \href{https://github.com/SUSTech-CRA/sustech-master-thesis}{\sustechthesis{} GitHub 主页}贡献！
 %
 %
 % ^^A redefine some commands in markdown package to remove annoying section numbering
