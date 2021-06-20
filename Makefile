@@ -16,7 +16,7 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all all-dev clean thesis viewthesis doc viewdoc cls test wordcount FORCE_MAKE
+.PHONY: all all-dev clean cleanall distclean thesis viewthesis doc viewdoc cls test wordcount FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
@@ -54,6 +54,10 @@ clean:
 cleanall: clean
 	-@$(RM) -rf public-test
 	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
+
+distclean: cleanall
+	-@$(RM) $(CLSFILE)
+	-@$(RM) -r dist
 
 wordcount : $(THESIS).tex
 	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
