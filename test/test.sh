@@ -3,6 +3,7 @@ set -x
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 RT_DIR="$( dirname "${SCRIPT_DIR}" )"
+mkdir "$RT_DIR/public-test"
 
 # 备份原文件
 cp "$RT_DIR/sustechthesis-example.tex" "$RT_DIR/sustechthesis-example.tex.bak"
