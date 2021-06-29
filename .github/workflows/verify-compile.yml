@@ -19,17 +19,17 @@ jobs:
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
         with:
-          name: PDF
+          name: Example-PDFs
           path: public-test/sustechthesis-example*.pdf
 
-      - name: Deploy PDF to latest branch
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public-test
-          publish_branch: latest
-          force_orphan: true
+      # - name: Deploy PDF to latest branch
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: github.ref == 'refs/heads/master'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./public-test
+      #     publish_branch: latest
+      #     force_orphan: true
 
   sync:
     runs-on: ubuntu-latest

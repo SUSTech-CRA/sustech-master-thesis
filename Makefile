@@ -1,8 +1,10 @@
-# Makefile for sustechthesis
+# Makefile for SUSTechThesis
 
-PACKAGE = thuthesis
+PACKAGE = sustechthesis
 THESIS  = sustechthesis-example
 
+SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
+CLSFILE = dtx-style.sty $(PACKAGE).cls
 
 LATEXMK = latexmk
 SHELL  := /bin/bash
@@ -14,28 +16,48 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all clean cleanall thesis viewthesis wordcount test FORCE_MAKE
+.PHONY: all all-dev clean cleanall distclean thesis viewthesis doc viewdoc cls test wordcount FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
 all: thesis
 
-test:
-	bash test/test.sh
+all-dev: doc all
 
-$(THESIS).pdf: FORCE_MAKE
+cls: $(CLSFILE)
+
+$(CLSFILE): $(SOURCES)
+	xetex $(PACKAGE).ins
+
+doc: $(PACKAGE).pdf
+
+
+$(PACKAGE).pdf: cls FORCE_MAKE
+	$(LATEXMK) $(PACKAGE).dtx
+
+$(THESIS).pdf: cls FORCE_MAKE
 	$(LATEXMK) $(THESIS)
+
+viewdoc: doc
+	$(LATEXMK) -pv $(PACKAGE).dtx
 
 viewthesis: thesis
 	$(LATEXMK) -pv $(THESIS)
 
+test: cls FORCE_MAKE
+	bash test/test.sh
+
 clean:
-	$(LATEXMK) -c $(THESIS)
-	-@$(RM) -rf public-test
-	-@$(RM) -rf *~ main-survey.* main-translation.* _markdown_thuthesis* thuthesis.markdown.*
+	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS)
+	-@$(RM) -rf *~ main-survey.* main-translation.* _markdown_sustechthesis* sustechthesis.markdown.* _markdown_thuthesis* thuthesis.markdown.*
 
 cleanall: clean
-	-@$(RM) $(THESIS).pdf
+	-@$(RM) -rf public-test
+	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
+
+distclean: cleanall
+	-@$(RM) $(CLSFILE)
+	-@$(RM) -r dist
 
 wordcount : $(THESIS).tex
 	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
