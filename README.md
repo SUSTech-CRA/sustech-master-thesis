@@ -4,15 +4,18 @@
 [![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
 [![GitHub commits](https://img.shields.io/github/commits-since/SUSTech-CRA/sustech-master-thesis/latest)](https://github.com/SUSTech-CRA/sustech-master-thesis/commits/master)
 [![GitHub release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)
+[![GitHub pre-release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?include_prereleases&label=%E9%A2%84%E6%9E%84%E5%BB%BA)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
 
 ## 下载
 
-推荐下载**发布版**模板，里面包括具体使用说明以及示例文档：
+推荐下载 **[发布版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)** 模板或 **[开发版-预构建](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)** 的模版，里面包括模板使用说明以及示例文档：
 
-* 模板使用说明（sustechthesis.pdf）*本模版使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 示例文档基本配置文件中已经进行注释。*
-* 示例文档（sustechthesis-example.pdf）
+* 模板使用说明（**sustechthesis.pdf**）*本模版使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 示例文档基本配置文件中已经进行注释。*
+* 示例文档（**sustechthesis-example.pdf**）
 
-开发版中不提供预生成的 `cls` 文件和文档，仅包含源码。其仅供开发者与需要尚未发布的功能的有经验的 TeX 用户使用，不提供任何保证。
+**发布版** 包含预生成的 `cls` 文件和文档，但是一般会比 **开发版** 晚更新。如急需使用最新版可以使用 **开发版-预构建** 的版本。
+
+开发版仅供开发者与需要尚未发布的功能的有经验的 TeX 用户使用，不提供任何保证。
 
 下载途径：
 
