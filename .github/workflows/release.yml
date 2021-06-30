@@ -9,6 +9,8 @@ on:
   push:
     branches:
       - "master"
+    tags:
+      - v*
 
 jobs:
   build_latex:
@@ -24,7 +26,6 @@ jobs:
             apk add make
             make doc
             make test
-            make clean
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master
@@ -62,6 +63,32 @@ jobs:
           automatic_release_tag: "dev-latest"
           prerelease: true
           title: "Dev Build（预发布）"
+          files: |
+            pre-release-artifacts_action_build/sustechthesis.cls
+            pre-release-artifacts_action_build/sustechthesis.pdf
+            pre-release-artifacts_action_build/public-test/*.pdf
+            sustech-thesis_dev-build/sustech-thesis_dev-build.zip
+
+  release-tag:
+    name: "Draft release by tag"
+    runs-on: "ubuntu-latest"
+    needs: build_latex
+    if: always() && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/download-artifact@v2
+        name: Download artifact
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        name: Upload release artifacts
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: true
+          automatic_release_tag: ${{ steps.get_version.outputs.tag }}
+          title: ${{ steps.get_version.outputs.tag }}
           files: |
             pre-release-artifacts_action_build/sustechthesis.cls
             pre-release-artifacts_action_build/sustechthesis.pdf

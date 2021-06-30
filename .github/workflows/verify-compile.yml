@@ -1,6 +1,6 @@
 name: Verify and sync
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build_latex:
