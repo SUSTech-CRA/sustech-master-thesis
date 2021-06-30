@@ -3,8 +3,8 @@
 [![Actions Status](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml/badge.svg)](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml)
 [![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
 [![GitHub commits](https://img.shields.io/github/commits-since/SUSTech-CRA/sustech-master-thesis/latest)](https://github.com/SUSTech-CRA/sustech-master-thesis/commits/master)
-[![GitHub release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)
-[![GitHub pre-release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?include_prereleases&label=%E9%A2%84%E6%9E%84%E5%BB%BA)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
+[![GitHub release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?&label=%E5%8F%91%E5%B8%83%E7%89%88)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)
+[![GitHub pre-release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?include_prereleases&label=%E5%BC%80%E5%8F%91%E7%89%88-%E9%A2%84%E5%8F%91%E5%B8%83)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
 
 ## 下载
 
@@ -101,5 +101,5 @@ xetex sustechthesis.ins
 
 ## 致谢
 
-* 本模板基于清华大学模板 [ThuThesis v7.1](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
+* 本模板基于清华大学模板 [ThuThesis v7.1.0](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
 * 本模版根据南方科技大学研究生院发布的相关 [学位授予的政策文件](https://gs.sustech.edu.cn/xueweishouyuzhengce) 编写，如有冲突以官网规定为准。
