@@ -26,18 +26,19 @@ jobs:
             apk add make
             make doc
             make test
+            make clean
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
-          filename: 'sustech-thesis_dev-build.zip'
+          filename: 'sustech-thesis-dev-build.zip'
           exclusions: '*.git* /*node_modules/* .editorconfig'
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v2
         with:
-          name: 'sustech-thesis_dev-build'
-          path: 'sustech-thesis_dev-build.zip'
+          name: 'sustech-thesis-dev-build'
+          path: 'sustech-thesis-dev-build.zip'
 
       - name: Upload Pre-release artifact
         uses: actions/upload-artifact@v2
@@ -67,7 +68,7 @@ jobs:
             pre-release-artifacts_action_build/sustechthesis.cls
             pre-release-artifacts_action_build/sustechthesis.pdf
             pre-release-artifacts_action_build/public-test/*.pdf
-            sustech-thesis_dev-build/sustech-thesis_dev-build.zip
+            sustech-thesis-dev-build/sustech-thesis-dev-build.zip
 
   release-tag:
     name: "Draft release by tag"
@@ -82,18 +83,21 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
+      - name: Rename artifact
+        run: cp sustech-thesis-dev-build/sustech-thesis-dev-build.zip sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.VERSION }}.zip
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         name: Upload release artifacts
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: true
-          automatic_release_tag: ${{ steps.get_version.outputs.tag }}
-          title: ${{ steps.get_version.outputs.tag }}
+          automatic_release_tag: ${{ steps.get_version.outputs.VERSION }}
+          title: ${{ steps.get_version.outputs.VERSION }}
           files: |
             pre-release-artifacts_action_build/sustechthesis.cls
             pre-release-artifacts_action_build/sustechthesis.pdf
             pre-release-artifacts_action_build/public-test/*.pdf
-            sustech-thesis_dev-build/sustech-thesis_dev-build.zip
+            sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.VERSION }}.zip
 
   # release-by-changelog:
   #   runs-on: ubuntu-latest
@@ -144,7 +148,7 @@ jobs:
   #     uses: svenstaro/upload-release-action@v2
   #     with:
   #       repo_token: ${{ secrets.GITHUB_TOKEN }}
-  #       file: 'sustech-thesis_dev-build/sustech-thesis_dev-build.zip'
+  #       file: 'sustech-thesis-dev-build/sustech-thesis-dev-build.zip'
   #       asset_name: sustech-thesis-${{ steps.clq-extract.outputs.tag }}.zip
   #       tag: ${{ steps.clq-extract.outputs.tag }}
   #       overwrite: true
