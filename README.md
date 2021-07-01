@@ -8,7 +8,7 @@
 
 ## 下载
 
-推荐下载 **[发布版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)** 模板或 **[开发版-预构建](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)** 的模版，里面包括模板使用说明以及示例文档：
+推荐下载 **[发布版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)** 模板或 **[开发版-预构建](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)** 的模版，里面包括模板使用说明以及示例文档：
 
 * 模板使用说明（**sustechthesis.pdf**）*本模版使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 示例文档基本配置文件中已经进行注释。*
 * 示例文档（**sustechthesis-example.pdf**）
