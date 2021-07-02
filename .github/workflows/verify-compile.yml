@@ -54,7 +54,7 @@ jobs:
       run: |
         mkdir -p /tmp/tmp_push2
         cd /tmp/tmp_push2
-        git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
+        git clone --bare https://github.com/SUSTech-CRA/sustech-master-thesis.git this_repo
         cd this_repo
         git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
       env:
