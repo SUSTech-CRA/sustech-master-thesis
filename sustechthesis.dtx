@@ -2686,11 +2686,11 @@
     % 仅仅英文为主要语言的摘要需要大写
     \newcommand{\thu@abstract@name@en}{ABSTRACT}
   \fi
-  %%%%%% 此处为南科大特色格式
+  % 此处为南科大特色格式，子图需要括号。
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
-  \renewcommand*{\thesubfigure}{\space\alph{subfigure})}
+  \renewcommand*{\thesubfigure}{(\alph{subfigure})}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
-  \renewcommand*{\thesubtable}{\space\alph{subtable})}
+  \renewcommand*{\thesubtable}{(\alph{subtable})}
 \fi
 %    \end{macrocode}
 %
