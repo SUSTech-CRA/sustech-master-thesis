@@ -3025,7 +3025,7 @@
 % \begin{enumerate}
 %   \item 目录中的章标题行采用黑体小四号字，固定行距 20 磅，段前空 6 磅，
 %     段后 0 磅；其他内容采用宋体小四号字，行距为固定值 20 磅，
-%     段前、段后均为 0 磅。
+%     段前、段后均为 0 磅。另外目录中的章标题的字母为Times New Roman。
 %   \item 目录中的章标题行居左书写，一级节标题行缩进 1 个汉字符，
 %     二级节标题行缩进 2 个汉字符。
 % \end{enumerate}
@@ -3035,7 +3035,7 @@
 %    \begin{macrocode}
   \else
     \titlecontents{chapter}
-      [\z@]{\addvspace{6bp}\sffamily}
+      [\z@]{\addvspace{6bp} \rmfamily \heiti}
       {\contentspush{\thecontentslabel\quad}}{}
       {\rmfamily\thu@leaders\thecontentspage}%
     \titlecontents{section}
@@ -3333,16 +3333,16 @@
   }%
   \thispagestyle{empty}%
   \begin{center}
-    {\fzxbiaosong \fontsize{24bp}{31.2bp} \textbf{\degree@level 学位论文}}
+    {\songti \fontsize{24bp}{31.2bp}\selectfont \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 22 bp*1.3默认行距比例*1.25行距 = 35.75
     % 20 bp*1.3默认行距比例*1.25行距 = 32.5
-    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title \\}
+    {\rmfamily \heiti  \fontsize{22bp}{35.75bp}\selectfont \thu@title \\}
     \ifx\thu@subtitle\empty
       \relax%
     \else
-      {\fontsize{20bp}{32.5bp} \rmfamily \siyuanheiti \thu@subtitle \\}
+      {\rmfamily \heiti \fontsize{20bp}{32.5bp}\selectfont \thu@subtitle \\}
     \fi
     \vspace{1em}
 
@@ -3356,7 +3356,7 @@
     \fi
     \vfill
 
-      {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
+      {\songti \fontsize{18bp}{23.4bp}\selectfont   %
       \renewcommand\arraystretch{1.25}
       \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
@@ -3364,7 +3364,7 @@
       \end{tabular}}
 
     \vspace{2cm}
-    {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
+    {\songti \fontsize{18bp}{23.4bp}\selectfont \thu@titlepage@date@sustech}
   \end{center}
 }
 %    \end{macrocode}
@@ -3478,13 +3478,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     {\songti \xiaoer \textbf{\thu@subject}}
 
     \vspace{1.5cm}
-    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 22 bp*1.3默认行距比例*1.25行距 = 35.75
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
-    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title \\}
+    {\heiti \fontsize{22bp}{35.75bp}\selectfont \thu@title \\}
     \ifx\thu@subtitle\empty
       \relax%
     \else
-      {\fontsize{18bp}{29.25bp}\selectfont \heiti \thu@subtitle \\}
+      {\heiti \fontsize{18bp}{29.25bp}\selectfont \thu@subtitle \\}
     \fi
 
     \vfill
@@ -3537,9 +3537,9 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
-      % 24 bp*1.15默认行距比例*1.25行距 = 34.5
+      % 22 bp*1.15默认行距比例*1.25行距 = 31.625
       % 18 bp*1.15默认行距比例*1.25行距 = 25.875
-      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
+      {\fontsize{22bp}{31.625bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
       \ifx\thu@subtitle@en\empty
         \relax%
       \else
@@ -4369,7 +4369,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \fi
   \thusetup{language = english}%
   \ifthu@degree@graduate
-    \thu@chapter*{\thu@abstract@name@en}%
+    \ifthu@main@language@chinese
+      \thu@chapter*[\thu@abstract@name@en]{\textbf{\thu@abstract@name@en}}[\thu@abstract@name@en]%
+    \else
+      \thu@chapter*{\thu@abstract@name@en}%
+    \fi
   \else
     \thu@chapter*[]{\thu@abstract@name@en}%
   \fi
@@ -5254,8 +5258,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     },
     subsection = {
       format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
-      number  = （\chinese{subsection}）,
-      aftername = \hspace{0pt},
+      numbering  = false,
       % aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%

@@ -103,3 +103,4 @@ xetex sustechthesis.ins
 
 * 本模板基于清华大学模板 [ThuThesis v7.1.0](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
 * 本模版根据南方科技大学研究生院发布的相关 [学位授予的政策文件](https://gs.sustech.edu.cn/xueweishouyuzhengce) 编写，如有冲突以官网规定为准。
+  * 如果范例中存在与《写作指南》中的规定不符之处，以《写作指南》中的文字叙述为准。
