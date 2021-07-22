@@ -41,9 +41,15 @@
 支持三级目录显示
 
 
-\subsection{条目测试}
+\subsection{条目要求}
+
+条目要求首行左缩进 2 个汉字符，避免悬挂缩进。如需使用带括号的条目列表，请自行添加 \verb|label=<style>| 参数。
+下面是两个例子，还有更多用法，查阅 \pkg{enumitem} 宏包的文档。
 
 默认条目序号：
+
+\verb|\begin{enumerate} ... \end{enumerate}|
+
 \begin{enumerate}
   \item 一条
   \item 二条
@@ -51,15 +57,11 @@
 \end{enumerate}
 
 带括号的阿拉伯序号：
-\begin{enumerate}[label={(\arabic*)}]
-  \item 一条，超长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长
-  \item 二条
-  \item 三条
-\end{enumerate}
 
-带括号的阿拉伯序号，换行顶格：
-\begin{enumerate}[wide,label={(\arabic*)}]
-  \item 一条，超长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长
-  \item 二条
-  \item 三条
+\verb|\begin{enumerate}[label={(\arabic*)}] ... \end{enumerate}|
+
+\begin{enumerate}[label={(\arabic*)}]
+  \item 条目一，南方科技大学南方科技大学南方科技大学南方科技大学
+  \item 条目二，南方科技大学南方科技大学南方科技大学南方科技大学
+  \item 条目三，南方科技大学南方科技大学南方科技大学南方科技大学
 \end{enumerate}

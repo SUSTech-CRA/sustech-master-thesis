@@ -2348,9 +2348,10 @@
               \itemsep   \z@skip}
 %    \end{macrocode}
 %
-% 使用 \pkg{enumitem} 命令调整默认列表环境间的距离，
+% 使用 \pkg{enumitem} 命令调整默认列表环境间的距离，条目要求首行左缩进 2 个汉字符。
 %    \begin{macrocode}
 \setlist{nosep}
+\setlist{labelindent=\parindent,leftmargin=*}
 %    \end{macrocode}
 %
 %
