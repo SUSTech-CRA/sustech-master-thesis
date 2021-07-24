@@ -4213,11 +4213,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \thu@statementcopyright@sustech@english
     \fi
   \else
-    \includepdf[pagecommand={%
-      \thu@phantomsection
-      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
-      \thispagestyle{empty}%
-    }]{#1}%
+    \thu@pdfbookmark{0}{\thu@statement@toc@name}%
+    \includepdf[%
+%      pagecommand={%
+  %      \thu@phantomsection
+  %      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
+  %      \thispagestyle{empty}%
+  %      }%
+      ]{#1}%
   \fi
 }
 %    \end{macrocode}
@@ -5237,8 +5240,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
 \newenvironment{statementcopr}{%
-  \thu@chapter*{\thu@statement@toc@name}%
-  \markboth{\thu@statement@name}{}%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \chapter*{\thu@statement@toc@name}
+  %\thu@chapter*{\thu@statement@toc@name}%
+  %\markboth{\thu@statement@name}{}%
   \ctexset{
     section = {
       format    += \centering,
