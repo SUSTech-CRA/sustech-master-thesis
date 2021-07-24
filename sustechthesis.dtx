@@ -2351,7 +2351,21 @@
 % 使用 \pkg{enumitem} 命令调整默认列表环境间的距离，条目要求首行左缩进 2 个汉字符。
 %    \begin{macrocode}
 \setlist{nosep}
-\setlist{labelindent=\parindent,leftmargin=*}
+%
+\RequirePackage{tikz}
+\newcommand*\sustech@enum@circ@item[1]{%
+\begin{tikzpicture}[baseline=(C.base)]
+\node[draw,circle,inner sep=1pt,minimum size=1em](C) {#1};
+\end{tikzpicture}}
+%
+\setlist[enumerate,1]{label={(\arabic*)}}
+\setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
+\setlist[enumerate,3]{label={\alph*.}}
+%
+\setlist[1]{leftmargin=2\parindent}
+\setlist[2]{leftmargin=\parindent}
+\setlist[3]{leftmargin=\parindent}
+\setlist[4]{leftmargin=\parindent}
 %    \end{macrocode}
 %
 %
@@ -4149,7 +4163,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       本人完全了解南方科技大学有关收集、保留、使用学位论文的规定，即：
 
-      \begin{enumerate}[wide]
+      \begin{enumerate}[wide,label={\arabic*.}]
         \item 按学校规定提交学位论文的电子版本。
         \item 学校有权保留并向国家有关部门或机构送交学位论文的电子版，允许论文被查阅。
         \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
@@ -4175,7 +4189,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \section*{Declaration of Authorization of Thesis}
 
       I fully understand the regulations regarding the collection, retention and use of thesis of Southern University of Science and Technology.
-      \begin{enumerate}[wide]
+      \begin{enumerate}[wide,label={\arabic*.}]
         \item Submit the electronic version of thesis as required by the University.
         \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
@@ -5258,7 +5272,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       numbering = false,
     },
     subsection = {
-      format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
+      % format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
       numbering  = false,
       % aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
@@ -5303,7 +5317,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   labelsep   = !,
   before     = {
     \ifthu@degree@graduate
-      \fontsize{12bp}{16bp}\selectfont
+      % 10.5 bp*1.3默认行距比例 = 13.65
+      \fontsize{10.5bp}{13.65bp}\selectfont
     \fi
   },
   resume     = achievements,
