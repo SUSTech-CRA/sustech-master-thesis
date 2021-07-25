@@ -16,7 +16,7 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all all-dev clean cleanall thesis viewthesis doc viewdoc cls test wordcount FORCE_MAKE
+.PHONY: all all-dev clean cleanall thesis viewthesis dist doc viewdoc cls test wordcount FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
@@ -31,6 +31,10 @@ $(CLSFILE): $(SOURCES)
 
 doc: $(PACKAGE).pdf
 
+dist: doc thesis clean
+	rm -rf dist/
+	mkdir -p dist/
+	zip -r dist/sustech-master-thesis.zip . -x *.git* /*node_modules/* .editorconfig *public-test/* *dist/*
 
 $(PACKAGE).pdf: cls FORCE_MAKE
 	$(LATEXMK) $(PACKAGE).dtx
