@@ -1207,6 +1207,7 @@
       fandol,
       auto,
       none,
+      external,
     },
     default = auto,
   },
@@ -1804,6 +1805,20 @@
     \fi
   \fi
 \fi
+\newcommand\thu@load@cjk@font@external{%
+  \xeCJKsetup{EmboldenFactor=3}%
+  \setCJKmainfont[
+    AutoFakeBold = true,
+    Path = "fonts/",
+    ItalicFont   = KaiTi.ttf,
+  ]{SimSun.ttf}%
+  \setCJKsansfont[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKmonofont[Path = "fonts/",AutoFakeBold]{FangSong.ttf}%
+  \setCJKfamilyfont{zhsong}[Path = "fonts/",AutoFakeBold]{SimSun.ttf}%
+  \setCJKfamilyfont{zhhei}[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKfamilyfont{zhkai}[Path = "fonts/",AutoFakeBold]{KaiTi.ttf}%
+  \setCJKfamilyfont{zhfs}[Path = "fonts/",AutoFakeBold]{FangSong.ttf}%
+}
 \newcommand\thu@load@cjk@font@windows{%
   \xeCJKsetup{EmboldenFactor=3}%
   \setCJKmainfont{SimSun}[
