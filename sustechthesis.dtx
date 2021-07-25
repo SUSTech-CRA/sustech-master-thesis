@@ -3038,7 +3038,7 @@
 %
 % 研究生：
 % \begin{enumerate}
-%   \item 目录中的章标题行采用黑体小四号字，固定行距 20 磅，段前空 6 磅，
+%   \item 目录中的章标题行采用黑体小四号字，固定行距 20 磅，段前空 0 磅，
 %     段后 0 磅；其他内容采用宋体小四号字，行距为固定值 20 磅，
 %     段前、段后均为 0 磅。另外目录中的章标题的字母为Times New Roman。
 %   \item 目录中的章标题行居左书写，一级节标题行缩进 1 个汉字符，
@@ -3050,7 +3050,13 @@
 %    \begin{macrocode}
   \else
     \titlecontents{chapter}
-      [\z@]{\addvspace{6bp} \rmfamily \heiti}
+      [\z@]{%
+        \ifthu@main@language@chinese
+          \rmfamily \heiti
+        \else
+          \rmfamily \heiti \bfseries
+        \fi
+      }
       {\contentspush{\thecontentslabel\quad}}{}
       {\rmfamily\thu@leaders\thecontentspage}%
     \titlecontents{section}
