@@ -57,7 +57,7 @@ clean:
 
 cleanall: clean
 	-@$(RM) $(CLSFILE)
-	-@$(RM) -rf public-test
+	-@$(RM) -rf public-test dist
 	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
 
 wordcount : $(THESIS).tex
