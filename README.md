@@ -4,7 +4,7 @@
 [![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
 [![GitHub commits](https://img.shields.io/github/commits-since/SUSTech-CRA/sustech-master-thesis/latest)](https://github.com/SUSTech-CRA/sustech-master-thesis/commits/master)
 [![GitHub release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?&label=%E5%8F%91%E5%B8%83%E7%89%88)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)
-[![GitHub pre-release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?include_prereleases&label=%E5%BC%80%E5%8F%91%E7%89%88-%E9%A2%84%E5%8F%91%E5%B8%83)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
+[![GitHub pre-release](https://img.shields.io/github/v/release/SUSTech-CRA/sustech-master-thesis?include_prereleases&label=%E5%BC%80%E5%8F%91%E7%89%88-%E9%A2%84%E6%9E%84%E5%BB%BA)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
 
 ## 下载
 

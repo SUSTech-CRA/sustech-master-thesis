@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Sync to other git service
     if: always() && github.repository_owner == 'SUSTech-CRA'
-    timeout-minutes: 5
+    timeout-minutes: 10
     needs: build_latex
     steps:
 
