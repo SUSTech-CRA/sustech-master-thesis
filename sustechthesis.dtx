@@ -1223,13 +1223,14 @@
   math-font = {
     name = math@font,
     choices = {
+      cambria,
       xits,
       stix,
       libertinus,
       lm,
       none,
     },
-    default = xits,
+    default = cambria,
   },
 %    \end{macrocode}
 %
@@ -1789,6 +1790,9 @@
 }
 \newcommand\thu@load@math@font@lm{%
   \setmathfont{latinmodern-math.otf}%
+}
+\newcommand\thu@load@math@font@cambria{%
+  \setmathfont[Path = "fonts/"]{CambriaMath.otf}%
 }
 \newcommand\thu@load@math@font{%
   \@nameuse{thu@load@math@font@\thu@math@font}
