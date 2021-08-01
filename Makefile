@@ -16,7 +16,7 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all all-dev clean cleanall distclean thesis viewthesis doc viewdoc cls test wordcount FORCE_MAKE
+.PHONY: all all-dev clean cleanall thesis viewthesis dist doc viewdoc cls test wordcount FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
@@ -31,6 +31,10 @@ $(CLSFILE): $(SOURCES)
 
 doc: $(PACKAGE).pdf
 
+dist: doc thesis clean
+	rm -rf dist/
+	mkdir -p dist/
+	zip -r dist/sustech-master-thesis.zip . -x *.git* /*node_modules/* .editorconfig *public-test/* *dist/*
 
 $(PACKAGE).pdf: cls FORCE_MAKE
 	$(LATEXMK) $(PACKAGE).dtx
@@ -52,12 +56,9 @@ clean:
 	-@$(RM) -rf *~ main-survey.* main-translation.* _markdown_sustechthesis* sustechthesis.markdown.* _markdown_thuthesis* thuthesis.markdown.*
 
 cleanall: clean
-	-@$(RM) -rf public-test
-	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
-
-distclean: cleanall
 	-@$(RM) $(CLSFILE)
-	-@$(RM) -r dist
+	-@$(RM) -rf public-test dist
+	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
 
 wordcount : $(THESIS).tex
 	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \

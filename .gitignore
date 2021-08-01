@@ -1,3 +1,6 @@
+# output zip
+dist/
+
 ## distribution files
 .DS_Store
 package-lock.json

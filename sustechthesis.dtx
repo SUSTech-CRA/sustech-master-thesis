@@ -358,6 +358,15 @@
 % 允许的选项有 \option{windows}、\option{mac}、\option{fandol}，详
 % 见 \pkg{ctex}、\pkg{xeCJK}、\pkg{fontspec} 等宏包的使用说明。
 %
+% 或者使用包内带的 Windows 字体：
+%
+% \begin{latex}
+%   \documentclass[cjk-font=external]{sustechthesis}
+% \end{latex}
+%
+% 允许的选项有 \option{windows}、\option{mac}、\option{fandol}、
+% \option{external}，等。
+%
 % \subsection{论文设置}
 % 论文的设置可以通过 \file{sustech-setup.tex} 中的统一命令 \cs{thusetup} 设置 \emph{key=value} 形式完成。
 %
@@ -1207,19 +1216,21 @@
       fandol,
       auto,
       none,
+      external,
     },
     default = auto,
   },
   math-font = {
     name = math@font,
     choices = {
+      cambria,
       xits,
       stix,
       libertinus,
       lm,
       none,
     },
-    default = xits,
+    default = cambria,
   },
 %    \end{macrocode}
 %
@@ -1780,6 +1791,9 @@
 \newcommand\thu@load@math@font@lm{%
   \setmathfont{latinmodern-math.otf}%
 }
+\newcommand\thu@load@math@font@cambria{%
+  \setmathfont[Path = "fonts/"]{CambriaMath.otf}%
+}
 \newcommand\thu@load@math@font{%
   \@nameuse{thu@load@math@font@\thu@math@font}
 }
@@ -1804,6 +1818,20 @@
     \fi
   \fi
 \fi
+\newcommand\thu@load@cjk@font@external{%
+  \xeCJKsetup{EmboldenFactor=3}%
+  \setCJKmainfont[
+    AutoFakeBold = true,
+    Path = "fonts/",
+    ItalicFont   = SimKai.ttf,
+  ]{SimSun.ttc}%
+  \setCJKsansfont[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKmonofont[Path = "fonts/",AutoFakeBold]{SimFang.ttf}%
+  \setCJKfamilyfont{zhsong}[Path = "fonts/",AutoFakeBold]{SimSun.ttc}%
+  \setCJKfamilyfont{zhhei}[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKfamilyfont{zhkai}[Path = "fonts/",AutoFakeBold]{SimKai.ttf}%
+  \setCJKfamilyfont{zhfs}[Path = "fonts/",AutoFakeBold]{SimFang.ttf}%
+}
 \newcommand\thu@load@cjk@font@windows{%
   \xeCJKsetup{EmboldenFactor=3}%
   \setCJKmainfont{SimSun}[
@@ -1915,15 +1943,15 @@
   \providecommand\kaishu{\CJKfamily{zhkai}}
 \fi
 \newcommand\thu@load@cjk@font{%
-  \setCJKfamilyfont{FZXBSJ}[Path = "fonts/",AutoFakeBold]{FZXBSJ.otf}%
-  \setCJKfamilyfont{SourceHanSansCN}[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
-  \setCJKfamilyfont{SourceHanSerifCN}[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
-  \newfontfamily\siyuanheiti@en[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
-  \newfontfamily\siyuansongti@en[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
+  %\setCJKfamilyfont{FZXBSJ}[Path = "fonts/",AutoFakeBold]{FZXBSJ.otf}%
+  %\setCJKfamilyfont{SourceHanSansCN}[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
+  %\setCJKfamilyfont{SourceHanSerifCN}[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
+  %\newfontfamily\siyuanheiti@en[Path = "fonts/"]{SourceHanSansCN-Regular.otf}%
+  %\newfontfamily\siyuansongti@en[Path = "fonts/"]{SourceHanSerifCN-Regular.otf}%
   \@nameuse{thu@load@cjk@font@\thu@cjk@font}%
-  \providecommand{\fzxbiaosong}{\CJKfamily{FZXBSJ}}
-  \providecommand{\siyuanheiti}{\CJKfamily{SourceHanSansCN}}
-  \providecommand{\siyuansongti}{\CJKfamily{SourceHanSerifCN}}
+  %\providecommand{\fzxbiaosong}{\CJKfamily{FZXBSJ}}
+  %\providecommand{\siyuanheiti}{\CJKfamily{SourceHanSansCN}}
+  %\providecommand{\siyuansongti}{\CJKfamily{SourceHanSerifCN}}
 }
 \thu@load@cjk@font
 \thu@option@hook{cjk-font}{\thu@load@cjk@font}
@@ -2348,9 +2376,24 @@
               \itemsep   \z@skip}
 %    \end{macrocode}
 %
-% 使用 \pkg{enumitem} 命令调整默认列表环境间的距离，
+% 使用 \pkg{enumitem} 命令调整默认列表环境间的距离，条目要求首行左缩进 2 个汉字符。
 %    \begin{macrocode}
 \setlist{nosep}
+%
+\RequirePackage{tikz}
+\newcommand*\sustech@enum@circ@item[1]{%
+\begin{tikzpicture}[baseline=(C.base)]
+\node[draw,circle,inner sep=1pt,minimum size=1em](C) {#1};
+\end{tikzpicture}}
+%
+\setlist[enumerate,1]{label={(\arabic*)}}
+\setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
+\setlist[enumerate,3]{label={\alph*.}}
+%
+\setlist[1]{leftmargin=2\parindent}
+\setlist[2]{leftmargin=\parindent}
+\setlist[3]{leftmargin=\parindent}
+\setlist[4]{leftmargin=\parindent}
 %    \end{macrocode}
 %
 %
@@ -2686,11 +2729,11 @@
     % 仅仅英文为主要语言的摘要需要大写
     \newcommand{\thu@abstract@name@en}{ABSTRACT}
   \fi
-  %%%%%% 此处为南科大特色格式
+  % 此处为南科大特色格式，子图需要括号。
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
-  \renewcommand*{\thesubfigure}{\space\alph{subfigure})}
+  \renewcommand*{\thesubfigure}{(\alph{subfigure})}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
-  \renewcommand*{\thesubtable}{\space\alph{subtable})}
+  \renewcommand*{\thesubtable}{(\alph{subtable})}
 \fi
 %    \end{macrocode}
 %
@@ -3023,9 +3066,9 @@
 %
 % 研究生：
 % \begin{enumerate}
-%   \item 目录中的章标题行采用黑体小四号字，固定行距 20 磅，段前空 6 磅，
+%   \item 目录中的章标题行采用黑体小四号字，固定行距 20 磅，段前空 0 磅，
 %     段后 0 磅；其他内容采用宋体小四号字，行距为固定值 20 磅，
-%     段前、段后均为 0 磅。
+%     段前、段后均为 0 磅。另外目录中的章标题的字母为Times New Roman。
 %   \item 目录中的章标题行居左书写，一级节标题行缩进 1 个汉字符，
 %     二级节标题行缩进 2 个汉字符。
 % \end{enumerate}
@@ -3035,7 +3078,13 @@
 %    \begin{macrocode}
   \else
     \titlecontents{chapter}
-      [\z@]{\addvspace{6bp}\sffamily}
+      [\z@]{%
+        \ifthu@main@language@chinese
+          \rmfamily \heiti
+        \else
+          \rmfamily \heiti \bfseries
+        \fi
+      }
       {\contentspush{\thecontentslabel\quad}}{}
       {\rmfamily\thu@leaders\thecontentspage}%
     \titlecontents{section}
@@ -3333,16 +3382,16 @@
   }%
   \thispagestyle{empty}%
   \begin{center}
-    {\fzxbiaosong \fontsize{24bp}{31.2bp} \textbf{\degree@level 学位论文}}
+    {\songti \fontsize{24bp}{31.2bp}\selectfont \textbf{\degree@level 学位论文}}
     \vspace{2cm}
 
-    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 22 bp*1.3默认行距比例*1.25行距 = 35.75
     % 20 bp*1.3默认行距比例*1.25行距 = 32.5
-    {\fontsize{24bp}{39bp} \rmfamily \siyuanheiti \thu@title \\}
+    {\rmfamily \heiti  \fontsize{22bp}{35.75bp}\selectfont \thu@title \\}
     \ifx\thu@subtitle\empty
       \relax%
     \else
-      {\fontsize{20bp}{32.5bp} \rmfamily \siyuanheiti \thu@subtitle \\}
+      {\rmfamily \heiti \fontsize{20bp}{32.5bp}\selectfont \thu@subtitle \\}
     \fi
     \vspace{1em}
 
@@ -3356,7 +3405,7 @@
     \fi
     \vfill
 
-      {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti %
+      {\songti \fontsize{18bp}{23.4bp}\selectfont   %
       \renewcommand\arraystretch{1.25}
       \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
         \makebox[6em][s]{研究生} & \thu@author\\
@@ -3364,7 +3413,7 @@
       \end{tabular}}
 
     \vspace{2cm}
-    {\fontsize{18bp}{23.4bp} \siyuansongti@en \siyuansongti \thu@titlepage@date@sustech}
+    {\songti \fontsize{18bp}{23.4bp}\selectfont \thu@titlepage@date@sustech}
   \end{center}
 }
 %    \end{macrocode}
@@ -3478,13 +3527,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     {\songti \xiaoer \textbf{\thu@subject}}
 
     \vspace{1.5cm}
-    % 24 bp*1.3默认行距比例*1.25行距 = 39
+    % 22 bp*1.3默认行距比例*1.25行距 = 35.75
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
-    {\fontsize{24bp}{39bp}\selectfont \heiti \thu@title \\}
+    {\heiti \fontsize{22bp}{35.75bp}\selectfont \thu@title \\}
     \ifx\thu@subtitle\empty
       \relax%
     \else
-      {\fontsize{18bp}{29.25bp}\selectfont \heiti \thu@subtitle \\}
+      {\heiti \fontsize{18bp}{29.25bp}\selectfont \thu@subtitle \\}
     \fi
 
     \vfill
@@ -3537,9 +3586,9 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
-      % 24 bp*1.15默认行距比例*1.25行距 = 34.5
+      % 22 bp*1.15默认行距比例*1.25行距 = 31.625
       % 18 bp*1.15默认行距比例*1.25行距 = 25.875
-      {\fontsize{24bp}{34.5bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
+      {\fontsize{22bp}{31.625bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
       \ifx\thu@subtitle@en\empty
         \relax%
       \else
@@ -4096,16 +4145,16 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \centering
       \normalsize
       \vspace{1em}
-      \begin{tabular}{llll}
-      作者签名： & \hspace{4cm} & 日期： &  \hspace{4cm}
+      \begin{tabular}{ll}
+        \quad \quad \makebox[15em][l]{作者签名：} & 日期： \\
       \end{tabular}
     \endgroup
   \else
     \begingroup
       \centering
       \normalsize
-      \begin{tabular}{llll}
-      Signature: & \hspace{4cm} & Date: &  \hspace{4cm}
+      \begin{tabular}{ll}
+        \quad \quad \makebox[20em][l]{Signature:} & Date:
       \end{tabular}
     \endgroup
   \fi
@@ -4117,18 +4166,18 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \centering
       \normalsize
       \renewcommand\arraystretch{2}%
-      \begin{tabular}{llll}
-      作者签名： & \hspace{4cm} & 日期： &  \hspace{4cm}\\
-      指导教师签名： & \hspace{4cm} & 日期： &  \hspace{4cm}
+      \begin{tabular}{ll}
+        \quad \quad \makebox[15em][l]{作者签名：} & 日期： \\
+        \quad \quad \makebox[15em][l]{指导教师签名：} & 日期：
       \end{tabular}
     \endgroup
   \else
     \begingroup
       \centering
       \normalsize
-      \begin{tabular}{llll}
-      Signature of Author: & \hspace{4cm} & Date: &  \hspace{4cm}\\
-      Signature of Supervisor: & \hspace{4cm} & Date: &  \hspace{4cm}
+      \begin{tabular}{ll}
+        \quad \quad \makebox[20em][l]{Signature of Author:} & Date: \\
+        \quad \quad \makebox[20em][l]{Signature of Supervisor:} & Date:
       \end{tabular}
     \endgroup
   \fi
@@ -4148,7 +4197,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       本人完全了解南方科技大学有关收集、保留、使用学位论文的规定，即：
 
-      \begin{enumerate}[wide]
+      \begin{enumerate}[wide,label={\arabic*.}]
         \item 按学校规定提交学位论文的电子版本。
         \item 学校有权保留并向国家有关部门或机构送交学位论文的电子版，允许论文被查阅。
         \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
@@ -4174,7 +4223,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \section*{Declaration of Authorization of Thesis}
 
       I fully understand the regulations regarding the collection, retention and use of thesis of Southern University of Science and Technology.
-      \begin{enumerate}[wide]
+      \begin{enumerate}[wide,label={\arabic*.}]
         \item Submit the electronic version of thesis as required by the University.
         \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
@@ -4198,11 +4247,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \thu@statementcopyright@sustech@english
     \fi
   \else
-    \includepdf[pagecommand={%
-      \thu@phantomsection
-      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
-      \thispagestyle{empty}%
-    }]{#1}%
+    \thu@pdfbookmark{0}{\thu@statement@toc@name}%
+    \includepdf[%
+%      pagecommand={%
+  %      \thu@phantomsection
+  %      \addcontentsline{toc}{chapter}{\thu@statement@toc@name}%
+  %      \thispagestyle{empty}%
+  %      }%
+      ]{#1}%
   \fi
 }
 %    \end{macrocode}
@@ -4369,7 +4421,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \fi
   \thusetup{language = english}%
   \ifthu@degree@graduate
-    \thu@chapter*{\thu@abstract@name@en}%
+    \ifthu@main@language@chinese
+      \thu@chapter*[\thu@abstract@name@en]{\textbf{\thu@abstract@name@en}}[\thu@abstract@name@en]%
+    \else
+      \thu@chapter*{\thu@abstract@name@en}%
+    \fi
   \else
     \thu@chapter*[]{\thu@abstract@name@en}%
   \fi
@@ -5218,8 +5274,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }%
 \newcommand\thu@appendix@bibliography[1]{\putbib[#1]}
 \newenvironment{statementcopr}{%
-  \thu@chapter*{\thu@statement@toc@name}%
-  \markboth{\thu@statement@name}{}%
+  \cleardoublepage
+  \chapter*{\thu@statement@toc@name}
+  \thispagestyle{empty}
+  %\thu@chapter*{\thu@statement@toc@name}%
+  %\markboth{\thu@statement@name}{}%
   \ctexset{
     section = {
       format    += \centering,
@@ -5253,9 +5312,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       numbering = false,
     },
     subsection = {
-      format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
-      number  = （\chinese{subsection}）,
-      aftername = \hspace{0pt},
+      % format     = \sffamily\fontsize{14bp}{20bp}\selectfont,
+      numbering  = false,
       % aftertitle = \ifthu@language@chinese ：\else :\fi,
     },
   }%
@@ -5299,7 +5357,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   labelsep   = !,
   before     = {
     \ifthu@degree@graduate
-      \fontsize{12bp}{16bp}\selectfont
+      % 10.5 bp*1.3默认行距比例 = 13.65
+      \fontsize{10.5bp}{13.65bp}\selectfont
     \fi
   },
   resume     = achievements,
