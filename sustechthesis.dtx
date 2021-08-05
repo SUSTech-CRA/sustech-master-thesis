@@ -4160,8 +4160,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \fi
 }
 \newcommand{\sustech@authorsupervisorsign}{
-  \vspace*{1em}
   \ifthu@main@language@chinese
+    \vspace*{1em}
     \begingroup
       \centering
       \normalsize
@@ -4175,6 +4175,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \begingroup
       \centering
       \normalsize
+      \renewcommand\arraystretch{2}%
       \begin{tabular}{ll}
         \quad \quad \makebox[20em][l]{Signature of Author:} & Date: \\
         \quad \quad \makebox[20em][l]{Signature of Supervisor:} & Date:
@@ -4227,7 +4228,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \item Submit the electronic version of thesis as required by the University.
         \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
-        \begin{enumerate}[wide,label={\arabic*)}]
+        \begin{enumerate}[wide,label={(\arabic*)}]
           \item I agree that once submitted, the thesis can be retrieved online and the first 16 pages can be viewed within the campus network.
           \item I agree that $\mdlgwhtsquare$ upon submission $\mdlgwhtsquare$ 12 months after submission, the full text of the thesis can be viewed and downloaded by the public.
         \end{enumerate}
