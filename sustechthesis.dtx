@@ -3083,10 +3083,17 @@
 % 但是页码仍然用 \cs{rmfamily}。
 %    \begin{macrocode}
   \else
-    \titlecontents{chapter}
-      [\z@]{\rmfamily \heiti}
-      {\bfseries \contentspush{\thecontentslabel\quad}}{\bfseries}
-      {\rmfamily\thu@leaders\thecontentspage}%
+    \ifthu@main@language@chinese
+      \titlecontents{chapter}
+        [\z@]{\rmfamily \heiti}
+        {\contentspush{\thecontentslabel\quad}}{}
+        {\rmfamily\thu@leaders\thecontentspage}%
+    \else
+      \titlecontents{chapter}
+        [\z@]{\rmfamily \heiti}
+        {\bfseries \contentspush{\MakeUppercase{\thecontentslabel}\quad}}{\bfseries}
+        {\rmfamily\thu@leaders\thecontentspage}%
+    \fi
     \titlecontents{section}
       [1em]{}
       {\contentspush{\thecontentslabel\quad}}{}
@@ -3097,6 +3104,20 @@
       {\thu@leaders\thecontentspage}%
   \fi
 }
+\ifthu@main@language@english
+  \ifdefined\texorpdfstring\else\newcommand{\texorpdfstring}[2]{#1}\fi
+  \let\oldchapter\chapter
+  \renewcommand{\chapter}{\@ifstar{\@sChapter}{\@Chapter}}
+  \newcommand{\@sChapter}[2][]{%
+    \oldchapter*{\texorpdfstring{\MakeUppercase{#2}}{#2}}}
+  \newcommand{\@Chapter}[2][]{%
+    \def\shortsec{#1}%
+    \ifx\shortsec\empty%
+      \oldchapter{\texorpdfstring{\MakeUppercase{#2}}{#2}}
+    \else%
+      \oldchapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{\texorpdfstring{\MakeUppercase{#2}}{#2}}
+    \fi}
+\fi
 \thu@set@toc@format
 \thu@option@hook{degree}{\thu@set@toc@format}
 %    \end{macrocode}
