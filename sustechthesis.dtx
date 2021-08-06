@@ -2295,9 +2295,15 @@
     \fancyhead[C]{\wuhao\leftmark}%
     \fancyfoot[C]{\wuhao\thepage}%
     \let\@mkboth\markboth
-    \def\chaptermark##1{%
-      \markboth{\CTEXifname{\CTEXthechapter\quad}{}##1}{}%
-    }%
+    \ifthu@main@language@chinese
+      \def\chaptermark##1{%
+        \markboth{\CTEXifname{\CTEXthechapter\quad}{}##1}{}%
+      }%
+    \else
+      \def\chaptermark##1{%
+        \markboth{\MakeUppercase{\CTEXifname{\CTEXthechapter\quad}{}##1}}{}%
+      }%
+    \fi
   \fi
   \let\sectionmark\@gobble
 }
@@ -3078,14 +3084,8 @@
 %    \begin{macrocode}
   \else
     \titlecontents{chapter}
-      [\z@]{%
-        \ifthu@main@language@chinese
-          \rmfamily \heiti
-        \else
-          \rmfamily \heiti \bfseries
-        \fi
-      }
-      {\contentspush{\thecontentslabel\quad}}{}
+      [\z@]{\rmfamily \heiti}
+      {\bfseries \contentspush{\thecontentslabel\quad}}{\bfseries}
       {\rmfamily\thu@leaders\thecontentspage}%
     \titlecontents{section}
       [1em]{}
