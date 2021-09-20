@@ -20,12 +20,12 @@
 下载途径：
 
 * 发布版：
-  * [GitHub Releases](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)：最新版的及时发布途径。
+  * [GitHub Releases](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)：最新发布版的获取途径。
   * [SUSTech 镜像站](https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/)：GitHub Releases 的镜像。
 * 开发版：
-  * [GitHub](https://github.com/SUSTech-CRA/sustech-master-thesis)
-  * [SUSTech-Git](https://mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis)
-  * 预构建 [Dev Build](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)
+  * [预构建 Dev Build](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)：最新预构建的获取途径，根据开发版 master 分支构建。
+  * [GitHub](https://github.com/SUSTech-CRA/sustech-master-thesis)：在 Github 上托管的源码。
+  * [SUSTech-Git](https://mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis)：在南方科技大学校内 Git 服务上托管的源码。
 
 ## 更新日志
 
