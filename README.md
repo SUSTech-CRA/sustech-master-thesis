@@ -20,7 +20,7 @@
 下载途径：
 
 * 发布版：
-  * [GitHub Releases](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)：最新发布版的获取途径。
+  * [GitHub Releases](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)：最新发布版的获取途径。
   * [SUSTech 镜像站](https://mirrors.sustech.edu.cn/github-release/SUSTech-CRA/sustech-master-thesis/)：GitHub Releases 的镜像。
 * 开发版：
   * [预构建 Dev Build](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)：最新预构建的获取途径，根据开发版 master 分支构建。
