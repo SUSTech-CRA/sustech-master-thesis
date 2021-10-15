@@ -4747,22 +4747,22 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
 % 这样在使用 \cs{bibliographystyle} 选择参考文献表的样式时也会设置对应的引用样式。
 %    \begin{macrocode}
-  \newcommand\bibstyle@super{%
-    \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
-  \newcommand\bibstyle@inline{%
-    \bibpunct{[}{]}{,}{n}{,}{,}}
-  \@namedef{bibstyle@author-year}{%
-    \bibpunct{(}{)}{;}{a}{,}{,}}
+%  \newcommand\bibstyle@super{%
+%    \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
+%  \newcommand\bibstyle@inline{%
+%    \bibpunct{[}{]}{,}{n}{,}{,}}
+%  \@namedef{bibstyle@author-year}{%
+%    \bibpunct{(}{)}{;}{a}{,}{,}}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-  \thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
+%  \thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
 %    \end{macrocode}
 %
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
 % 这样在使用 \cs{bibliographystyle} 选择参考文献表的样式时也会设置对应的引用样式。
 %    \begin{macrocode}
-  \@namedef{bibstyle@thuthesis-numeric}{\citestyle{super}}
+%  \@namedef{bibstyle@thuthesis-numeric}{\citestyle{super}}
 %  \@namedef{bibstyle@thuthesis-author-year}{\citestyle{author-year}}
 %  \@namedef{bibstyle@thuthesis-bachelor}{\citestyle{super}}
 %  \@namedef{bibstyle@thuthesis-inline}{\citestyle{inline}}
