@@ -2735,7 +2735,7 @@
     % 仅仅英文为主要语言的摘要需要大写
     \newcommand{\thu@abstract@name@en}{ABSTRACT}
   \fi
-  % 此处为南科大特色格式，子图需要括号。
+  % 此处为南科大规定格式，子图需要括号。
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand*{\thesubfigure}{(\alph{subfigure})}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
@@ -3104,7 +3104,7 @@
       {\thu@leaders\thecontentspage}%
   \fi
 }
-% 南科大特色格式，英文论文，chapter 全部大写，包括目录内的章节条目，页眉，正文章节标题。
+% 南科大规定格式，英文论文，chapter 全部大写，包括目录内的章节条目，页眉，正文章节标题。
 \ifthu@main@language@english
   \ifdefined\texorpdfstring\else\newcommand{\texorpdfstring}[2]{#1}\fi
   \let\oldchapter\chapter
@@ -4483,7 +4483,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \cleardoublepage
   \fi
   \ifthu@degree@graduate
-    \thu@chapter*{\thu@denotation@name}%
+    \thu@chapter*[]{\thu@denotation@name}%南科大规定，符号表不在目录中
   \else
     \thu@chapter*[]{\thu@denotation@name}%
   \fi
