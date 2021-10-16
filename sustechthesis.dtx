@@ -3486,13 +3486,13 @@
 \def\flagtrue{true}
 \def\zhuanye{%
   \ifx\flagtrue\thu@gongsuo%
-    工程领域%
+    专业类别%
   \else%
-    学科专业%
+    学科名称%
   \fi%
 }
 \def\zhuanye@en{%
-  \ifx\flagtrue\thu@gongsuo Engineering Field%
+  \ifx\flagtrue\thu@gongsuo Speciality%
   \else%
   Speciality%
   \fi%
@@ -3562,9 +3562,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       {\sihao%
       \renewcommand\arraystretch{1.5}
       \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
-        \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
+        \makebox[6em][s]{\heiti {学位申请人}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
-        \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
         \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
         \makebox[6em][s]{\heiti {答辩日期}} & \thu@format@date{\thu@date@zh@digit@short}{\thu@defense@date}\\
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
@@ -3626,7 +3625,6 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \begin{tabular}{@{}m{0.44\textwidth}m{0.44\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
-        \thu@info@item@sustech{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
         \thu@info@item@sustech{\zhuanye@en:}{\thu@discipline@en}\\
         \thu@info@item@sustech{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
