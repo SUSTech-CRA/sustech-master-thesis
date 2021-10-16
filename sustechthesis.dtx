@@ -3518,7 +3518,13 @@
     Doctor%
   \fi%
 }
-\def\thu@subject{\thu@degree@domain \degree@level 学位论文}
+\def\thu@subject{
+\ifx\flagtrue\thu@gongsuo%
+\thu@degree@domain \degree@level 专业学位论文%
+\else%
+\thu@degree@domain \degree@level 学位论文%
+\fi%
+}
 \def\thu@subject@en{%
 \ifx\flagtrue\thu@gongsuo%
 Thesis for the professional degree of \degree@level@en@noun \ of \thu@degree@domain@en%
