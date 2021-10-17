@@ -5370,6 +5370,12 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \fi
   \fi
 }{}
+\newcommand*{\newbibstartnumber}[1]{%
+  \apptocmd{\thebibliography}{%
+    \global\c@NAT@ctr #1\relax
+    \addtocounter{NAT@ctr}{-1}%
+  }{}{}%
+}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -5389,13 +5395,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \newlist{achievements}{enumerate}{1}
 \setlist[achievements]{
   label      = [\arabic*],
-  align      = left,
-  leftmargin = 10mm,
+  wide=0bp, leftmargin=28bp, labelsep=*,
   topsep     = 6bp,
   parsep     = 0bp,
   partopsep  = 0bp,
   itemsep    = 6bp,
-  labelsep   = !,
   before     = {
     \ifthu@degree@graduate
       % 10.5 bp*1.3默认行距比例 = 13.65
