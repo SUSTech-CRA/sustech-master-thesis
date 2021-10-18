@@ -5,8 +5,9 @@
     "latex-workshop.latex.build.forceRecipeUsage": true,
     "latex-workshop.latex.recipes": [
         {
-            "name": "latexmk for thesis",
+            "name": "latexmk for sustechthesis",
             "tools": [
+                "xetex-sustechthesis",
                 "latexmk-xelatex"
             ]
         },
@@ -18,6 +19,17 @@
         }
     ],
     "latex-workshop.latex.tools": [
+        {
+            "name": "xetex-sustechthesis",
+            "command": "xetex",
+            "args": [
+                "-file-line-error",
+                "-halt-on-error",
+                "-interaction=nonstopmode",
+                "sustechthesis.ins"
+            ],
+            "env": {}
+        },
         {
             "name": "latexmk-xelatex",
             "command": "latexmk",
