@@ -5376,6 +5376,18 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \addtocounter{NAT@ctr}{-1}%
   }{}{}%
 }
+\NewDocumentEnvironment{localref}{m O{1}}
+{
+\newbibstartnumber{#2}
+\begin{bibunit}[gbt7714-numerical]
+\renewcommand{\bibsection}{}
+\citestyle{super}
+}
+{
+\putbib[#1]
+\end{bibunit}
+\newbibstartnumber{1}
+}
 %    \end{macrocode}
 % \end{environment}
 %
