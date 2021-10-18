@@ -2092,6 +2092,7 @@
     \def\appendixname{附录}%
     \def\indexname{索引}%
     \def\thu@acknowledgements@name{致\quad 谢}%
+    \def\thu@conclusion@name{结\quad 论}%
     \ifthu@degree@bachelor
       \def\contentsname{目\quad 录}%
       \def\listfigurename{插图索引}%
@@ -2142,6 +2143,7 @@
         \def\thu@list@algorithm@name{LIST OF ALGORITHMS}%
         \def\listequationname{LIST OF EQUATIONS}%
         \def\thu@denotation@name{LIST OF SYMBOLS AND ACRONYMS}%
+        \def\thu@conclusion@name{CONCLUSION}%
         \def\bibname{REFERENCES}%
         \def\appendixname{APPENDIX}%
         \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
@@ -4506,6 +4508,18 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   labelsep*=0.5cm,
   itemindent=0pt,
 }
+%    \end{macrocode}
+% \end{environment}
+%
+%% \subsubsection{结论}
+% \label{sec:conclusion}
+%
+% \begin{environment}{conclusion}
+% 定义结论环境
+%    \begin{macrocode}
+\newenvironment{conclusion}{%
+  \thu@chapter*{\thu@conclusion@name}%
+}{}
 %    \end{macrocode}
 % \end{environment}
 %
