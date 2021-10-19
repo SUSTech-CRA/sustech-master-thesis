@@ -34,7 +34,7 @@
 ## 升级
 ### 发布版
 
-下载发布版的的 zip 包，使用其中的 `sustechthesis.cls` 等文件覆盖原有的即可，无须额外操作。
+下载发布版的的 zip 包，复制其中的 `sustechthesis.*` 开头的文件覆盖原有的即可（必须包括 `dtx`, `ins`, `cls`）。
 
 ### 开发版
 
@@ -90,10 +90,7 @@ xetex sustechthesis.ins
 * `ref/` 示例文档参考文献目录
 
 ### 样式控制
-* `sustechthesis.cls` 模板类文件，由同名 dtx 文件和 ins 文件，（开发版不含，需要运行生成）。
-* `thuthesis-*.bst` BIBTEX 参考文献表样式文件
-* `thuthesis-*.bbx` BibLaTeX 参考文献表样式文件
-* `thuthesis-*.cbx` BibLaTeX 参考文献引用样式文件
+* `sustechthesis.cls` 模板类文件，由同名 dtx 文件和 ins 文件生成，（开发版不含，运行时生成）。
 
 ### 编译脚本
 * `Makefile` Makefile
