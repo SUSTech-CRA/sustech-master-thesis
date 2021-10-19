@@ -1,0 +1,56 @@
+{
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.intellisense.unimathsymbols.enabled": true,
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.build.forceRecipeUsage": true,
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk for sustechthesis",
+            "tools": [
+                "xetex-sustechthesis",
+                "latexmk-xelatex"
+            ]
+        },
+        {
+            "name": "make thesis",
+            "tools": [
+                "make-thesis"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xetex-sustechthesis",
+            "command": "xetex",
+            "args": [
+                "-file-line-error",
+                "-halt-on-error",
+                "-interaction=nonstopmode",
+                "sustechthesis.ins"
+            ],
+            "env": {}
+        },
+        {
+            "name": "latexmk-xelatex",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-file-line-error",
+                "-halt-on-error",
+                "-interaction=nonstopmode",
+                "-synctex=1",
+                "-pv-",
+                "-pvc-",
+                "-outdir=%OUTDIR%",
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "make-thesis",
+            "command": "make",
+            "args": [],
+            "env": {}
+        }
+    ]
+}

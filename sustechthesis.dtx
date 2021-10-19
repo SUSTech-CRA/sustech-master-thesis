@@ -2092,6 +2092,7 @@
     \def\appendixname{附录}%
     \def\indexname{索引}%
     \def\thu@acknowledgements@name{致\quad 谢}%
+    \def\thu@conclusion@name{结\quad 论}%
     \ifthu@degree@bachelor
       \def\contentsname{目\quad 录}%
       \def\listfigurename{插图索引}%
@@ -2141,7 +2142,8 @@
         \def\thu@list@figure@table@name{LIST OF FIGURES AND TABLES}%
         \def\thu@list@algorithm@name{LIST OF ALGORITHMS}%
         \def\listequationname{LIST OF EQUATIONS}%
-        \def\thu@denotation@name{NOMENCLATURE}%
+        \def\thu@denotation@name{LIST OF SYMBOLS AND ACRONYMS}%
+        \def\thu@conclusion@name{CONCLUSION}%
         \def\bibname{REFERENCES}%
         \def\appendixname{APPENDIX}%
         \def\thu@acknowledgements@name{ACKNOWLEDGEMENTS}%
@@ -2396,8 +2398,8 @@
 \setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
 \setlist[enumerate,3]{label={\alph*.}}
 %
-\setlist[1]{leftmargin=2\parindent}
-\setlist[2]{leftmargin=\parindent}
+\setlist[1]{wide}
+\setlist[2]{leftmargin=3\parindent}
 \setlist[3]{leftmargin=\parindent}
 \setlist[4]{leftmargin=\parindent}
 %    \end{macrocode}
@@ -2735,7 +2737,7 @@
     % 仅仅英文为主要语言的摘要需要大写
     \newcommand{\thu@abstract@name@en}{ABSTRACT}
   \fi
-  % 此处为南科大特色格式，子图需要括号。
+  % 此处为南科大规定格式，子图需要括号。
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand*{\thesubfigure}{(\alph{subfigure})}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
@@ -3104,7 +3106,7 @@
       {\thu@leaders\thecontentspage}%
   \fi
 }
-% 南科大特色格式，英文论文，chapter 全部大写，包括目录内的章节条目，页眉，正文章节标题。
+% 南科大规定格式，英文论文，chapter 全部大写，包括目录内的章节条目，页眉，正文章节标题。
 \ifthu@main@language@english
   \ifdefined\texorpdfstring\else\newcommand{\texorpdfstring}[2]{#1}\fi
   \let\oldchapter\chapter
@@ -3486,13 +3488,13 @@
 \def\flagtrue{true}
 \def\zhuanye{%
   \ifx\flagtrue\thu@gongsuo%
-    工程领域%
+    专业类别%
   \else%
-    学科专业%
+    学科名称%
   \fi%
 }
 \def\zhuanye@en{%
-  \ifx\flagtrue\thu@gongsuo Engineering Field%
+  \ifx\flagtrue\thu@gongsuo Speciality%
   \else%
   Speciality%
   \fi%
@@ -3518,7 +3520,13 @@
     Doctor%
   \fi%
 }
-\def\thu@subject{\thu@degree@domain \degree@level 学位论文}
+\def\thu@subject{
+\ifx\flagtrue\thu@gongsuo%
+\thu@degree@domain \degree@level 专业学位论文%
+\else%
+\thu@degree@domain \degree@level 学位论文%
+\fi%
+}
 \def\thu@subject@en{%
 \ifx\flagtrue\thu@gongsuo%
 Thesis for the professional degree of \degree@level@en@noun \ of \thu@degree@domain@en%
@@ -3562,9 +3570,8 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       {\sihao%
       \renewcommand\arraystretch{1.5}
       \begin{tabular}{@{}m{0.44\textwidth}<{\raggedleft}@{：}m{0.44\textwidth}@{}}
-        \makebox[6em][s]{\heiti {\degree@level 研究生}} & \thu@author\\
+        \makebox[6em][s]{\heiti {学位申请人}} & \thu@author\\
         \makebox[6em][s]{\heiti {指导教师}} & \thu@supervisor\\
-        \makebox[6em][s]{\heiti {申请学位}} & \thu@degree@domain \degree@level\\
         \makebox[6em][s]{\heiti {\zhuanye}} & \thu@discipline\\
         \makebox[6em][s]{\heiti {答辩日期}} & \thu@format@date{\thu@date@zh@digit@short}{\thu@defense@date}\\
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
@@ -3626,7 +3633,6 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \begin{tabular}{@{}m{0.44\textwidth}m{0.44\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
-        \thu@info@item@sustech{Academic Degree Applied for:}{\degree@level@en@noun \ of \thu@degree@domain@en}\\
         \thu@info@item@sustech{\zhuanye@en:}{\thu@discipline@en}\\
         \thu@info@item@sustech{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
@@ -4419,7 +4425,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \ifthu@degree@graduate
     \noindent
     % leftmargin 4 个字符的宽度
-    \begin{description}[font=\normalfont,labelsep=0pt,leftmargin=4em]
+    \begin{description}[wide=0bp,font=\normalfont,labelsep=0pt,leftmargin=4em]
       \item[\textsf{关键词：}] \thu@clist@use{\thu@keywords}{；}%
     \end{description}
   \else
@@ -4459,7 +4465,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \noindent
   \fi
   % leftmargin 5 个字符的宽度 （10个英文字符）
-  \begin{description}[font=\normalfont,labelsep=0pt,leftmargin=5em]
+  \begin{description}[wide=0bp,font=\normalfont,labelsep=0pt,leftmargin=5em]
     \item[\textbf{Keywords:}\space] \thu@clist@use{\thu@keywords@en}{; }%
   \end{description}
   \ifthu@degree@graduate
@@ -4502,6 +4508,18 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   labelsep*=0.5cm,
   itemindent=0pt,
 }
+%    \end{macrocode}
+% \end{environment}
+%
+%% \subsubsection{结论}
+% \label{sec:conclusion}
+%
+% \begin{environment}{conclusion}
+% 定义结论环境
+%    \begin{macrocode}
+\newenvironment{conclusion}{%
+  \thu@chapter*{\thu@conclusion@name}%
+}{}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -4747,22 +4765,22 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
 % 这样在使用 \cs{bibliographystyle} 选择参考文献表的样式时也会设置对应的引用样式。
 %    \begin{macrocode}
-  \newcommand\bibstyle@super{%
-    \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
-  \newcommand\bibstyle@inline{%
-    \bibpunct{[}{]}{,}{n}{,}{,}}
-  \@namedef{bibstyle@author-year}{%
-    \bibpunct{(}{)}{;}{a}{,}{,}}
+%  \newcommand\bibstyle@super{%
+%    \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
+%  \newcommand\bibstyle@inline{%
+%    \bibpunct{[}{]}{,}{n}{,}{,}}
+%  \@namedef{bibstyle@author-year}{%
+%    \bibpunct{(}{)}{;}{a}{,}{,}}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-  \thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
+%  \thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
 %    \end{macrocode}
 %
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
 % 这样在使用 \cs{bibliographystyle} 选择参考文献表的样式时也会设置对应的引用样式。
 %    \begin{macrocode}
-  \@namedef{bibstyle@thuthesis-numeric}{\citestyle{super}}
+%  \@namedef{bibstyle@thuthesis-numeric}{\citestyle{super}}
 %  \@namedef{bibstyle@thuthesis-author-year}{\citestyle{author-year}}
 %  \@namedef{bibstyle@thuthesis-bachelor}{\citestyle{super}}
 %  \@namedef{bibstyle@thuthesis-inline}{\citestyle{inline}}
@@ -5352,6 +5370,24 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \fi
   \fi
 }{}
+\newcommand*{\newbibstartnumber}[1]{%
+  \apptocmd{\thebibliography}{%
+    \global\c@NAT@ctr #1\relax
+    \addtocounter{NAT@ctr}{-1}%
+  }{}{}%
+}
+\NewDocumentEnvironment{localref}{m O{1}}
+{
+\newbibstartnumber{#2}
+\begin{bibunit}[gbt7714-numerical]
+\renewcommand{\bibsection}{}
+\citestyle{super}
+}
+{
+\putbib[#1]
+\end{bibunit}
+\newbibstartnumber{1}
+}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -5371,13 +5407,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \newlist{achievements}{enumerate}{1}
 \setlist[achievements]{
   label      = [\arabic*],
-  align      = left,
-  leftmargin = 10mm,
+  wide=0bp, leftmargin=28bp, labelsep=*,
   topsep     = 6bp,
   parsep     = 0bp,
   partopsep  = 0bp,
   itemsep    = 6bp,
-  labelsep   = !,
   before     = {
     \ifthu@degree@graduate
       % 10.5 bp*1.3默认行距比例 = 13.65

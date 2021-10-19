@@ -26,14 +26,14 @@
   %
   % 学位
   %
-  degree-domain = {工学}, % 【中文】学科门类：可选理学、工学
-  degree-domain* = {Engineering}, % 【英文】学位等级：可选Science, Engineering
-  gongsuo = false, % 是否为工程硕士：工程硕士则填 true ，学术硕士或其他为 false 。
+  degree-domain = {工学}, % 【中文】学科门类：可选理学、工学、医学
+  degree-domain* = {Engineering}, % 【英文】学位等级：可选Science, Engineering, Medicine
+  gongsuo = false, % 是否为专业型学位。专业型学位则填 true ，学术型或其他为 false 。
   %
   % 培养单位
   %   填写所属院系的全名
   %   超长英文系名可以手动换行
-  department = {计算机科学与技术系},
+  department = {计算机科学与工程系},
   department* = {School of System Design and \\Intelligent Manufacturing},
   %
   % 学科
@@ -42,10 +42,11 @@
   %   2. 工程硕士
   %      工程领域名称
   %
-  discipline  = {计算机科学与工程},
-  discipline* = {Computer Science and Engineering},
+  discipline  = {计算机科学与技术},
+  discipline* = {Computer Science and Technology},
   %
   % 姓名
+  %   英文用全拼，姓在前，名在后，姓和名的首字母大写，其余小写
   %
   author  = {李子强},
   author* = {Li Ziqiang},
@@ -95,14 +96,18 @@
 % 也可以使用 ntheorem
 % \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 
-% 参考文献使用 BibTeX + natbib 宏包
-% 顺序编码制
-\usepackage[sort]{natbib}
-\bibliographystyle{thuthesis-numeric}
+%%%%%% 参考文献编译方式二选一，不要同时开启。
+%%%% 选择一
+%% 参考文献使用 BibTeX + natbib 宏包
+%% 顺序编码制
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{gbt7714-numerical}
+\usepackage{bibunits}
 
-% % 参考文献使用 BibLaTeX 宏包
-% \usepackage[backend=biber,style=thuthesis-numeric]{biblatex}
-% % 声明 BibLaTeX 的数据库
+%%%% 选择二（不兼容本模板，请勿使用）
+%% 参考文献使用 BibLaTeX 宏包
+% \usepackage[backend=biber,style=gb7714-2015]{biblatex}
+%% 声明 BibLaTeX 的数据库
 % \addbibresource{ref/refs.bib}
 
 % 定义所有的图片文件在 figures 子目录下

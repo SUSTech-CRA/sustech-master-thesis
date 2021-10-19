@@ -8,6 +8,7 @@
   % 语言 language:
   %   chinese （默认）| english
   % 中文字体 cjk-font
+  %   auto （默认，自动选择系统自带字体）| external （包内字体）| windows | mac | 等
   %   在 **非Windows** 的系统上推荐使用包内字体，而非系统字体。
   %   以达到和 Windows 系统上显示的字体效果。
   %   Windows 系统上可以删除该参数，使用系统内置字体。
@@ -42,8 +43,8 @@
 % \listoffigures           % 插图清单
 % \listoftables            % 附表清单
 
-% 符号对照表
-% \input{data/denotation}
+% 符号对照表（非强制性要求，如果论文中所用符号不多，可以略去）
+\input{data/denotation}
 
 
 % 正文部分
@@ -61,7 +62,7 @@
 
 % 参考文献
 \bibliography{ref/refs}  % 参考文献使用 BibTeX 编译
-% \printbibliography       % 参考文献使用 BibLaTeX 编译
+% \printbibliography       % 参考文献使用 BibLaTeX 编译，（不兼容本模板，请勿使用）
 
 % 附录
 \appendix
