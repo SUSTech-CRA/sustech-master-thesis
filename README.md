@@ -47,10 +47,10 @@ xetex sustechthesis.ins
 即可得到 `sustechthesis.cls` 等模板文件。
 
 ## 反馈与QA
-
-1. 南科大LaTeX学习交流群：119667812
-2. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
-3. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
+1. 南科大研究生模板反馈群: 320971126
+2. 南科大LaTeX学习交流群：119667812
+3. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
+4. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
 
 ## 使用
 ### Windows 中编译，使用 `latexmk`
