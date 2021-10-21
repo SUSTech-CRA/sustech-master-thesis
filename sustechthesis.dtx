@@ -786,61 +786,67 @@
 % \subsubsection{参考文献}
 % \label{sec:bibliography}
 %
-% 参考文献通常可以使用 \hologo{BibTeX} 或 biblatex 生成。
+% 参考文献使用 \hologo{BibTeX} 生成。
 % \hologo{BibTeX} 是 LaTeX 处理参考文献的传统的方式，
 % 需要在使用 \cs{bibliographystyle}\marg{style} 选择样式
 % 并用 \cs{bibliography} 设置 \file{.bib} 的路径。
 % 然后使用 \texttt{bibtex} 对 \file{.aux} 文件进行编译得到 \file{.bbl} 文件。
 % 其中的参考文献表内容会在后续编译时替换到 \cs{bibliography} 的位置。
-% Biblatex 是较新的方式，需要在载入宏包时通过 \option{style} 选择样式，
-% 在导言区使用 \cs{addbibresource} 声明数据库的路径，
-% 并在输出参考文献表的位置使用 \cs{printbibliography} 命令,
-% 而且编译参考文献的命令需要换为 biber。
-% 这两种方式各有优缺点，比如 BibTeX 无法对中文按照拼音排序，一些样式更新不够及时；
-% Biblatex 运行较缓慢，无法对多个参考文献表使用不同样式。
-% 用户需要根据实际选择合适的方式。
 %
-% 研究生要求的参考文献格式基于《信息与文献 参考文献著录规则》（GB/T 7714—2015）
-% 进行了少量改编（如英文姓名不使用全大写），
-% 可以选择“顺序编码制”和“著者-出版年制”。
-% 如果使用 BibTeX 的方式，需要在导言区载入 \pkg{natbib} 宏包并选择样式，如：
-% \begin{latex}
-%   % 顺序编码制
-%   \usepackage[sort]{natbib}
-%   \bibliographystyle{thuthesis-numeric}
-% \end{latex}
-% 或
-% \begin{latex}
-%   % 著者-出版年制
-%   \usepackage{natbib}
-%   \bibliographystyle{thuthesis-author-year}
-% \end{latex}
-% 其中的 \option{sort} 选项会将同一处引用的多个文献编号严格按照顺序排序，
-% 这并非《写作指南》要求，但是推荐使用。
-% 这里调用的样式由 \href{http://ctan.org/pkg/gbt7714}{\pkg{gbt7714}} 的 \file{.bst} 进行了少量修改。
-%
-% 参考文献表采用“著者-出版年”制组织时，各篇文献首先按文种集中，然后按著者字
-% 顺和出版年排列；中文文献可以按著者汉语拼音字顺排列，也可以按著者的笔画笔顺排列。
-% 但由于 \hologo{BibTeX} 功能的局限性，无法自动获取著者姓名的拼音或笔画笔顺进行正确排序。
-% 一种解放方法是在 \file{.bib} 数据库的中文文献的 |key| 域手动录入著者姓名的拼音，
-% 这比较适合中文文献数量较少的情况，如：
-% \begin{latex}
-%   @book{capital,
-%     author = {马克思 and 恩格斯},
-%     key    = {ma3 ke4 si1 & en1 ge2 si1},
-%     ...
-%   }
-% \end{latex}
-% 另一种方式是使用 biblatex，应在在导言区设置
-% \begin{latex}
-%   \usepackage[backend=biber,style=thuthesis-author-year]{biblatex}
-%   \addbibresource{ref/refs.bib}
-% \end{latex}
-% 这里的样式由 \href{https://ctan.org/pkg/biblatex-gb7714-2015}{biblatex-gb7714-2015} 进行了少量改编，
-% 一些额外用法可以参考该宏包的文档。
-% 注意 \pkg{biblatex} 跟 \pkg{natbib} 不兼容，
-% 而且 \cs{addbibresource} 必须在导言区设置。
-% 输出参考文献表应使用 \cs{printbibliography} 命令。
+% ^^A 参考文献通常可以使用 \hologo{BibTeX} 或 biblatex 生成。
+% ^^A \hologo{BibTeX} 是 LaTeX 处理参考文献的传统的方式，
+% ^^A 需要在使用 \cs{bibliographystyle}\marg{style} 选择样式
+% ^^A 并用 \cs{bibliography} 设置 \file{.bib} 的路径。
+% ^^A 然后使用 \texttt{bibtex} 对 \file{.aux} 文件进行编译得到 \file{.bbl} 文件。
+% ^^A 其中的参考文献表内容会在后续编译时替换到 \cs{bibliography} 的位置。
+% ^^A Biblatex 是较新的方式，需要在载入宏包时通过 \option{style} 选择样式，
+% ^^A 在导言区使用 \cs{addbibresource} 声明数据库的路径，
+% ^^A 并在输出参考文献表的位置使用 \cs{printbibliography} 命令,
+% ^^A 而且编译参考文献的命令需要换为 biber。
+% ^^A 这两种方式各有优缺点，比如 BibTeX 无法对中文按照拼音排序，一些样式更新不够及时；
+% ^^A Biblatex 运行较缓慢，无法对多个参考文献表使用不同样式。
+% ^^A 用户需要根据实际选择合适的方式。
+% ^^A 
+% ^^A 研究生要求的参考文献格式基于《信息与文献 参考文献著录规则》（GB/T 7714—2015）
+% ^^A 进行了少量改编（如英文姓名不使用全大写），
+% ^^A 可以选择“顺序编码制”和“著者-出版年制”。
+% ^^A 如果使用 BibTeX 的方式，需要在导言区载入 \pkg{natbib} 宏包并选择样式，如：
+% ^^A \begin{latex}
+% ^^A   % 顺序编码制
+% ^^A   \usepackage[sort]{natbib}
+% ^^A   \bibliographystyle{thuthesis-numeric}
+% ^^A \end{latex}
+% ^^A 或
+% ^^A \begin{latex}
+% ^^A   % 著者-出版年制
+% ^^A   \usepackage{natbib}
+% ^^A   \bibliographystyle{thuthesis-author-year}
+% ^^A \end{latex}
+% ^^A 其中的 \option{sort} 选项会将同一处引用的多个文献编号严格按照顺序排序，
+% ^^A 这并非《写作指南》要求，但是推荐使用。
+% ^^A 这里调用的样式由 \href{http://ctan.org/pkg/gbt7714}{\pkg{gbt7714}} 的 \file{.bst} 进行了少量修改。
+% ^^A % ^^A 参考文献表采用“著者-出版年”制组织时，各篇文献首先按文种集中，然后按著者字
+% ^^A 顺和出版年排列；中文文献可以按著者汉语拼音字顺排列，也可以按著者的笔画笔顺排列。
+% ^^A 但由于 \hologo{BibTeX} 功能的局限性，无法自动获取著者姓名的拼音或笔画笔顺进行正确排序。
+% ^^A 一种解放方法是在 \file{.bib} 数据库的中文文献的 |key| 域手动录入著者姓名的拼音，
+% ^^A 这比较适合中文文献数量较少的情况，如：
+% ^^A \begin{latex}
+% ^^A   @book{capital,
+% ^^A     author = {马克思 and 恩格斯},
+% ^^A     key    = {ma3 ke4 si1 & en1 ge2 si1},
+% ^^A     ...
+% ^^A   }
+% ^^A \end{latex}
+% ^^A 另一种方式是使用 biblatex，应在在导言区设置
+% ^^A \begin{latex}
+% ^^A   \usepackage[backend=biber,style=thuthesis-author-year]{biblatex}
+% ^^A   \addbibresource{ref/refs.bib}
+% ^^A \end{latex}
+% ^^A 这里的样式由 \href{https://ctan.org/pkg/biblatex-gb7714-2015}{biblatex-gb7714-2015} 进行了少量改编，
+% ^^A 一些额外用法可以参考该宏包的文档。
+% ^^A 注意 \pkg{biblatex} 跟 \pkg{natbib} 不兼容，
+% ^^A 而且 \cs{addbibresource} 必须在导言区设置。
+% ^^A 输出参考文献表应使用 \cs{printbibliography} 命令。
 %
 % \subsubsection{致谢}
 %
@@ -891,7 +897,11 @@
 %
 % \DescribeEnv{achievements}
 % 本章的其他标题同样使用 \cs{section*}，\cs{subsection*} 等命令生成，
-% 研究成果用 \env{achievements} 环境罗列。
+% “学术论文”和“申请及已获得的专利”使用 \env{localref} 环境生成，环境内使用 \cs{nocite}\marg{citekey} 引用参考文献
+% （与 \cs{cite}\marg{citekey}使用方式一致）。
+% 《指南》要求引用编号连续，故自行计算起始编号作为 \env{localref} 环境参数。
+% “参与的科研项目及获奖情况”使用 \env{achievements} 环境生成，使用方式同 \env{enumerate} 环境，
+% 同样需要指定起始编号以满足《指南》要求。
 %
 % \begin{latex}
 %   \begin{resume}
@@ -901,13 +911,19 @@
 %     \section*{在学期间完成的相关学术成果}
 %
 %     \subsection*{学术论文}
-%     \begin{achievements}
-%       \item ……
-%       \item ……
-%     \end{achievements}
+%     \begin{localref}{ref/refs}[number]
+%         \nocite{....}
+%         \nocite{....}
+%       \end{localref}
 %
-%     \subsection*{专利}
-%     \begin{achievements}
+%     \subsection*{申请及已获得的专利（无获奖时此项不必列出）}
+%     \begin{localref}{ref/refs}[number]
+%       \nocite{....}
+%       \nocite{....}
+%     \end{localref}
+%
+%     \subsection*{参与的科研项目及获奖情况（无获奖时此项不必列出）}
+%     \begin{achievements}[start=number]
 %       \item ……
 %       \item ……
 %     \end{achievements}
