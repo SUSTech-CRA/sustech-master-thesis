@@ -123,6 +123,7 @@
 %  \item 李子强（\githubuser{liziwl}）：2019 级研究生，主要维护者。
 %  \item 樊青远（\githubuser{sparkcyf}）：2018 级本科生，CRA 会长，为校内 \LaTeX{} 活动提供支持。
 %  \item 梁钰栋（\githubuser{Iydon}）：2017 级本科生，开发维护本科生毕业生模版，为该模版提供建议。
+%  \item 李可明（\githubuser{ghlkm}）：2020 级研究生，参与修改该模板，并提供建议。
 % \end{itemize}
 %
 % \sustechthesis{} 由 \thuthesis{} v7.1.0 适配，感谢清华大学 TUNA 协会为模版易用性所做出的努力。
@@ -156,9 +157,6 @@
 % sustechthesis.ins & \textsc{DocStrip} 驱动文件（开发用） \\
 % sustechthesis.dtx & \textsc{DocStrip} 源文件（开发用）\\\midrule
 % sustechthesis.cls & 模板类文件\\
-% thuthesis-*.bst & \hologo{BibTeX} 参考文献表样式文件\\
-% thuthesis-*.bbx & BibLaTeX 参考文献表样式文件\\
-% thuthesis-*.cbx & BibLaTeX 参考文献引用样式文件\\
 % sustechthesis-example.tex & 示例文档主文件\\
 % ref/ & 示例文档参考文献目录\\
 % data/ & 示例文档章节具体内容\\
@@ -237,7 +235,7 @@
 %   $ xetex sustechthesis.ins                       # 生成 sustechthesis.cls
 % \end{shell}
 %
-% 然后，生成论文以及书脊：
+% 然后，生成论文：
 % \begin{shell}
 %   $ xelatex sustechthesis-example.tex
 %   $ bibtex sustechthesis-example.aux              # 生成 bbl 文件
@@ -256,8 +254,7 @@
 % \subsection{升级}
 % \label{sec:upgrade}
 % 如果需要升级 \sustechthesis{}，应当从 GitHub 下载最新的版本，
-% 将 \file{sustechthesis.dtx}，\file{sustechthesis.ins} 和
-% \file{thuthesis-*.bst} 拷贝至工作目录覆盖相应的文件，然后按照
+% 将 \file{sustechthesis.dtx} 和 \file{sustechthesis.ins} 拷贝至工作目录覆盖相应的文件，然后按照
 % 第~\ref{sec:generate-cls} 节的内容生成新的模板和使用说明。
 %
 % 有时模板可能进行了重要的修改，不兼容已写好的正文内容，用户应按照示例
@@ -272,8 +269,6 @@
 % \label{sec:userguide}
 %
 % 模板核心文件有：\file{sustechthesis.cls}，
-% \file{thuthesis-*.bst}（\hologo{BibTeX}），\\
-% \file{thuthesis-*.bbx} 和 \file{thuthesis-*.cbx}（BibLaTeX），
 % 但如果没有示例文档会较难下手，所以推荐从模板自带的示例文档入手。其中包括了论文
 % 写作用到的所有命令及其使用方法，只需用自己的内容进行相应替换就可以。对于不清
 % 楚的命令可以查阅本手册。下面的例子描述了模板中章节的组织形式，来自于示例文档，
@@ -349,7 +344,7 @@
 %
 % 所以建议在提交最终版前使用 Windows 平台的字体进行编译。
 %
-% 用户也可以在调用 \sustechthesis{} 时手动指定使用的字库，如：
+% 用户也可以在调用 \sustechthesis{} 时手动指定使用系统自带的字库，如：
 %
 % \begin{latex}
 %   \documentclass[fontset=windows]{sustechthesis}
@@ -358,7 +353,7 @@
 % 允许的选项有 \option{windows}、\option{mac}、\option{fandol}，详
 % 见 \pkg{ctex}、\pkg{xeCJK}、\pkg{fontspec} 等宏包的使用说明。
 %
-% 或者使用包内带的 Windows 字体：
+% 如在非 Windows 系统下还想使用其字体，可使用 \option{external} 选项调用包内带的 Windows 字体：
 %
 % \begin{latex}
 %   \documentclass[cjk-font=external]{sustechthesis}
