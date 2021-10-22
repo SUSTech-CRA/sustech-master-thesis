@@ -806,7 +806,7 @@
 % ^^A 这两种方式各有优缺点，比如 BibTeX 无法对中文按照拼音排序，一些样式更新不够及时；
 % ^^A Biblatex 运行较缓慢，无法对多个参考文献表使用不同样式。
 % ^^A 用户需要根据实际选择合适的方式。
-% ^^A 
+% ^^A
 % ^^A 研究生要求的参考文献格式基于《信息与文献 参考文献著录规则》（GB/T 7714—2015）
 % ^^A 进行了少量改编（如英文姓名不使用全大写），
 % ^^A 可以选择“顺序编码制”和“著者-出版年制”。
@@ -3597,7 +3597,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 
 \def\thu@info@item@sustech#1#2{%
-  \textbf{#1} & %
+  {
+    \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
+    \bfseries
+    \begin{tabular}{@{}l@{}}#1\end{tabular}%
+  } & %
   {
     \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
     \begin{tabular}{@{}l@{}}#2\end{tabular}%
@@ -3641,13 +3645,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       {\sihao%
       \renewcommand\arraystretch{1.3}
       % 手动调整使得视觉接近
-      \begin{tabular}{@{}m{0.44\textwidth}m{0.44\textwidth}@{}}
+      \hspace*{2em}
+      \begin{tabular}{@{}m{0.27\textwidth}m{0.5\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
         \thu@info@item@sustech{\zhuanye@en:}{\thu@discipline@en}\\
         \thu@info@item@sustech{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
-        \thu@info@item@sustech{Degree-Conferring-Institution:}{Southern University of Science\\and Technology}
+        \thu@info@item@sustech{Degree-Conferring-\\Institution:}{Southern University of Science and\\Technology}
       \end{tabular}}
     \vspace{1.5cm}
 
