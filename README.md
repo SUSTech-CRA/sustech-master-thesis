@@ -1,4 +1,4 @@
-# 南方科技大学研究生毕业论文模板 sustechthesis
+# 南方科技大学研究生学位论文模板 sustechthesis
 
 [![Actions Status](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml/badge.svg)](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml)
 [![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
