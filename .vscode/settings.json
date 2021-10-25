@@ -7,16 +7,21 @@
         {
             "name": "latexmk for sustechthesis",
             "tools": [
-                "xetex-sustechthesis",
                 "latexmk-xelatex"
             ]
         },
         {
-            "name": "make thesis",
+            "name": "GNU make thesis",
             "tools": [
                 "make-thesis"
             ]
-        }
+        },
+        {
+            "name": "build cls (sustechthesis style file)",
+            "tools": [
+                "xetex-sustechthesis"
+            ]
+        },
     ],
     "latex-workshop.latex.tools": [
         {

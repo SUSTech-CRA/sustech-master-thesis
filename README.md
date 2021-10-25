@@ -13,7 +13,7 @@
 * 模板使用说明（**sustechthesis.pdf**）*本模版使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 示例文档基本配置文件中已经进行注释。*
 * 示例文档（**sustechthesis-example.pdf**）
 
-**发布版** 包含预生成的 `cls` 模版类文件和文档。**发布版** 一般会比 **开发版** 晚更新。如急需使用最新版可以使用 **开发版-预构建** 的版本。
+**发布版** 包含预生成的 `cls` 模版类文件和文档。**发布版** 一般会比 **开发版-预构建** 晚更新。如急需使用最新版可以使用 **开发版-预构建** 的版本。
 
 开发版仅供开发者与需要尚未发布的功能的有经验的 TeX 用户使用，不提供任何保证。
 
@@ -53,6 +53,13 @@ xetex sustechthesis.ins
 4. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
 
 ## 使用
+
+### 使用 [VSCode](https://code.visualstudio.com/) + [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+1. 本项目内已经内置 VSCode 项目配置文件；
+2. `latexmk for sustechthesis` 同下使用 `latexmk` 生成示例论文 sustechthesis-example.pdf；
+3. `GNU make thesis` 同下使用 `make thesis` 生成论文，需要配置 GNU make 环境；
+4. build cls (sustechthesis style file) 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件无需自行生成。
+
 ### Windows 中编译，使用 `latexmk`
 1. `latexmk sustechthesis-example.tex` 生成示例论文 sustechthesis-example.pdf；
 2. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
