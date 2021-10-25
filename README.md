@@ -55,10 +55,10 @@ xetex sustechthesis.ins
 ## 使用
 
 ### 使用 [VSCode](https://code.visualstudio.com/) + [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-1. 本项目内已经内置 VSCode 项目配置文件；
-2. `latexmk for sustechthesis` 同下使用 `latexmk` 生成示例论文 sustechthesis-example.pdf；
-3. `GNU make thesis` 同下使用 `make thesis` 生成论文，需要配置 GNU make 环境；
-4. build cls (sustechthesis style file) 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件无需自行生成。
+1. 本项目内已经内置 VSCode 项目配置：
+   1. `latexmk for sustechthesis` 同下使用 `latexmk` 生成示例论文 sustechthesis-example.pdf；
+   2. `GNU make thesis` 同下使用 `make thesis` 生成论文，需要配置 GNU make 环境；
+   3. `build cls (sustechthesis style file)` 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件，无需自行生成。
 
 ### Windows 中编译，使用 `latexmk`
 1. `latexmk sustechthesis-example.tex` 生成示例论文 sustechthesis-example.pdf；
