@@ -29,7 +29,7 @@
 
 ## 更新日志
 
-每个版本的详细更新日志，请见 [CHANGELOG.md](CHANGELOG.md)。使用文档中也包含了这一内容。
+每个版本的详细更新日志，请见 [CHANGELOG.md](CHANGELOG.md)。模板使用说明（sustechthesis.pdf）中也包含了这一内容。
 
 ## 升级
 ### 发布版
