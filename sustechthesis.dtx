@@ -3418,7 +3418,7 @@
 
 \newcommand\thu@coverpage{%
   \newgeometry{
-    top     = 5cm,
+    top     = 4.2cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3435,7 +3435,7 @@
     \else
       {\rmfamily \heiti \fontsize{20bp}{32.5bp}\selectfont \thu@subtitle \\}
     \fi
-    \vspace{1em}
+    \vspace{0.5cm}
 
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
     % 16 bp*1.3默认行距比例*1.25行距 = 26
@@ -3455,7 +3455,9 @@
       \end{tabular}}
 
     \vspace{2cm}
-    {\songti \fontsize{18bp}{23.4bp}\selectfont \thu@titlepage@date@sustech}
+    {\songti \fontsize{18bp}{35.1bp}\selectfont
+    南方科技大学\\
+    \thu@titlepage@date@sustech}
   \end{center}
 }
 %    \end{macrocode}
@@ -3554,7 +3556,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 \newcommand\thu@titlepage@graduate@sustech{%
   \newgeometry{
-    top     = 3cm,
+    top     = 2.5cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3595,7 +3597,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
-    \vspace{1.5cm}
+    \vspace{2.5cm}
 
   \end{center}
 
@@ -3617,7 +3619,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
 \newcommand\thu@titlepage@graduate@sustech@en{%
   \newgeometry{
-    top     = 3cm,
+    top     = 2cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3631,8 +3633,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
   \begin{center}
 
-    \vspace{3.5cm}
-    \mbox{\xiaoer \thu@subject@en}
+    \vspace{2.5cm}
+    
+    \parbox[t]{30em}{
+      \centering
+      \fontsize{18bp}{25.875bp}\selectfont
+      \thu@subject@en}
+    \par
 
     \vspace{1.5cm}
     \parbox[t]{30em}{
