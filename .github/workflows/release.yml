@@ -24,7 +24,6 @@ jobs:
         with:
           run: |
             apk add make
-            make doc
             make test
             make clean
 
