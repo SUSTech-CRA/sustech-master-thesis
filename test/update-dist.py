@@ -2,8 +2,8 @@ import os
 import re
 
 filename = "sustechthesis.dtx"
-new_version = "1.3.6"
-new_date = "2021/11/01"
+new_version = "1.3.7"
+new_date = "2021/11/02"
 
 with open(filename, "r", encoding="utf-8") as f1:
     with open("{filename}.bak", "w", encoding="utf-8") as f2:
