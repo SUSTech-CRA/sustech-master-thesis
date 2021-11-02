@@ -17,7 +17,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{sustechthesis.dtx}[2021/11/01 1.3.6 Southern University of Science and Technology Thesis Template]
+\ProvidesFile{sustechthesis.dtx}[2021/11/02 1.3.7 Southern University of Science and Technology Thesis Template]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 \EnableCrossrefs
@@ -961,7 +961,7 @@
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[2017/04/15]
 %<cls>\ProvidesClass{sustechthesis}
-%<cls>[2021/11/01 1.3.6 Southern University of Science and Technology Thesis Template]
+%<cls>[2021/11/02 1.3.7 Southern University of Science and Technology Thesis Template]
 %    \end{macrocode}
 %
 % 报错
@@ -1011,7 +1011,7 @@
 \hyphenation{Thu-Thesis SUSTech-Thesis}
 \def\thuthesis{ThuThesis}
 \def\sustechthesis{SUSTechThesis}
-\def\version{1.3.6}
+\def\version{1.3.7}
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
@@ -2412,7 +2412,7 @@
 \node[draw,circle,inner sep=1pt,minimum size=1em](C) {#1};
 \end{tikzpicture}}
 %
-\setlist[enumerate,1]{label={(\arabic*)}}
+\setlist[enumerate,1]{label={（\arabic*）}}
 \setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
 \setlist[enumerate,3]{label={\alph*.}}
 %
@@ -2683,6 +2683,7 @@
   figureposition = bottom,
   tableposition  = top,
 }
+\captionsetup[table]{belowskip=12bp}
 \captionsetup[sub]{font=thu}
 %    \end{macrocode}
 %
@@ -3418,7 +3419,7 @@
 
 \newcommand\thu@coverpage{%
   \newgeometry{
-    top     = 4.2cm,
+    top     = 5cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3556,7 +3557,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 \newcommand\thu@titlepage@graduate@sustech{%
   \newgeometry{
-    top     = 2.5cm,
+    top     = 3cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3576,7 +3577,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \vspace{3.5cm}
     {\songti \xiaoer \textbf{\thu@subject}}
 
-    \vspace{1.5cm}
+    \vspace{2em}
     % 22 bp*1.3默认行距比例*1.25行距 = 35.75
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
     {\heiti \fontsize{22bp}{35.75bp}\selectfont \thu@title \\}
@@ -3597,7 +3598,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \makebox[6em][s]{\heiti {培养单位}} & \thu@department\\
         \makebox[6em][s]{\heiti {学位授予单位}} & 南方科技大学
       \end{tabular}}
-    \vspace{2.5cm}
+    \vspace{3.5cm}
 
   \end{center}
 
@@ -3607,19 +3608,19 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
 \def\thu@info@item@sustech#1#2{%
   {
-    \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
+    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
     \bfseries
-    \begin{tabular}{@{}l@{}}#1\end{tabular}%
+    \begin{tabular}[t]{@{}l@{}}#1\end{tabular}%
   } & %
   {
-    \renewcommand\arraystretch{1.15} % 应该只是对可能会换行的英文 item 生效。
-    \begin{tabular}{@{}l@{}}#2\end{tabular}%
+    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
+    \begin{tabular}[t]{@{}l@{}}#2\end{tabular}%
   }
 }%
 
 \newcommand\thu@titlepage@graduate@sustech@en{%
   \newgeometry{
-    top     = 2cm,
+    top     = 3cm,
     bottom  = 3cm,
     hmargin = 3cm,
   }%
@@ -3634,7 +3635,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \begin{center}
 
     \vspace{2.5cm}
-    
+
     \parbox[t]{30em}{
       \centering
       \fontsize{18bp}{25.875bp}\selectfont
@@ -3668,7 +3669,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
         \thu@info@item@sustech{Degree-Conferring-\\Institution:}{Southern University of Science and\\Technology}
       \end{tabular}}
-    \vspace{1.5cm}
+    \vspace{3cm}
 
   \end{center}
 
@@ -4260,7 +4261,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \item 按学校规定提交学位论文的电子版本。
         \item 学校有权保留并向国家有关部门或机构送交学位论文的电子版，允许论文被查阅。
         \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
-          \begin{enumerate}[wide,label={(\arabic*)}]
+          \begin{enumerate}[wide,label={（\arabic*）}]
             \item 在本论文提交当年，同意在校园网内提供查询及前十六页浏览服务。
             \item 在本论文提交 $\mdlgwhtsquare$ 当年/ $\mdlgwhtsquare$ 一年以后，同意向全社会公开论文全文的在线浏览和下载。
           \end{enumerate}
@@ -4286,7 +4287,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \item Submit the electronic version of thesis as required by the University.
         \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
-        \begin{enumerate}[wide,label={(\arabic*)}]
+        \begin{enumerate}[wide,label={（\arabic*）}]
           \item I agree that once submitted, the thesis can be retrieved online and the first 16 pages can be viewed within the campus network.
           \item I agree that $\mdlgwhtsquare$ upon submission $\mdlgwhtsquare$ 12 months after submission, the full text of the thesis can be viewed and downloaded by the public.
         \end{enumerate}
