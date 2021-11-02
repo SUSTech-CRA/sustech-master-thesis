@@ -9,12 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/texlive-action/full@v1
+      - name: run texlive docker container
+        uses: docker://texlive/texlive:TL2020-historic
+        # https://hub.docker.com/r/texlive/texlive
         with:
-          run: |
-            apk add make
-            make test
+          args: make doc test
 
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2

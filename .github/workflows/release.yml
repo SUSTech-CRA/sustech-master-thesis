@@ -19,14 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/texlive-action/full@v1
+      - name: run texlive docker container
+        uses: docker://texlive/texlive:TL2020-historic
+        # https://hub.docker.com/r/texlive/texlive
         with:
-          run: |
-            apk add make
-            make doc
-            make test
-            make clean
+          args: make cleanall doc test clean
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master
