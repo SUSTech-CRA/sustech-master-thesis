@@ -52,6 +52,11 @@ xetex sustechthesis.ins
 3. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
 4. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
 
+## 相关资料
+
+- [模板操作指南视频教程（Bilibili）](https://www.bilibili.com/video/BV1JU4y1g7bH)
+- [模板使用培训材料（PDF）](https://github.com/SUSTech-CRA/latex-talk-master)
+
 ## 使用
 
 ### 使用 [VSCode](https://code.visualstudio.com/) + [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
