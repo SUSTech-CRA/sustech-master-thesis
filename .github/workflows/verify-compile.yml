@@ -17,7 +17,7 @@ jobs:
         run: python test/update-dist.py --dev
 
       - name: run texlive docker container
-        uses: docker://texlive/texlive:TL2020-historic
+        uses: docker://texlive/texlive:latest
         # https://hub.docker.com/r/texlive/texlive
         with:
           args: make doc test
