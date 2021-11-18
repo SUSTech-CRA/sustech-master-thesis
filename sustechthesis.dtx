@@ -5410,9 +5410,9 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \NewDocumentEnvironment{localref}{m O{1}}
 {
 \newbibstartnumber{#2}
-\begin{bibunit}[gbt7714-numerical]
+\begin{bibunit}
 \renewcommand{\bibsection}{}
-\citestyle{super}
+% 禁用自动创建参考文献章节标题
 }
 {
 \putbib[#1]
