@@ -102,7 +102,7 @@ xetex sustechthesis.ins
 * `ref/` 示例文档参考文献目录
 
 ### 样式控制
-* `sustechthesis.cls` 模板类文件，由同名 dtx 文件和 ins 文件生成（开发版不含，运行时生成）。
+* `sustechthesis.cls` 模板类文件，由同名 dtx 文件和 ins 文件生成（开发版不含，运行时生成）
 * `sustechthesis-*.bst` BIBTEX 参考文献表样式文件
 
 ### 编译脚本
