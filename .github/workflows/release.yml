@@ -19,6 +19,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: actions/setup-python@v2
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        with:
+          python-version: '3.9'
+
+      - name: Meta-data normalization
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: python test/update-dist.py --dev
+
       - name: run texlive docker container
         uses: docker://texlive/texlive:TL2020-historic
         # https://hub.docker.com/r/texlive/texlive
