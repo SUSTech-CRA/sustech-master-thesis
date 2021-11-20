@@ -19,7 +19,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Example-PDFs
-          path: public-test/*.pdf
+          path: |
+            sustechthesis.pdf
+            public-test/*.pdf
 
       # - name: Deploy PDF to latest branch
       #   uses: peaceiris/actions-gh-pages@v3
