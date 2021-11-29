@@ -1,4 +1,8 @@
 {
+    // 使用 Docker 镜像需预先拉取镜像，此处使用官方打包镜像：https://hub.docker.com/r/texlive/texlive ，可自行替换。
+    // "latex-workshop.docker.enabled": true, // 如欲使用 Docker 编译，开启此选项
+    // "latex-workshop.docker.image.latex": "texlive/texlive:latest", // 如欲使用 Docker 编译，开启此选项
+    "latex-workshop.latex.autoClean.run": "never",
     "latex-workshop.intellisense.package.enabled": true,
     "latex-workshop.intellisense.unimathsymbols.enabled": true,
     "latex-workshop.latex.autoBuild.run": "onSave",
