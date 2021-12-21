@@ -63,10 +63,11 @@ jobs:
       run: |
         mkdir -p /tmp/tmp_push2
         cd /tmp/tmp_push2
-        git clone --bare https://github.com/SUSTech-CRA/sustech-master-thesis.git this_repo
+        git clone --bare "${GITHUB_REPO_URL}" this_repo
         cd this_repo
-        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
         USER: project_160_bot
         PERSONAL_TOKEN: ${{ secrets.GITLAB_PERSONAL_TOKEN }}
-        REPO_URL: "mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis.git"
+        GITHUB_REPO_URL: https://github.com/SUSTech-CRA/sustech-master-thesis.git
+        REMOTE_REPO_URL: "mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis.git"
