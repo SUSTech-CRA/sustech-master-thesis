@@ -32,7 +32,7 @@ jobs:
         uses: docker://texlive/texlive:TL2020-historic
         # https://hub.docker.com/r/texlive/texlive
         with:
-          args: make cleanall doc test clean
+          args: make dist-github
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master
