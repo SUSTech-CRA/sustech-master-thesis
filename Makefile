@@ -36,7 +36,7 @@ dist-github: doc thesis test clean
 dist: dist-github
 	rm -rf dist/
 	mkdir -p dist/
-	zip -r dist/sustech-thesis-dev-build.zip . -x *.git* /*node_modules/* .editorconfig *public-test/* *dist/*
+	zip -r dist/sustech-thesis-dev-build.zip . -x *.git* /*node_modules/* .editorconfig *dist/*
 
 $(PACKAGE).pdf: cls FORCE_MAKE
 	$(LATEXMK) $(PACKAGE).dtx
