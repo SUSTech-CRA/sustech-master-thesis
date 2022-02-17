@@ -15,6 +15,7 @@ on:
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'SUSTech-CRA'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -59,7 +60,7 @@ jobs:
     name: "Pre Release"
     runs-on: "ubuntu-latest"
     needs: build_latex
-    if: always() && github.event_name == 'push'
+    if: github.event_name == 'push'
     steps:
       - uses: actions/download-artifact@v2
         name: Download artifact
@@ -80,7 +81,7 @@ jobs:
     name: "Draft release by tag"
     runs-on: "ubuntu-latest"
     needs: build_latex
-    if: always() && startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/download-artifact@v2
         name: Download artifact
@@ -104,134 +105,3 @@ jobs:
             pre-release-artifacts_action_build/sustechthesis.pdf
             pre-release-artifacts_action_build/public-test/*.pdf
             sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.VERSION }}.zip
-
-  # release-by-changelog:
-  #   runs-on: ubuntu-latest
-  #   needs: build_latex
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #   - name: Download artifact
-  #     uses: actions/download-artifact@v2
-  #   - name: Extract release information from the changelog
-  #     uses: denisa/clq-action@v1.0.2
-  #     id: clq-extract
-  #     with:
-  #       mode: release
-  #   - name: Echo changelog values
-  #     run: |
-  #       echo "$release_name"
-  #       echo "$release_tag -- $release_status"
-  #       echo "$body"
-  #     env:
-  #       release_tag: ${{ steps.clq-extract.outputs.tag }}
-  #       release_name: ${{ steps.clq-extract.outputs.name }}
-  #       release_status: ${{ steps.clq-extract.outputs.status }}
-  #       body: ${{ steps.clq-extract.outputs.changes }}
-  #   - name: Validate the tag has not yet been used
-  #     if: steps.clq-extract.outputs.status == 'released' || steps.clq-extract.outputs.status == 'prereleased'
-  #     id: tag_is_exist
-  #     env:
-  #       TAG: ${{ steps.clq-extract.outputs.tag }}
-  #     run: |
-  #       echo '::set-output name=flag::false'
-  #       if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
-  #         echo "::error ::tag $TAG exists already, need to update changelog manually"
-  #         echo '::set-output name=flag::true'
-  #       fi
-  #   - uses: actions/create-release@v1.1.4
-  #     # 如果已有对应 tag 跳过该步骤
-  #     if: steps.tag_is_exist.outputs.flag == 'false' && (steps.clq-extract.outputs.status == 'released' || steps.clq-extract.outputs.status == 'prereleased')
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     with:
-  #       tag_name: ${{ steps.clq-extract.outputs.tag }}
-  #       release_name: ${{ steps.clq-extract.outputs.name }}
-  #       prerelease: ${{ steps.clq-extract.outputs.status == 'prereleased' }}
-  #       body: ${{ steps.clq-extract.outputs.changes }}
-  #   - name: Upload binaries to release
-  #     if: steps.tag_is_exist.outputs.flag == 'false' && (steps.clq-extract.outputs.status == 'released' || steps.clq-extract.outputs.status == 'prereleased')
-  #     uses: svenstaro/upload-release-action@v2
-  #     with:
-  #       repo_token: ${{ secrets.GITHUB_TOKEN }}
-  #       file: 'sustech-thesis-dev-build/sustech-thesis-dev-build.zip'
-  #       asset_name: sustech-thesis-${{ steps.clq-extract.outputs.tag }}.zip
-  #       tag: ${{ steps.clq-extract.outputs.tag }}
-  #       overwrite: true
-  #   - name: Skip if unreleased
-  #     if: steps.clq-extract.outputs.status == 'Unreleased'
-  #     env:
-  #       release_status: ${{ steps.clq-extract.outputs.status }}
-  #     run: |
-  #       echo "::error ::Skip rest steps if unreleased changelog"
-  #       exit 0
-
-
-  # release:
-  #   runs-on: ubuntu-latest
-  #   needs: build_latex
-  #   if: always() && github.event_name == 'workflow_dispatch'
-  #   # if: always() && github.repository_owner == 'SUSTech-CRA' && github.event_name == 'workflow_dispatch'
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 2
-  #     - run: git tag ${{ github.event.inputs.Version }}
-  #     - uses: fregante/release-with-changelog@v3
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         exclude: '^meta|^document|^lint|^refactor|readme|dependencies|注释|文档|ci|CI|README'
-  #         commit-template: '- {title} ← {hash}'
-  #         template: |
-  #           ### Changelog
-
-  #           {commits}
-
-  #           {range}
-  #     # - name: Update major tag
-  #     #   run: |
-  #     #     MAJOR=$(echo ${{ github.event.inputs.Version }} | sed 's/\..*//')
-  #     #     git push origin HEAD:refs/tags/$MAJOR --force
-
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: 'sustech-thesis-action-build'
-  #     - name: Upload binaries to release
-  #       uses: svenstaro/upload-release-action@v2
-  #       with:
-  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
-  #         file: 'sustech-thesis_action-build.zip'
-  #         asset_name: sustech-thesis-${{ github.event.inputs.Version }}.zip
-  #         tag: ${{ github.event.inputs.Version }}
-  #         overwrite: true
-
-  # sync:
-  #   runs-on: ubuntu-latest
-  #   name: Sync to other git service
-  #   if: always() && github.repository_owner == 'SUSTech-CRA'
-  #   needs: release-by-changelog
-  #   steps:
-
-  #   # - name: Push to gitee
-  #   #   run: |
-  #   #     mkdir -p /tmp/tmp_push
-  #   #     cd /tmp/tmp_push
-  #   #     git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
-  #   #     cd this_repo
-  #   #     git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
-  #   #   env:
-  #   #     USER: ${{ secrets.GITEE_USER }}
-  #   #     PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
-  #   #     REPO_URL: "gitee.com/liziwl/sustech-master-thesis.git"
-
-  #   - name: Push to sustech-git
-  #     run: |
-  #       mkdir -p /tmp/tmp_push2
-  #       cd /tmp/tmp_push2
-  #       git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
-  #       cd this_repo
-  #       git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
-  #     env:
-  #       USER: project_160_bot
-  #       PERSONAL_TOKEN: ${{ secrets.GITLAB_PERSONAL_TOKEN }}
-  #       REPO_URL: "mirrors.sustech.edu.cn/git/liziwl/sustech-master-thesis.git"
