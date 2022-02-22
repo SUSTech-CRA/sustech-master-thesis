@@ -55,6 +55,9 @@ xetex sustechthesis.ins
 ## 相关资料
 
 - [模板操作指南视频教程（Bilibili）](https://www.bilibili.com/video/BV1JU4y1g7bH)
+  - P1: LaTeX 写作模版获取，时长03:18
+  - P2: Overleaf 写作实操指南，时长39:33
+  - P3: LaTeX 入门及本地环境搭建指南，时长07:58
 - [模板使用培训材料（PDF）](https://github.com/SUSTech-CRA/latex-talk-master)
 
 ## 使用
