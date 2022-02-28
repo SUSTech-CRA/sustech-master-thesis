@@ -153,3 +153,26 @@
   EP.B.8 & 126.74 & 0.003 & 0.017 & 0.005 & 0.083 & 1656 \\
   \bottomrule[1.5pt]
 \end{longtable}
+
+
+\section{源代码环境}
+
+推荐使用 \pkg{listing} 环境嵌入 \pkg{minted}高亮代码。\verb|linenos| 参数控制代码行号显示。引用效果如代码 \ref{lst:sample-code-minted}。
+
+\begin{listing}[!ht]
+\caption{C++ 代码示例}
+\label{lst:sample-code-minted}
+\begin{minted}[xleftmargin=20pt,linenos]{cpp}
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+unsigned short i;
+int main() {
+  for (i = 0; i <= 5; i++) {
+    // whatever
+  }
+  return 0;
+}
+\end{minted}
+\end{listing}

@@ -5736,7 +5736,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 %
 %    \begin{macrocode}
 \AtEndOfPackageFile*{minted}{
-  \g@addto@macro\appendix{\renewcommand*{\thelisting}{\thechapter-\arabic{listing}}}%
+  \AtBeginDocument{
+    \renewcommand*{\thelisting}{\thechapter-\arabic{listing}}
+  }% 不知道为啥下面这行不起作用，改用此种注入。
+  %\g@addto@macro\appendix{\renewcommand*{\thelisting}{\thechapter-\arabic{listing}}}%
   \newcommand\thu@set@listing@language{%
     \ifthu@language@chinese
       \floatname{listing}{代码}%
