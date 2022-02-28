@@ -55,8 +55,9 @@ test: cls FORCE_MAKE
 
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS)
-	-@$(RM) -rf *~ main-survey.* main-translation.* *_markdown_* *.markdown.*
 	-@$(RM) -rf *.aux *.bbl *.blg
+	-@$(RM) -rf _minted-*
+	-@$(RM) -rf *~ *_markdown_* *.markdown.*
 
 cleanall: clean
 	-@$(RM) $(CLSFILE)
