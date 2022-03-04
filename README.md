@@ -116,5 +116,5 @@ xetex sustechthesis.ins
 ## 致谢
 
 * 本模板基于清华大学模板 [ThuThesis v7.1.0](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
-* 本模版根据南方科技大学研究生院发布的相关 [《研究生学位论文写作指南》](https://gs.sustech.edu.cn/#/common/index?currentAlias=a3c9a894-9b3f-40da-9638-9cb219e870b4&alias=3f2c3fc5-130e-4795-8572-25af76841955&article_alias=4fd34409-3deb-426c-ac49-5b9c4c298041) 编写，如有冲突以官网规定为准。
+* 本模版根据南方科技大学研究生院发布的相关 [《研究生学位论文写作指南》](https://gs.sustech.edu.cn/#/common/index?current_id=9&id=161&article_id=19) 编写，如有冲突以官网规定为准。
   * 如果范例中存在与《写作指南》中的规定不符之处，以《写作指南》中的文字叙述为准。
