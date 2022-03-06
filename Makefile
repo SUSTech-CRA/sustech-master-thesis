@@ -8,6 +8,7 @@ CLSFILE = dtx-style.sty $(PACKAGE).cls
 
 LATEXMK = latexmk
 SHELL  := /bin/bash
+WORDCOUNTLOG  = wordcount.txt
 
 # make deletion work on Windows
 ifdef SystemRoot
@@ -65,9 +66,11 @@ cleanall: clean
 	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
 
 wordcount : $(THESIS).tex
+	@echo '************  Word count ************' | tee -a $(WORDCOUNTLOG)
+	@date +"%Y-%m-%d %H:%M:%S" | tee -a $(WORDCOUNTLOG)
 	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
-		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
+		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}' | tee -a $(WORDCOUNTLOG); \
 	else \
-		texcount $< -inc -ch-only   | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
+		texcount $< -inc -ch-only   | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}' | tee -a $(WORDCOUNTLOG); \
 	fi
-	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
+	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}' | tee -a $(WORDCOUNTLOG)
