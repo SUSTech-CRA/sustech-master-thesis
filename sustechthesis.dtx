@@ -3624,6 +3624,13 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \begin{tabular}[t]{@{}l@{}}#2\end{tabular}%
   }
 }%
+\def\sustech@titlepage@left@column@width{
+  \ifx\thu@associate@supervisor@en\@empty
+    0.27\textwidth
+  \else
+    0.3\textwidth
+  \fi
+}%
 \newcommand\thu@option@supervisor@item@en{
   \ifx\thu@associate@supervisor@en\@empty\else
     \thu@info@item@sustech{Associate Supervisor:}{\thu@associate@supervisor@en}\\
@@ -3672,7 +3679,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \renewcommand\arraystretch{1.3}
       % 手动调整使得视觉接近
       \hspace*{2em}
-      \begin{tabular}{@{}m{0.3\textwidth}m{0.5\textwidth}@{}}
+      \begin{tabular}{@{}m{\sustech@titlepage@left@column@width}m{0.5\textwidth}@{}}
         \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
         \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
         \thu@option@supervisor@item@en{}
