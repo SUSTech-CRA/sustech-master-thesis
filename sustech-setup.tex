@@ -139,3 +139,8 @@
 
 % 伪代码环境
 \usepackage[ruled,linesnumbered]{algorithm2e}
+
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % 定义R为表格左右居左，用于自定义表格列宽度
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % 定义L为表格左右居右，用于自定义表格列宽度
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % 定义C为表格左右居中，用于自定义表格列宽度
