@@ -68,18 +68,17 @@
     \toprule
     2cm          & 4cm & 6cm                         \\
     \midrule
-    左右居中的2cm宽度左右居中的2cm宽度   & 左右居左的4cm宽度左右居左的4cm宽度 & 左右居右的6cm宽度左右居右的6cm宽度\\
-    左右居中的2cm宽度左右居中的2cm宽度   & 左右居左的4cm宽度左右居左的4cm宽度 & 左右居右的6cm宽度左右居右的6cm宽度\\
+    左右居中的2cm宽度左右居中的2cm宽度\tnote{a}   & 左右居左的4cm宽度左右居左的4cm宽度 & 左右居右的6cm宽度左右居右的6cm宽度\\
+    左右居中的2cm宽度左右居中的2cm宽度\tnote{b}   & 左右居左的4cm宽度左右居左的4cm宽度 & 左右居右的6cm宽度左右居右的6cm宽度\\
     \bottomrule
   \end{tabular}
     \begin{tablenotes}
-      \item [a] 可以通过 xelatex 编译生成模板的使用说明文档；
-        使用 xetex 编译 \file{thuthesis.ins} 时则会从 \file{.dtx} 中去除掉文档和注释，得到精简的 \file{.cls} 文件。
-      \item [b] 更新模板时，一定要记得编译生成 \file{.cls} 文件，否则编译论文时载入的依然是旧版的模板。
+      \item [a] A的注释
+      \item [b] B的注释
     \end{tablenotes}
   \end{threeparttable}
 \end{table}
-如果需要调整表格列宽度， 可以改用命令L, R, 或者C, 如C\{2cm\}代表居中列宽2cm。
+如果需要调整表格列宽度， 可以改用命令 \verb|L|, \verb|R|, 或者 \verb|C|, 如 \verb|C{2cm}| 代表居中列宽2cm。
 
 
 如果您要排版的表格长度超过一页，那么推荐使用 \pkg{longtable} 或者 \pkg{supertabular}
