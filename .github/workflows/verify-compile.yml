@@ -5,6 +5,11 @@ on: [push, pull_request]
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        texlive: [TL2020-historic, latest]
+        # 多版本 TexLive 兼容性测试
+    container: texlive/texlive:${{ matrix.texlive }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,15 +22,12 @@ jobs:
         run: python test/update-dist.py --dev
 
       - name: run texlive docker container
-        uses: docker://texlive/texlive:latest
-        # https://hub.docker.com/r/texlive/texlive
-        with:
-          args: make doc test
+        run: make doc test
 
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
         with:
-          name: Example-PDFs
+          name: Example-PDFs-texlive-${{ matrix.texlive }}
           path: |
             sustechthesis.pdf
             public-test/*.pdf
