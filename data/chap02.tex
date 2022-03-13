@@ -154,10 +154,11 @@
 
 \section{源代码}
 
-推荐使用 \pkg{listing} 环境嵌入 \pkg{minted}高亮代码。\verb|linenos| 参数控制代码行号显示。引用效果如代码 \ref{lst:sample-code-minted}。
+推荐使用 \pkg{listing} 环境嵌入 \pkg{minted} 环境高亮代码。\verb|linenos| 参数控制代码行号显示。引用效果如代码 \ref{lst:sample-code-minted}。
+也可以使用 \pkg{listings} 环境高亮代码。参数较为复杂，请自行搜索或查阅文档。引用效果如代码 \ref{lst:sample-code-listings}。但是，\textbf{不建议}混用 \pkg{listings} 环境和 \pkg{minted} 环境，会导致如上编号重复的错误，二选一即可。
 
 \begin{listing}[!ht]
-\caption{C++ 代码示例}
+\caption{C++ 代码示例（使用 \pkg{minted} 高亮）}
 \label{lst:sample-code-minted}
 \begin{minted}[xleftmargin=20pt,linenos]{cpp}
 #include <cstdio>
@@ -173,6 +174,18 @@ int main() {
 }
 \end{minted}
 \end{listing}
+
+
+\begin{lstlisting}[language=java,caption={Java 代码示例（使用 \pkg{listings} 高亮）},xleftmargin=20pt,label={lst:sample-code-listings}]
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+        for (int i = 0; i < 100; ++i) {
+            System.out.println(i);
+        }
+    }
+}
+\end{lstlisting}
 
 \section{伪代码}
 

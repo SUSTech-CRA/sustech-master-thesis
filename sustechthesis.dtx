@@ -5775,6 +5775,30 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 %    \end{macrocode}
 %
+% \subsubsection{\pkg{listings} 宏包}
+%
+%    \begin{macrocode}
+\AtEndOfPackageFile*{listings}{
+  \AtBeginDocument{
+    \renewcommand*{\thelstlisting}{\thechapter-\arabic{lstlisting}}
+    \lstset{
+      basicstyle=\small\ttfamily,
+      captionpos=b,
+      breaklines
+    }
+  }
+  \newcommand\thu@set@lstlisting@language{%
+    \ifthu@language@chinese
+      \renewcommand\lstlistingname{代码}%
+    \else
+      \renewcommand\lstlistingname{Listing}%
+    \fi
+  }
+  \thu@set@lstlisting@language
+  \thu@option@hook{language}{\thu@set@lstlisting@language}
+}
+%    \end{macrocode}
+%
 % \subsection{书脊}
 % \label{sec:spine}
 % \begin{macro}{\spine}

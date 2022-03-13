@@ -134,8 +134,31 @@
 % 跨页表格，必须在 hyperref 之后使用否则会报错。
 \usepackage{longtable}
 
-% 源代码高亮
+% 源代码 minted 高亮，二选一即可。
+%% 使用 minted 包有内置高亮颜色，需要 Python 环境编译。
 \usepackage{minted}
+
+% 源代码 listings 高亮，二选一即可。
+\usepackage{listings}
+%% 使用 listings 包需要自行定义高亮颜色，此处给出 Java 的例子。
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstset{language=Java,
+  keywordstyle=\color{javapurple}\bfseries,
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  morecomment=[s][\color{javadocblue}]{/**}{*/},
+  numbers=left,
+  numberstyle=\tiny\color{black},
+  stepnumber=1,
+  numbersep=10pt,
+  tabsize=4,
+  showspaces=false,
+  showstringspaces=false
+}
 
 % 伪代码环境
 \usepackage[ruled,linesnumbered]{algorithm2e}
