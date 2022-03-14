@@ -50,7 +50,6 @@ xetex sustechthesis.ins
 1. 南科大研究生模板反馈群：320971126
 2. 南科大LaTeX学习交流群：119667812
 3. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
-4. [讨论区 Discussions](https://github.com/SUSTech-CRA/sustech-master-thesis/discussions)
 
 ## 相关资料
 
