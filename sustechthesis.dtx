@@ -2531,14 +2531,16 @@
 % \begin{macro}{\ge}
 % \begin{macro}{\leq}
 % \begin{macro}{\geq}
-% 小于等于号要使用倾斜的形式。
+% 小于等于号要使用倾斜的形式，仅中文生效。
 %    \begin{macrocode}
-\protected\def\le{\leqslant}
-\protected\def\ge{\geqslant}
-\AtBeginDocument{%
-  \renewcommand\leq{\leqslant}%
-  \renewcommand\geq{\geqslant}%
-}
+\ifthu@language@chinese
+  \protected\def\le{\leqslant}
+  \protected\def\ge{\geqslant}
+  \AtBeginDocument{%
+    \renewcommand\leq{\leqslant}%
+    \renewcommand\geq{\geqslant}%
+  }
+\fi
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
