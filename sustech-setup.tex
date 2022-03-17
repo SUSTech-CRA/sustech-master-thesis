@@ -164,7 +164,16 @@
 % 伪代码环境
 \usepackage[ruled,linesnumbered]{algorithm2e}
 
-
+% tabular 扩展命令
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % 定义R为表格左右居左，用于自定义表格列宽度
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % 定义L为表格左右居右，用于自定义表格列宽度
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % 定义C为表格左右居中，用于自定义表格列宽度
+
+% tabularx 扩展命令，会对单元格内容进行单元格内自动换行
+% X 默认就是两端对齐
+% Y 左对齐
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+% W 右对齐
+\newcolumntype{W}{>{\raggedleft\arraybackslash}X}
+% Z 居中对齐
+\newcolumntype{Z}{>{\centering\arraybackslash}X}

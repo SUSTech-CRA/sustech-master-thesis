@@ -80,6 +80,22 @@
 \end{table}
 如果需要调整表格列宽度， 可以改用命令 \verb|L|, \verb|R|, 或者 \verb|C|, 如 \verb|C{2cm}| 代表居中列宽2cm。
 
+表格如果想要与页面等宽，可以使用 \pkg{tabularx} 宏包，如表格\ref{tab:textwith-example}所示。
+模版定义了一些扩展命令，实现一些排版需求。\verb|X| 两端对齐, \verb|Y| 左对齐, \verb|Z| 右对齐，或者 \verb|W| 居中对齐。
+
+\begin{table}
+  \centering
+  \caption{同页宽的表格实例}
+  \label{tab:textwith-example}
+  \begin{tabularx}{\textwidth}{YXZW}
+    \toprule
+    Cell with text aligned to the left & 1 & 2 & 3\\ \midrule
+    4 & Cell with justified text & 5 & 6\\ \midrule
+    7 & 8 & Cell with centered text & 9\\ \midrule
+    10 & 11 & 12 & Cell with text aligned to the right \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
 
 如果您要排版的表格长度超过一页，那么推荐使用 \pkg{longtable} 或者 \pkg{supertabular}
 宏包，模板对 \pkg{longtable} 进行了相应的设置，所以用起来可能简单一些。
