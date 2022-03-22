@@ -5763,6 +5763,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 %    \begin{macrocode}
 \AtEndOfPackageFile*{minted}{
   \AtBeginDocument{
+    \counterwithin*{listing}{section}
     \renewcommand*{\thelisting}{\thechapter-\arabic{listing}}
   }% 不知道为啥下面这行不起作用，改用此种注入。
   %\g@addto@macro\appendix{\renewcommand*{\thelisting}{\thechapter-\arabic{listing}}}%
