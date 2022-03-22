@@ -7,7 +7,7 @@ filename = "sustechthesis.dtx"
 
 def change_meta(version, date):
     with open(filename, "r", encoding="utf-8") as f1:
-        with open(f"{filename}.bak", "w", encoding="utf-8") as f2:
+        with open(f"{filename}.part", "w", encoding="utf-8") as f2:
             for line in f1:
                 if "Southern University of Science and Technology Thesis Template" in line:
                     print(line)
@@ -23,7 +23,7 @@ def change_meta(version, date):
                 else:
                     f2.write(line)
     os.remove(filename)
-    os.rename(f"{filename}.bak", filename)
+    os.rename(f"{filename}.part", filename)
 
 
 def get_meta():

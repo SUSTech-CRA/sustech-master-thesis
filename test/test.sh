@@ -9,12 +9,14 @@ mkdir "$RT_DIR/public-test"
 cp "$RT_DIR/sustechthesis-example.tex" "$RT_DIR/sustechthesis-example.tex.bak"
 
 # 生成中文预览
-cp "$SCRIPT_DIR/sustechthesis-example-cn.tex" "$RT_DIR/sustechthesis-example.tex"
+cp "$RT_DIR/sustechthesis-example.tex.bak" "$RT_DIR/sustechthesis-example.tex"
+python3 "$RT_DIR/test/test-files.py" --recipe 1
 make
 cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-cn.pdf"
 
 # 生成英文预览
-cp "$SCRIPT_DIR/sustechthesis-example-en.tex" "$RT_DIR/sustechthesis-example.tex"
+cp "$RT_DIR/sustechthesis-example.tex.bak" "$RT_DIR/sustechthesis-example.tex"
+python3 "$RT_DIR/test/test-files.py" --recipe 2
 make
 cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-en.pdf"
 
