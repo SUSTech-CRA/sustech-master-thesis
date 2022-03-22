@@ -104,20 +104,17 @@
 % 也可以使用 ntheorem
 % \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 
+%%%%%% 顺序编码制的文献引用形式
 %%%%%% 参考文献编译方式二选一，不要同时开启。
-%%%% 选择一
-%% 参考文献使用 BibTeX + natbib 宏包
-%% 顺序编码制
+%%%% 选择一：使用 BibTeX + natbib 宏包
 \usepackage[sort&compress]{gbt7714}
 \citestyle{super} % 全局上标数字模式，中文主体采用
 % \citestyle{numbers} % 全局行间数字模式，英文主体采用
 \bibliographystyle{sustechthesis-numeric}
 
-%%%% 选择二（不兼容本模板，请勿使用）
-%% 参考文献使用 BibLaTeX 宏包
-% \usepackage[backend=biber,style=gb7714-2015]{biblatex}
-%% 声明 BibLaTeX 的数据库
-% \addbibresource{ref/refs.bib}
+%%%% 选择二：使用 BibLaTeX 宏包（兼容性不佳，不太推荐）
+% \usepackage[backend=biber,style=gb7714-2015,gbalign=left]{biblatex}
+% \addbibresource{ref/refs.bib} % 声明 BibLaTeX 的数据库
 
 % 定义所有的图片文件在 figures 子目录下
 \graphicspath{{figures/}}

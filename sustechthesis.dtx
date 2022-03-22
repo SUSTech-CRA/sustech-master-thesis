@@ -5154,20 +5154,24 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \DeclareRobustCommand\inlinecite{\parencite}
   \defbibheading{bibliography}[\bibname]{\thu@chapter*{\bibname}}
   \newcommand\thu@set@bibliography@format{%
-    \ifthu@degree@bachelor
-      \renewcommand\bibfont{\fontsize{10.5bp}{17bp}\selectfont}%
-      \setlength{\bibitemsep}{6bp \@plus 3bp \@minus 3bp}%
-      \ifthu@main@language@chinese
-        \setlength{\bibhang}{21bp}%
-      \else
-        \setlength{\bibhang}{0.5in}%
-      \fi
-    \else
-      \renewcommand\bibfont{\fontsize{10.5bp}{16bp}\selectfont}%
-      \setlength{\bibitemsep}{3bp \@plus 3bp \@minus 3bp}%
-      \setlength{\biblabelsep}{0.1cm}%
-      \setlength{\bibhang}{21bp}%
-    \fi
+    \renewcommand\bibfont{\fontsize{10.5bp}{16bp}\selectfont}%
+    \setlength{\bibitemsep}{3bp \@plus 3bp \@minus 3bp}%
+    \setlength{\biblabelsep}{1em}%
+    \setlength{\bibhang}{1em}%
+    %\ifthu@degree@bachelor
+    %  \renewcommand\bibfont{\fontsize{10.5bp}{17bp}\selectfont}%
+    %  \setlength{\bibitemsep}{6bp \@plus 3bp \@minus 3bp}%
+    %  \ifthu@main@language@chinese
+    %    \setlength{\bibhang}{21bp}%
+    %  \else
+    %    \setlength{\bibhang}{0.5in}%
+    %  \fi
+    %\else
+    %  \renewcommand\bibfont{\fontsize{10.5bp}{16bp}\selectfont}%
+    %  \setlength{\bibitemsep}{3bp \@plus 3bp \@minus 3bp}%
+    %  \setlength{\biblabelsep}{0.1cm}%
+    %  \setlength{\bibhang}{21bp}%
+    %\fi
   }
   \thu@set@bibliography@format
   \thu@option@hook{degree}{\thu@set@bibliography@format}

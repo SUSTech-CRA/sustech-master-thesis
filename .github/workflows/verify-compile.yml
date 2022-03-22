@@ -46,7 +46,10 @@ jobs:
     name: Sync to other git service
     if: github.repository_owner == 'SUSTech-CRA'
     timeout-minutes: 10
-    needs: build_latex
+    concurrency: 
+      group: sync-job
+      cancel-in-progress: true
+    # needs: build_latex
     steps:
 
     # - name: Push to gitee
