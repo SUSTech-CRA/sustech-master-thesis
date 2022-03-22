@@ -84,12 +84,12 @@ if __name__ == "__main__":
     elif args.recipe == 3:
         # biber
         filename = "sustechthesis-example.tex"
-        comment_line(filename,"bibliography{ref/refs}",True)
-        comment_line(filename,"printbibliography",False)
+        comment_line(filename, "bibliography{ref/refs}", True)
+        comment_line(filename, "printbibliography", False)
         filename = "sustech-setup.tex"
-        comment_line(filename,"{gbt7714}",True)
-        comment_line(filename,"citestyle{super}",True)
-        comment_line(filename,"citestyle{numbers}",True)
-        comment_line(filename,"bibliographystyle{sustechthesis-numeric}",True)
-        comment_line(filename,"{biblatex}",False)
-        comment_line(filename,"addbibresource{ref/refs.bib}",False)
+        comment_line(filename, "{gbt7714}", True)
+        comment_line(filename, "citestyle{super}", True)
+        comment_line(filename, "citestyle{numbers}", True)
+        comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
+        comment_line(filename, "{biblatex}", False)
+        comment_line(filename, "addbibresource{ref/refs.bib}", False)
