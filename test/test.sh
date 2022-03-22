@@ -20,5 +20,11 @@ python3 "$RT_DIR/test/test-files.py" --recipe 2
 make
 cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-en.pdf"
 
+# 生成biber预览
+cp "$RT_DIR/sustechthesis-example.tex.bak" "$RT_DIR/sustechthesis-example.tex"
+python3 "$RT_DIR/test/test-files.py" --recipe 3
+make
+cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-biber.pdf"
+
 # 恢复源文件
 mv "$RT_DIR/sustechthesis-example.tex.bak" "$RT_DIR/sustechthesis-example.tex"
