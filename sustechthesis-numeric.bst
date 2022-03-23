@@ -6,11 +6,11 @@
 %%
 %% gbt7714.dtx  (with options: `2015,numerical')
 %% -------------------------------------------------------------------
-%% GB/T 7714—2015 BibTeX Style
-%% https://github.com/CTeX-org/gbt7714-bibtex-style
-%% Version: 2021/06/20 v2.1.2
+%% GB/T 7714 BibTeX Style
+%% https://github.com/zepinglee/gbt7714-bibtex-style
+%% Version: 2022/03/21 v2.1.4
 %% -------------------------------------------------------------------
-%% Copyright (C) 2016—2021 by Zeping Lee <zepinglee AT gmail.com>
+%% Copyright (C) 2016--2022 by Zeping Lee <zepinglee AT gmail.com>
 %% -------------------------------------------------------------------
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -33,11 +33,10 @@ INTEGERS {
   sentence.case.title
   link.title
   title.in.journal
+  show.patent.country
   show.mark
   space.before.mark
   show.medium.type
-  slash.for.extraction
-  in.booktitle
   short.journal
   italic.journal
   bold.journal.volume
@@ -54,6 +53,10 @@ INTEGERS {
   end.with.period
 }
 
+STRINGS {
+  component.part.label
+}
+
 FUNCTION {load.config}
 {
   #2 'citation.et.al.min :=
@@ -68,11 +71,11 @@ FUNCTION {load.config}
   #0 'sentence.case.title :=
   #0 'link.title :=
   #1 'title.in.journal :=
+  #0 'show.patent.country :=
   #1 'show.mark :=
   #0 'space.before.mark :=
   #1 'show.medium.type :=
-  #1 'slash.for.extraction :=
-  #0 'in.booktitle :=
+  "slash" 'component.part.label :=
   #0 'short.journal :=
   #0 'italic.journal :=
   #0 'bold.journal.volume :=
@@ -83,7 +86,7 @@ FUNCTION {load.config}
   #1 'show.urldate :=
   #1 'show.url :=
   #1 'show.doi :=
-  #0 'show.preprint :=
+  #1 'show.preprint :=
   #0 'show.note :=
   #0 'show.english.translation :=
   #1 'end.with.period :=
@@ -100,6 +103,7 @@ ENTRY
     editor
     eprint
     eprinttype
+    entrysubtype
     howpublished
     institution
     journal
@@ -380,9 +384,22 @@ FUNCTION {new.sentence}
 FUNCTION {new.slash}
 { output.state before.all =
     'skip$
-    { slash.for.extraction
+    { component.part.label "slash" =
         { after.slash 'output.state := }
-        { after.block 'output.state := }
+        { new.block
+          component.part.label "in" =
+            { entry.lang lang.en =
+                { "In: " output
+                  write$
+                  ""
+                  before.all 'output.state :=
+                }
+                'skip$
+              if$
+            }
+            'skip$
+          if$
+        }
       if$
     }
   if$
@@ -763,7 +780,7 @@ FUNCTION {add.link}
 { url empty$ not
     { "\href{" url * "}{" * swap$ * "}" * }
     { doi empty$ not
-        { "\href{http://dx.doi.org/" doi * "}{" * swap$ * "}" * }
+        { "\href{https://doi.org/" doi * "}{" * swap$ * "}" * }
         'skip$
       if$
     }
@@ -779,7 +796,25 @@ FUNCTION {format.title}
         'skip$
       if$
       entry.numbered number empty$ not and
-        { bbl.colon * number * }
+        { bbl.colon *
+          type$ "patent" = show.patent.country and
+            { address empty$ not
+                { address * ", " * }
+                { location empty$ not
+                    { location * ", " * }
+                    { entry.lang lang.zh =
+                        { "中国" * ", " * }
+                        'skip$
+                      if$
+                    }
+                  if$
+                }
+              if$
+            }
+            'skip$
+          if$
+          number *
+        }
         'skip$
       if$
       link.title
@@ -957,14 +992,6 @@ FUNCTION {format.series.vol.num.booktitle}
     { format.booktitle.vol.num }
   if$
   format.btitle
-  in.booktitle
-    { duplicate$ empty$ not entry.lang lang.en = and
-        { "In: " swap$ * }
-        'skip$
-      if$
-    }
-    'skip$
-  if$
 }
 
 FUNCTION {remove.period}
@@ -998,16 +1025,15 @@ FUNCTION {abbreviate}
   if$
 }
 
-FUNCTION {format.journal}
-{ ""
-  short.journal
+FUNCTION {get.journal.title}
+{ short.journal
     { shortjournal empty$ not
-        { shortjournal * }
+        { shortjournal }
         { journal empty$ not
-            { journal * abbreviate }
+            { journal abbreviate }
             { journaltitle empty$ not
-                { journaltitle * abbreviate }
-                'skip$
+                { journaltitle abbreviate }
+                { "" }
               if$
             }
           if$
@@ -1015,15 +1041,30 @@ FUNCTION {format.journal}
       if$
     }
     { journal empty$ not
-        { journal * }
+        { journal }
         { journaltitle empty$ not
-            { journaltitle * }
-            'skip$
+            { journaltitle }
+            { shortjournal empty$ not
+                { shortjournal }
+                { "" }
+              if$
+            }
           if$
         }
       if$
     }
   if$
+}
+
+FUNCTION {check.arxiv.preprint}
+{ #1 #5 substring$ "l" change.case$ "arxiv" =
+    { #1 }
+    { #0 }
+  if$
+}
+
+FUNCTION {format.journal}
+{ get.journal.title
   duplicate$ empty$ not
     { italic.journal entry.lang lang.en = and
         'emphasize
@@ -1092,16 +1133,20 @@ FUNCTION {format.edition}
 { edition empty$
     { "" }
     { edition is.number
-        { entry.lang lang.zh =
-            { edition " 版" * }
-            { edition num.to.ordinal " ed." * }
+        { edition "1" = not
+            { entry.lang lang.zh =
+                { edition " 版" * }
+                { edition num.to.ordinal " ed." * }
+              if$
+            }
+            'skip$
           if$
         }
         { entry.lang lang.en =
             { edition change.sentence.case 's :=
               s "Revised" = s "Revised edition" = or
                 { "Rev. ed." }
-                { s " ed." *}
+                { s " ed." * }
               if$
             }
             { edition }
@@ -1294,7 +1339,15 @@ FUNCTION {format.date}
 { date empty$ not
     { type$ "patent" = type$ "newspaper" = or
         { date }
-        { format.year }
+        { entrysubtype empty$ not
+            { type$ "article" = entrysubtype "newspaper" = and
+                { date }
+                { format.year }
+              if$
+            }
+            { format.year }
+          if$
+        }
       if$
     }
     { year empty$ not
@@ -1313,9 +1366,9 @@ FUNCTION {format.editdate}
 }
 
 FUNCTION {format.urldate}
-{ urldate empty$ not
-  show.urldate show.url and is.pure.electronic or and
-  url empty$ not and
+{ show.urldate show.url and entry.url empty$ not and
+  is.pure.electronic or
+  urldate empty$ not and
     { "\allowbreak[" urldate * "]" * }
     { "" }
   if$
@@ -1449,12 +1502,9 @@ FUNCTION {check.url}
   if$
 }
 
-FUNCTION {format.url}
-{ entry.url
-}
-
 FUNCTION {output.url}
-{ entry.url empty$ not
+{ show.url is.pure.electronic or
+  entry.url empty$ not and
     { new.block
       entry.url output
     }
@@ -1555,9 +1605,9 @@ FUNCTION {check.electronic}
 }
 
 FUNCTION {format.eprint}
-{ eprinttype empty$ not
-    { eprinttype }
-    { archivePrefix empty$ not
+{ archivePrefix empty$ not
+    { archivePrefix }
+    { eprinttype empty$ not
         { archivePrefix }
         { "" }
       if$
@@ -1748,7 +1798,7 @@ FUNCTION {periodical}
   fin.entry
 }
 
-FUNCTION {article}
+FUNCTION {journal.article}
 { output.bibitem
   output.translation
   format.authors output
@@ -1765,7 +1815,15 @@ FUNCTION {article}
   new.block
   title.in.journal
     { format.title "title" output.check
-      "J" set.entry.mark
+      entrysubtype empty$ not
+        {
+          entrysubtype "newspaper" =
+            { "N" set.entry.mark }
+            { "J" set.entry.mark }
+          if$
+        }
+        { "J" set.entry.mark }
+      if$
       format.mark "" output.after
       new.block
     }
@@ -1882,7 +1940,7 @@ FUNCTION {preprint}
   new.block
   title.in.journal
     { format.series.vol.num.title "title" output.check
-      "Z" set.entry.mark
+      "A" set.entry.mark
       format.mark "" output.after
       new.block
     }
@@ -1892,13 +1950,18 @@ FUNCTION {preprint}
   new.sentence
   format.edition output
   new.block
-  output.eprint
   year.after.author not
-    { format.year "year" output.check }
+    { date empty$
+        { format.date output }
+        'skip$
+      if$
+    }
     'skip$
   if$
   format.pages bbl.pages.colon output.after
+  format.editdate "" output.after
   format.urldate "" output.after
+  output.eprint
   output.url
   new.block
   format.note output
@@ -1906,13 +1969,19 @@ FUNCTION {preprint}
 }
 
 FUNCTION {misc}
-{ journal empty$ not
-    'article
-    { booktitle empty$ not
+{ get.journal.title
+  duplicate$ empty$ not
+    { check.arxiv.preprint
+        'preprint
+        'journal.article
+      if$
+    }
+    { pop$
+      booktitle empty$ not
         'incollection
         { publisher empty$ not
             'monograph
-            { eprint empty$ not show.preprint and
+            { eprint empty$ not archivePrefix empty$ not or
                 'preprint
                 { entry.is.electronic
                     'electronic
@@ -1936,6 +2005,8 @@ FUNCTION {archive}
 { "A" set.entry.mark
   misc
 }
+
+FUNCTION {article} { misc }
 
 FUNCTION {book} { monograph }
 
@@ -1964,6 +2035,8 @@ FUNCTION {inproceedings}
 }
 
 FUNCTION {conference} { inproceedings }
+
+FUNCTION {legislation} { archive }
 
 FUNCTION {map}
 { "CM" set.entry.mark
@@ -2275,44 +2348,26 @@ FUNCTION {presort}
   'sort.key$ :=
 }
 
-STRINGS { longest.label last.label next.extra }
+STRINGS { longest.label last.label next.extra last.extra.label }
 
-INTEGERS { longest.label.width last.extra.num number.label }
+INTEGERS { longest.label.width number.label }
 
 FUNCTION {initialize.longest.label}
 { "" 'longest.label :=
   #0 int.to.chr$ 'last.label :=
   "" 'next.extra :=
   #0 'longest.label.width :=
-  #0 'last.extra.num :=
   #0 'number.label :=
+  "" 'last.extra.label :=
 }
 
 FUNCTION {forward.pass}
-{ last.label short.label =
-    { last.extra.num #1 + 'last.extra.num :=
-      last.extra.num int.to.chr$ 'extra.label :=
-    }
-    { "a" chr.to.int$ 'last.extra.num :=
-      "" 'extra.label :=
-      short.label 'last.label :=
-    }
-  if$
+{
   number.label #1 + 'number.label :=
 }
 
 FUNCTION {reverse.pass}
-{ next.extra "b" =
-    { "a" 'extra.label := }
-    'skip$
-  if$
-  extra.label 'next.extra :=
-  extra.label
-  duplicate$ empty$
-    'skip$
-    { "{\natexlab{" swap$ * "}}" * }
-  if$
-  'extra.label :=
+{
   label extra.label * 'label :=
 }
 
