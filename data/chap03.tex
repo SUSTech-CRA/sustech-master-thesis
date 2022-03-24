@@ -4,19 +4,50 @@
 
 \section{数学符号}
 
-研究生《写作指南》要求量及其单位所使用的符号应符合国家标准《国际单位制及其应用》（GB 3100—1993）、《有关量、单位和符号的一般原则》（GB/T 3101—1993）的规定。
+研究生《写作指南》要求量及其单位所使用的符号应符合国家标准《国际单位制及其应用》（GB 3100—1993）、《有关量、单位和符号的一般原则》（GB/T 3101—1993）的规定，但是与 \TeX{} 默认的美国数学学会（AMS）的符号习惯有所区别。
+
 模板中使用 \pkg{unicode-math} 宏包来配置数学符号，
-与 \LaTeX{} 默认的英美国家的符号习惯有所差异：
+
 \begin{enumerate}
-  \item 大写希腊字母默认为斜体，如 \cs{Delta}：$\Delta$。
-  \item 有限增量符号 $\increment$（U+2206）应使用 \pkg{unicode-math} 宏包提供的
-    \cs{increment} 命令。
-  \item 向量、矩阵和张量要求粗斜体，应该使用 \pkg{unicode-math} 的 \cs{symbf} 命令，
-    如 \verb|\symbf{A}|、\verb|\symbf{\alpha}|。
-  \item 数学常数和特殊函数要求用正体，应使用 \cs{symup} 命令，
-    如 $\symup{\pi} = 3.14\dots$; $\symup{e} = 2.718\dots$，
-  \item 微分号和积分号使用使用正体，比如 $\int f(x) \dif x$。
+  \item 大写希腊字母默认为斜体，如
+    \begin{equation*}
+      \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega.
+    \end{equation*}
+    注意有限增量符号 $\increment$ 固定使用正体，模板提供了 \cs{increment} 命令。
+  \item 小于等于号和大于等于号使用倾斜的字形 $\le$、$\ge$。
+  \item 积分号使用正体，比如 $\int$、$\oint$。
+  \item 行间公式积分号的上下限位于积分号的上下两端，比如
+    \begin{equation*}
+      \int_a^b f(x) \dif x.
+    \end{equation*}
+    行内公式为了版面的美观，统一居右侧，如 $\int_a^b f(x) \dif x$ 。
+  \item
+    偏微分符号 $\partial$ 使用正体。
+  \item
+    省略号 \cs{dots} 按照中文的习惯固定居中，比如
+    \begin{equation*}
+      1, 2, \dots, n \quad 1 + 2 + \dots + n.
+    \end{equation*}
+  \item
+    实部 $\Re$ 和虚部 $\Im$ 的字体使用罗马体。
 \end{enumerate}
+
+以上数学符号样式的差异可以在模板中统一设置。
+另外国标还有一些与 AMS 不同的符号使用习惯，需要用户在写作时进行处理：
+\begin{enumerate}
+  \item 数学常数和特殊函数名用正体，如
+    \begin{equation*}
+      \uppi = 3.14\dots; \quad
+      \symup{i}^2 = -1; \quad
+      \symup{e} = \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n.
+    \end{equation*}
+  \item 微分号使用正体，比如 $\dif y / \dif x$。
+  \item 向量、矩阵和张量用粗斜体（\cs{symbf}），如 $\symbf{x}$、$\symbf{\Sigma}$、$\symbfsf{T}$。
+  \item 自然对数用 $\ln x$ 不用 $\log x$。
+\end{enumerate}
+
+
+英文论文的数学符号使用 \TeX{} 默认的样式。
 
 关于数学符号更多的用法，参考
 \href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unicode-math.pdf}{\pkg{unicode-math}}
@@ -39,14 +70,9 @@
 \section{数学公式}
 
 数学公式可以使用 \env{equation} 和 \env{equation*} 环境。
-注意数学公式的引用应前后带括号，建议使用 \cs{eqref} 命令，比如式 \eqref{eq:example}。
-
-\begin{definition}
-  求余符号：“%”为求余符号。
-\end{definition}
-
+注意数学公式的引用应前后带括号，建议使用 \cs{eqref} 命令，比如式\eqref{eq:example}。
 \begin{equation}
-  \frac{1}{2 \symup{\pi} \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
   \label{eq:example}
 \end{equation}
 注意公式编号的引用应含有圆括号，可以使用 \cs{eqref} 命令。
@@ -82,6 +108,19 @@
 
 \section{数学字体}
 
+按照《撰写规范》全文统一采用 Xits Math 或 Cambria Math 中一种字体作为表达式字体即可。
+
+Cambria Math 字体样例：
+
+\thusetup{math-font = cambria}
 \begin{equation}
   f(x)=a_0+ \sum_{n=1}^{\infty}   \left(  a_n\ \cos \frac{n\pi x}{L} +b_n  \sin⁡ \frac{n\pi x}{L}   \right)
 \end{equation}
+
+Xits Math 字体样例：
+\thusetup{math-font = xits}
+\begin{equation}
+  f(x)=a_0+ \sum_{n=1}^{\infty}   \left(  a_n\ \cos \frac{n\pi x}{L} +b_n  \sin⁡ \frac{n\pi x}{L}   \right)
+\end{equation}
+
+\thusetup{math-font = cambria}
