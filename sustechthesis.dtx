@@ -1710,17 +1710,28 @@
 % 使用 \pkg{unicode-math} 配置数学字体
 %    \begin{macrocode}
 \unimathsetup{
-  math-style = ISO,
-  bold-style = ISO,
-  nabla      = upright,
-  partial    = upright,
+  math-style = TeX,
+  bold-style = TeX,
+}
+\ifthu@language@chinese
+  \unimathsetup{
+    math-style = ISO,
+    bold-style = ISO,
+    nabla      = upright,
+    partial    = upright,
+  }
+\fi
+\newcommand\thu@xits@integral@stylistic@set{%
+  \ifthu@language@chinese
+    8%upright
+  \fi
 }
 \newcommand\thu@load@math@font@xits{%
   \thu@set@xits@names
   \setmathfont{\thu@font@name@xits@math@rm}[
     Extension    = .otf,
     BoldFont     = \thu@font@name@xits@math@bf,
-    StylisticSet = 8,
+    StylisticSet = \thu@xits@integral@stylistic@set,
   ]%
   \setmathfont{\thu@font@name@xits@math@rm}[
     Extension    = .otf,
@@ -1731,7 +1742,7 @@
 \newcommand\thu@load@math@font@stix{%
   \setmathfont{STIX2Math}[
     Extension    = .otf,
-    StylisticSet = 8,
+    StylisticSet = \thu@xits@integral@stylistic@set,
   ]%
   \setmathfont{STIX2Math}[
     Extension    = .otf,
@@ -2486,13 +2497,23 @@
 % \begin{macro}{\int}
 % 积分号 \cs{int} 使用正体，并且上下限默认置于积分号上下两侧。
 %    \begin{macrocode}
-\removenolimits{%
-  \int\iint\iiint\iiiint\oint\oiint\oiiint
-  \intclockwise\varointclockwise\ointctrclockwise\sumint
-  \intbar\intBar\fint\cirfnint\awint\rppolint
-  \scpolint\npolint\pointint\sqint\intlarhk\intx
-  \intcap\intcup\upint\lowint
-}
+\ifthu@language@chinese
+  \removenolimits{%
+    \int\iint\iiint\iiiint\oint\oiint\oiiint
+    \intclockwise\varointclockwise\ointctrclockwise\sumint
+    \intbar\intBar\fint\cirfnint\awint\rppolint
+    \scpolint\npolint\pointint\sqint\intlarhk\intx
+    \intcap\intcup\upint\lowint
+  }%
+\else
+  \addnolimits{%
+    \int\iint\iiint\iiiint\oint\oiint\oiiint
+    \intclockwise\varointclockwise\ointctrclockwise\sumint
+    \intbar\intBar\fint\cirfnint\awint\rppolint
+    \scpolint\npolint\pointint\sqint\intlarhk\intx
+    \intcap\intcup\upint\lowint
+  }%
+\fi
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2502,8 +2523,10 @@
 % $\Re$、$\Im$。
 %    \begin{macrocode}
 \AtBeginDocument{%
-  \renewcommand{\Re}{\operatorname{Re}}%
-  \renewcommand{\Im}{\operatorname{Im}}%
+  \ifthu@language@chinese
+    \renewcommand{\Re}{\operatorname{Re}}%
+    \renewcommand{\Im}{\operatorname{Im}}%
+  \fi
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2513,7 +2536,9 @@
 % \cs{nabla} 使用粗正体。
 %    \begin{macrocode}
 \AtBeginDocument{%
-  \renewcommand\nabla{\mbfnabla}%
+  \ifthu@language@chinese
+    \renewcommand\nabla{\mbfnabla}%
+  \fi
 }
 %    \end{macrocode}
 % \end{macro}

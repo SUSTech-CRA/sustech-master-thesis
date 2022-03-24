@@ -4,9 +4,11 @@
 
 \section{数学符号}
 
+模板中使用 \pkg{unicode-math} 宏包来配置数学符号，
+
 研究生《写作指南》要求量及其单位所使用的符号应符合国家标准《国际单位制及其应用》（GB 3100—1993）、《有关量、单位和符号的一般原则》（GB/T 3101—1993）的规定，但是与 \TeX{} 默认的美国数学学会（AMS）的符号习惯有所区别。
 
-模板中使用 \pkg{unicode-math} 宏包来配置数学符号，
+英文论文的数学符号使用 \TeX{} 默认的样式。论文以中文为主要撰写语言按照国标建议的配置数学字体格式：
 
 \begin{enumerate}
   \item 大写希腊字母默认为斜体，如
@@ -42,18 +44,17 @@
       \symup{e} = \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n.
     \end{equation*}
   \item 微分号使用正体，比如 $\dif y / \dif x$。
-  \item 向量、矩阵和张量用粗斜体（\cs{symbf}），如 $\symbf{x}$、$\symbf{\Sigma}$、$\symbfsf{T}$。
+  \item 向量、矩阵和张量用粗斜体（\cs{mathbfit}），如 $\mathbfit{x}$、$\mathbfit{\Sigma}$、$\mathbfit{T}$。
   \item 自然对数用 $\ln x$ 不用 $\log x$。
 \end{enumerate}
 
 
-英文论文的数学符号使用 \TeX{} 默认的样式。
 
 关于数学符号更多的用法，参考
 \href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unicode-math.pdf}{\pkg{unicode-math}}
 宏包的使用说明，
 全部数学符号命的令参考
-\href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unimath-symbols.pdf}{\pkg{unimath-symbols}}。
+\href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unimath-symbols.pdf}{\pkg{unimath-symbols}}，也可以参考 Stack Overflow 上的答案 \href{https://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode}{What are all the font styles I can use in math mode?}。
 
 关于量和单位推荐使用
 \href{http://mirrors.ctan.org/macros/latex/contrib/siunitx/siunitx.pdf}{\pkg{siunitx}}
