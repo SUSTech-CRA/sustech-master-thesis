@@ -31,6 +31,14 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.11...HEAD)
 
+### Added
+- 示例中增加数学字体配置提示。
+
+### Changed
+- 更新参考文献例子。
+- 更新数学例子。
+- 限制国标数学规范在中文论文中，英文论文不应用。
+
 ## [1.3.11](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.10...v1.3.11)
 
 ### Added
