@@ -687,6 +687,15 @@
 %   \item 微分号和积分号使用使用正体，比如 $\int f(x) \dif x$。
 % \end{enumerate}
 %
+% \DescribeOption{math-style}
+% 用户可以通过设置 \option{math-style} 选择数学符号样式（可选：
+% \option{GB}（中文默认），\option{TeX}（英文默认）和 \option{ISO}），比如：
+% \begin{latex}
+%   \thusetup{
+%     math-style = ISO,
+%   }
+% \end{latex}
+%
 % 关于数学符号更多的用法，参考
 % \href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unicode-math.pdf}{\pkg{unicode-math}}
 % 宏包的使用说明，
@@ -1186,6 +1195,14 @@
       none,
     },
     default = cambria,
+  },
+  math-style = {
+    name = math@style,
+    choices = {
+      GB,
+      ISO,
+      TeX,
+    },
   },
 %    \end{macrocode}
 %
@@ -1709,11 +1726,23 @@
 %
 % 使用 \pkg{unicode-math} 配置数学字体
 %    \begin{macrocode}
+\ifthu@language@chinese
+  \thusetup{math-style=GB}%
+\else
+  \thusetup{math-style=TeX}%
+\fi
+\thu@option@hook{language}{%
+  \ifthu@language@chinese
+    \thusetup{math-style=GB}%
+  \else
+    \thusetup{math-style=TeX}%
+  \fi
+}
 \unimathsetup{
   math-style = TeX,
   bold-style = TeX,
 }
-\ifthu@language@chinese
+\ifthu@math@style@GB
   \unimathsetup{
     math-style = ISO,
     bold-style = ISO,
@@ -1722,7 +1751,7 @@
   }
 \fi
 \newcommand\thu@xits@integral@stylistic@set{%
-  \ifthu@language@chinese
+  \ifthu@math@style@GB
     8%upright
   \fi
 }
@@ -2461,10 +2490,10 @@
 % 省略号一律居中，所以 \cs{ldots} 不再居于底部。
 %    \begin{macrocode}
 \newcommand\thu@set@math@ellipsis{%
-  \ifthu@language@chinese
+  \ifthu@math@style@GB
     \DeclareRobustCommand\mathellipsis{\mathinner{\unicodecdots}}%
   \else
-    \ifthu@language@english
+    \ifthu@math@style@TeX
       \DeclareRobustCommand\mathellipsis{\mathinner{\unicodeellipsis}}%
     \fi
   \fi
@@ -2480,7 +2509,7 @@
 % \begin{macro}{\geq}
 % 小于等于号要使用倾斜的形式，仅中文生效。
 %    \begin{macrocode}
-\ifthu@language@chinese
+\ifthu@math@style@GB
   \protected\def\le{\leqslant}
   \protected\def\ge{\geqslant}
   \AtBeginDocument{%
@@ -2497,7 +2526,7 @@
 % \begin{macro}{\int}
 % 积分号 \cs{int} 使用正体，并且上下限默认置于积分号上下两侧。
 %    \begin{macrocode}
-\ifthu@language@chinese
+\ifthu@math@style@GB
   \removenolimits{%
     \int\iint\iiint\iiiint\oint\oiint\oiiint
     \intclockwise\varointclockwise\ointctrclockwise\sumint
@@ -2506,13 +2535,15 @@
     \intcap\intcup\upint\lowint
   }%
 \else
-  \addnolimits{%
-    \int\iint\iiint\iiiint\oint\oiint\oiiint
-    \intclockwise\varointclockwise\ointctrclockwise\sumint
-    \intbar\intBar\fint\cirfnint\awint\rppolint
-    \scpolint\npolint\pointint\sqint\intlarhk\intx
-    \intcap\intcup\upint\lowint
-  }%
+  \ifthu@math@style@TeX
+    \addnolimits{%
+      \int\iint\iiint\iiiint\oint\oiint\oiiint
+      \intclockwise\varointclockwise\ointctrclockwise\sumint
+      \intbar\intBar\fint\cirfnint\awint\rppolint
+      \scpolint\npolint\pointint\sqint\intlarhk\intx
+      \intcap\intcup\upint\lowint
+    }%
+  \fi
 \fi
 %    \end{macrocode}
 % \end{macro}
@@ -2523,7 +2554,7 @@
 % $\Re$、$\Im$。
 %    \begin{macrocode}
 \AtBeginDocument{%
-  \ifthu@language@chinese
+  \ifthu@math@style@GB
     \renewcommand{\Re}{\operatorname{Re}}%
     \renewcommand{\Im}{\operatorname{Im}}%
   \fi
@@ -2536,7 +2567,7 @@
 % \cs{nabla} 使用粗正体。
 %    \begin{macrocode}
 \AtBeginDocument{%
-  \ifthu@language@chinese
+  \ifthu@math@style@GB
     \renewcommand\nabla{\mbfnabla}%
   \fi
 }
