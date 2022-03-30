@@ -32,15 +32,6 @@ jobs:
             sustechthesis.pdf
             public-test/*.pdf
 
-      # - name: Deploy PDF to latest branch
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: github.ref == 'refs/heads/master'
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public-test
-      #     publish_branch: latest
-      #     force_orphan: true
-
   sync:
     runs-on: ubuntu-latest
     name: Sync to other git service
@@ -51,18 +42,6 @@ jobs:
       cancel-in-progress: true
     # needs: build_latex
     steps:
-
-    # - name: Push to gitee
-    #   run: |
-    #     mkdir -p /tmp/tmp_push
-    #     cd /tmp/tmp_push
-    #     git clone --bare https://github.com/liziwl/sustech-master-thesis.git this_repo
-    #     cd this_repo
-    #     git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
-    #   env:
-    #     USER: ${{ secrets.GITEE_USER }}
-    #     PERSONAL_TOKEN: ${{ secrets.GITEE_PERSONAL_TOKEN }}
-    #     REPO_URL: "gitee.com/liziwl/sustech-master-thesis.git"
 
     - name: Push to sustech-git
       run: |

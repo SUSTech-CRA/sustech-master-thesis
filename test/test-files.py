@@ -61,35 +61,62 @@ def rollback(filename, mode):
         shutil.copyfile(f'{filename}.lock', filename)
 
 
+def backup(filename, mode):
+    if mode:
+        # before change, backup
+        try:
+            shutil.copyfile(filename, f'{filename}.undo.bak')
+        except:
+            pass
+    else:
+        # after change, restore
+        try:
+            shutil.copyfile(f'{filename}.undo.bak', filename)
+            os.remove(f'{filename}.undo.bak')
+        except:
+            pass
+
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--recipe", type=int, required=True, help='recipe value')
+    parser.add_argument('--undo', action='store_true')
     args = parser.parse_args()
+    TOBACKUP = not args.undo
 
     if args.recipe == 1:
         # chinese
         filename = "sustechthesis-example.tex"
-        change_line(filename,
-                    "documentclass.+{sustechthesis}",
-                    "documentclass[degree=master,language=chinese,cjk-font=external]{sustechthesis}"
-                    )
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            change_line(filename,
+                        "documentclass.+{sustechthesis}",
+                        "documentclass[degree=master,language=chinese,cjk-font=external]{sustechthesis}"
+                        )
     elif args.recipe == 2:
         # english
         filename = "sustechthesis-example.tex"
-        change_line(filename,
-                    "documentclass.+{sustechthesis}",
-                    "documentclass[degree=master,language=english,cjk-font=external]{sustechthesis}"
-                    )
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            change_line(filename,
+                        "documentclass.+{sustechthesis}",
+                        "documentclass[degree=master,language=english,cjk-font=external]{sustechthesis}"
+                        )
     elif args.recipe == 3:
         # biber
         filename = "sustechthesis-example.tex"
-        comment_line(filename, "bibliography{ref/refs}", True)
-        comment_line(filename, "printbibliography", False)
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            comment_line(filename, "bibliography{ref/refs}", True)
+            comment_line(filename, "printbibliography", False)
+
         filename = "sustech-setup.tex"
-        comment_line(filename, "{gbt7714}", True)
-        comment_line(filename, "citestyle{super}", True)
-        comment_line(filename, "citestyle{numbers}", True)
-        comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
-        comment_line(filename, "{biblatex}", False)
-        comment_line(filename, "addbibresource{ref/refs.bib}", False)
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            comment_line(filename, "{gbt7714}", True)
+            comment_line(filename, "citestyle{super}", True)
+            comment_line(filename, "citestyle{numbers}", True)
+            comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
+            comment_line(filename, "{biblatex}", False)
+            comment_line(filename, "addbibresource{ref/refs.bib}", False)
