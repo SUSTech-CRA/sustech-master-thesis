@@ -1163,9 +1163,6 @@
     choices = {
       times,
       termes,
-      xits,
-      libertinus,
-      lm,
       auto,
       none,
     },
@@ -1190,8 +1187,6 @@
       cambria,
       xits,
       stix,
-      libertinus,
-      lm,
       none,
     },
     default = cambria,
@@ -1738,19 +1733,8 @@
     \thusetup{math-style=TeX}%
   \fi
 }
-\unimathsetup{
-  math-style = TeX,
-  bold-style = TeX,
-}
-\ifthu@math@style@GB
-  \unimathsetup{
-    math-style = ISO,
-    bold-style = ISO,
-    nabla      = upright,
-    partial    = upright,
-  }
-\fi
 \newcommand\thu@xits@integral@stylistic@set{%
+  %\ifthu@language@english
   \ifthu@math@style@GB
     8%upright
   \fi
@@ -1789,11 +1773,6 @@
 \newcommand\thu@load@math@font@cambria{%
   \setmathfont[Path = "fonts/"]{CambriaMath.otf}%
 }
-\newcommand\thu@load@math@font{%
-  \@nameuse{thu@load@math@font@\thu@math@font}
-}
-\thu@load@math@font
-\thu@option@hook{math-font}{\thu@load@math@font}
 %    \end{macrocode}
 %
 % 中文字体
@@ -2490,16 +2469,16 @@
 % 省略号一律居中，所以 \cs{ldots} 不再居于底部。
 %    \begin{macrocode}
 \newcommand\thu@set@math@ellipsis{%
-  \ifthu@math@style@GB
-    \DeclareRobustCommand\mathellipsis{\mathinner{\unicodecdots}}%
-  \else
-    \ifthu@math@style@TeX
-      \DeclareRobustCommand\mathellipsis{\mathinner{\unicodeellipsis}}%
+  \AtBeginDocument{%
+    \ifthu@math@style@GB
+      \DeclareRobustCommand\mathellipsis{\mathinner{\unicodecdots}}%
+    \else
+      \ifthu@math@style@TeX
+        \DeclareRobustCommand\mathellipsis{\mathinner{\unicodeellipsis}}%
+      \fi
     \fi
-  \fi
+  }
 }
-\thu@set@math@ellipsis
-\thu@option@hook{language}{\thu@set@math@ellipsis}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2509,14 +2488,16 @@
 % \begin{macro}{\geq}
 % 小于等于号要使用倾斜的形式，仅中文生效。
 %    \begin{macrocode}
-\ifthu@math@style@GB
-  \protected\def\le{\leqslant}
-  \protected\def\ge{\geqslant}
+\newcommand\thu@set@math@leq{%
   \AtBeginDocument{%
-    \renewcommand\leq{\leqslant}%
-    \renewcommand\geq{\geqslant}%
+    \ifthu@math@style@GB
+      \protected\def\le{\leqslant}
+      \protected\def\ge{\geqslant}
+      \renewcommand\leq{\leqslant}%
+      \renewcommand\geq{\geqslant}%
+    \fi
   }
-\fi
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2526,25 +2507,30 @@
 % \begin{macro}{\int}
 % 积分号 \cs{int} 使用正体，并且上下限默认置于积分号上下两侧。
 %    \begin{macrocode}
-\ifthu@math@style@GB
-  \removenolimits{%
-    \int\iint\iiint\iiiint\oint\oiint\oiiint
-    \intclockwise\varointclockwise\ointctrclockwise\sumint
-    \intbar\intBar\fint\cirfnint\awint\rppolint
-    \scpolint\npolint\pointint\sqint\intlarhk\intx
-    \intcap\intcup\upint\lowint
-  }%
-\else
-  \ifthu@math@style@TeX
-    \addnolimits{%
-      \int\iint\iiint\iiiint\oint\oiint\oiiint
-      \intclockwise\varointclockwise\ointctrclockwise\sumint
-      \intbar\intBar\fint\cirfnint\awint\rppolint
-      \scpolint\npolint\pointint\sqint\intlarhk\intx
-      \intcap\intcup\upint\lowint
-    }%
-  \fi
-\fi
+\newcommand\thu@set@unimath@integral@limits{
+  \AtBeginDocument{%
+    \ifthu@math@style@GB
+      \removenolimits{%
+        \int\iint\iiint\iiiint\oint\oiint\oiiint
+        \intclockwise\varointclockwise\ointctrclockwise\sumint
+        \intbar\intBar\fint\cirfnint\awint\rppolint
+        \scpolint\npolint\pointint\sqint\intlarhk\intx
+        \intcap\intcup\upint\lowint
+      }%
+    \else
+      \ifthu@math@style@TeX
+        \addnolimits{%
+          \int\iint\iiint\iiiint\oint\oiint\oiiint
+          \intclockwise\varointclockwise\ointctrclockwise\sumint
+          \intbar\intBar\fint\cirfnint\awint\rppolint
+          \scpolint\npolint\pointint\sqint\intlarhk\intx
+          \intcap\intcup\upint\lowint
+        }%
+      \fi
+    \fi
+  }
+}
+
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2553,11 +2539,13 @@
 % 实部、虚部操作符使用罗马体 $\mathrm{Re}$、$\mathrm{Im}$ 而不是 fraktur 体
 % $\Re$、$\Im$。
 %    \begin{macrocode}
-\AtBeginDocument{%
-  \ifthu@math@style@GB
-    \renewcommand{\Re}{\operatorname{Re}}%
-    \renewcommand{\Im}{\operatorname{Im}}%
-  \fi
+\newcommand\thu@set@unimath@real@part{%
+  \AtBeginDocument{%
+    \ifthu@math@style@GB
+      \renewcommand{\Re}{\operatorname{Re}}%
+      \renewcommand{\Im}{\operatorname{Im}}%
+    \fi
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2566,13 +2554,45 @@
 % \begin{macro}{\nabla}
 % \cs{nabla} 使用粗正体。
 %    \begin{macrocode}
-\AtBeginDocument{%
-  \ifthu@math@style@GB
-    \renewcommand\nabla{\mbfnabla}%
-  \fi
+\newcommand\thu@set@unimath@nabla{
+  \AtBeginDocument{%
+    \ifthu@math@style@GB
+      \renewcommand\nabla{\mbfnabla}%
+    \fi
+  }
 }
 %    \end{macrocode}
 % \end{macro}
+%
+%    \begin{macrocode}
+\newcommand\thu@set@unimath@style{%
+  \thu@set@math@ellipsis
+  \thu@set@math@leq
+  \thu@set@unimath@integral@limits
+  \thu@set@unimath@real@part
+  \thu@set@unimath@nabla
+}
+\newcommand\thu@load@math@font{%
+  \AtBeginDocument{%
+    \unimathsetup{
+      math-style = TeX,
+      bold-style = TeX,
+    }
+    \ifthu@math@style@GB
+      \unimathsetup{
+        math-style = ISO,
+        bold-style = ISO,
+        nabla      = upright,
+        partial    = upright,
+      }
+    \fi
+    \@nameuse{thu@load@math@font@\thu@math@font}
+  }
+  \thu@set@unimath@style
+}
+\thu@load@math@font
+\thu@option@hook{math-font}{\thu@load@math@font}
+%    \end{macrocode}
 %
 % \begin{macro}{\bm}
 % \begin{macro}{\boldsymbol}
