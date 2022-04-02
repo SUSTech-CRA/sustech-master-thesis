@@ -78,6 +78,21 @@
 \end{equation}
 注意公式编号的引用应含有圆括号，可以使用 \cs{eqref} 命令。
 
+晶体衍射基础的著名公式──布拉格方程：
+\begin{equation}
+  2d\sin\theta=k\lambda, \quad k=1,2,3\ldots
+\end{equation}
+
+\noindent%
+\begin{minipage}{\textwidth}
+  \begin{tabularx}{\textwidth}{@{}l@{~}l@{~——~}X@{}}
+    式中 & $d$ & 晶面间距（nm）；\\
+    & $\theta$ & 入射线与晶面的夹角（rad）；\\
+    & $\lambda$ & X射线波长（nm）。\\
+    & $k$ & 公式中第一次出现的物理量代号应给予注释，注释的转行应与破折号“——”后第一个字对齐。
+  \end{tabularx}
+\end{minipage}
+
 多行公式尽可能在“=”处对齐，推荐使用 \env{align} 环境。
 \begin{align}
   a & = b + c + d + e \\
