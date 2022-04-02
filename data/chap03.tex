@@ -137,19 +137,24 @@
 
 \section{数学字体}
 
-按照《撰写规范》全文统一采用 Xits Math 或 Cambria Math 中一种字体作为表达式字体即可。
+按照《撰写规范》全文统一采用 Cambria Math （MS Word默认字体）或 Xits Math 中一种字体作为表达式字体即可。Cambria Math 缺少部分样式，例如：积分符号设定为 upright 也看起来没有变化。
 
 Cambria Math 字体样例：
 
-\thusetup{math-font = cambria}
+\makeatletter
+\thu@load@math@font@cambria
 \begin{equation}
-  f(x)=a_0+ \sum_{n=1}^{\infty}   \left(  a_n\ \cos \frac{n\pi x}{L} +b_n  \sin⁡ \frac{n\pi x}{L}   \right)
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \label{eq:example}
 \end{equation}
+\makeatother
 
 Xits Math 字体样例：
-\thusetup{math-font = xits}
+\makeatletter
+\thu@load@math@font@xits
 \begin{equation}
-  f(x)=a_0+ \sum_{n=1}^{\infty}   \left(  a_n\ \cos \frac{n\pi x}{L} +b_n  \sin⁡ \frac{n\pi x}{L}   \right)
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \label{eq:example}
 \end{equation}
-
-\thusetup{math-font = cambria}
+\thu@load@math@font@cambria
+\makeatother
