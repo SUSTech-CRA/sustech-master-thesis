@@ -84,7 +84,20 @@
     & = f + g
 \end{align}
 
+此外需要注意：公式需紧挨段前文字，不可空行，不然会导致公式独立成段，如下\textcolor{red}{\textbf{错误}}效果。公式前文字公式前文字公式前文字公式前文字公式前文字。
 
+\begin{equation}
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \label{eq:example}
+\end{equation}
+
+公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字。\textbf{正确}效果，如下：
+% <- 如需代码上空行需要在前面加上百分号·%
+\begin{equation}
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+  \label{eq:example}
+\end{equation}
+公式后文字公式后文字公式后文字公式后文字公式后文字公式后文字公式后。
 
 \section{数学定理}
 
