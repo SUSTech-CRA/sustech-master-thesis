@@ -2367,7 +2367,8 @@
 \node[draw,circle,inner sep=1pt,minimum size=1em](C) {#1};
 \end{tikzpicture}}
 %
-\setlist[enumerate,1]{label={（\arabic*）}}
+\setlist[enumerate,1]{label={（\arabic*）},labelsep=0em}
+\setlist[enumerate]{labelsep=0.5em}
 \setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
 \setlist[enumerate,3]{label={\alph*.}}
 %
