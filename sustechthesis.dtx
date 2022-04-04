@@ -2367,10 +2367,10 @@
 \node[draw,circle,inner sep=1pt,minimum size=1em](C) {#1};
 \end{tikzpicture}}
 %
-\setlist[enumerate,1]{label={（\arabic*）},labelsep=0em}
 \setlist[enumerate]{labelsep=0.5em}
-\setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
 \setlist[enumerate,3]{label={\alph*.}}
+\setlist[enumerate,2]{label=\protect\sustech@enum@circ@item{\arabic*}}
+\setlist[enumerate,1]{label={（\arabic*）},labelsep=0em}
 %
 \setlist[1]{wide}
 \setlist[2]{leftmargin=3\parindent}
@@ -4297,11 +4297,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       本人完全了解南方科技大学有关收集、保留、使用学位论文的规定，即：
 
-      \begin{enumerate}[wide,label={\arabic*.}]
+      \begin{enumerate}[wide,label={\arabic*.},labelsep=0.5em]
         \item 按学校规定提交学位论文的电子版本。
         \item 学校有权保留并向国家有关部门或机构送交学位论文的电子版，允许论文被查阅。
         \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
-          \begin{enumerate}[wide,label={（\arabic*）}]
+          \begin{enumerate}[wide,label={（\arabic*）},labelsep=0em]
             \item 在本论文提交当年，同意在校园网内提供查询及前十六页浏览服务。
             \item 在本论文提交 $\mdlgwhtsquare$ 当年/ $\mdlgwhtsquare$ 一年以后，同意向全社会公开论文全文的在线浏览和下载。
           \end{enumerate}
@@ -4323,11 +4323,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \section*{Declaration of Authorization of Thesis}
 
       I fully understand the regulations regarding the collection, retention and use of thesis of Southern University of Science and Technology.
-      \begin{enumerate}[wide,label={\arabic*.}]
+      \begin{enumerate}[wide,label={\arabic*.},labelsep=0.5em]
         \item Submit the electronic version of thesis as required by the University.
         \item The University has the right to retain and send the electronic version to other institutions that allow the thesis to be read by the public.
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
-        \begin{enumerate}[wide,label={（\arabic*）}]
+        \begin{enumerate}[wide,label={（\arabic*）},labelsep=0em]
           \item I agree that once submitted, the thesis can be retrieved online and the first 16 pages can be viewed within the campus network.
           \item I agree that $\mdlgwhtsquare$ upon submission $\mdlgwhtsquare$ 12 months after submission, the full text of the thesis can be viewed and downloaded by the public.
         \end{enumerate}
