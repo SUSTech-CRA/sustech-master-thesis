@@ -2163,8 +2163,9 @@
         figurename = {Figure},
         tablename  = {Table},
       }%
-      \def\thu@algorithm@name{\textbf{Algorithm}}%
-      \def\thu@equation@name{\textbf{Equation}}%
+      \def\thu@algorithm@name{Algorithm}%
+      \def\thu@equation@name{Equation}% 仅在listofequations中使用
+      % 以下环境均为正文中使用的定理环境
       \def\thu@assumption@name{\textbf{Assumption}}%
       \def\thu@definition@name{\textbf{Definition}}%
       \def\thu@proposition@name{\textbf{Proposition}}%
