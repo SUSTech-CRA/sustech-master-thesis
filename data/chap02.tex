@@ -80,6 +80,22 @@
 \end{table}
 如果需要调整表格列宽度， 可以改用命令 \verb|L|, \verb|R|, 或者 \verb|C|, 如 \verb|C{2cm}| 代表居中列宽2cm。
 
+\begin{table}
+  \centering
+  \caption{合并单元格的三线表}
+  \label{tab:merge-cell}
+  \begin{tabular}{lcccc}
+  \toprule
+    Metaclass & \multicolumn{2}{c}{A-B} & \multicolumn{2}{c}{C-D} \\ \cmidrule(l){1-1} \cmidrule(lr){2-3} \cmidrule(r){4-5}
+    Class & A & B & C & D \\ \midrule
+    L1 & 1 & 2 & 3 & 4 \\
+    L2 & 1 & 2 & 3 & 4 \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+如有辅助线要求可以使用 \verb|\cmidrule| 命令。在连续使用时，可以使用一组圆括号括起来的参数 \verb|l|、\verb|r|或\verb|l<距离>|、\verb|r<距离>|表示间距的表格线可以在左右向内缩短一小段，表\ref{tab:merge-cell}展示了效果。
+
 表格如果想要与页面等宽，可以使用 \pkg{tabularx} 宏包，如表格\ref{tab:textwith-example}所示。
 模版定义了一些扩展命令，实现一些排版需求。\verb|X| 两端对齐, \verb|Y| 左对齐, \verb|Z| 右对齐，或者 \verb|W| 居中对齐。
 
