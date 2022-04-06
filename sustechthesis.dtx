@@ -2164,7 +2164,8 @@
         tablename  = {Table},
       }%
       \def\thu@algorithm@name{Algorithm}%
-      \def\thu@equation@name{Equation}%
+      \def\thu@equation@name{Equation}% 仅在listofequations中使用
+      % 以下环境均为正文中使用的定理环境
       \def\thu@assumption@name{Assumption}%
       \def\thu@definition@name{Definition}%
       \def\thu@proposition@name{Proposition}%
@@ -5395,12 +5396,21 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 % 定理标题使用黑体，正文使用宋体，冒号隔开。
 %    \begin{macrocode}
 \AtEndOfPackageFile*{amsthm}{%
-  \newtheoremstyle{thu}
+  \newtheoremstyle{thu@cn}
     {\z@}{\z@}
     {\normalfont}{\z@}
     {\normalfont\sffamily}{\thu@theorem@separator}
     {0.5em}{}
-  \theoremstyle{thu}
+  \newtheoremstyle{thu@en}
+    {\z@}{\z@}
+    {\normalfont}{\z@}
+    {\normalfont\sffamily\bfseries}{\bfseries\thu@theorem@separator}
+    {0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  \ifthu@language@chinese
+    \theoremstyle{thu@cn}
+  \else
+    \theoremstyle{thu@en}
+  \fi
   \newtheorem{assumption}{\thu@assumption@name}[chapter]%
   \newtheorem{definition}{\thu@definition@name}[chapter]%
   \newtheorem{proposition}{\thu@proposition@name}[chapter]%
@@ -5421,7 +5431,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \item[\hskip\labelsep
       %     \itshape
       % #1\@addpunct{.}]\ignorespaces
-      \sffamily
+      \ifthu@language@chinese
+        \sffamily
+      \else
+        \sffamily\bfseries
+      \fi
       #1\@addpunct{\thu@theorem@separator}]\ignorespaces
   }{%
     \popQED\endtrivlist\@endpefalse
@@ -5436,7 +5450,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 %    \begin{macrocode}
 \AtEndOfPackageFile*{ntheorem}{%
   \theorembodyfont{\normalfont}%
-  \theoremheaderfont{\normalfont\sffamily}%
+  \ifthu@language@chinese
+    \theoremheaderfont{\normalfont\sffamily}%
+  \else
+    \theoremheaderfont{\normalfont\sffamily\bfseries}%
+  \fi
   \theoremsymbol{\ensuremath{\QED}}%
   \newtheorem*{proof}{\thu@proof@name}%
   \theoremstyle{plain}%
