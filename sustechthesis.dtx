@@ -1487,6 +1487,9 @@
 \renewcommand\mainmatter{%
   \cleardoublepage
   \@mainmattertrue
+  \ifthu@language@chinese
+    \ziju{0.12}% 调整中文字距，使得每行字数更像Word。
+  \fi
   \pagenumbering{arabic}%
 }
 \renewcommand\backmatter{%
@@ -1494,6 +1497,9 @@
     \cleardoublepage
   \else
     \clearpage
+  \fi
+  \ifthu@language@chinese
+    \ziju{0}
   \fi
   \@mainmatterfalse
   \thusetup{toc-depth = 0}%
