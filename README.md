@@ -47,9 +47,18 @@ xetex sustechthesis.ins
 即可得到 `sustechthesis.cls` 等模板文件。
 
 ## 反馈与QA
-1. 南科大研究生模板反馈群：320971126
-2. 南科大LaTeX学习交流群：119667812
-3. 提交 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
+
+在你遇到模板问题时，请遵守以下步骤：
+
+1. 在 [CHANGELOG.md](CHANGELOG.md) 查看该问题是否已经修复但未发布；
+   * 若是，则可以使用仓库中的[预构建的开发版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)解决问题
+2. 在 [GitHub Issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues) 中搜索该问题的关键词；
+3. 在你确定这是一个新问题时：
+   * 对于模板 bug、请求新功能、文档笔误等提出新 [issue](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/new/choose)
+4. 如果导师或院系有额外要求，请一同附上要求原文或格式（如《撰写规范》）截图。
+
+* 南科大研究生模板反馈群：320971126
+* 南科大LaTeX学习交流群：119667812
 
 ## 相关资料
 
