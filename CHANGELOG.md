@@ -29,8 +29,9 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 预发布版本使用形如 "`[1.0.2-rc.1] - 2021-06-11`" 作为二级标题，
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.13...HEAD)
 
+## [1.3.13](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...v1.3.13)
 ### Added
 - 增加数学字体配置选项 math-style。
 - 增加公式符号解释的例子。
@@ -41,6 +42,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 全局移除列表第一级序号后空格。
 - 加粗英文的定理环境前缀和编号。
 - 插图列表、表格列表、公式列表中加入附录中出现的实例。
+- 更新超长列表列样式例子。
 
 ### Removed
 - 删除模版未建议字体的选项。
