@@ -1273,6 +1273,11 @@
 \RequirePackage{xparse}
 %    \end{macrocode}
 %
+% 利用 \pkg{textcase} 英文大小写转换。
+%    \begin{macrocode}
+\RequirePackage{textcase}
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 \RequirePackage{geometry}%
 %    \end{macrocode}
@@ -3462,11 +3467,11 @@
 
     % 18 bp*1.3默认行距比例*1.25行距 = 29.25
     % 16 bp*1.3默认行距比例*1.25行距 = 26
-    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\} }
+    {\fontsize{18bp}{29.25bp}\selectfont \textbf{\MakeTextUppercase{\thu@title@en} \\} }
     \ifx\thu@subtitle@en\empty
       \relax%
     \else
-      {\fontsize{16bp}{26bp}\selectfont \textbf{\MakeUppercase{\thu@subtitle@en} \\} }
+      {\fontsize{16bp}{26bp}\selectfont \textbf{\MakeTextUppercase{\thu@subtitle@en} \\} }
     \fi
     \vfill
 
@@ -3687,11 +3692,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
       \centering
       % 22 bp*1.15默认行距比例*1.25行距 = 31.625
       % 18 bp*1.15默认行距比例*1.25行距 = 25.875
-      {\fontsize{22bp}{31.625bp}\selectfont \textbf{\MakeUppercase{\thu@title@en} \\}}
+      {\fontsize{22bp}{31.625bp}\selectfont \textbf{\MakeTextUppercase{\thu@title@en} \\}}
       \ifx\thu@subtitle@en\empty
         \relax%
       \else
-        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\MakeUppercase{\thu@subtitle@en} \\}}
+        {\fontsize{18bp}{25.875bp}\selectfont \textbf{\MakeTextUppercase{\thu@subtitle@en} \\}}
       \fi
       }
     \par
