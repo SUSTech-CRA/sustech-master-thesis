@@ -2282,7 +2282,7 @@
       }%
     \else
       \def\chaptermark##1{%
-        \markboth{\MakeUppercase{\CTEXifname{\CTEXthechapter\quad}{}##1}}{}%
+        \markboth{\CTEXifname{\MakeTextUppercase{\CTEXthechapter\quad}}{}##1}{}%
       }%
     \fi
   \fi
@@ -2885,8 +2885,7 @@
     \ctexset{%
       chapter = {
         format      = \centering\sffamily\bfseries\fontsize{16bp}{20bp}\selectfont,
-        nameformat  = \MakeUppercase,
-        titleformat = \MakeUppercase,
+        nameformat  = \MakeTextUppercase,
         name        = \chaptername\space,
       },
       section = {
@@ -3135,7 +3134,7 @@
     \else
       \titlecontents{chapter}
         [\z@]{\rmfamily \heiti}
-        {\bfseries \contentspush{\MakeUppercase{\thecontentslabel}\quad}}{\bfseries}
+        {\bfseries \contentspush{\MakeTextUppercase{\thecontentslabel}\quad}}{\bfseries}
         {\rmfamily\thu@leaders\thecontentspage}%
     \fi
     \titlecontents{section}
@@ -3148,19 +3147,21 @@
       {\thu@leaders\thecontentspage}%
   \fi
 }
+% 目录样式
 % 南科大规定格式，英文论文，chapter 全部大写，包括目录内的章节条目，页眉，正文章节标题。
+% 使用 MakeTextUppercase 而不是 MakeUppercase，这样不会影响特殊字符。
 \ifthu@main@language@english
   \ifdefined\texorpdfstring\else\newcommand{\texorpdfstring}[2]{#1}\fi
   \let\oldchapter\chapter
   \renewcommand{\chapter}{\@ifstar{\@sChapter}{\@Chapter}}
   \newcommand{\@sChapter}[2][]{%
-    \oldchapter*{\texorpdfstring{\MakeUppercase{#2}}{#2}}}
+    \oldchapter*{\texorpdfstring{\MakeTextUppercase{#2}}{#2}}}
   \newcommand{\@Chapter}[2][]{%
     \def\shortsec{#1}%
     \ifx\shortsec\empty%
-      \oldchapter{\texorpdfstring{\MakeUppercase{#2}}{#2}}
+      \oldchapter{\texorpdfstring{\MakeTextUppercase{#2}}{#2}}
     \else%
-      \oldchapter[\texorpdfstring{\MakeUppercase{#1}}{#1}]{\texorpdfstring{\MakeUppercase{#2}}{#2}}
+      \oldchapter[\texorpdfstring{\MakeTextUppercase{#1}}{#1}]{\texorpdfstring{\MakeTextUppercase{#2}}{#2}}
     \fi}
 \fi
 \thu@set@toc@format
