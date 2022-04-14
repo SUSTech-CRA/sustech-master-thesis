@@ -2639,18 +2639,51 @@
 %
 % 图表浮动体的默认位置设为 |h|。
 %    \begin{macrocode}
-\def\fps@figure{h}
-\def\fps@table{h}
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
 %    \end{macrocode}
 %
 % 设置浮动对象和文字之间的距离
 %    \begin{macrocode}
-\setlength{\floatsep}{6bp}
-\setlength{\textfloatsep}{6bp}
-\setlength{\intextsep}{6bp}
+\setlength{\floatsep}{12\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength{\textfloatsep}{12\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength{\intextsep}{12\p@ \@plus 2\p@ \@minus 2\p@}
 \setlength{\@fptop}{0bp \@plus1.0fil}
 \setlength{\@fpsep}{12bp \@plus2.0fil}
 \setlength{\@fpbot}{0bp \@plus1.0fil}
+%    \end{macrocode}
+%
+% 由于 LaTeX2e kernel 的问题，图表等浮动体与文字前后的距离不一致，需要进行 patch。
+% 参考 \href{https://github.com/tuna/thuthesis/issues/614}{tuna/thuthesis/issues\#614}、
+% \url{https://www.zhihu.com/question/46618031} 和
+% \url{https://tex.stackexchange.com/a/40363/82731}。
+%    \begin{macrocode}
+\patchcmd{\@addtocurcol}%
+  {\vskip \intextsep}%
+  {\edef\save@first@penalty{\the\lastpenalty}\unpenalty
+   \ifnum \lastpenalty = \@M  % hopefully the OR penalty
+     \unpenalty
+   \else
+     \penalty \save@first@penalty \relax % put it back
+   \fi
+   \ifnum\outputpenalty <-\@Mii
+     \addvspace\intextsep
+     \vskip\parskip
+   \else
+     \addvspace\intextsep
+   \fi}%
+  {}{\thu@patch@error{\@addtocurcol}}
+\patchcmd{\@addtocurcol}%
+  {\vskip\intextsep \ifnum\outputpenalty <-\@Mii \vskip -\parskip\fi}%
+  {\ifnum\outputpenalty <-\@Mii
+     \aftergroup\vskip\aftergroup\intextsep
+     \aftergroup\nointerlineskip
+   \else
+     \vskip\intextsep
+   \fi}%
+  {}{\thu@patch@error{\@addtocurcol}}
+\patchcmd{\@getpen}{\@M}{\@Mi}
+  {}{\thu@patch@error{\@getpen}}
 %    \end{macrocode}
 %
 % 下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度对象占据过多的文本页面，
@@ -2703,10 +2736,8 @@
   skip           = 6bp,
   figureposition = bottom,
   tableposition  = top,
-  justification  = centering
+  justification  = centering,
 }
-\captionsetup[figure]{belowskip=12bp}
-\captionsetup[table]{belowskip=12bp}
 \captionsetup[sub]{font=thu}
 %    \end{macrocode}
 %
