@@ -34,6 +34,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 ### Changed
 - 允许论文题目和章节题目出现特殊的小写字母。
 - 同步上游关于图表距离的修复，浮动对象整体上下距离调整为12bp。
+- 移除中文下数学定理、证明环境里中文冒号后多余空格。
 
 ## [1.3.13](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...v1.3.13)
 ### Added

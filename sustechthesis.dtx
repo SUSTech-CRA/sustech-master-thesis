@@ -2184,7 +2184,7 @@
       \def\thu@problem@name{Problem}%
       \def\thu@conjecture@name{Conjecture}%
       \def\thu@proof@name{Proof}%
-      \def\thu@theorem@separator{: }%
+      \def\thu@theorem@separator{:}%
     \fi
   \fi
 }
@@ -5438,7 +5438,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     {\z@}{\z@}
     {\normalfont}{\z@}
     {\normalfont\sffamily}{\thu@theorem@separator}
-    {0.5em}{}
+    {0em}{}
   \newtheoremstyle{thu@en}
     {\z@}{\z@}
     {\normalfont}{\z@}
@@ -5463,6 +5463,9 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \newtheorem{conjecture}{\thu@conjecture@name}[chapter]%
   \renewenvironment{proof}[1][\thu@proof@name]{\par
     \pushQED{\qed}%
+    \ifthu@language@chinese
+      \setlength\labelsep{0em}%
+    \fi
     % \normalfont \topsep6\p@\@plus6\p@\relax
     \normalfont \topsep\z@\relax
     \trivlist
@@ -5493,11 +5496,26 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \else
     \theoremheaderfont{\normalfont\sffamily\bfseries}%
   \fi
+  \newcommand{\set@labelsep@ntheorem}{
+    \ifthu@language@chinese
+      \setlength\labelsep{0em}%
+    \fi
+  }
+  \renewtheoremstyle{plain}%
+  { \set@labelsep@ntheorem%
+    \item[\hskip\labelsep \theorem@headerfont ##1\ ##2\theorem@separator]}%
+  { \set@labelsep@ntheorem%
+    \item[\hskip\labelsep \theorem@headerfont ##1\ ##2\ (##3)\theorem@separator]}%
+  \renewtheoremstyle{nonumberplain}%
+  { \set@labelsep@ntheorem%
+    \item[\theorem@headerfont\hskip\labelsep ##1\theorem@separator]}%
+  { \set@labelsep@ntheorem%
+    \item[\theorem@headerfont\hskip \labelsep ##1\ (##3)\theorem@separator]}%
+  \theoremseparator{\thu@theorem@separator}%
   \theoremsymbol{\ensuremath{\QED}}%
   \newtheorem*{proof}{\thu@proof@name}%
   \theoremstyle{plain}%
   \theoremsymbol{}%
-  \theoremseparator{\thu@theorem@separator}%
   \newtheorem{assumption}{\thu@assumption@name}[chapter]%
   \newtheorem{definition}{\thu@definition@name}[chapter]%
   \newtheorem{proposition}{\thu@proposition@name}[chapter]%
