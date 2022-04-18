@@ -97,13 +97,13 @@
 如有辅助线要求可以使用 \verb|\cmidrule| 命令。在连续使用时，可以使用一组圆括号括起来的参数 \verb|l|、\verb|r|或\verb|l<距离>|、\verb|r<距离>|表示间距的表格线可以在左右向内缩短一小段，表\ref{tab:merge-cell}展示了效果。
 
 表格如果想要与页面等宽，可以使用 \pkg{tabularx} 宏包，如表格\ref{tab:textwith-example}所示。
-模版定义了一些扩展命令，实现一些排版需求。\verb|X| 两端对齐, \verb|Y| 左对齐, \verb|Z| 右对齐，或者 \verb|W| 居中对齐。
+模版定义了一些扩展命令，实现一些排版需求。\verb|X| 两端对齐, \verb|Y| 左对齐, \verb|Z| 右对齐，或者 \verb|A| 居中对齐。
 
 \begin{table}
   \centering
   \caption{同页宽的表格实例}
   \label{tab:textwith-example}
-  \begin{tabularx}{\textwidth}{YXZW}
+  \begin{tabularx}{\textwidth}{YXAZ}
     \toprule
     Cell with text aligned to the left & 1 & 2 & 3\\ \midrule
     4 & Cell with justified text & 5 & 6\\ \midrule
