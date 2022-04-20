@@ -32,11 +32,12 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.13...HEAD)
 
 ### Changed
-- 允许论文题目和章节题目出现特殊的小写字母。
-- 同步上游关于图表距离的修复，浮动对象整体上下距离调整为12bp。
+- 允许论文题目和章节题目出现特殊的小写字母（#53）。
+- 同步上游关于图表距离的修复，浮动对象整体上下距离调整为12bp（#54）。
 - 移除中文下数学定理、证明环境里中文冒号后多余空格。
 - 更换单元格类型符号，减少一个warning。
-- 插图清单，表格清单按照 label 对齐。
+- 插图清单，表格清单按照 label 对齐（#57）。
+- 目录每级取消悬挂缩进（#58）。
 
 ## [1.3.13](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...v1.3.13)
 ### Added

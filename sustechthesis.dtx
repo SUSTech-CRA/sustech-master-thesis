@@ -3160,21 +3160,21 @@
     \ifthu@main@language@chinese
       \titlecontents{chapter}
         [\z@]{\rmfamily \heiti}
-        {\contentspush{\thecontentslabel\quad}}{}
+        {\thecontentslabel\quad}{}
         {\rmfamily\thu@leaders\thecontentspage}%
     \else
       \titlecontents{chapter}
         [\z@]{\rmfamily \heiti}
-        {\bfseries \contentspush{\MakeTextUppercase{\thecontentslabel}\quad}}{\bfseries}
+        {\bfseries \MakeTextUppercase{\thecontentslabel}\quad}{\bfseries}
         {\rmfamily\thu@leaders\thecontentspage}%
     \fi
     \titlecontents{section}
       [1em]{}
-      {\contentspush{\thecontentslabel\quad}}{}
+      {\thecontentslabel\quad}{}
       {\thu@leaders\thecontentspage}%
     \titlecontents{subsection}
       [2em]{}
-      {\contentspush{\thecontentslabel\quad}}{}
+      {\thecontentslabel\quad}{}
       {\thu@leaders\thecontentspage}%
   \fi
 }
