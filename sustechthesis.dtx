@@ -4764,9 +4764,11 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \renewcommand\listoffigures{%
   \thu@listof{figure}%
 }
+\RequirePackage{calc} % 计算距离
+\def\figure@label@length{\widthof{\figurename~1-10\enspace}}
 \titlecontents{figure}
   [\z@]{}
-  {\contentspush{\makebox[4em][l]{\figurename~\thecontentslabel}}}{}
+  {\contentspush{\makebox[\figure@label@length][l]{\figurename~\thecontentslabel}}}{}
   {\nobreak\thu@leaders\nobreak\hfil\thecontentspage}
 %    \end{macrocode}
 % \end{macro}
@@ -4779,9 +4781,10 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \renewcommand\listoftables{%
   \thu@listof{table}%
 }
+\def\table@label@length{\widthof{\tablename~1-10\enspace}}
 \titlecontents{table}
   [\z@]{}
-  {\contentspush{\makebox[4em][l]{\tablename~\thecontentslabel}}}{}
+  {\contentspush{\makebox[\table@label@length][l]{\tablename~\thecontentslabel}}}{}
   {\thu@leaders\thecontentspage}
 %    \end{macrocode}
 % \end{macro}
