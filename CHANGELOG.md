@@ -31,7 +31,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.14...HEAD)
 
-## [1.3.14](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.13...v1.3.14)
+## [1.3.14](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.13...v1.3.14) - 2022-05-16
 
 ### Changed
 - 允许论文题目和章节题目出现特殊的小写字母（[#53](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/53)）。
@@ -41,7 +41,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 插图清单，表格清单按照 label 对齐（[#57](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/57)）。
 - 目录每级取消悬挂缩进（[#58](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/58)）。
 
-## [1.3.13](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...v1.3.13)
+## [1.3.13](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.12...v1.3.13) - 2022-04-12
 ### Added
 - 增加数学字体配置选项 math-style（[#49](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/49)）。
 - 增加公式符号解释的例子。
@@ -57,7 +57,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 ### Removed
 - 删除模版未建议字体的选项。
 
-## [1.3.12](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.11...v1.3.12)
+## [1.3.12](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.11...v1.3.12) - 2022-03-30
 
 ### Added
 - 示例中增加数学字体配置提示和字体对比。
@@ -71,7 +71,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 ### Fixed
 - 修复模版默认配置导致的编译错误。
 
-## [1.3.11](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.10...v1.3.11)
+## [1.3.11](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.10...v1.3.11) - 2022-03-23
 
 ### Added
 - 增加副指导教师配置。
