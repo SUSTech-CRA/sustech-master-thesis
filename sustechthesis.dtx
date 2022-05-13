@@ -332,7 +332,7 @@
 %     \midrule
 %     Times New Roman & Times New Roman & TeX Gyre Termes \\
 %     Arial           & Arial           & TeX Gyre Heros  \\
-%     Courier         & Menlo           & TeX Gyre Cursor \\
+%     Courier         & Courier         & TeX Gyre Cursor \\
 %     中易宋体        & 华文宋体        & Fandol 宋体     \\
 %     中易黑体        & 华文黑体        & Fandol 黑体     \\
 %     \bottomrule
@@ -1626,11 +1626,7 @@
 \newcommand\thu@load@font@times{%
   \setmainfont{Times New Roman}%
   \setsansfont{Arial}%
-  \ifthu@system@mac
-    \setmonofont{Menlo}[Scale = MatchLowercase]%
-  \else
-    \setmonofont{Courier New}[Scale = MatchLowercase]%
-  \fi
+  \setmonofont{Courier New}[Scale = MatchLowercase]%
 }
 \newcommand\thu@load@font@termes{%
   \setmainfont{texgyretermes}[
