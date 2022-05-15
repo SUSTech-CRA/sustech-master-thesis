@@ -4316,12 +4316,12 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \endgroup
   \fi
 }
-\def\checkbox@statement#1#2{%
+\def\checkbox@statement#1#2#3{%
   \let\oldLayoutCheckField\LayoutCheckField%
   \def\LayoutCheckField##1##2{% label, field
     ##2 ##1%
   }%
-  \raisebox{-0.1\baselineskip}{\CheckBox[name=#2,checkboxsymbol=\ding{51},height=1em,width=1em,bordercolor=0 0 0]{\null}}{#1}%
+  \raisebox{-0.1\baselineskip}{\CheckBox[name=#2,checkboxsymbol=\ding{51},height=1em,width=1em,bordercolor=0 0 0]{#1}}{#3}%
   \let\LayoutCheckField\oldLayoutCheckField%
 }
 \newcommand{\thu@statementcopyright@sustech@chinese}{
@@ -4345,7 +4345,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \item 在以教学与科研服务为目的前提下，学校可以将学位论文的全部或部分内容存储在有关数据库提供检索，并可采用数字化、云存储或其他存储手段保存本学位论文。
           \begin{enumerate}[wide,label={（\arabic*）},labelsep=0em]
             \item 在本论文提交当年，同意在校园网内提供查询及前十六页浏览服务。
-            \item 在本论文提交\checkbox@statement{当年}{public}/\checkbox@statement{一年}{delaypublic}以后，同意向全社会公开论文全文的在线浏览和下载。
+            \item 在本论文提交\checkbox@statement{\null}{public}{当年}/\checkbox@statement{\null}{delaypublic}{一年}以后，同意向全社会公开论文全文的在线浏览和下载。
           \end{enumerate}
         \item 保密的学位论文在解密后适用本授权书。
       \end{enumerate}
@@ -4371,7 +4371,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         \item The University may save all or part of the thesis in certain databases for retrieval, and may save it with digital, cloud storage or other methods for the purpose of teaching and scientific research. I agree that the full text of the thesis can be viewed online or downloaded within the campus network.
         \begin{enumerate}[wide,label={（\arabic*）},labelsep=0em]
           \item I agree that once submitted, the thesis can be retrieved online and the first 16 pages can be viewed within the campus network.
-          \item I agree that \checkbox@statement{upon submission}{public} \checkbox@statement{12 months}{delaypublic} after submission, the full text of the thesis can be viewed and downloaded by the public.
+          \item I agree that \checkbox@statement{\ }{public}{upon submission} \checkbox@statement{\ }{delaypublic}{12 months} after submission, the full text of the thesis can be viewed and downloaded by the public.
         \end{enumerate}
         \item This authorization applies to decrypted confidential thesis.
       \end{enumerate}
