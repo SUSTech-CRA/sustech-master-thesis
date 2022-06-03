@@ -3799,14 +3799,14 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 \NewDocumentCommand\sustech@info@item{s o m o m}{%
   {
-    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
+    \renewcommand\arraystretch{1.75}
     \bfseries
     \IfValueTF{#2}
     {\begin{tabular}[t]{@{}l@{}}\makebox[#2][s]{#3}\end{tabular}}
     {\begin{tabular}[t]{@{}l@{}}#3\end{tabular}}
   } & %
   {
-    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
+    \renewcommand\arraystretch{1.75}
     \bfseries
     \IfBooleanTF{#1}
     {%有星号
@@ -3865,7 +3865,6 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       \vspace*{30pt}
       {\zihao{3} \songti
-      \renewcommand\arraystretch{4}
         \begin{tabular}{l@{}l}
           \sustech@info@item*[6em]{院（系）}[10em]{\thu@department}\\
           \sustech@info@item*[6em]{学科}[10em]{\thu@discipline}\\
