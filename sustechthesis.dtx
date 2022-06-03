@@ -3471,18 +3471,21 @@
 % 生成封面（题名页）总命令。
 %    \begin{macrocode}
 \renewcommand\maketitle{%
-  \thu@coverpage
-  \cleardoublepage
   \pagenumbering{Alph}%
   \thu@pdfbookmark{-1}{\thu@title}%
-  \thu@titlepage
-  % \ifthu@include@spine@true
-  %   \thu@spine
-  % \fi
-  \ifthu@degree@graduate
+  \ifthu@doc@type@thesis
+    % 封面
+    \thu@coverpage
+    \cleardoublepage
+    % 内封
+    \thu@titlepage
     \cleardoublepage
     \thu@titlepage@en
-  \fi
+    \cleardoublepage
+  \else
+    \thu@coverpage@report
+    \cleardoublepage
+    \fi
   \clearpage
 }
 \newcommand\thu@option@supervisor@cover@item{
@@ -3836,7 +3839,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \dolistloop{\e@tmp@list}
   \end{tabular}
 }
-\newcommand\makecover{%
+\newcommand\thu@coverpage@report{%
   \ifthu@language@chinese
     % Chinese
     \begingroup
