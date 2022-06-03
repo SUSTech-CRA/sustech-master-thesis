@@ -2,7 +2,7 @@
 
 PACKAGE = sustechthesis
 THESIS  = sustechthesis-example
-REPORT  = sustechthesis-report-example
+REPORT  = sustechthesis-example-report
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
 CLSFILE = dtx-style.sty $(PACKAGE).cls
