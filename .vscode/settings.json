@@ -16,12 +16,6 @@
             ]
         },
         {
-            "name": "GNU make thesis",
-            "tools": [
-                "make-thesis"
-            ]
-        },
-        {
             "name": "build cls (sustechthesis style file)",
             "tools": [
                 "xetex-sustechthesis"
@@ -54,12 +48,6 @@
                 "-outdir=%OUTDIR%",
                 "%DOCFILE%"
             ],
-            "env": {}
-        },
-        {
-            "name": "make-thesis",
-            "command": "make",
-            "args": [],
             "env": {}
         }
     ],

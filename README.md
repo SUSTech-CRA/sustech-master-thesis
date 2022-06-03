@@ -12,7 +12,8 @@
 推荐下载 **[发布版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)** 模板或 **[开发版-预构建](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)** 的模版，里面包括模板使用说明以及示例文档：
 
 * 模板使用说明（**sustechthesis.pdf**）*本模版使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 示例文档基本配置文件中已经进行注释。*
-* 示例文档（**sustechthesis-example.pdf**）
+* 学位论文示例文档（**sustechthesis-example.tex**）
+* 报告示例文档（**sustechthesis-example-report.tex**），包括开题报告，年度考核报告
 
 **发布版** 包含预生成的 `cls` 模版类文件和文档。**发布版** 一般会比 **开发版-预构建** 晚更新。如急需使用最新版可以使用 **开发版-预构建** 的版本。
 
@@ -73,18 +74,18 @@ xetex sustechthesis.ins
 
 ### 使用 [VSCode](https://code.visualstudio.com/) + [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 1. 本项目内已经内置 VSCode 项目配置：
-   1. `latexmk for sustechthesis` 同下使用 `latexmk` 生成示例论文 sustechthesis-example.pdf；
-   2. `GNU make thesis` 同下使用 `make thesis` 生成论文，需要配置 GNU make 环境；
-   3. `build cls (sustechthesis style file)` 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件，无需自行生成。
+   1. `latexmk for sustechthesis` 同下使用 `latexmk` 生成学位论文示例文档 sustechthesis-example.pdf；
+   2. `build cls (sustechthesis style file)` 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件，无需自行生成。
 
 ### Windows 中编译，使用 `latexmk`
-1. `latexmk sustechthesis-example.tex` 生成示例论文 sustechthesis-example.pdf；
-2. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
-3. `latexmk -c` 清理编译生成的辅助文件；
+1. `latexmk sustechthesis-example.tex` 生成学位论文示例文档 sustechthesis-example.pdf；
+2. `latexmk sustechthesis-example-report.tex` 生成报告示例文档 sustechthesis-example-report.pdf；
+3. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
+4. `latexmk -c` 清理编译生成的辅助文件；
 
 ### 使用 Makefile 编译
 * `make thesis`     生成论文；
-* `make viewthesis` 生成论文，编译完成开启预览；
+* `make report`     生成报告；
 * `make all`        生成论文，与 `make thesis` 等效；
 * `make clean`      删除示例文件的中间文件（不含 pdf）；
 * `make cleanall`   删除示例文件的中间文件和 pdf；
@@ -108,7 +109,8 @@ xetex sustechthesis.ins
 
 ### 文档内容
 * `sustech-setup.tex` 示例文档基本配置（论文标题、作者等元数据）
-* `sustechthesis-example.tex` 示例文档主文件
+* `sustechthesis-example.tex` 学位论文示例文档
+* `sustechthesis-example-report.tex` 报告示例文档，包括开题报告，年度考核报告
 * `data/` 示例文档章节具体内容
 * `figures/` 示例文档图片路径
 * `ref/` 示例文档参考文献目录
