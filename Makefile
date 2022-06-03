@@ -2,6 +2,7 @@
 
 PACKAGE = sustechthesis
 THESIS  = sustechthesis-example
+REPORT  = sustechthesis-report-example
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
 CLSFILE = dtx-style.sty $(PACKAGE).cls
@@ -17,9 +18,10 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all all-dev clean cleanall thesis viewthesis dist dist-github doc viewdoc cls test wordcount FORCE_MAKE
+.PHONY: all all-dev clean cleanall thesis viewthesis report viewreport dist dist-github doc viewdoc cls test wordcount FORCE_MAKE
 
 thesis: $(THESIS).pdf
+report: $(REPORT).pdf
 
 all: thesis
 
@@ -45,17 +47,23 @@ $(PACKAGE).pdf: cls FORCE_MAKE
 $(THESIS).pdf: cls FORCE_MAKE
 	$(LATEXMK) $(THESIS)
 
+$(REPORT).pdf: cls FORCE_MAKE
+	$(LATEXMK) $(REPORT)
+
 viewdoc: doc
 	$(LATEXMK) -pv $(PACKAGE).dtx
 
 viewthesis: thesis
 	$(LATEXMK) -pv $(THESIS)
 
+viewreport: report
+	$(LATEXMK) -pv $(REPORT)
+
 test: cls FORCE_MAKE
 	bash test/test.sh
 
 clean:
-	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS)
+	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS) $(REPORT)
 	-@$(RM) -rf *.aux *.bbl *.blg
 	-@$(RM) -rf _minted-*
 	-@$(RM) -rf *~ *_markdown_* *.markdown.*
@@ -63,7 +71,7 @@ clean:
 cleanall: clean
 	-@$(RM) $(CLSFILE)
 	-@$(RM) -rf public-test dist
-	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf
+	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf $(REPORT).pdf
 
 wordcount : $(THESIS).tex
 	@echo '************  Word count ************' | tee -a $(WORDCOUNTLOG)
