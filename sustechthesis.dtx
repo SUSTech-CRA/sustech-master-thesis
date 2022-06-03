@@ -3775,27 +3775,30 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 %
 % 报告封面
 %    \begin{macrocode}
-\ifthu@doc@type@proposal
-  \ifthu@degree@master
-    \def\report@name@en{Master's Thesis Proposal}
-    \def\report@name{硕士学位论文开题报告}
-  \else
-    \def\report@name@en{Doctor's Thesis Proposal}
-    \def\report@name{博士学位论文开题报告}
+\newcommand\thu@set@report@meta{
+  \ifthu@doc@type@proposal
+    \ifthu@degree@master
+      \def\report@name@en{Master's Thesis Proposal}
+      \def\report@name{硕士学位论文开题报告}
+    \else
+      \def\report@name@en{Doctor's Thesis Proposal}
+      \def\report@name{博士学位论文开题报告}
+    \fi
+    \def\date@name@en{Date of Proposal Report}
+    \def\date@name{开题报告日期}
   \fi
-  \def\date@name@en{Date of Proposal Report}
-  \def\date@name{开题报告日期}
-\else
-  \ifthu@degree@master
-    \def\report@name@en{Study Progress Report of Master's Students}
-    \def\report@name{硕士研究生年度考核报告}
-  \else
-    \def\report@name@en{Study Progress Report of Doctor's Students}
-    \def\report@name{博士研究生年度考核报告}
+  \ifthu@doc@type@progress
+    \ifthu@degree@master
+      \def\report@name@en{Study Progress Report of Master's Students}
+      \def\report@name{硕士研究生年度考核报告}
+    \else
+      \def\report@name@en{Study Progress Report of Doctor's Students}
+      \def\report@name{博士研究生年度考核报告}
+    \fi
+    \def\date@name@en{Submission Date}
+    \def\date@name{年度考核日期}
   \fi
-  \def\date@name@en{Submission Date}
-  \def\date@name{年度考核日期}
-\fi
+}
 \RequirePackage{listofitems}
 \newcommand{\ulbox}[2][2em]{%
   \CJKunderline[thickness=1pt]{\makebox[#1]{#2}}%
@@ -3840,6 +3843,7 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   \end{tabular}
 }
 \newcommand\thu@coverpage@report{%
+  \thu@set@report@meta
   \ifthu@language@chinese
     % Chinese
     \begingroup
