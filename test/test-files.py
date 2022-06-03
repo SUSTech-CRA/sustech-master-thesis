@@ -120,3 +120,21 @@ if __name__ == "__main__":
             comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
             comment_line(filename, "{biblatex}", False)
             comment_line(filename, "addbibresource{ref/refs.bib}", False)
+    elif args.recipe == 4:
+        # progress
+        filename = "sustech-setup.tex"
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            change_line(filename,
+                        "type = \S+,",
+                        "type = progress,"
+                        )
+    elif args.recipe == 5:
+        # proposal
+        filename = "sustech-setup.tex"
+        backup(filename, TOBACKUP)
+        if not args.undo:
+            change_line(filename,
+                        "type = \S+,",
+                        "type = proposal,"
+                        )

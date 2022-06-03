@@ -1,0 +1,62 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = en_US
+
+\documentclass[degree=master,language=chinese,cjk-font=external]{sustechthesis}
+  % 学位 degree:
+  %   master （默认） | doctor
+  % 语言 language:
+  %   chinese （默认）| english
+  % 中文字体 cjk-font
+  %   auto （默认，自动选择系统自带字体）| external （包内字体）| windows | mac | 等
+  %   在 **非Windows** 的系统上推荐使用包内字体，而非系统字体。
+  %   以达到和 Windows 系统上显示的字体效果。
+  %   Windows 系统上可以删除该参数，使用系统内置字体。
+
+
+% 论文基本配置，加载宏包等全局配置
+% 在此文件中可以选择
+% 1. 生成的PDF为无空白页的用于电子版提交的版本 或 插入空白页的以便双面打印的版本
+% 2. 学位学科门类(理学、工学、医学)
+% 3. 培养单位
+% 4. 作者姓名、指导教师等
+% 5. 修改gongshuo的值， 默认为false代表生成学术型研究生毕业设计模板， 改为true则将生成专业型研究生毕业设计模板
+\input{sustech-setup}
+
+
+\begin{document}
+
+% 封面
+\maketitle
+
+\frontmatter
+
+% 目录
+\tableofcontents
+
+% 插图和附表清单
+% \listoffiguresandtables  % 插图和附表清单
+% \listoffigures           % 插图清单
+% \listoftables            % 附表清单
+
+% 符号对照表（非强制性要求，如果论文中所用符号不多，可以略去）
+% \input{data/denotation}
+
+
+% 正文部分
+\mainmatter
+\input{data/chap01}
+\input{data/chap02}
+\input{data/chap03}
+\input{data/chap04}
+\input{data/chap05}
+
+% 参考文献
+\bibliography{ref/refs}  % 参考文献使用 BibTeX 编译
+% \printbibliography       % 参考文献使用 BibLaTeX 编译（兼容性不佳，不太推荐）
+
+% 附录
+\appendix
+% \input{data/appendix}
+
+\end{document}

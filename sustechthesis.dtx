@@ -3230,6 +3230,10 @@
 %
 % 作者、导师、副导师、联合指导老师。
 %    \begin{macrocode}
+  author-id = {
+    default = {学号},
+    name    = author@id,
+  },
   author = {
     default = {姓名},
   },
@@ -3297,6 +3301,19 @@
   discipline* = {
     % default = {Computer Science and Technology},
     name    = discipline@en,
+  },
+%    \end{macrocode}
+%
+% 文档类型
+%    \begin{macrocode}
+  type = {
+    default = thesis,
+    choices = {
+      proposal,
+      progress,
+      thesis,
+    },
+    name    = doc@type,
   },
 %    \end{macrocode}
 %
@@ -3376,6 +3393,7 @@
     July\or August\or September\or October\or November\or December%
   \fi
 }
+\newcommand\thu@date@en[3]{\thu@date@month{#2} #3, #1}
 \newcommand\thu@date@en@short[3]{\thu@date@month{#2}, #1}
 %    \end{macrocode}
 %
@@ -3453,18 +3471,21 @@
 % 生成封面（题名页）总命令。
 %    \begin{macrocode}
 \renewcommand\maketitle{%
-  \thu@coverpage
-  \cleardoublepage
   \pagenumbering{Alph}%
   \thu@pdfbookmark{-1}{\thu@title}%
-  \thu@titlepage
-  % \ifthu@include@spine@true
-  %   \thu@spine
-  % \fi
-  \ifthu@degree@graduate
+  \ifthu@doc@type@thesis
+    % 封面
+    \thu@coverpage
+    \cleardoublepage
+    % 内封
+    \thu@titlepage
     \cleardoublepage
     \thu@titlepage@en
-  \fi
+    \cleardoublepage
+  \else
+    \thu@coverpage@report
+    \cleardoublepage
+    \fi
   \clearpage
 }
 \newcommand\thu@option@supervisor@cover@item{
@@ -3749,6 +3770,168 @@ Thesis for the degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
   \clearpage
   \restoregeometry
+}
+%    \end{macrocode}
+%
+% 报告封面
+%    \begin{macrocode}
+\newcommand\thu@set@report@meta{
+  \ifthu@doc@type@proposal
+    \ifthu@degree@master
+      \def\report@name@en{Master's Thesis Proposal}
+      \def\report@name{硕士学位论文开题报告}
+    \else
+      \def\report@name@en{Doctor's Thesis Proposal}
+      \def\report@name{博士学位论文开题报告}
+    \fi
+    \def\date@name@en{Date of Proposal Report}
+    \def\date@name{开题报告日期}
+  \fi
+  \ifthu@doc@type@progress
+    \ifthu@degree@master
+      \def\report@name@en{Study Progress Report of Master's Students}
+      \def\report@name{硕士研究生年度考核报告}
+    \else
+      \def\report@name@en{Study Progress Report of Doctor's Students}
+      \def\report@name{博士研究生年度考核报告}
+    \fi
+    \def\date@name@en{Submission Date}
+    \def\date@name{年度考核日期}
+  \fi
+}
+\RequirePackage{listofitems}
+\newcommand{\ulbox}[2][2em]{%
+  \CJKunderline[thickness=1pt]{\makebox[#1]{#2}}%
+}
+\NewDocumentCommand\sustech@info@item{s o m o m}{%
+  {
+    \renewcommand\arraystretch{1.75}
+    \bfseries
+    \IfValueTF{#2}
+    {\begin{tabular}[t]{@{}l@{}}\makebox[#2][s]{#3}\end{tabular}}
+    {\begin{tabular}[t]{@{}l@{}}#3\end{tabular}}
+  } & %
+  {
+    \renewcommand\arraystretch{1.75}
+    \bfseries
+    \IfBooleanTF{#1}
+    {%有星号
+      \IfValueTF{#4}
+      {\sustech@info@multiline[#4]{#5}}
+      {\sustech@info@multiline[15em]{#5}}
+    }
+    {%没星号
+      \IfValueTF{#4}
+      {\sustech@info@singleline[#4]{#5}}
+      {\sustech@info@singleline[15em]{#5}}
+    }
+  }
+}
+\newcommand{\sustech@info@singleline}[2][2em]{
+  \begin{tabular}[t]{@{}l@{}}\ulbox[#1]{#2}\end{tabular}
+}
+\newcommand{\sustech@info@multiline}[2][2em]{
+  \setsepchar{\\}%
+  \readlist\tmp@list#2%
+  \def\e@tmp@list{}%
+  \foreachitem\y\in\tmp@list[]{%
+    \listeadd{\e@tmp@list}{\y}%
+  }%
+  \renewcommand*{\do}[1]{\ulbox[#1]{##1}\\}%
+  \begin{tabular}[t]{@{}l@{}}%
+    \dolistloop{\e@tmp@list}
+  \end{tabular}
+}
+\newcommand\thu@coverpage@report{%
+  \thu@set@report@meta
+  \ifthu@language@chinese
+    % Chinese
+    \begingroup
+      \thispagestyle{empty}
+      \centering
+      \vspace*{10mm}
+      {
+        \zihao{-2} \kaishu \bfseries %
+        \renewcommand{\CJKglue}{\hskip 6pt plus 0.08\baselineskip}%
+        南方科技大学 \par
+      }
+
+      \vspace{10mm}
+      {
+        \zihao{-1} \songti \bfseries%
+        \renewcommand{\CJKglue}{\hskip 5pt plus 0.08\baselineskip}%
+        \report@name \par
+      }
+
+      \vspace{30pt}
+      \parbox[t]{30em}{
+        \centering
+        \zihao{-2} \songti \bfseries%
+        题~目：\thu@title}
+      \par
+
+      \vspace*{30pt}
+      {\zihao{3} \songti
+        \begin{tabular}{l@{}l}
+          \sustech@info@item*[6em]{院（系）}[10em]{\thu@department}\\
+          \sustech@info@item*[6em]{学科}[10em]{\thu@discipline}\\
+          \sustech@info@item*[6em]{导师}[10em]{\thu@supervisor}\\
+          \sustech@info@item[6em]{研究生}[10em]{\thu@author}\\
+          \sustech@info@item[6em]{学号}[10em]{\thu@author@id}\\
+          \sustech@info@item[6em]{\date@name}[10em]{\thu@format@date{\thu@date@zh@digit}{\thu@date}}
+        \end{tabular}
+      }\par
+      \vfill
+
+      {
+        \zihao{3} \songti \bfseries 研究生院制 \par
+      }
+    \endgroup
+  \else%
+    % English
+    \begingroup
+      \thispagestyle{empty}
+      \centering
+      \vspace*{10mm}
+      {
+        \zihao{-2} \bfseries %
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        Southern University of Science and Technology \par
+      }
+
+      \vspace{10mm}
+      {
+        \zihao{2} \bfseries%
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        \report@name@en \par
+      }
+
+      \vspace{30pt}
+      \parbox[t]{30em}{
+        \centering
+        \zihao{-2} \bfseries%
+        Title: \thu@title@en}
+      \par
+
+      \vspace*{30pt}
+      {\zihao{3}
+        \begin{tabular}{l@{}l}
+          \sustech@info@item*{Department}[16em]{\thu@department@en}\\
+          \sustech@info@item*{Discipline}[16em]{\thu@discipline@en}\\
+          \sustech@info@item*{Supervisor}[16em]{\thu@supervisor@en}\\
+          \sustech@info@item{Student Name}[16em]{\thu@author@en}\\
+          \sustech@info@item{Student Number}[16em]{\thu@author@id}\\
+          \sustech@info@item{\date@name@en}[16em]{\thu@format@date{\thu@date@en}{\thu@date}}
+        \end{tabular}
+      }\par
+      \vfill
+
+      {
+        \zihao{3} \bfseries Graduate School \par
+      }
+    \endgroup
+  \fi
+  \clearpage
 }
 %    \end{macrocode}
 %

@@ -30,6 +30,9 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.14...HEAD)
+### Added
+- 加入开题报告，年度考核报告的样式。
+
 
 ## [1.3.14](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.13...v1.3.14) - 2022-05-16
 
