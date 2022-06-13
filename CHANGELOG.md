@@ -30,6 +30,8 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.15...HEAD)
+### Changed
+- 更新授权声明，放弃阅读器直接勾选的方式，v1.3.15的实现有错误。
 
 ## [1.3.15](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.14...v1.3.15) - 2022-06-05
 
