@@ -29,7 +29,14 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 预发布版本使用形如 "`[1.0.2-rc.1] - 2021-06-11`" 作为二级标题，
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.16...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...HEAD)
+
+## [1.3.17](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.16...v1.3.17) 
+### Changed
+- 引用标记全改为上标格式， 废弃行内格式。
+- 论文主要语言为中文时， 取消英文Abstract的加粗。
+- 题名页中学术型使用“学科名称”， 对应英文用“Discipline”；专硕使用“专业类别”， 对应英文“Category”。
+
 
 ## [1.3.16](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.15...v1.3.16) - 2022-06-20
 ### Changed
