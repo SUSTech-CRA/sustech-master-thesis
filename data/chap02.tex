@@ -113,6 +113,8 @@
   \end{tabularx}
 \end{table}
 
+
+
 如果您要排版的表格长度超过一页，那么推荐使用 \pkg{longtable} 或者 \pkg{supertabular}
 宏包，模板对 \pkg{longtable} 进行了相应的设置，所以用起来可能简单一些。
 表~\ref{tab:performance} 就是 \pkg{longtable} 的简单示例。
@@ -126,7 +128,7 @@
   \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{
     时间 (s)}&  文件（KB）\\\midrule[1pt]
   \endfirsthead
-  \multicolumn{7}{c}{续表~\thetable\hskip1em 实验数据（超长表格示例）}\\
+    \multicolumn{7}{c}{\continuetable 实验数据（超长表格示例）}\\
   \toprule[1.5pt]
    测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步} & \multicolumn{1}{c}{检查点} & \multicolumn{1}{c}{卷回恢复}
   & \multicolumn{1}{c}{进程迁移} & \multicolumn{1}{c}{检查点} \\

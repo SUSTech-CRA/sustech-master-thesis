@@ -2810,6 +2810,11 @@
   \renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand*{\thesubfigure}{(\alph{subfigure})}
   \renewcommand*{\thetable}{\thechapter-\arabic{table}}
+  \ifthu@language@chinese
+    \newcommand{\continuetable}{续表 \thechapter-\arabic{table}\hskip1em}
+  \else
+    \newcommand{\continuetable}{Table \thechapter-\arabic{table}\hskip0.5em(Continued)}
+  \fi
   \renewcommand*{\thesubtable}{(\alph{subtable})}
 \fi
 %    \end{macrocode}
