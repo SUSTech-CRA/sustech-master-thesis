@@ -29,9 +29,17 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 预发布版本使用形如 "`[1.0.2-rc.1] - 2021-06-11`" 作为二级标题，
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.18...HEAD)
 
-## [1.3.17](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.16...v1.3.17) 
+## [1.3.18](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...v1.3.18) - 2022-09-07
+### Changed
+- 手动修改了模板denotation条目顺序并提醒用户手动排序， 该功能因上下标过于复杂等无法兼容暂未实现自动
+- 移除行中引用
+- 修复英文statementcopyright的错误
+- 中英文大表格样式修改
+- 学术成果变为必须列出
+
+## [1.3.17](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.16...v1.3.17) - 2022-09-02
 ### Changed
 - 引用标记全改为上标格式， 废弃行内格式。
 - 论文主要语言为中文时， 取消英文Abstract的加粗。
