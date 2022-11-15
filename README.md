@@ -93,6 +93,11 @@ xetex sustechthesis.ins
 * `make doc`     生成文档；
 * `make cls`        仅生成 cls 模版类文件；
 
+### 使用 Docker 编译
+1. 进入 Docker 容器内交互
+   * `docker run -it --rm -v "$(pwd)":/thesis -w /thesis texlive/texlive:latest bash`
+2. 回到前一种模式，使用 Makefile 编译
+
 ### 使用 LaTex 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTex`
 * 使用 [南科大 ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTex`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`.
