@@ -13,20 +13,20 @@ jobs:
     container: texlive/texlive:${{ matrix.texlive }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.9'
 
       - name: Meta-data normalization
-        run: python test/update-dist.py --dev
+        run: python test/update-dist.py --dev --sha ${GITHUB_SHA}
 
       - name: run texlive docker container
         run: make doc test
 
       - name: Publish PDF as actions assets
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Example-PDFs-texlive-${{ matrix.texlive }}
           path: |

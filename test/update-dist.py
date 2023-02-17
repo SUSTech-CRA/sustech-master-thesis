@@ -57,9 +57,12 @@ if __name__ == "__main__":
     except:
         new_version = "0.0.1"
     now_date = time.strftime("%Y/%m/%d", time.localtime())
+    nan_commit_sha = "NAN.SHA"
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", "-v", default=new_version,
                         help='release version')
+    parser.add_argument("--sha", "-s", default=nan_commit_sha,
+                        help='git commit hash')
     parser.add_argument("--date", "-d", default=now_date,
                         help='release date')
     parser.add_argument("--dev", action='store_true',
@@ -67,13 +70,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.dev:
-        dev_version = "DEV.BUILD"
-        try:
-            git_head_sha = os.popen(r"git log -1 --format='%H'").readlines()[0]
-        except:
-            git_head_sha = "NAN.SHA"
-        if git_head_sha:
-            dev_version = f"{git_head_sha[:7].upper()}.{dev_version}"
+        dev_version = f"{args.sha[:7].upper()}.DEV.BUILD"
         change_meta(dev_version, now_date)
     else:
         change_meta(args.version, args.date)
