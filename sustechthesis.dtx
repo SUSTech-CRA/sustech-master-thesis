@@ -1165,6 +1165,7 @@
       termes,
       auto,
       none,
+      external,
     },
     default = auto,
   },
@@ -1623,6 +1624,33 @@
     \thusetup{font=times}
   \fi
 \fi
+\newcommand\thu@load@font@external{%
+  \setmainfont[
+    Path=fonts/,
+    Extension = .ttf,
+    UprightFont = * ,
+    BoldFont = *bd ,
+    ItalicFont = *i ,
+    BoldItalicFont = *bi
+  ]{times}%英文默认为Times New Roman
+  \setsansfont[
+    Path=fonts/,
+    Extension = .ttf,
+    UprightFont = * ,
+    BoldFont = *bd ,
+    ItalicFont = *i ,
+    BoldItalicFont = *bi
+  ]{arial}%
+  \setmonofont[
+    Path=fonts/,
+    Extension = .ttf,
+    UprightFont = * ,
+    BoldFont = *bd ,
+    ItalicFont = *i ,
+    BoldItalicFont = *bi,
+    Scale = MatchLowercase
+  ]{cour}%
+}
 \newcommand\thu@load@font@times{%
   \setmainfont{Times New Roman}%
   \setsansfont{Arial}%

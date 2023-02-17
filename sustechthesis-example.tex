@@ -2,7 +2,7 @@
 % !TeX program = xelatex
 % !TeX spellcheck = en_US
 
-\documentclass[degree=master,language=chinese,cjk-font=external]{sustechthesis}
+\documentclass[degree=master,language=chinese,font=external,cjk-font=external]{sustechthesis}
   %%%%%%%%%%%%%%%%%%%%%%%%
   %   研究生学位论文模板
   %%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,11 +11,16 @@
   %   master （默认） | doctor
   % 语言 language:
   %   chinese （默认）| english
+  % 英文字体 font
+  %   auto （默认，自动选择系统自带字体）| external （包内字体）| times | termes | 等
+  %   Windows 和 macOS 系统上，无需设定。系统自带对应字体，可以删除该参数。
+  %   Unix 系统推荐使用包内字体，而非TeX自带的克隆版字体，以达到和其他系统一致的字体效果。
+  %   Windows 系统上可以删除该参数，使用系统内置字体。
   % 中文字体 cjk-font
   %   auto （默认，自动选择系统自带字体）| external （包内字体）| windows | mac | 等
   %   在 **非Windows** 的系统上推荐使用包内字体，而非系统字体。
-  %   以达到和 Windows 系统上显示的字体效果。
-  %   Windows 系统上可以删除该参数，使用系统内置字体。
+  %   以达到和 Windows 系统一致的字体效果。
+  %   Windows 系统自带对应字体，可以删除该参数。
 
 
 % 论文基本配置，加载宏包等全局配置
