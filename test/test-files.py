@@ -92,7 +92,7 @@ if __name__ == "__main__":
         if not args.undo:
             change_line(filename,
                         "documentclass.+{sustechthesis}",
-                        "documentclass[degree=master,language=chinese,cjk-font=external]{sustechthesis}"
+                        "documentclass[degree=master,language=chinese,font=external,cjk-font=external]{sustechthesis}"
                         )
     elif args.recipe == 2:
         # english
@@ -101,7 +101,7 @@ if __name__ == "__main__":
         if not args.undo:
             change_line(filename,
                         "documentclass.+{sustechthesis}",
-                        "documentclass[degree=master,language=english,cjk-font=external]{sustechthesis}"
+                        "documentclass[degree=master,language=english,font=external,cjk-font=external]{sustechthesis}"
                         )
     elif args.recipe == 3:
         # biber
