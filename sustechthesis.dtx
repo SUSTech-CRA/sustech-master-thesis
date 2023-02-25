@@ -1189,6 +1189,7 @@
       xits,
       stix,
       none,
+      times,
     },
     default = cambria,
   },
@@ -1775,6 +1776,17 @@
     StylisticSet = \thu@xits@integral@stylistic@set,
   ]%
   \setmathfont{\thu@font@name@xits@math@rm}[
+    Extension    = .otf,
+    StylisticSet = 1,
+    range        = {cal,bfcal},
+  ]%
+}
+\newcommand\thu@load@math@font@times{%
+  \setmathfont{texgyretermes-math}[
+    Extension    = .otf,
+    StylisticSet = \thu@xits@integral@stylistic@set,
+  ]%
+  \setmathfont{texgyretermes-math}[
     Extension    = .otf,
     StylisticSet = 1,
     range        = {cal,bfcal},
