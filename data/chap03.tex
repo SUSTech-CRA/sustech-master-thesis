@@ -135,10 +135,17 @@
 
 \section{数学字体}
 
-按照《撰写规范》全文统一采用 Cambria Math （MS Word默认字体）或 Xits Math 中一种字体作为表达式字体即可。Cambria Math 缺少部分样式，例如：积分符号设定为 upright 也看起来没有变化。
+按照《撰写规范》表达式字体可以采用 Times New Roman、Xits Math 或 Cambria Math（MS Word默认字体）。Cambria Math 缺少部分样式，例如：积分符号设定为 upright 也看起来没有变化。
+
+TeX Gyre Termes Math 字体（Times New Roman的TeX克隆版）样例：
+\makeatletter
+\thu@load@math@font@times
+\begin{equation}
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+\end{equation}
+\makeatother
 
 Cambria Math 字体样例：
-
 \makeatletter
 \thu@load@math@font@cambria
 \begin{equation}
@@ -154,3 +161,12 @@ Xits Math 字体样例：
 \end{equation}
 \thu@load@math@font@cambria
 \makeatother
+
+STIX Math 字体样例：
+\makeatletter
+\thu@load@math@font@stix
+\begin{equation}
+  \frac{1}{2 \uppi \symup{i}} \int_\gamma f = \sum_{k=1}^m n(\gamma; a_k) \mathscr{R}(f; a_k)
+\end{equation}
+\makeatother
+
