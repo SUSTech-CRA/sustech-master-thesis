@@ -197,3 +197,7 @@
 
 % 表格旋转
 \usepackage{rotating}
+
+
+\newcommand\undefcolumntype[1]{\expandafter\let\csname NC@find@#1\endcsname\relax}
+\newcommand\forcenewcolumntype[1]{\undefcolumntype{#1}\newcolumntype{#1}}
