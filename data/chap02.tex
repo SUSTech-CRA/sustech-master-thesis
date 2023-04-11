@@ -236,18 +236,25 @@ class HelloWorldApp {
   $r\leftarrow r+1$\;}
 \end{algorithm}
 
+
 \begin{algorithm}
   \caption{SumExample}
   \label{algo:sample-pseudocode2}
   \KwResult{$s$}
-  $s\leftarrow 0$ \;
+  $s\leftarrow 0$ \Comment*[r]{这是默认多行注释}
+  \Comment{这是默认独占一行的注释}
+  \SetNoFillComment %
+  \Comment{这是在取消独占一行后的注释}
+  \SetFillComment
+  \Comment{这是恢复独占一行的注释}
+  % \LeftComment{左对齐}
   \ForEach{$i\in [1, 100]$}{
-    \If{$i\% 3= 0$}{
-      $s\leftarrow s+i$ \;
-    }\ElseIf{$i\%3=1$}{
-      \Break \;
+    \uIf{$i\% 3= 0$}{
+      $s\leftarrow s+i$   \SingleComment*[r]{这是单行注释，一个没有end的if}
+    }\uElseIf{$i\%3=1$}{
+      \Break  \TriComment*{这是三角形的单行注释，一个没有end的else if}
     }\Else{
-      \Continue \;
+      \Continue \Comment*[r]{这是超长多行注释，关于伪代码的if-then-else详细查看https://texdoc.org/serve/algorithm2e/0的10.4}
     }
   }
   \Return{s} \;
