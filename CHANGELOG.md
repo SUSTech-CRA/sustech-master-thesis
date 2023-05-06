@@ -29,22 +29,26 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 预发布版本使用形如 "`[1.0.2-rc.1] - 2021-06-11`" 作为二级标题，
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.18...HEAD)
+## [1.3.20](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.18...v1.3.20) - 2023-05-06
 ### Changed
 - 添加加载外部英文字体选项，改善 Unix 系统下的英文字体编译。
 - 添加加载TeX Gyre Termes Math 数学字体选项，以TeX克隆版满足Times New Roman的数学字体选项要求。
 - 同步上游文献样式更新。
+- 增加伪代码样例。
 
 ### Added
 - 增加 Docker 编译指引。
 
+### Fixed:
+- 中文目录的Abstract改回加粗。 
+
 ## [1.3.18](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...v1.3.18) - 2022-09-07
 ### Changed
-- 手动修改了模板denotation条目顺序并提醒用户手动排序， 该功能因上下标过于复杂等无法兼容暂未实现自动
-- 移除行中引用
-- 修复英文statementcopyright的错误
-- 中英文大表格样式修改
-- 学术成果变为必须列出
+- 手动修改了模板denotation条目顺序并提醒用户手动排序， 该功能因上下标过于复杂等无法兼容暂未实现自动。
+- 移除行中引用。
+- 修复英文statementcopyright的错误。
+- 中英文大表格样式修改。
+- 学术成果变为必须列出。
 
 ## [1.3.17](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.16...v1.3.17) - 2022-09-02
 ### Changed
