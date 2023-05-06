@@ -216,9 +216,9 @@ class HelloWorldApp {
 }
 \end{lstlisting}
 \end{minipage}
-
+ 
 \section{伪代码}
-
+ 
 
 推荐使用 \pkg{algorithm2e} 宏包中的 \pkg{algorithm} 环境书写伪代码。\pkg{algorithm2e} 可选参数 \verb|linesnumbered| 控制代码行号显示。引用效果如算法 \ref{algo:sample-pseudocode}。
 
@@ -229,7 +229,7 @@ class HelloWorldApp {
   \KwResult{Optimal order quantity $Q^{\ast}_{t}$}
   $r\leftarrow t$\;
   $\Delta B^{\ast}\leftarrow -\infty$\;
-  \While{$\Delta B\leq \Delta B^{\ast}$ and $r\leq T$}{$Q\leftarrow\arg\max_{Q\geq 0}\Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})$\;
+  \While{$\Delta B\leq \Delta B^{\ast}$ \rm{and} $r\leq T$}{$Q\leftarrow\arg\max_{Q\geq 0}\Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})$\;
   $\Delta B\leftarrow \Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})/(r-t+1)$\;
   \If{$\Delta B\geq \Delta B^{\ast}$}{$Q^{\ast}\leftarrow Q$\;
   $\Delta B^{\ast}\leftarrow \Delta B$\;}
