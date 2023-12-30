@@ -43,6 +43,7 @@
 从 GitHub clone 项目源码或者下载源码 zip 包，执行命令（Windows 用户在文件夹空白处按 `Shift + 鼠标右键`，点击“在此处打开命令行窗口”）：
 
 ```shell
+# 生成cls文件
 xetex sustechthesis.ins
 ```
 
@@ -77,7 +78,7 @@ xetex sustechthesis.ins
    1. `latexmk for sustechthesis` 同下使用 `latexmk` 生成学位论文示例文档 sustechthesis-example.pdf；
    2. `build cls (sustechthesis style file)` 同上生成 cls 文件的命令，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls文件，无需自行生成。
 
-### Windows 中编译，使用 `latexmk`
+### Windows 中编译，使用 Latexmk
 1. `latexmk sustechthesis-example.tex` 生成学位论文示例文档 sustechthesis-example.pdf；
 2. `latexmk sustechthesis-example-report.tex` 生成报告示例文档 sustechthesis-example-report.pdf；
 3. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
@@ -94,13 +95,28 @@ xetex sustechthesis.ins
 * `make cls`        仅生成 cls 模版类文件；
 
 ### 使用 Docker 编译
-1. 进入 Docker 容器内交互
-   * `docker run -it --rm -v "$(pwd)":/thesis -w /thesis texlive/texlive:latest bash`
-2. 回到前一种模式，使用 Makefile 编译
+#### TeX Live
+TeX Live镜像比较大，但是兼容性较好。
+```shell
+# 进入容器
+docker run -it --rm -v "$(pwd)":/thesis -u $(id -u):$(id -g) -e XDG_CACHE_HOME="$(mktemp -d)" -w /thesis texlive/texlive:latest bash
 
-### 使用 LaTex 在线编辑器
+# 后续使用 Latexmk 或 Makefile 编译
+```
+
+#### MiKTeX
+MiKTeX 的镜像更小，拉取镜像时间更短，但是依赖包按需加载，首次编译时间较长，不支持Makefile，需要使用 Latexmk 编译。
+
+```shell
+# 进入容器
+docker run -it --rm -v miktex:/var/lib/miktex -v "$(pwd)":/thesis -e MIKTEX_UID=`id -u` -w /thesis miktex/miktex:essential bash
+
+# 后续使用 Latexmk 编译
+```
+
+### 使用 LaTeX 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTeX`
-* 使用 [南科大 ShareLaTex](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`.
+* 使用 [南科大 ShareLaTeX](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`.
 
 
 ### 编译前的建议
