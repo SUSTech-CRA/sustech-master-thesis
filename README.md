@@ -99,7 +99,13 @@ xetex sustechthesis.ins
 TeX Live镜像比较大，但是兼容性较好。
 ```shell
 # 进入容器
-docker run -it --rm -v "$(pwd)":/thesis -u $(id -u):$(id -g) -e XDG_CACHE_HOME="$(mktemp -d)" -w /thesis texlive/texlive:latest bash
+docker run -it --rm \
+  -v "$(pwd)":/thesis \
+  -u $(id -u):$(id -g) \
+  -e XDG_CACHE_HOME="$(mktemp -d)" \
+  -w /thesis \
+  texlive/texlive:latest \
+  bash
 
 # 后续使用 Latexmk 或 Makefile 编译
 ```
@@ -109,7 +115,13 @@ MiKTeX 的镜像更小，拉取镜像时间更短，但是依赖包按需加载�
 
 ```shell
 # 进入容器
-docker run -it --rm -v miktex:/var/lib/miktex -v "$(pwd)":/thesis -e MIKTEX_UID=`id -u` -w /thesis miktex/miktex:essential bash
+docker run -it --rm \
+  -v miktex:/var/lib/miktex \
+  -v "$(pwd)":/thesis \
+  -e MIKTEX_UID=$(id -u) \
+  -w /thesis \
+  miktex/miktex:essential \
+  bash
 
 # 后续使用 Latexmk 编译
 ```
