@@ -128,6 +128,7 @@ docker run -it --rm \
 
 ### 使用 LaTeX 在线编辑器
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTeX`
+  * ⚠️ 由于Overleaf将免费账户的超时时间缩短到20秒，而本项目的常规编译时间为30秒以上，因此如果您在使用免费账户，可能无法成功完成项目的编译。[Overleaf官方声明](https://www.overleaf.com/blog/changes-to-free-compile-timeouts-and-servers)
 * 使用 [南科大 ShareLaTeX](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`.
 
 
