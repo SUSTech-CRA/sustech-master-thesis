@@ -29,7 +29,9 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 预发布版本使用形如 "`[1.0.2-rc.1] - 2021-06-11`" 作为二级标题，
 - 正式发布版本使用形如 "`[1.0.1] - 2020-07-25`" 作为二级标题。
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.19...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.20...HEAD)
+
+## [1.3.20](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.19...v1.3.20) - 2024-02-28
 
 ### Fixed:
 - 原创性声明扫描件单面打印，即前后留空白页（[#68](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/68)）。
