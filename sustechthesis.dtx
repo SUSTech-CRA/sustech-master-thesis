@@ -435,7 +435,7 @@
 %    选项             & 可选值                  \\ \midrule
 %    degree-domain  & 理学，工学，医学             \\
 %    degree-domain* & Science, Engineering, Medicine \\
-%    gongshuo        & true (专业型，如工程硕士), false (学术型，如学术硕士或其他) \\
+%    degree-type    &  academic (学术型，如学术硕士或其他), professional (专业型，如工程硕士) \\
 %    \bottomrule
 %    \end{tabular}
 %  \end{table}
@@ -444,7 +444,7 @@
 %   \thusetup{
 %     degree-domain  = {学位领域},
 %     degree-domain* = {Degree domain in English},
-%     gongshuo = false,
+%     degree-type = academic,
 %   }
 % \end{latex}
 %
@@ -453,7 +453,7 @@
 % \begin{latex}
 %   \thusetup{
 %     department = {系名全称},
-%     department* = {Department name in English}}
+%     department* = {Department name in English}
 %   }
 % \end{latex}
 %
@@ -1109,6 +1109,7 @@
     default = master,
   },
   degree-type = {
+    default = academic,
     choices = {
       academic,
       professional,
@@ -3342,13 +3343,13 @@
     default = {Engineering},
     name    = degree@domain@en,
   },
-  gongshuo = {
-    default = false,
+  degree-type = {
+    default = academic,
     choices = {
-      false,
-      true,
+      academic,
+      professional,
     },
-    name    = gongshuo,
+    name    = degree@type,
   },
 %    \end{macrocode}
 %
@@ -3655,14 +3656,14 @@
 \def\thu@schoolid{14325}
 \def\flagtrue{true}
 \def\zhuanye{%
-  \ifx\flagtrue\thu@gongshuo%
+  \ifthu@degree@type@professional%
     专业类别%
   \else%
     学科名称%
   \fi%
 }
 \def\zhuanye@en{%
-  \ifx\flagtrue\thu@gongshuo Category%
+  \ifthu@degree@type@professional Category%
   \else%
   Discipline%
   \fi%
@@ -3689,14 +3690,14 @@
   \fi%
 }
 \def\thu@subject{
-\ifx\flagtrue\thu@gongshuo%
+\ifthu@degree@type@professional%
 \thu@degree@domain \degree@level 专业学位论文%
 \else%
 \thu@degree@domain \degree@level 学位论文%
 \fi%
 }
 \def\thu@subject@en{%
-\ifx\flagtrue\thu@gongshuo%
+\ifthu@degree@type@professional%
 Thesis for the Professional Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \else%
 Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
