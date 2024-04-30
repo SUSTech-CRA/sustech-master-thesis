@@ -34,18 +34,22 @@ def get_meta():
                     version = re.findall("(\d+)\.(\d+)\.(\d+)", line)[0]
                     date = re.findall("\d{4}/\d{2}/\d{2}", line)
                     return {
-                        "ver": version,
-                        "date": date
+                        "version": version,
+                        "release_date": date
                     }
                 except:
                     return None
 
 
-def bump_version(version, delta=1, pos=-1):
+def bump_version(version, level='patch'):
     a, b, c = version
-    ver = [int(a), int(b), int(c)]
-    ver[pos] = delta+ver[pos]
-    ver_str = [str(i) for i in ver]
+    if level == 'major':
+        a = int(a) + 1
+    elif level == 'minor':
+        b = int(b) + 1
+    else:  # level == 'patch'
+        c = int(c) + 1
+    ver_str = [str(i) for i in [a, b, c]]
     return ".".join(ver_str)
 
 
@@ -53,18 +57,24 @@ if __name__ == "__main__":
     import argparse
     import time
     try:
-        new_version = bump_version(get_meta()["ver"])
+        meta = get_meta()
+        if meta:
+            current_version = meta["version"]
+        else:
+            current_version = "0.0.1"
     except:
-        new_version = "0.0.1"
+        current_version = "0.0.1"
     now_date = time.strftime("%Y/%m/%d", time.localtime())
     nan_commit_sha = "NAN.SHA"
     parser = argparse.ArgumentParser()
-    parser.add_argument("--version", "-v", default=new_version,
+    parser.add_argument("--version", "-v", default=current_version,
                         help='release version')
     parser.add_argument("--sha", "-s", default=nan_commit_sha,
                         help='git commit hash')
     parser.add_argument("--date", "-d", default=now_date,
                         help='release date')
+    parser.add_argument("--level", "-l", choices=['major', 'minor', 'patch'], default='patch',
+                        help='specify the version level to bump (major, minor, or patch)')
     parser.add_argument("--dev", action='store_true',
                         help='change the meta-data for develop build')
     args = parser.parse_args()
@@ -73,4 +83,5 @@ if __name__ == "__main__":
         dev_version = f"{args.sha[:7].upper()}.DEV.BUILD"
         change_meta(dev_version, now_date)
     else:
-        change_meta(args.version, args.date)
+        new_version = bump_version(args.version, args.level)
+        change_meta(new_version, args.date)
