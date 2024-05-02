@@ -47,8 +47,7 @@ def generate_changelog_md(old_version, new_version, date):
 - 这里可以添加具体的修复内容，根据实际情况调整。
 
 ### Removed
-- 这里可以添加具体的修复内容，根据实际情况调整。
-"""
+- 这里可以添加具体的修复内容，根据实际情况调整。"""
 
     return md_template
 
@@ -57,13 +56,14 @@ def update_changelog(old_version, new_version, date):
     date_hyphen = date.replace("/", "-")
     with open(changelog_file, "r", encoding="utf-8") as f:
         changelog_content = f.read()
-        body_index = changelog_content.index("<!-- BODY -->") + len("<!-- BODY -->")
+        body_index = changelog_content.index("<!-- BODY") + len("<!-- BODY")
+        next_newline_index = changelog_content.find("\n", body_index)
         new_entry = "\n" * 2 + generate_changelog_md(
             old_version, new_version, date_hyphen
         )
         print(new_entry)
         updated_content = (
-            changelog_content[:body_index] + new_entry + changelog_content[body_index:]
+            changelog_content[:next_newline_index] + new_entry + changelog_content[next_newline_index:]
         )
     with open(changelog_file, "w", encoding="utf-8") as f:
         f.write(updated_content)
