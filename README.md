@@ -91,7 +91,7 @@ xetex sustechthesis.ins
 * `make clean`      删除示例文件的中间文件（不含 pdf）；
 * `make cleanall`   删除示例文件的中间文件和 pdf；
 * `make wordcount`  论文字数统计。
-* `make doc`     生成文档；
+* `make doc`        生成文档；
 * `make cls`        仅生成 cls 模版类文件；
 
 ### 使用 Docker 编译
