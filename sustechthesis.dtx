@@ -3695,7 +3695,6 @@ Thesis for the Professional Degree of \degree@level@en@noun \ of \thu@degree@dom
 Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 \fi%
 }
-
 \newcommand\thu@option@supervisor@item{
   \ifx\thu@associate@supervisor\@empty\else
     \makebox[6em][s]{\heiti {副指导教师}} & \thu@associate@supervisor\\
@@ -3783,24 +3782,9 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     hmargin = 3cm,
   }%
   \thispagestyle{empty}%
-  % {\noindent \xiaosi
-  %   \renewcommand\arraystretch{1.25}
-  %   \begin{tabular}{@{}l@{}}
-  %     Classified Index: \thu@natclassifiedindex\\
-  %     U.D.C: \thu@intclassifiedindex
-  %   \end{tabular}}
 
   \begin{center}
 
-    % \vspace{2.5cm}
-
-    % \parbox[t]{30em}{
-    %   \centering
-    %   \fontsize{18bp}{25.875bp}\selectfont
-    %   \thu@subject@en}
-    % \par
-
-    \vspace{1.5cm}
     \parbox[t]{30em}{
       \centering
       % 22 bp*1.15默认行距比例*1.25行距 = 31.625
@@ -3816,7 +3800,7 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
     \vfill
     {
-      \sanhao%
+      \sanhao[1.725]%
       A dissertation submitted to\par
       Southern University of Science and Technology\par
       in partial fulfillment of the requirement\par
@@ -3825,44 +3809,28 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
         professional
       \fi
       degree of\par
-      \degree@level@en@adj
+      \degree@level@en@noun \ of \thu@degree@domain@en\par
       \ifthu@degree@type@academic
-      in\par
-      \thu@discipline@en
+        in\par
+        \thu@discipline@en\par
       \fi
-      % \thu@degree@name@en\par
     }
-    \vspace{1cm}
+    \vspace{3cm}
     {
-      \sanhao%
+      \sanhao[1.725]%
       by\par
       \thu@author@en\par
     }
     \vspace{1cm}
-    {
-      \xiaosan%
-      Supervisor: \thu@supervisor@en\\
-    }
-    \vfill
+    \parbox[t][3.37cm][t]{\textwidth}{%
+      \centering\xiaosan[1.82]%
+      \thu@titlepage@en@supervisor@sustech
+    }\par
     {
       \sanhao%
       \thu@format@date{\thu@date@en@short}{\thu@defense@date}
     }
-      % {\sanhao%
-      % \renewcommand\arraystretch{1.3}
-      % % 手动调整使得视觉接近
-      % \hspace*{2em}
-      % \begin{tabular}{@{}m{\sustech@titlepage@left@column@width}m{0.5\textwidth}@{}}
-      %   \thu@info@item@sustech{Candidate:}{\thu@author@en}\\
-      %   \thu@info@item@sustech{Supervisor:}{\thu@supervisor@en}\\
-      %   \thu@option@supervisor@item@en
-      %   \thu@info@item@sustech{\zhuanye@en:}{\thu@discipline@en}\\
-      %   \thu@info@item@sustech{Date of Defence:}{\thu@format@date{\thu@date@en@short}{\thu@defense@date}}\\
-      %   \thu@info@item@sustech{Affiliation:}{\thu@department@en}\\
-      %   \thu@info@item@sustech{Degree-Conferring-\\Institution:}{Southern University of Science and\\Technology}
-      % \end{tabular}}
-    \vspace{3cm}
-
+    \vspace{1.65cm}
   \end{center}
 
   \clearpage
@@ -4302,6 +4270,14 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \fi
     \ifx\thu@joint@supervisor@en\@empty\else
       Cooperate Supervisor            & \thu@joint@supervisor@en   \\
+    \fi
+  \end{tabular}%
+}
+\newcommand\thu@titlepage@en@supervisor@sustech{%
+  \begin{tabular}{r@{\makebox[0.71cm][l]{:}}l}%
+     Supervisor & \thu@supervisor@en     \\
+    \ifx\thu@associate@supervisor@en\@empty\else
+      Associate Supervisor            & \thu@associate@supervisor@en \\
     \fi
   \end{tabular}%
 }
