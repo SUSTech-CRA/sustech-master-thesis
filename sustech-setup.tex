@@ -121,10 +121,11 @@
 %%%%%% 顺序编码制的文献引用形式
 %%%%%% 参考文献编译方式二选一，不要同时开启。
 %%%% 选择一：使用 BibTeX + natbib 宏包
-\usepackage[sort&compress]{gbt7714}
-\citestyle{super} % 全局上标数字模式
-% \citestyle{numbers} % 全局行内数字模式，在写作指南2022年8月23日版本已废弃， 并决定中英文都采用上标数字格式
+\usepackage[sort&compress]{natbib}
+% \citestyle{super} % 全局上标数字模式
 \bibliographystyle{sustechthesis-numeric}
+% \citestyle{author-year} % 全局著者-出版年制模式
+% \bibliographystyle{sustechthesis-author-year}
 
 %%%% 选择二：使用 BibLaTeX 宏包（兼容性不佳，不太推荐）
 % \usepackage[backend=biber,style=gb7714-2015,gbalign=left]{biblatex}

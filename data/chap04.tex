@@ -8,14 +8,21 @@
 
 \section{顺序编码制}
 
-依学校样式规定，一般使用 \cs{cite}，即序号置于方括号中，引文页码会放在括号外。统一处引用的连续序号会自动用短横线连接。如多次引用同一文献，可能需要标注页码，例如：引用第二页\cite[2]{zhangkun1994}，引用第五页\cite[5]{zhangkun1994}。
+\thusetup{
+  cite-style = super,
+}
+% \citestyle{super} % 全局上标数字模式
+% \bibliographystyle{sustechthesis-numeric}
+
+在顺序编码制下，默认的 \cs{cite} 命令同 \cs{citep} 一样，即序号置于方括号中，引文页码会放在括号外。统一处引用的连续序号会自动用短横线连接。如多次引用同一文献，可能需要标注页码，例如：引用第二页\cite[2]{zhangkun1994}，引用第五页\cite[5]{zhangkun1994}。
 
 \begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
   \verb|\cite{zhangkun1994}|               & \cite{zhangkun1994}   {\kaishu 不带页码的上标引用}            \\
+  \verb|\citet{zhangkun1994}|              & \citet{zhangkun1994}              \\
+  \verb|\citep{zhangkun1994}|              & \citep{zhangkun1994}              \\
   \verb|\cite[42]{zhangkun1994}|           & \cite[42]{zhangkun1994} {\kaishu 手动带页码的上标引用}          \\
   \verb|\cite{zhangkun1994,zhukezhen1973}| & \cite{zhangkun1994,zhukezhen1973}  {\kaishu 一次多篇文献的上标引用}  \\
 \end{tabular}
-
 
 
 注意，引文参考文献的每条都要在正文中标注
@@ -34,6 +41,40 @@
 
 如参考文献中需要使用上标或者下标，使用数学环境书写 \verb|$\mathrm{Ba}_{3}\mathrm{CoSb}_{2}\mathrm{O}_{9}$|，例如该文献\cite{kamiya2018nature}。根据 \pkg{gbt7714} 规定著者姓名自动转为大写。西文的题名、期刊名的大小写不自动处理，需要自行处理以符合信息资源本身文种的习惯用法。
 
+\section{著者-出版年制}
+
+著者-出版年制下的 \cs{cite} 跟 \cs{citet} 一样。
+
+\thusetup{
+  cite-style = author-year,
+}
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{zhangkun1994}|                & \cite{zhangkun1994}                \\
+  \verb|\citet{zhangkun1994}|               & \citet{zhangkun1994}               \\
+  \verb|\citep{zhangkun1994}|               & \citep{zhangkun1994}               \\
+  \verb|\cite[42]{zhangkun1994}|            & \cite[42]{zhangkun1994}            \\
+  \verb|\citep{zhangkun1994,zhukezhen1973}| & \citep{zhangkun1994,zhukezhen1973} \\
+\end{tabular}
+
+\vskip 2ex
+% \thusetup{
+%   cite-style = super,
+% }
+注意，引文参考文献的每条都要在正文中标注
+\cite{zhangkun1994,zhukezhen1973,dupont1974bone,zhengkaiqing1987,%
+  jiangxizhou1980,jianduju1994,merkt1995rotational,mellinger1996laser,%
+  bixon1996dynamics,mahui1995,carlson1981two,taylor1983scanning,%
+  taylor1981study,shimizu1983laser,atkinson1982experimental,%
+  kusch1975perturbations,guangxi1993,huosini1989guwu,wangfuzhi1865songlun,%
+  zhaoyaodong1998xinshidai,biaozhunhua2002tushu,chubanzhuanye2004,%
+  who1970factors,peebles2001probability,baishunong1998zhiwu,%
+  weinstein1974pathogenic,hanjiren1985lun,dizhi1936dizhi,%
+  tushuguan1957tushuguanxue,aaas1883science,fugang2000fengsha,%
+  xiaoyu2001chubanye,oclc2000about,scitor2000project%
+}。
+
+
+\section{条目编写}
 
 \subsection{支持三级目录显示}
 
