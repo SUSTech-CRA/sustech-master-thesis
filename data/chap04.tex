@@ -24,23 +24,6 @@
   \verb|\cite{zhangkun1994,zhukezhen1973}| & \cite{zhangkun1994,zhukezhen1973}  {\kaishu 一次多篇文献的上标引用}  \\
 \end{tabular}
 
-
-注意，引文参考文献的每条都要在正文中标注
-\cite{zhangkun1994,zhukezhen1973,dupont1974bone,zhengkaiqing1987,%
-  jiangxizhou1980,jianduju1994,merkt1995rotational,mellinger1996laser,%
-  bixon1996dynamics,mahui1995,carlson1981two,taylor1983scanning,%
-  taylor1981study,shimizu1983laser,atkinson1982experimental,%
-  kusch1975perturbations,guangxi1993,huosini1989guwu,wangfuzhi1865songlun,%
-  zhaoyaodong1998xinshidai,biaozhunhua2002tushu,chubanzhuanye2004,%
-  who1970factors,peebles2001probability,baishunong1998zhiwu,%
-  weinstein1974pathogenic,hanjiren1985lun,dizhi1936dizhi,%
-  tushuguan1957tushuguanxue,aaas1883science,fugang2000fengsha,%
-  xiaoyu2001chubanye,oclc2000about,scitor2000project%
-}。
-引用测试：2个连续引用\cite{zhangkun1994,zhukezhen1973}，2个间隔\cite{zhangkun1994,dupont1974bone}，3个连续\cite{zhangkun1994,zhukezhen1973,dupont1974bone}。
-
-如参考文献中需要使用上标或者下标，使用数学环境书写 \verb|$\mathrm{Ba}_{3}\mathrm{CoSb}_{2}\mathrm{O}_{9}$|，例如该文献\cite{kamiya2018nature}。根据 \pkg{gbt7714} 规定著者姓名自动转为大写。西文的题名、期刊名的大小写不自动处理，需要自行处理以符合信息资源本身文种的习惯用法。
-
 \section{著者-出版年制}
 
 著者-出版年制下的 \cs{cite} 跟 \cs{citet} 一样。
@@ -56,10 +39,11 @@
   \verb|\citep{zhangkun1994,zhukezhen1973}| & \citep{zhangkun1994,zhukezhen1973} \\
 \end{tabular}
 
-\vskip 2ex
-% \thusetup{
-%   cite-style = super,
-% }
+\subsection{其他引用注意事项}
+
+\thusetup{
+  cite-style = super,
+}
 注意，引文参考文献的每条都要在正文中标注
 \cite{zhangkun1994,zhukezhen1973,dupont1974bone,zhengkaiqing1987,%
   jiangxizhou1980,jianduju1994,merkt1995rotational,mellinger1996laser,%
@@ -73,78 +57,6 @@
   xiaoyu2001chubanye,oclc2000about,scitor2000project%
 }。
 
+引用测试：2个连续引用\cite{zhangkun1994,zhukezhen1973}，2个间隔\cite{zhangkun1994,dupont1974bone}，3个连续\cite{zhangkun1994,zhukezhen1973,dupont1974bone}。
 
-\section{条目编写}
-
-\subsection{支持三级目录显示}
-
-支持三级目录显示
-
-
-\subsection{条目要求}
-
-条目要求首行左缩进 2 个汉字符，避免悬挂缩进。如需使用带括号的条目列表，请自行添加 \verb|label=<style>| 参数。
-下面是两个例子，还有更多用法，查阅 \pkg{enumitem} 宏包的文档。
-
-默认条目序号：
-
-\verb|\begin{enumerate} ... \end{enumerate}|
-
-\begin{enumerate}
-  \item 一级
-  \begin{enumerate}
-    \item 二级
-    \begin{enumerate}
-      \item 三级
-      \begin{enumerate}
-        \item 四级，《写作要求》未定义，请自行定义或者选择。
-      \end{enumerate}
-    \end{enumerate}
-  \end{enumerate}
-\end{enumerate}
-
-自定义序号样式定义如表~\ref{tab:enum-style}。
-
-\begin{table}[h]
-  \centering
-  \caption{条目样式选项}
-  \label{tab:enum-style}
-  \begin{tabular}{@{}ll@{}}
-  \toprule
-  \textbf{Code}          & \textbf{Description}                      \\ \midrule
-  \textbackslash{}alph   & Lowercase letter (a, b, c, ...)           \\
-  \textbackslash{}Alph   & Uppercase letter (A, B, C, ...)           \\
-  \textbackslash{}arabic & Arabic number (1, 2, 3, ...)              \\
-  \textbackslash{}roman  & Lowercase Roman numeral (i, ii, iii, ...) \\
-  \textbackslash{}Roman  & Uppercase Roman numeral (I, II, III, ...) \\ \bottomrule
-  \end{tabular}
-\end{table}
-
-\subsubsection{条目测试}
-
-
-条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字。
-
-\begin{enumerate}
-  \item 一级条目，超长行。南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学。
-  \item 一级条目，南方科技大学，南方科技大学，南方科技大学。
-  \item 一级条目，南方科技大学，南方科技大学，南方科技大学。
-  \begin{enumerate}
-    \item 二级条目，超长行。南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学。
-    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
-    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
-    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
-    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
-    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
-    \begin{enumerate}
-      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
-      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
-      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
-      \begin{enumerate}
-        \item \textbf{四级条目及之后的条目无规定序号格式，请自行设定选择。}
-      \end{enumerate}
-    \end{enumerate}
-  \end{enumerate}
-\end{enumerate}
-
-条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字。
+如参考文献中需要使用上标或者下标，使用数学环境书写 \verb|$\mathrm{Ba}_{3}\mathrm{CoSb}_{2}\mathrm{O}_{9}$|，例如该文献\cite{kamiya2018nature}。根据 \pkg{gbt7714} 规定著者姓名自动转为大写。西文的题名、期刊名的大小写不自动处理，需要自行处理以符合信息资源本身文种的习惯用法。

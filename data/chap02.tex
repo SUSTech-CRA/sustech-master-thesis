@@ -1,6 +1,6 @@
 % !TeX root = ../sustechthesis-example.tex
 
-\chapter{图表示例}
+\chapter{图、表及条目示例}
 
 \section{插图}
 
@@ -263,7 +263,7 @@ class HelloWorldApp {
 \end{algorithm}
 
 \newpage
-\section{测试}
+\section{图表格式测试}
 
 图题在图之下，段前空 6 磅，段后空 12 磅。图整体前后距离未定义，目前默认距离：段前空 12 磅，段后空 12 磅。
 
@@ -297,3 +297,79 @@ class HelloWorldApp {
 
 表后，表后，表后，表后，表后，表后，表后，表后，表后，表后，表后。
 \emph{图表前后是否有空行不影响图表与正文之间的距离}。
+
+
+\section{条目编写}
+
+\subsection{支持三级目录显示}
+
+支持三级目录显示
+
+
+\subsection{条目要求}
+
+条目要求首行左缩进 2 个汉字符，避免悬挂缩进。如需使用带括号的条目列表，请自行添加 \verb|label=<style>| 参数。
+下面是两个例子，还有更多用法，查阅 \pkg{enumitem} 宏包的文档。
+
+默认条目序号：
+
+\verb|\begin{enumerate} ... \end{enumerate}|
+
+\begin{enumerate}
+  \item 一级
+  \begin{enumerate}
+    \item 二级
+    \begin{enumerate}
+      \item 三级
+      \begin{enumerate}
+        \item 四级，《写作要求》未定义，请自行定义或者选择。
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+自定义序号样式定义如表~\ref{tab:enum-style}。
+
+\begin{table}[h]
+  \centering
+  \caption{条目样式选项}
+  \label{tab:enum-style}
+  \begin{tabular}{@{}ll@{}}
+  \toprule
+  \textbf{Code}          & \textbf{Description}                      \\ \midrule
+  \textbackslash{}alph   & Lowercase letter (a, b, c, ...)           \\
+  \textbackslash{}Alph   & Uppercase letter (A, B, C, ...)           \\
+  \textbackslash{}arabic & Arabic number (1, 2, 3, ...)              \\
+  \textbackslash{}roman  & Lowercase Roman numeral (i, ii, iii, ...) \\
+  \textbackslash{}Roman  & Uppercase Roman numeral (I, II, III, ...) \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection{条目测试}
+
+
+条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字，条目前文字。
+
+\begin{enumerate}
+  \item 一级条目，超长行。南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学。
+  \item 一级条目，南方科技大学，南方科技大学，南方科技大学。
+  \item 一级条目，南方科技大学，南方科技大学，南方科技大学。
+  \begin{enumerate}
+    \item 二级条目，超长行。南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学，南方科技大学。
+    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
+    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
+    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
+    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
+    \item 二级条目，南方科技大学，南方科技大学，南方科技大学。
+    \begin{enumerate}
+      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
+      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
+      \item 三级条目，南方科技大学，南方科技大学，南方科技大学。
+      \begin{enumerate}
+        \item \textbf{四级条目及之后的条目无规定序号格式，请自行设定选择。}
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字，条目后文字。

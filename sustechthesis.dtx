@@ -760,7 +760,7 @@
 % \subsubsection{引用方式}
 % \label{sec:citestyle}
 % 模板支持两种引用方式，分别为理工科常用的“顺序编码制”和文科常用
-% 的“著者-出版年制”，对于\textbf{南方科技大学的毕业生使用“顺序编码制”即可}。
+% 的“著者-出版年制”。
 % 使用者在设置参考文献表的格式
 % （\cs{bibliographystyle}，见第~\ref{sec:bibliography} 节）时，
 % 正文中引用文献的标注会自动调整为对应的格式。
@@ -772,9 +772,18 @@
 % \DescribeMacro{\inlinecite}
 % 顺序编码制的参考文献引用分为两种模式：
 % \begin{enumerate}
-%   \item 上标模式（super），比如“同样的工作有很多\textsuperscript{[1-2]}……”；
-%   \item 正文模式（inline），比如“文 [3] 中详细说明了……”。
+%   \item 上标模式，比如“同样的工作有很多\textsuperscript{[1-2]}……”；
+%   \item 正文模式，比如“文 [3] 中详细说明了……”。
 % \end{enumerate}
+%
+% \DescribeOption{cite-style}
+% 用户可以将引用标注的格式设为正文模式：
+% \begin{latex}
+%   \thusetup{
+%     cite-style = inline,
+%   }
+% \end{latex}
+% 也可以使用 \cs{inlinecite}\marg{key} 临时使用正文模式的引用标注。
 %
 % \paragraph{著者-出版年制}
 % 著者-出版年制的参考文献引用有两种模式：
@@ -5133,16 +5142,16 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
 % 这样在使用 \cs{bibliographystyle} 选择参考文献表的样式时也会设置对应的引用样式。
 %    \begin{macrocode}
-% \newcommand\bibstyle@super{%
-%   \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
-% \newcommand\bibstyle@inline{%
-%   \bibpunct{[}{]}{,}{n}{,}{,}}
-% \@namedef{bibstyle@author-year}{%
-%   \bibpunct{(}{)}{;}{a}{,}{,}}
+  \newcommand\bibstyle@super{%
+    \bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
+  \newcommand\bibstyle@inline{%
+    \bibpunct{[}{]}{,}{n}{,}{,}}
+  \@namedef{bibstyle@author-year}{%
+    \bibpunct{(}{)}{;}{a}{,}{,}}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
+  \thu@option@hook{cite-style}{\@nameuse{bibstyle@\thu@cite@style}}
 %    \end{macrocode}
 %
 % 几种种引用样式，与 \file{bst} 文件名保持一致，
