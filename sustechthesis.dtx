@@ -2899,6 +2899,43 @@
 \fi
 %    \end{macrocode}
 %
+% 图片设置草稿模式
+%    \begin{macrocode}
+% 定义draft模式的条件
+\newif\ifdraftmode
+\draftmodefalse % 默认关闭draft模式
+% 定义一个命令来开启draft模式
+\newcommand{\enabledraftmode}{%
+  \draftmodetrue
+  \PassOptionsToPackage{draft}{graphicx}
+  \PassOptionsToPackage{draft}{hyperref}
+  \ifdefined\oldincludegraphics\else
+    \let\oldincludegraphics\includegraphics
+  \fi
+  \renewcommand{\includegraphics}[2][]{%
+    \begingroup
+    \def\draftimagearg{##2}%
+    \def\draftimageopts{##1}%
+    \sbox0{\oldincludegraphics[##1]{##2}}%
+    \fbox{\parbox[c][\ht0]{\wd0}{\centering Draft Image:\\\texttt{\draftimagearg}}}%
+    \endgroup
+  }
+  % 显示溢出的箱子
+  \overfullrule=5pt
+}
+% 定义一个命令来关闭draft模式
+\newcommand{\disabledraftmode}{%
+  \draftmodefalse
+  \PassOptionsToPackage{final}{graphicx}
+  \PassOptionsToPackage{final}{hyperref}
+  \ifdefined\oldincludegraphics
+    \let\includegraphics\oldincludegraphics
+  \fi
+  % 显示溢出的箱子
+  \overfullrule=0pt
+}
+%    \end{macrocode}
+%
 % 各级标题格式设置。
 %    \begin{macrocode}
 \ctexset{%
@@ -4507,6 +4544,9 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   }%
 }{%
 }
+\RequirePackage{rotating}
+\newcommand\undefcolumntype[1]{\expandafter\let\csname NC@find@#1\endcsname\relax}
+\newcommand\forcenewcolumntype[1]{\undefcolumntype{#1}\newcolumntype{#1}}
 %    \end{macrocode}
 % \end{environment}
 %
