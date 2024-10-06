@@ -122,6 +122,23 @@
   \end{tabularx}
 \end{table}
 
+如果表格横向宽度不够，可以使用 \pkg{sidewaystable} 将表格旋转90度。
+\begin{sidewaystable}
+  \centering
+  \caption{三线表示例}
+  \begin{tabular}{ll}
+    \toprule
+    文件名          & 描述                         \\
+    \midrule
+    thuthesis.dtx   & 模板的源文件，包括文档和注释 \\
+    thuthesis.cls   & 模板文件                     \\
+    thuthesis-*.bst & BibTeX 参考文献表样式文件    \\
+    thuthesis-*.bbx & BibLaTeX 参考文献表样式文件  \\
+    thuthesis-*.cbx & BibLaTeX 引用样式文件        \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:three-line-rotate}
+\end{sidewaystable}
 
 
 如果您要排版的表格长度超过一页，那么推荐使用 \pkg{longtable} 或者 \pkg{supertabular}

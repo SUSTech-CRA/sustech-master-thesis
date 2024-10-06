@@ -2825,6 +2825,8 @@
 % 这会导致含有多行文字的单元格中行距有误。
 % todo: sustech(修订注释)
 %    \begin{macrocode}
+% 表格旋转
+\RequirePackage{rotating}
 \newcommand\thu@set@table@font{
   \ifthu@language@chinese
     \def\thu@table@font{%
@@ -4544,7 +4546,6 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
   }%
 }{%
 }
-\RequirePackage{rotating}
 \newcommand\undefcolumntype[1]{\expandafter\let\csname NC@find@#1\endcsname\relax}
 \newcommand\forcenewcolumntype[1]{\undefcolumntype{#1}\newcolumntype{#1}}
 %    \end{macrocode}
