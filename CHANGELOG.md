@@ -31,7 +31,25 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 <!-- BODY 正文标记，请勿移除 -->
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.21...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.22...HEAD)
+
+## [v1.3.22](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.21...v1.3.22) - 2024-10-06
+
+### Fixed:
+- 修复标注中的bug（[#79](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/79)）。
+- 多行标题时，允许多行页眉（[#80](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/80)）。
+
+### Changed
+- 更新英文题名页（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
+- 更新发布脚本（[#77](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/77)）。
+- 更新学位参数表示方式，改进可读性（[#76](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/76)）。
+- 优化代码（[#82](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/82)）。
+
+### Added
+- 引文格式和参考文献增加著者-出版年制的格式（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
+- 致谢中新增要求提示（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
+- 新增建议图片大小的要求提示（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
+- 添加draftmode（[#81](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/81)，[#82](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/82)）。
 
 ## [1.3.21](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.20...v1.3.21) - 2024-04-29
 
