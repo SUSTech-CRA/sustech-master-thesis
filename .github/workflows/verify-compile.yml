@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        texlive: [latest, TL2022-historic, TL2021-historic, TL2020-historic]
+        texlive: [latest, TL2023-historic, TL2022-historic, TL2021-historic]
         # 多版本 TexLive 兼容性测试
         # 版本号选自：https://hub.docker.com/r/texlive/texlive/tags
     container: texlive/texlive:${{ matrix.texlive }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -26,7 +26,7 @@ jobs:
         run: make doc test
 
       - name: Publish PDF as actions assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Example-PDFs-texlive-${{ matrix.texlive }}
           path: |

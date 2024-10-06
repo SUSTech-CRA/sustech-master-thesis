@@ -1,7 +1,6 @@
 import os
 import re
 import shutil
-import sys
 
 
 def change_line(filename, old, new):
@@ -114,11 +113,9 @@ if __name__ == "__main__":
         filename = "sustech-setup.tex"
         backup(filename, TOBACKUP)
         if not args.undo:
-            comment_line(filename, "{gbt7714}", True)
-            comment_line(filename, "citestyle{super}", True)
-            comment_line(filename, "citestyle{numbers}", True)
+            comment_line(filename, "{natbib}", True)
             comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
-            comment_line(filename, "{biblatex}", False)
+            comment_line(filename, "gb7714-2015,.*{biblatex}", False)
             comment_line(filename, "addbibresource{ref/refs.bib}", False)
     elif args.recipe == 4:
         # progress
