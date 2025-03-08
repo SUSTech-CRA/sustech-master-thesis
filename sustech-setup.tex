@@ -128,8 +128,10 @@
 % \bibliographystyle{sustechthesis-author-year}
 
 %%%% 选择二：使用 BibLaTeX 宏包（兼容性不佳，不太推荐）
-% 全局上标数字模式
+% 全局上标数字模式，按照文献引用顺序排序
 % \usepackage[backend=biber,style=gb7714-2015,gbalign=left]{biblatex}
+% 全局上标数字模式，按照语言、作者、年份、标题、升序排列
+% \usepackage[backend=biber,style=gb7714-2015,sorting=gb7714-2015,gbalign=left]{biblatex}
 % 全局著者-出版年制模式
 % \usepackage[backend=biber,style=gb7714-2015ay]{biblatex}
 % \addbibresource{ref/refs.bib} % 声明 BibLaTeX 的数据库
