@@ -123,7 +123,7 @@ if __name__ == "__main__":
         backup(filename, TOBACKUP)
         if not args.undo:
             change_line(filename,
-                        "type = \S+,",
+                        "(?<!\S)type = \S+,",
                         "type = progress,"
                         )
     elif args.recipe == 5:
@@ -132,6 +132,6 @@ if __name__ == "__main__":
         backup(filename, TOBACKUP)
         if not args.undo:
             change_line(filename,
-                        "type = \S+,",
+                        "(?<!\S)type = \S+,",
                         "type = proposal,"
                         )
