@@ -31,7 +31,16 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 <!-- BODY 正文标记，请勿移除 -->
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.22...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.23...HEAD)
+
+## [v1.3.23](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.22...v1.3.23) - 2025-07-19
+
+### Fixed:
+- 修复错别字（[#85](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/85)）。
+- 修复引用文献特定页数的样式（[#87](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/87)）。
+
+### Added
+- 添加 BibLaTeX 下两种不同的文献引用排序方式示例。
 
 ## [v1.3.22](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.21...v1.3.22) - 2024-10-06
 
