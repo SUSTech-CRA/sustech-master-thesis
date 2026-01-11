@@ -1,0 +1,74 @@
+% !TeX root = ../sustechthesis-example-bachelor.tex
+% !Mode:: "TeX:UTF-8"
+
+\chapter{一些样例}
+
+\section{表格}
+
+表格与图片可以直接通过 \verb|\ref{<key>}| 来引用，例如表 \ref{tab:example}、图 \ref{fig:test-a}、图 \ref{fig:test-b-sub-b}。
+
+\begin{table}[htb]
+  \centering
+  \caption{表格的标题应该放在上方}
+  \label{tab:example}
+  \begin{tabular}{lc}
+    \toprule
+    Example & Result \\
+    \midrule
+    Example1          & 0.25 \\
+    Example2          & 0.36 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htb]
+  \centering
+  \caption{带表注的表格的标题}
+  \label{tab:example2}
+  \begin{threeparttable}
+    \setlength{\tabcolsep}{0.6cm}{
+      \begin{tabular}{lc}
+        \toprule
+        Example & Result \\
+        \midrule
+        Example1          & 0.25\tnote{1} \\
+        Example2          & 0.36 \\
+        \bottomrule
+      \end{tabular}
+    }
+    \begin{tablenotes}
+    \item[1] 数据来源：南方科技大学 \LaTeX 模版
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\begin{proof}
+  这是一个证明符号的示例。
+\end{proof}
+
+\section{参考文献}
+
+参考文献一般使用 \verb|\cite{<key>}| 命令来引用。
+
+\section{图片}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.5\textwidth]{example-image-a}
+  \caption{自带测试图片---Test image}\label{fig:test-a}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{subfigure}[t]{.45\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{example-image-a}
+    \caption{子图-自带测试图片---Test image}\label{fig:test-b-sub-a}
+  \end{subfigure}
+  \begin{subfigure}[t]{.45\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{example-image-a}
+    \caption{子图-自带测试图片---Test image}\label{fig:test-b-sub-b}
+  \end{subfigure}
+  \caption{自带测试图片---Test image}\label{fig:test-b}
+\end{figure}

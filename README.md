@@ -1,4 +1,6 @@
-# 南方科技大学研究生学位论文模板 sustechthesis (SUSTech Thesis Template for Graduate Students)
+# 南方科技大学学位论文模板 sustechthesis (SUSTech Thesis Template)
+
+> 支持本科生、硕士、博士学位论文
 
 [![Actions Status](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml/badge.svg)](https://github.com/SUSTech-CRA/sustech-master-thesis/actions/workflows/verify-compile.yml)
 [![GitHub downloads](https://img.shields.io/github/downloads/SUSTech-CRA/sustech-master-thesis/total)](https://github.com/SUSTech-CRA/sustech-master-thesis/releases)
@@ -12,10 +14,13 @@
 推荐下载 **[发布版](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/latest)** 或 **[开发版-预构建](https://github.com/SUSTech-CRA/sustech-master-thesis/releases/tag/dev-latest)** 的模板，里面包括模板使用说明以及示例文档：
 
 * 模板使用说明（**sustechthesis.pdf**）
-* 学位论文示例文档（**sustechthesis-example.tex**）
+* 研究生学位论文示例文档（**sustechthesis-example.tex**）
+* **本科生学位论文示例文档**（**sustechthesis-example-bachelor.tex**）
 * 报告示例文档（**sustechthesis-example-report.tex**），包括开题报告、年度考核报告
 
-> 注：模板使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 配置文件中已有注释说明。
+> 注：模板使用说明尚不完善，仅供参考。主要功能在配置文件中已有注释说明：
+> - 研究生：`sustech-setup.tex`
+> - 本科生：`sustech-setup-bachelor.tex`
 
 **发布版** 包含预生成的 `cls` 模板类文件和文档。**发布版** 一般会比 **开发版-预构建** 晚更新，如急需使用最新版可以使用 **开发版-预构建**。
 
@@ -54,10 +59,11 @@
 * `build cls (sustechthesis style file)`：生成 cls 文件，仅供开发者使用。**发布版** 或 **开发版-预构建** 已包含 cls 文件，无需自行生成
 
 ### 使用 Latexmk（Windows / Linux / macOS）
-1. `latexmk sustechthesis-example.tex` 生成学位论文示例文档 sustechthesis-example.pdf；
-2. `latexmk sustechthesis-example-report.tex` 生成报告示例文档 sustechthesis-example-report.pdf；
-3. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
-4. `latexmk -c` 清理编译生成的辅助文件；
+1. `latexmk sustechthesis-example.tex` 生成研究生学位论文示例文档 sustechthesis-example.pdf；
+2. `latexmk sustechthesis-example-bachelor.tex` 生成本科生学位论文示例文档 sustechthesis-example-bachelor.pdf；
+3. `latexmk sustechthesis-example-report.tex` 生成报告示例文档 sustechthesis-example-report.pdf；
+4. `latexmk sustechthesis.dtx` 生成说明文档 sustechthesis.pdf；
+5. `latexmk -c` 清理编译生成的辅助文件；
 
 ### 使用 Makefile 编译
 * `make thesis`     生成论文
@@ -113,10 +119,19 @@ docker run -it --rm \
 ## 模板结构
 
 ### 文档内容
-* `sustech-setup.tex` 示例文档基本配置（论文标题、作者等元数据）
-* `sustechthesis-example.tex` 学位论文示例文档
+
+#### 研究生论文
+* `sustech-setup.tex` 研究生论文基本配置（论文标题、作者等元数据）
+* `sustechthesis-example.tex` 研究生学位论文示例文档
 * `sustechthesis-example-report.tex` 报告示例文档，包括开题报告，年度考核报告
-* `data/` 示例文档章节具体内容
+* `data/` 研究生示例文档章节具体内容
+
+#### 本科生论文
+* `sustech-setup-bachelor.tex` 本科生论文基本配置
+* `sustechthesis-example-bachelor.tex` 本科生学位论文示例文档
+* `bachelor-data/` 本科生示例文档章节具体内容
+
+#### 共用资源
 * `figures/` 示例文档图片目录
 * `ref/` 示例文档参考文献目录
 
@@ -163,5 +178,7 @@ xetex sustechthesis.ins
 ## 致谢
 
 * 本模板基于清华大学模板 [ThuThesis v7.1.0](https://github.com/tuna/thuthesis/releases/tag/v7.1.0) 修改。
-* 本模板根据南方科技大学研究生院发布的 [《研究生学位论文写作指南》](https://gs.sustech.edu.cn/#/common/index?current_id=9&id=161&article_id=19) 编写，如有冲突以官网规定为准。
-  * 如果范例中存在与《写作指南》中的规定不符之处，以《写作指南》中的文字叙述为准。
+* 本科生模板部分整合自 [sustechthesis](https://github.com/Iydon/sustechthesis)，感谢梁钰栋同学的贡献。
+* 研究生模板根据南方科技大学研究生院发布的 [《研究生学位论文写作指南》](https://gs.sustech.edu.cn/#/common/index?current_id=9&id=161&article_id=19) 编写。
+* 本科生模板根据南方科技大学教学工作部发布的本科生毕业设计论文相关[《撰写规范》](https://tao.sustech.edu.cn/xueshengfuwu/biyelunwen/)编写。
+* 如有冲突以官网规定为准，如果范例中存在与规定不符之处，以官方文字叙述为准。

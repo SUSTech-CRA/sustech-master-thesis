@@ -1,0 +1,44 @@
+% !TeX root = ../sustechthesis-example-bachelor.tex
+% !Mode:: "TeX:UTF-8"
+
+\chapter{文类接口}
+
+文类的接口的命名均为汉字，意思为字面意思，
+如有疑问，欢迎在 GitHub 提出 \href{https://github.com/SUSTech-CRA/sustech-master-thesis/issues}{Issues}。
+
+\section{汉化字号接口}
+
+本接口主要使用 \texttt{ctex} 宏包。
+
+\verb|\初号|，\verb|\小初|，\verb|\一号|，\verb|\小一|，\verb|\二号|，\verb|\小二|，\verb|\三号|，\verb|\小三|，
+\verb|\四号|，\verb|\小四|，\verb|\五号|，\verb|\小五|，\verb|\六号|，\verb|\小六|，\verb|\七号|，\verb|\八号|。
+
+\section{汉化字体接口}
+
+可能本机上部分字体不存在，导致部分字体无法使用。
+
+\verb|\宋体|，\verb|\黑体|，\verb|\仿宋|，\verb|\楷书|，
+\verb|\隶书|，\verb|\幼圆|，\verb|\雅黑|，\verb|\苹方|。
+
+\section{字体效果接口}
+
+建议在正文时使用 \verb|\textbf{}|，\verb|\textit{}| 调用\textbf{粗体}与\textit{斜体}。
+
+It is recommended to use \verb|\textbf{}|，\verb|\textit{}| to call \textbf{Bold} and \textit{ItalicFont}.
+
+\verb|\粗体|，\verb|\斜体|。
+
+\section{格式相关接口}
+
+\subsection{命令}
+
+例子请参考前文，在写论文初期，可以注释掉标题页等不必要信息，以加快编译速度。
+
+\verb|\设置信息|，\verb|\目录|，\verb|\下划线|，\verb|\中文标题页|，\verb|\英文标题页|，
+\verb|\中文诚信承诺书|，\verb|\英文诚信承诺书|，\verb|\摘要标题|，\verb|\参考文献|，\verb|\附录|，\verb|\致谢|。
+
+\subsection{环境}
+
+摘要环境均需一个参数，为关键词：\verb|\begin{}{}...\end{}|。
+
+\verb|中文摘要|，\verb|英文摘要|。

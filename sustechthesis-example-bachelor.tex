@@ -1,0 +1,56 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = zh_CN
+
+\documentclass[degree=bachelor,language=chinese,font=external,cjk-font=external]{sustechthesis}
+  %%%%%%%%%%%%%%%%%%%%%%%%
+  %   本科生学位论文模板
+  %%%%%%%%%%%%%%%%%%%%%%%%
+
+  % 学位 degree:
+  %   bachelor （本科生）
+  % 语言 language:
+  %   chinese （默认）| english
+  % 英文字体 font
+  %   auto （默认，自动选择系统自带字体）| external （包内字体）
+  % 中文字体 cjk-font
+  %   auto （默认，自动选择系统自带字体）| external （包内字体）
+
+% 论文基本配置，加载宏包等全局配置
+\input{sustech-setup-bachelor}
+
+\begin{document}
+
+% 封面（包含中英文封面和诚信承诺书）
+\maketitle
+
+\frontmatter
+
+% 摘要
+\input{bachelor-data/abstract}
+
+% 目录
+\tableofcontents
+
+% 正文部分
+\mainmatter
+\input{bachelor-data/chap01}
+\input{bachelor-data/chap02}
+\input{bachelor-data/chap03}
+\input{bachelor-data/chap04}
+
+% 结论
+\backmatter
+\input{bachelor-data/conclusion}
+
+% 参考文献
+\bibliography{ref/refs}
+
+% 附录
+\appendix
+\input{bachelor-data/appendix}
+
+% 致谢
+\input{bachelor-data/acknowledgements}
+
+\end{document}
