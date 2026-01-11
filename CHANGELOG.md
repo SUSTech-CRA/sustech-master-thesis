@@ -33,6 +33,13 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 ## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.23...HEAD)
 
+### Changed:
+- 重构 README 结构，优化文档组织（[#88](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/88)）。
+- 完善批处理脚本 `build.bat` 和 `clean.bat`，增强功能和易用性。
+
+### Fixed:
+- 修复批处理脚本（`build.bat` 和 `clean.bat`）在 PowerShell 中的兼容性问题。
+
 ## [v1.3.23](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.22...v1.3.23) - 2025-07-19
 
 ### Fixed:
