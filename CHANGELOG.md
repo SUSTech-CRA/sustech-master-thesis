@@ -38,7 +38,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 完善批处理脚本 `build.bat` 和 `clean.bat`，增强功能和易用性。
 
 ### Added:
-- 完善文档：添加 `font`、`cjk-font`、`math-font`、`type`、`degree-type` 等选项的详细说明。
+- 完善文档：添加 `font`、`cjk-font`、`math-font`、`type`、`degree-type` 等选项的详细说明（[#91](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/91)）。
 
 ### Fixed:
 - 修复批处理脚本（`build.bat` 和 `clean.bat`）在 PowerShell 中的兼容性问题。
@@ -99,7 +99,7 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 增加 Docker 编译指引。
 
 ### Fixed:
-- 中文目录的Abstract改回加粗。 
+- 中文目录的Abstract改回加粗。
 
 ## [1.3.18](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...v1.3.18) - 2022-09-07
 ### Changed
