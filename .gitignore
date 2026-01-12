@@ -13,10 +13,10 @@ thuthesis-ctan/
 dtx-style.sty
 *thesis.cls
 *thesis.pdf
-*example.pdf
-*example-report.pdf
+*example*.pdf
 spine.pdf
 *.hd
+*luabridge.lua
 
 ## test files:
 build/

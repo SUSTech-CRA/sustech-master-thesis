@@ -360,14 +360,45 @@
 % 允许的选项有 \option{windows}、\option{mac}、\option{fandol}，详
 % 见 \pkg{ctex}、\pkg{xeCJK}、\pkg{fontspec} 等宏包的使用说明。
 %
-% 如在非 Windows 系统下还想使用其字体，可使用 \option{external} 选项调用包内带的 Windows 字体：
+% \paragraph{英文字体}
+% \DescribeOption{font}
+% 用户可以通过 \option{font} 选项选择英文字体，可选值：
+% \begin{itemize}
+%   \item \option{auto}（默认）：自动选择系统自带字体
+%   \item \option{external}：使用包内字体
+%   \item \option{times}：Times New Roman 的 TeX 克隆版
+%   \item \option{termes}：TeX Gyre Termes 字体
+%   \item \option{none}：不指定字体
+% \end{itemize}
+%
+% Windows 和 macOS 系统上，系统自带对应字体，可以删除该参数。
+% Unix 系统推荐使用包内字体（\option{external}），而非 TeX 自带的克隆版字体，
+% 以达到和其他系统一致的字体效果。
+%
+% \begin{latex}
+%   \documentclass[font=external]{sustechthesis}
+% \end{latex}
+%
+% \paragraph{中文字体}
+% \DescribeOption{cjk-font}
+% 用户可以通过 \option{cjk-font} 选项选择中文字体，可选值：
+% \begin{itemize}
+%   \item \option{auto}（默认）：自动选择系统自带字体
+%   \item \option{external}：使用包内字体（推荐用于非 Windows 系统）
+%   \item \option{windows}：Windows 系统字体（中易宋体、中易黑体）
+%   \item \option{mac}：macOS 系统字体（华文宋体、华文黑体）
+%   \item \option{noto}：Noto 字体
+%   \item \option{fandol}：Fandol 字体
+%   \item \option{none}：不指定字体
+% \end{itemize}
+%
+% 在非 Windows 的系统上推荐使用包内字体（\option{external}），而非系统字体，
+% 以达到和 Windows 系统一致的字体效果。
+% Windows 系统自带对应字体，可以删除该参数。
 %
 % \begin{latex}
 %   \documentclass[cjk-font=external]{sustechthesis}
 % \end{latex}
-%
-% 允许的选项有 \option{windows}、\option{mac}、\option{fandol}、
-% \option{external}，等。
 %
 % \subsection{论文设置}
 % 论文的设置可以通过 \file{sustech-setup.tex} 中的统一命令 \cs{thusetup} 设置 \emph{key=value} 形式完成。
@@ -408,6 +439,15 @@
 %
 % ^^A另外本科生要求有 0.2cm 留给装订线的宽度，这只有在打印版中才会生效。
 %
+% \subsubsection{文档类型}
+% \DescribeOption{type}
+% 选择文档类型，可选：\option{proposal}（开题报告）、\option{progress}（年度考核报告）、\option{thesis}（学位论文，默认）。
+%
+% \begin{latex}
+%   \thusetup{
+%     type = thesis,
+%   }
+% \end{latex}
 %
 % \subsection{封面信息}
 % \label{sec:titlepage}
@@ -435,7 +475,7 @@
 %    选项             & 可选值                  \\ \midrule
 %    degree-domain  & 理学，工学，医学             \\
 %    degree-domain* & Science, Engineering, Medicine \\
-%    degree-type    &  academic (学术型，如学术硕士或其他), professional (专业型，如工程硕士) \\
+%    degree-type    & academic (学术型，默认值，如学术硕士), professional (专业型，如工程硕士) \\
 %    \bottomrule
 %    \end{tabular}
 %  \end{table}
@@ -447,6 +487,9 @@
 %     degree-type = academic,
 %   }
 % \end{latex}
+%
+% \note[注意：]{\option{degree-type} 的默认值为 \option{academic}，代表生成学术型研究生毕业设计模板；
+% 改为 \option{professional} 则将生成专业型研究生毕业设计模板。}
 %
 % \subsubsection{院系名称}
 % 院系名称，名称超长时可以使用换行|\\|。
@@ -693,6 +736,22 @@
 % \begin{latex}
 %   \thusetup{
 %     math-style = GB,
+%   }
+% \end{latex}
+%
+% \DescribeOption{math-font}
+% 用户可以通过设置 \option{math-font} 选择数学字体，可选值：
+% \begin{itemize}
+%   \item \option{cambria}（默认，同 Word 默认数学字体一致）
+%   \item \option{times}：Times New Roman 的 TeX 克隆版
+%   \item \option{xits}：XITS Math 字体
+%   \item \option{stix}：STIX Math 字体
+%   \item \option{none}：不指定字体
+% \end{itemize}
+%
+% \begin{latex}
+%   \thusetup{
+%     math-font = cambria,
 %   }
 % \end{latex}
 %
