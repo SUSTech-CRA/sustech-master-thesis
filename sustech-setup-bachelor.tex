@@ -60,7 +60,7 @@
   %
   % 分类号（可选）
   %
-  natclassifiedindex={TP311},
+  natclassifiedindex={},
   intclassifiedindex={},
 }
 
@@ -89,8 +89,8 @@
 \usepackage{hologo}
 
 % 参考文献
-\usepackage[sort&compress]{natbib}
-\bibliographystyle{sustechthesis-numeric}
+\usepackage[backend=biber,style=gb7714-2015,gbpunctin=false]{biblatex}
+\addbibresource{ref/refs.bib}
 
 % 定义所有的图片文件在 figures 子目录下
 \graphicspath{{figures/}}

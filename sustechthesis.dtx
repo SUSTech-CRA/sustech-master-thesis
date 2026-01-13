@@ -1436,25 +1436,17 @@
 }
 \newcommand\thu@set@geometry{%
   \ifthu@degree@bachelor
+    % 本科生页面布局：严格按照 sustechthesis 本科模板格式
     \geometry{
-      top        = 3.8cm,
-      bottom     = 3.2cm,
-      left       = 3.2cm,
-      right      = 3cm,
-      headheight = 1.9cm,
-      headsep    = 1.9cm,
-      footskip   = 1.45cm,
+      top           = 27mm,
+      bottom        = 31mm,
+      left          = 25mm,
+      right         = 25mm,
+      bindingoffset = 5mm,
+      headheight    = 1.9cm,
+      headsep       = 1.9cm,
+      footskip      = 1.45cm,
     }%
-    \ifthu@output@print
-      \geometry{
-        left       = 3.2cm,
-        right      = 3cm,
-      }%
-    \else
-      \geometry{
-        hmargin    = 3cm,
-      }%
-    \fi
   \else
     \geometry{
       margin     = 3cm,
@@ -2011,6 +2003,33 @@
 \thu@option@hook{cjk-font}{\thu@load@cjk@font}
 %    \end{macrocode}
 %
+% 本科生字体设置：严格按照 sustechthesis 本科模板格式
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  % 英文字体：Times New Roman（使用包内字体）
+  \ifthu@font@external
+    \setmainfont[
+      Path=fonts/,
+      Extension = .ttf,
+      UprightFont = times,
+      BoldFont = timesbd,
+      ItalicFont = timesi,
+      BoldItalicFont = timesbi
+    ]{Times New Roman}
+  \fi
+  % 中文字体：宋体（默认），黑体
+  \ifthu@cjk@font@external
+    \xeCJKsetup{EmboldenFactor=3}%
+    \setCJKmainfont[
+      Path=fonts/,
+      FallBack=simsunb.ttf,
+      AutoFakeBold
+    ]{simsun.ttc}
+    \setCJKsansfont[Path=fonts/]{simhei.ttf}
+  \fi
+\fi
+%    \end{macrocode}
+%
 % \begin{macro}{\normalsize}
 % 正文小四号 (12bp) 字，行距为固定值 20 bp。
 % 其他字号的行距按照相同的比例设置。
@@ -2028,6 +2047,13 @@
 \ifx\MakeRobust\@undefined \else
     \MakeRobust\normalsize
 \fi
+% 本科生行距设置：严格按照 sustechthesis 本科模板格式
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  \renewcommand{\baselinestretch}{1.72}
+  \RequirePackage[MSWordLineSpacingMultiple=1.5]{zhlineskip}
+\fi
+%    \end{macrocode}
 \DeclareRobustCommand\small{%
    \@setfontsize\small{10.5bp}{17.5bp}%
    \abovedisplayskip 6bp%
@@ -2815,6 +2841,21 @@
   justification  = centering,
 }
 \captionsetup[sub]{font=thu}
+% 本科生图表标题格式：严格按照 sustechthesis 本科模板格式
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  \RequirePackage{caption}
+  \renewcommand{\captionfont}{\bfseries\songti\wuhao}
+  \captionsetup[table]{labelsep=space}
+  \captionsetup[figure]{labelsep=space}
+  \ctexset{
+    figurename      = {图},
+    tablename       = {表},
+    listfigurename  = {插图},
+    listtablename   = {表格},
+    proofname       = {证明},
+  }
+\fi
 %    \end{macrocode}
 %
 % 研究生要求表单元格中的文字采用 11pt 宋体字，单倍行距。段前空 3 磅，段后空 3 磅。
@@ -3075,6 +3116,27 @@
 }
 \thu@set@section@format
 \thu@option@hook{degree}{\thu@set@section@format}
+% 本科生章节标题格式：严格按照 sustechthesis 本科模板格式
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  \ctexset{
+    section = {
+      name       = {{}, .},
+      format     = {\heiti\sanhao},
+      beforeskip = 15.6pt,
+      afterskip  = .3ex plus .0ex,
+    },
+    subsection = {
+      format     = {\heiti\sihao},
+      beforeskip = 1.2ex plus .0ex minus .0ex,
+      afterskip  = .3ex plus .0ex,
+    },
+    subsubsection = {
+      format     = {\heiti\xiaosi},
+    },
+  }
+\fi
+%    \end{macrocode}
 \newcommand\thu@english@number[1]{%
   \expandafter\ifcase\csname c@#1\endcsname
     Zero\or
@@ -3181,6 +3243,24 @@
   },
 }
 \newcommand\thu@leaders{\titlerule*[4bp]{.}}
+% 本科生目录格式：严格按照 sustechthesis 本科模板格式（使用 tocloft）
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  \RequirePackage{tocloft}
+  \renewcommand\cfttoctitlefont{\hfill\heiti\xiaoer}
+  \renewcommand\cftaftertoctitle{\hfill}
+  \renewcommand\cftsecfont{\bfseries\songti\sihao}
+  \renewcommand\cftsecpagefont{\bfseries\songti\sihao}
+  \renewcommand\cftsubsecfont{\songti\sihao}
+  \renewcommand\cftsubsecpagefont{\songti\sihao}
+  \renewcommand\cftsubsubsecfont{\songti\sihao}
+  \renewcommand\cftsubsubsecpagefont{\songti\sihao}
+  \setlength\cftparskip{7pt}
+  \setlength\cftbeforesecskip{0bp}
+  \setlength\cftsubsecindent{0bp}
+  \setlength\cftsubsubsecindent{0bp}
+\fi
+%    \end{macrocode}
 \newcommand\thu@set@toc@format{%
   \contentsmargin{\z@}%
 %    \end{macrocode}
@@ -5078,6 +5158,42 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 }
 %    \end{macrocode}
 % \end{environment}
+%
+% 本科生摘要环境：严格按照 sustechthesis 本科模板格式
+%    \begin{macrocode}
+\ifthu@degree@bachelor
+  \RequirePackage{listofitems}
+  \newenvironment{bachelorAbstract}[1]%
+    {\setsepchar{；}\readlist\args{#1}
+      \linespread{1.45}\selectfont
+      \noindent\heiti\sanhao [摘要]：
+      \songti\sihao}%
+    {\vfill
+        \noindent\heiti\sanhao [关键词]：
+        \songti\sihao
+        \foreachitem\word\in\args{
+          \word
+          \ifthenelse{\wordcnt < \argslen}{；}{}
+        }
+      \vfill\clearpage}
+  \newenvironment{bachelorAbstractEn}[1]%
+    {\setsepchar{{, }}\readlist\args{#1}
+      \linespread{1.45}\selectfont
+      \noindent\sanhao [ABSTRACT]:
+      \sihao}%
+    {\vfill
+        \noindent\sanhao [Keywords]:
+        \sihao
+        \foreachitem\word\in\args{
+          \word
+          \ifthenelse{\wordcnt < \argslen}{,}{}
+        }
+      \vfill\clearpage}
+  % 为了兼容性，提供中文别名
+  \newcommand{\中文摘要}{\bachelorAbstract}
+  \newcommand{\英文摘要}{\bachelorAbstractEn}
+\fi
+%    \end{macrocode}
 %
 % \subsubsection{主要符号表}
 % \label{sec:denotationfmt}
