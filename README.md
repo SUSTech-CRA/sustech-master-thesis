@@ -41,7 +41,7 @@
    * Windows 中无需特别设定。其他系统（包括在线编辑器）设置 `font` 和 `cjk-font` 参数 为 `external`。
 
 ### 使用 LaTeX 在线编辑器
-* 使用 [南科大 ShareLaTeX](https://sharelatex.cra.moe/)，使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`。
+* 使用 [南科大 ShareLaTeX](https://sharelatex.cra.ac.cn/)（[校外地址](https://sharelatex-ext.cra.ac.cn/login)），使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`。
 * 使用 [LoongTeX](https://www.loongtex.com/)，上传 zip 压缩包后，选择编译的主文档，并将编译选项设置为 `XeLaTeX`。
 * 使用 [TeXPage](https://www.texpage.com/)，上传 zip 压缩包后，选择编译的主文档，并将编译选项设置为 `XeLaTeX`。
 * 使用 [Overleaf](https://www.overleaf.com/)（需要科学上网保证稳定使用），上传 zip 压缩包后，更改编译器为 `XeLaTeX`
