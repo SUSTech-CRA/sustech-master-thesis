@@ -7,7 +7,7 @@
     "latex-workshop.intellisense.unimathsymbols.enabled": true,
     "latex-workshop.latex.autoBuild.run": "onSave",
     "latex-workshop.latex.recipe.default": "lastUsed",
-    "latex-workshop.latex.build.forceRecipeUsage": true,
+    "latex-workshop.latex.build.enableMagicComments": false,
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk for sustechthesis",
@@ -20,7 +20,7 @@
             "tools": [
                 "xetex-sustechthesis"
             ]
-        },
+        }
     ],
     "latex-workshop.latex.tools": [
         {
