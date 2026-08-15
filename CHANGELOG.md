@@ -31,75 +31,89 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 <!-- BODY 正文标记，请勿移除 -->
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.23...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.24...HEAD)
 
-### Changed:
+## [v1.3.24](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.23...v1.3.24) - 2026-08-15
+
+### Changed
 - 重构 README 结构，优化文档组织（[#88](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/88)）。
-- 完善批处理脚本 `build.bat` 和 `clean.bat`，增强功能和易用性。
+- 完善 Windows 批处理脚本 `build.bat` 和 `clean.bat`，补充论文、报告和模板文档的构建与清理入口。
+- 更新南科大 ShareLaTeX 的校内、校外访问地址。
+- 升级 GitHub Actions，并将 CI 使用的 Python 更新至 3.12。
 
-### Added:
-- 完善文档：添加 `font`、`cjk-font`、`math-font`、`type`、`degree-type` 等选项的详细说明（[#91](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/91)）。
+### Added
+- 完善 `font`、`cjk-font`、`math-font`、`type`、`degree-type` 等选项的文档，并扩充示例 PDF 和 LuaLaTeX 临时文件的忽略规则（[#91](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/91)）。
 
-### Fixed:
-- 修复批处理脚本（`build.bat` 和 `clean.bat`）在 PowerShell 中的兼容性问题。
+### Fixed
+- 修复批处理脚本 `build.bat` 和 `clean.bat` 在 PowerShell 中的解析兼容性问题。
+- 修复 LaTeX Workshop 更新后可能出现 `undefined` 的编译问题（[#92](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/92)）。
 
 ## [v1.3.23](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.22...v1.3.23) - 2025-07-19
 
-### Fixed:
-- 修复错别字（[#85](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/85)）。
-- 修复引用文献特定页数的样式（[#87](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/87)）。
+### Changed
+- 更新在线 LaTeX 编辑器使用说明，完善 ShareLaTeX 和 TeXPage 步骤，并添加 LoongTeX 使用方法。
+- 在 CI 中增加 TeX Live 2024 兼容性测试。
 
 ### Added
-- 添加 BibLaTeX 下两种不同的文献引用排序方式示例。
+- 添加 BibLaTeX 下按引用顺序和按语言、作者、年份、标题排序的配置示例。
+
+### Fixed
+- 修复符号和缩略语说明中的字母序列错误及文档标点问题（[#85](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/85)）。
+- 修复引用文献特定页码的上标字号样式（[#87](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/87)）。
+- 修复测试脚本切换开题报告和年度考核报告类型时的正则匹配问题。
 
 ## [v1.3.22](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.21...v1.3.22) - 2024-10-06
 
-### Fixed:
-- 修复标注中的bug（[#79](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/79)）。
+### Fixed
+- 修复符号和缩略语说明中 `\textit` 命令参数格式错误（[#79](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/79)）。
 - 多行标题时，允许多行页眉（[#80](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/80)）。
 
 ### Changed
-- 更新英文题名页（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
-- 更新发布脚本（[#77](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/77)）。
+- 更新英文题名页和著者—出版年制支持，并补充致谢、结论及建议图片尺寸等写作规范说明（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
+- 更新版本发布脚本，支持自动生成 changelog 条目和选择版本升级级别（[#77](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/77)）。
 - 更新学位参数表示方式，改进可读性（[#76](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/76)）。
-- 优化代码（[#82](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/82)）。
+- 优化草稿模式实现和引用格式示例，并添加使用 `sidewaystable` 的旋转表格示例（[#82](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/82)）。
+- 升级发布与验证工作流使用的 GitHub Actions，并更新 TeX Live 兼容性测试矩阵。
+- 移除自动关闭长期未活动 Issue 和 Pull Request 的工作流。
 
 ### Added
-- 引文格式和参考文献增加著者-出版年制的格式（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
-- 致谢中新增要求提示（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
-- 新增建议图片大小的要求提示（[#78](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/78)）。
-- 添加draftmode（[#81](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/81)，[#82](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/82)）。
+- 添加 `draftmode`（[#81](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/81)）。
 
-## [1.3.21](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.20...v1.3.21) - 2024-04-29
+## [v1.3.21](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.20...v1.3.21) - 2024-04-29
 
-### Fixed:
-- 更新英文封面Degree和Professional Degree为首字母大写。
+### Fixed
+- 将英文封面中的 `Degree` 和 `Professional Degree` 调整为首字母大写。
 
-## [1.3.20](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.19...v1.3.20) - 2024-02-28
-
-### Fixed:
-- 原创性声明扫描件单面打印，即前后留空白页（[#68](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/68)）。
-- 开题报告封面校名字体大小改成小一（[#74](https://github.com/SUSTech-CRA/sustech-master-thesis/issues/74)）。
+## [v1.3.20](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.19...v1.3.20) - 2024-02-28
 
 ### Changed
-- 更新docker使用教程。
-- 论文使用授权书条款更新。
+- 扩充 Docker 编译教程，分别说明 TeX Live 和 MiKTeX 镜像的使用方法。
+- 更新论文使用授权书，允许填写论文延迟公开的年限。
+- 在 CI 中增加 TeX Live 2022 兼容性测试。
 
 ### Added
-- 增加 OverLeaf 超时提示。
+- 完善在线 LaTeX 编辑器说明，添加 TeXPage 使用方法及 Overleaf 免费账户编译超时提示。
 
-## [1.3.19](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.18...v1.3.19) - 2023-05-06
+### Fixed
+- 原创性声明扫描件改为单面打印，在扫描件前后插入空白页（[#68](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/68)）。
+- 将开题报告封面的校名字体调整为小一号（[#74](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/74)）。
+
+## [v1.3.19](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.18...v1.3.19) - 2023-05-06
+
 ### Changed
-- 添加加载外部英文字体选项，改善 Unix 系统下的英文字体编译。
-- 添加加载TeX Gyre Termes Math 数学字体选项，以TeX克隆版满足Times New Roman的数学字体选项要求。
 - 同步上游文献样式更新。
-- 增加伪代码样例。
+- 升级 GitHub Actions，使用提交哈希标识开发构建，并添加长期未活动 Issue 和 Pull Request 的自动处理工作流。
 
 ### Added
-- 增加 Docker 编译指引。
+- 添加外置英文字体选项并随模板提供 Arial、Courier New 和 Times New Roman 字体，改善 Unix 系统下的字体一致性。
+- 扩充数学字体支持：添加 TeX Gyre Termes Math 选项，并完善 XITS、STIX 字体兼容判断和字体示例。
+- 扩充伪代码示例，涵盖注释、`if-then-else`、`continue`、`break` 及中文正体文字。
+- 添加图片旋转示例。
+- 添加 Docker 编译指引。
 
-### Fixed:
-- 中文目录的Abstract改回加粗。
+### Fixed
+- 将中文目录中的 `Abstract` 恢复为加粗样式。
+- 修复答辩委员会页重复定义表格列类型产生的告警。
 
 ## [1.3.18](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.17...v1.3.18) - 2022-09-07
 ### Changed

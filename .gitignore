@@ -301,3 +301,9 @@ TSWLatexianTemp*
 *.sta
 
 yarn.lock
+
+# Local OpenSpec and agent skills
+/openspec/
+/.codex/skills/
+/.qoder/skills/
+/.qoder/commands/opsx/
