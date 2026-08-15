@@ -39,10 +39,11 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 - 重构 README 结构，优化文档组织（[#88](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/88)）。
 - 完善 Windows 批处理脚本 `build.bat` 和 `clean.bat`，补充论文、报告和模板文档的构建与清理入口。
 - 更新南科大 ShareLaTeX 的校内、校外访问地址。
-- 升级 GitHub Actions，并将 CI 使用的 Python 更新至 3.12。
+- 升级 GitHub Actions 和 artifact 组件，将 CI 使用的 Python 更新至 3.12，并使用原生命令替换第三方归档 Action 和依赖旧版 Node.js 的自动发布 Action。
 
 ### Added
 - 完善 `font`、`cjk-font`、`math-font`、`type`、`degree-type` 等选项的文档，并扩充示例 PDF 和 LuaLaTeX 临时文件的忽略规则（[#91](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/91)）。
+- 添加正式版本发布流程文档 `RELEASE.md`。
 
 ### Fixed
 - 修复批处理脚本 `build.bat` 和 `clean.bat` 在 PowerShell 中的解析兼容性问题。

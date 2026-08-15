@@ -146,6 +146,8 @@ xetex sustechthesis.ins
 
 每个版本的详细更新日志，请见 [CHANGELOG.md](CHANGELOG.md)。模板使用说明（sustechthesis.pdf）中也包含了这一内容。
 
+维护者发布正式版本时，请遵循 [RELEASE.md](RELEASE.md) 中的流程。
+
 ## 问题反馈
 
 在遇到模板问题时，请按以下步骤排查：

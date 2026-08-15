@@ -1,5 +1,3 @@
-env: {}
-
 # FILE GENERATED WITH: npx ghat fregante/ghatemplates/action-release
 # SOURCE: https://github.com/fregante/ghatemplates
 
@@ -11,6 +9,9 @@ on:
       - "master"
     tags:
       - v*
+
+permissions:
+  contents: read
 
 jobs:
   build_latex:
@@ -36,19 +37,16 @@ jobs:
           args: make dist-github
 
       - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          filename: 'sustech-thesis-dev-build.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig'
+        run: zip -r sustech-thesis-dev-build.zip . -x '*.git*' '*/node_modules/*' '.editorconfig' 'sustech-thesis-dev-build.zip'
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'sustech-thesis-dev-build'
           path: 'sustech-thesis-dev-build.zip'
 
       - name: Upload Pre-release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'pre-release-artifacts_action_build'
           path: |
@@ -61,47 +59,70 @@ jobs:
     runs-on: "ubuntu-latest"
     needs: build_latex
     if: github.event_name == 'push'
+    permissions:
+      contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         name: Download artifact
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        name: Auto pre-release
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "dev-latest"
-          prerelease: true
-          title: "Dev Build（预发布）"
-          files: |
-            pre-release-artifacts_action_build/sustechthesis.cls
-            pre-release-artifacts_action_build/sustechthesis.pdf
-            pre-release-artifacts_action_build/public-test/*.pdf
-            sustech-thesis-dev-build/sustech-thesis-dev-build.zip
+
+      - name: Publish pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view dev-latest >/dev/null 2>&1; then
+            gh release delete dev-latest --cleanup-tag --yes
+          else
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/git/refs/tags/dev-latest" >/dev/null 2>&1 || true
+          fi
+
+          gh release create dev-latest \
+            pre-release-artifacts_action_build/sustechthesis.cls \
+            pre-release-artifacts_action_build/sustechthesis.pdf \
+            pre-release-artifacts_action_build/public-test/*.pdf \
+            sustech-thesis-dev-build/sustech-thesis-dev-build.zip \
+            --target "${GITHUB_SHA}" \
+            --title "Dev Build（预发布）" \
+            --prerelease \
+            --generate-notes
 
   release-tag:
     name: "Draft release by tag"
     runs-on: "ubuntu-latest"
     needs: build_latex
     if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         name: Download artifact
 
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
 
       - name: Rename artifact
-        run: cp sustech-thesis-dev-build/sustech-thesis-dev-build.zip sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.VERSION }}.zip
+        run: cp sustech-thesis-dev-build/sustech-thesis-dev-build.zip sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.version }}.zip
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        name: Upload release artifacts
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          draft: true
-          automatic_release_tag: ${{ steps.get_version.outputs.VERSION }}
-          title: ${{ steps.get_version.outputs.VERSION }}
-          files: |
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.get_version.outputs.version }}
+        run: |
+          assets=(
             pre-release-artifacts_action_build/sustechthesis.cls
             pre-release-artifacts_action_build/sustechthesis.pdf
             pre-release-artifacts_action_build/public-test/*.pdf
-            sustech-thesis-dev-build/sustech-thesis-${{ steps.get_version.outputs.VERSION }}.zip
+            "sustech-thesis-dev-build/sustech-thesis-${VERSION}.zip"
+          )
+
+          if gh release view "${VERSION}" >/dev/null 2>&1; then
+            gh release upload "${VERSION}" "${assets[@]}" --clobber
+            gh release edit "${VERSION}" --draft --title "${VERSION}"
+          else
+            gh release create "${VERSION}" "${assets[@]}" \
+              --verify-tag \
+              --draft \
+              --title "${VERSION}" \
+              --generate-notes

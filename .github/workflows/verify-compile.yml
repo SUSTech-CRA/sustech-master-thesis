@@ -26,7 +26,7 @@ jobs:
         run: make doc test
 
       - name: Publish PDF as actions assets
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Example-PDFs-texlive-${{ matrix.texlive }}
           path: |
