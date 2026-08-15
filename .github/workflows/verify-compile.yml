@@ -7,9 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        texlive: [latest, TL2024-historic, TL2023-historic, TL2022-historic, TL2021-historic]
-        # 多版本 TexLive 兼容性测试
-        # 版本号选自：https://hub.docker.com/r/texlive/texlive/tags
+        # 保留当前年度及此前四个年度的 TeX Live；每年新增一版并移除最旧版本。
+        # `latest` 是当前年度 TeX Live 的滚动镜像，historic tag 对应固定年度版本：
+        # https://hub.docker.com/r/texlive/texlive/tags
+        texlive:
+          - latest # TeX Live 2026
+          - TL2025-historic
+          - TL2024-historic
+          - TL2023-historic
+          - TL2022-historic
     container: texlive/texlive:${{ matrix.texlive }}
     steps:
       - name: Checkout
