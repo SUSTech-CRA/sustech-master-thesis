@@ -126,3 +126,4 @@ jobs:
               --draft \
               --title "${VERSION}" \
               --generate-notes
+          fi
