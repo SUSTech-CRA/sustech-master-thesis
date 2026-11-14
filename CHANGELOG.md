@@ -31,11 +31,12 @@ Changelog 维护应保持最新版本在文件上面的原则，日期格式按�
 
 <!-- BODY 正文标记，请勿移除 -->
 
-## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.24...HEAD)
+## [Unreleased](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.25...HEAD)
+
+## [v1.3.25](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.24...v1.3.25) - 2026-11-14
 
 ### Added
-- 新增文档类型 `type = practice`，支持专业学位研究生实践计划中英文封面。
-- 新增 `industrial-supervisor`（业界导师）和 `training-level`（培养层次）及其英文参数。
+- 新增文档类型 `type = practice`，支持专业学位研究生实践计划中英文封面，并新增 `industrial-supervisor`（业界导师）和 `training-level`（培养层次）及其英文参数；测试改为生成全部报告类型的中英文示例，并修复 biber 示例的编译（[#94](https://github.com/SUSTech-CRA/sustech-master-thesis/pull/94)）。
 
 ## [v1.3.24](https://github.com/SUSTech-CRA/sustech-master-thesis/compare/v1.3.23...v1.3.24) - 2026-08-15
 
