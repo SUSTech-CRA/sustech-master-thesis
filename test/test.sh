@@ -18,6 +18,8 @@ cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-exampl
 python3 "$RT_DIR/test/test-files.py" --recipe 2 --undo
 
 # 生成biber预览
+# BibTeX 生成的 .bbl 会导致 biblatex 报错
+rm -f "$RT_DIR/sustechthesis-example.bbl"
 python3 "$RT_DIR/test/test-files.py" --recipe 3
 make
 cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-biber.pdf"

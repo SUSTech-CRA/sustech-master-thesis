@@ -35,7 +35,7 @@ def comment_line(filename, pattern, action):
                         if action:
                             line = f"% {line}"
                         else:
-                            line = re.sub("^[%\s]+", "", line)
+                            line = re.sub(r"^[%\s]+", "", line)
                         f2.write(line)
                         print(line)
                     else:
@@ -118,7 +118,7 @@ if __name__ == "__main__":
         if not args.undo:
             comment_line(filename, "{natbib}", True)
             comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
-            comment_line(filename, "gb7714-2015,.*{biblatex}", False)
+            comment_line(filename, r"style=gb7714-2015,gbalign=left\]{biblatex}", False)
             comment_line(filename, "addbibresource{ref/refs.bib}", False)
     elif args.recipe in REPORT_TYPES:
         # 4: progress, 5: proposal, 6: practice
