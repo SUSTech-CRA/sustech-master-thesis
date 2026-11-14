@@ -13,7 +13,7 @@
 
 * 模板使用说明（**sustechthesis.pdf**）
 * 学位论文示例文档（**sustechthesis-example.tex**）
-* 报告示例文档（**sustechthesis-example-report.tex**），包括开题报告、年度考核报告
+* 报告示例文档（**sustechthesis-example-report.tex**），包括开题报告、年度考核报告、专业学位研究生实践计划
 
 > 注：模板使用说明尚不完善，仅供参考。主要功能在 `sustech-setup.tex` 配置文件中已有注释说明。
 
@@ -115,7 +115,7 @@ docker run -it --rm \
 ### 文档内容
 * `sustech-setup.tex` 示例文档基本配置（论文标题、作者等元数据）
 * `sustechthesis-example.tex` 学位论文示例文档
-* `sustechthesis-example-report.tex` 报告示例文档，包括开题报告，年度考核报告
+* `sustechthesis-example-report.tex` 报告示例文档，包括开题报告，年度考核报告，专业学位研究生实践计划
 * `data/` 示例文档章节具体内容
 * `figures/` 示例文档图片目录
 * `ref/` 示例文档参考文献目录

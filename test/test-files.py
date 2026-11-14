@@ -81,8 +81,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--recipe", type=int, required=True, help='recipe value')
     parser.add_argument('--undo', action='store_true')
+    parser.add_argument('--lang', choices=['cn', 'en'], default='cn', help='report language')
     args = parser.parse_args()
     TOBACKUP = not args.undo
+    REPORT_TYPES = {4: 'progress', 5: 'proposal', 6: 'practice'}
+    LANGUAGES = {'cn': 'chinese', 'en': 'english'}
 
     if args.recipe == 1:
         # chinese
@@ -117,21 +120,20 @@ if __name__ == "__main__":
             comment_line(filename, "bibliographystyle{sustechthesis-numeric}", True)
             comment_line(filename, "gb7714-2015,.*{biblatex}", False)
             comment_line(filename, "addbibresource{ref/refs.bib}", False)
-    elif args.recipe == 4:
-        # progress
+    elif args.recipe in REPORT_TYPES:
+        # 4: progress, 5: proposal, 6: practice
         filename = "sustech-setup.tex"
         backup(filename, TOBACKUP)
         if not args.undo:
             change_line(filename,
-                        "(?<!\S)type = \S+,",
-                        "type = progress,"
+                        r"(?<!\S)type = \S+,",
+                        f"type = {REPORT_TYPES[args.recipe]},"
                         )
-    elif args.recipe == 5:
-        # proposal
-        filename = "sustech-setup.tex"
+
+        filename = "sustechthesis-example-report.tex"
         backup(filename, TOBACKUP)
         if not args.undo:
             change_line(filename,
-                        "(?<!\S)type = \S+,",
-                        "type = proposal,"
+                        "documentclass.+{sustechthesis}",
+                        f"documentclass[degree=master,language={LANGUAGES[args.lang]},font=external,cjk-font=external]{{sustechthesis}}"
                         )
