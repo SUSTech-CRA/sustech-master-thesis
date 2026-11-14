@@ -441,7 +441,8 @@
 %
 % \subsubsection{文档类型}
 % \DescribeOption{type}
-% 选择文档类型，可选：\option{proposal}（开题报告）、\option{progress}（年度考核报告）、\option{thesis}（学位论文，默认）。
+% 选择文档类型，可选：\option{proposal}（开题报告）、\option{progress}（年度考核报告）、
+% \option{practice}（专业学位研究生实践计划）、\option{thesis}（学位论文，默认）。
 %
 % \begin{latex}
 %   \thusetup{
@@ -530,6 +531,18 @@
 %   \thusetup{
 %     supervisor  = {某某某（Alice Bob）助理教授},
 %     supervisor* = {Assistant Professor Alice Bob},
+%   }
+% \end{latex}
+%
+% \subsubsection{实践计划专用信息}
+% 以下参数仅用于专业学位研究生实践计划（\option{practice}）封面。
+% 业界导师为必填项；培养层次默认按 \option{degree} 显示“硕士”或“博士”，一般无需设置。
+% \begin{latex}
+%   \thusetup{
+%     industrial-supervisor  = {某某某高级工程师},
+%     industrial-supervisor* = {Senior Engineer Carol Dave},
+%     training-level  = {硕士},
+%     training-level* = {Master},
 %   }
 % \end{latex}
 %
@@ -3443,6 +3456,24 @@
   joint-supervisor* = {
     name = joint@supervisor@en,
   },
+  industrial-supervisor = {
+    name = industrial@supervisor,
+  },
+  industrial-supervisor* = {
+    name = industrial@supervisor@en,
+  },
+%    \end{macrocode}
+%
+% 培养层次，默认按学位显示。
+%    \begin{macrocode}
+  training-level = {
+    default = {\degree@level},
+    name    = training@level,
+  },
+  training-level* = {
+    default = {\degree@level@en@noun},
+    name    = training@level@en,
+  },
 %    \end{macrocode}
 %
 % 学位中英文。
@@ -3486,6 +3517,7 @@
     choices = {
       proposal,
       progress,
+      practice,
       thesis,
     },
     name    = doc@type,
@@ -3975,6 +4007,12 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
     \def\date@name@en{Submission Date}
     \def\date@name{年度考核日期}
   \fi
+  \ifthu@doc@type@practice
+    \def\report@name@en{Research Proposal for Professional Degree Graduate Student}
+    \def\report@name{专业学位研究生实践计划}
+    \def\date@name@en{Date of Proposal Report}
+    \def\date@name{实践计划报告日期}
+  \fi
 }
 \RequirePackage{listofitems}
 \newcommand{\ulbox}[2][2em]{%
@@ -4049,14 +4087,27 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       \vspace*{30pt}
       {\zihao{3} \songti
-        \begin{tabular}{l@{}l}
-          \sustech@info@item*[6em]{院（系）}[10em]{\thu@department}\\
-          \sustech@info@item*[6em]{学科}[10em]{\thu@discipline}\\
-          \sustech@info@item*[6em]{导师}[10em]{\thu@supervisor}\\
-          \sustech@info@item[6em]{研究生}[10em]{\thu@author}\\
-          \sustech@info@item[6em]{学号}[10em]{\thu@author@id}\\
-          \sustech@info@item[6em]{\date@name}[10em]{\thu@format@date{\thu@date@zh@digit}{\thu@date}}
-        \end{tabular}
+        \ifthu@doc@type@practice
+          \begin{tabular}{l@{}l}
+            \sustech@info@item*[8em]{院（系）}[10em]{\thu@department}\\
+            \sustech@info@item[8em]{培养层次}[10em]{\thu@training@level}\\
+            \sustech@info@item[8em]{研究生}[10em]{\thu@author}\\
+            \sustech@info@item[8em]{学号}[10em]{\thu@author@id}\\
+            \sustech@info@item*[8em]{专业}[10em]{\thu@discipline}\\
+            \sustech@info@item*[8em]{校内导师}[10em]{\thu@supervisor}\\
+            \sustech@info@item*[8em]{业界导师}[10em]{\thu@industrial@supervisor}\\
+            \sustech@info@item[8em]{\date@name}[10em]{\thu@format@date{\thu@date@zh@digit}{\thu@date}}
+          \end{tabular}
+        \else
+          \begin{tabular}{l@{}l}
+            \sustech@info@item*[6em]{院（系）}[10em]{\thu@department}\\
+            \sustech@info@item*[6em]{学科}[10em]{\thu@discipline}\\
+            \sustech@info@item*[6em]{导师}[10em]{\thu@supervisor}\\
+            \sustech@info@item[6em]{研究生}[10em]{\thu@author}\\
+            \sustech@info@item[6em]{学号}[10em]{\thu@author@id}\\
+            \sustech@info@item[6em]{\date@name}[10em]{\thu@format@date{\thu@date@zh@digit}{\thu@date}}
+          \end{tabular}
+        \fi
       }\par
       \vfill
 
@@ -4092,14 +4143,27 @@ Thesis for the Degree of \degree@level@en@noun \ of \thu@degree@domain@en%
 
       \vspace*{30pt}
       {\zihao{3}
-        \begin{tabular}{l@{}l}
-          \sustech@info@item*{Department}[16em]{\thu@department@en}\\
-          \sustech@info@item*{Discipline}[16em]{\thu@discipline@en}\\
-          \sustech@info@item*{Supervisor}[16em]{\thu@supervisor@en}\\
-          \sustech@info@item{Student Name}[16em]{\thu@author@en}\\
-          \sustech@info@item{Student Number}[16em]{\thu@author@id}\\
-          \sustech@info@item{\date@name@en}[16em]{\thu@format@date{\thu@date@en}{\thu@date}}
-        \end{tabular}
+        \ifthu@doc@type@practice
+          \begin{tabular}{l@{}l}
+            \sustech@info@item*{Department}[16em]{\thu@department@en}\\
+            \sustech@info@item{Type}[16em]{\thu@training@level@en}\\
+            \sustech@info@item*{Discipline}[16em]{\thu@discipline@en}\\
+            \sustech@info@item*{Supervisor}[16em]{\thu@supervisor@en}\\
+            \sustech@info@item*{Industrial Supervisor}[16em]{\thu@industrial@supervisor@en}\\
+            \sustech@info@item{Student Name}[16em]{\thu@author@en}\\
+            \sustech@info@item{Student Number}[16em]{\thu@author@id}\\
+            \sustech@info@item{\date@name@en}[16em]{\thu@format@date{\thu@date@en}{\thu@date}}
+          \end{tabular}
+        \else
+          \begin{tabular}{l@{}l}
+            \sustech@info@item*{Department}[16em]{\thu@department@en}\\
+            \sustech@info@item*{Discipline}[16em]{\thu@discipline@en}\\
+            \sustech@info@item*{Supervisor}[16em]{\thu@supervisor@en}\\
+            \sustech@info@item{Student Name}[16em]{\thu@author@en}\\
+            \sustech@info@item{Student Number}[16em]{\thu@author@id}\\
+            \sustech@info@item{\date@name@en}[16em]{\thu@format@date{\thu@date@en}{\thu@date}}
+          \end{tabular}
+        \fi
       }\par
       \vfill
 

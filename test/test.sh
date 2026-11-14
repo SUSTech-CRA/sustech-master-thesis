@@ -18,18 +18,21 @@ cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-exampl
 python3 "$RT_DIR/test/test-files.py" --recipe 2 --undo
 
 # 生成biber预览
+# BibTeX 生成的 .bbl 会导致 biblatex 报错
+rm -f "$RT_DIR/sustechthesis-example.bbl"
 python3 "$RT_DIR/test/test-files.py" --recipe 3
 make
 cp "$RT_DIR/sustechthesis-example.pdf" "$RT_DIR/public-test/sustechthesis-example-biber.pdf"
 python3 "$RT_DIR/test/test-files.py" --recipe 3 --undo
 
-# 生成报告预览
-python3 "$RT_DIR/test/test-files.py" --recipe 4
-make report
-cp "$RT_DIR/sustechthesis-example-report.pdf" "$RT_DIR/public-test/sustechthesis-example-report-progress.pdf"
-python3 "$RT_DIR/test/test-files.py" --recipe 4 --undo
-
-python3 "$RT_DIR/test/test-files.py" --recipe 5
-make report
-cp "$RT_DIR/sustechthesis-example-report.pdf" "$RT_DIR/public-test/sustechthesis-example-report-proposal.pdf"
-python3 "$RT_DIR/test/test-files.py" --recipe 5 --undo
+# 生成报告预览（中英文）
+for report in 4:progress 5:proposal 6:practice; do
+  recipe="${report%%:*}"
+  name="${report#*:}"
+  for lang in cn en; do
+    python3 "$RT_DIR/test/test-files.py" --recipe "$recipe" --lang "$lang"
+    make report
+    cp "$RT_DIR/sustechthesis-example-report.pdf" "$RT_DIR/public-test/sustechthesis-example-report-$name-$lang.pdf"
+    python3 "$RT_DIR/test/test-files.py" --recipe "$recipe" --undo
+  done
+done
