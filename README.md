@@ -40,6 +40,26 @@
 4. ⚠️ 提交最终正式版本时，需要确保所有字体选择正确且被正确嵌入，以满足《规定》：
    * Windows 中无需特别设定。其他系统（包括在线编辑器）设置 `font` 和 `cjk-font` 参数 为 `external`。
 
+### 切换文档类型
+
+模板默认生成南科大学位论文。如需生成报告，修改 `sustech-setup.tex` 中 `\thusetup{...}` 里的 `type` 参数：
+
+```latex
+\thusetup{
+  type = thesis,  % 改为 proposal、progress 或 practice
+}
+```
+
+| `type` | 文档类型 | 编译的主文档 |
+|---|---|---|
+| `thesis`（默认） | 学位论文 | `sustechthesis-example.tex` |
+| `proposal` | 开题报告 | `sustechthesis-example-report.tex` |
+| `progress` | 年度考核报告 | `sustechthesis-example-report.tex` |
+| `practice` | 专业学位研究生实践计划 | `sustechthesis-example-report.tex` |
+
+* 报告封面的中英文由主文档 `\documentclass[...]` 中的 `language` 参数切换：`chinese`（默认）或 `english`。
+* 实践计划需要额外填写 `industrial-supervisor`（业界导师）及其英文 `industrial-supervisor*`；培养层次 `training-level` 默认按 `degree` 显示“硕士”或“博士”，一般无需设置。
+
 ### 使用 LaTeX 在线编辑器
 * 使用 [南科大 ShareLaTeX](https://sharelatex.cra.ac.cn/)（[校外地址](https://sharelatex-ext.cra.ac.cn/login)），使用方式与Overleaf相同，上传 zip 压缩包后，更改编译器为 `XeLaTeX`，并在主文档的头部 `\documentclass[degree=master,language=english,cjk-font=external]` 设置 `cjk-font` 参数 为 `external`。
 * 使用 [LoongTeX](https://www.loongtex.com/)，上传 zip 压缩包后，选择编译的主文档，并将编译选项设置为 `XeLaTeX`。
